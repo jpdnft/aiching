@@ -27,6 +27,20 @@
     "focus",
     "shared ritual"
   ],
+  "primaryTone": [
+    "communal",
+    "supportive",
+    "gathering"
+  ],
+  "supportScore": 8,
+  "cautionScore": 4,
+  "momentum": [
+    "gathering",
+    "stabilizing"
+  ],
+  "momentumNotes": [
+    "People and resources converge; the center must be organized, reverent, and prepared."
+  ],
   "theme": "Gathering Together draws many parts toward a shared center. A group becomes meaningful when it is held by purpose, care, and remembrance.",
   "basicInterpretation": "Bring people, resources, or thoughts into one place. What gathers now needs tending, leadership, and a reason larger than habit.",
   "reflectionPrompt": "What center is calling scattered things together?",

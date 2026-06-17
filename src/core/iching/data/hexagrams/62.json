@@ -27,6 +27,20 @@
     "humility",
     "precision"
   ],
+  "primaryTone": [
+    "restrained",
+    "uncertain",
+    "careful"
+  ],
+  "supportScore": 5,
+  "cautionScore": 6,
+  "momentum": [
+    "cautious",
+    "restrained"
+  ],
+  "momentumNotes": [
+    "Small matters carry unusual weight; modest precision is safer than grand action."
+  ],
   "theme": "Small Preponderance favors careful attention to what is near and modest. The great gesture may miss what the small gesture can save.",
   "basicInterpretation": "Keep low, precise, and practical. Success now may come through humility, detail, and not flying higher than the moment allows.",
   "reflectionPrompt": "What small thing deserves exact care?",

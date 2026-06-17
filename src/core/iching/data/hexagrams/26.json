@@ -27,6 +27,20 @@
     "cultivation",
     "discipline"
   ],
+  "primaryTone": [
+    "restrained",
+    "powerful",
+    "supportive"
+  ],
+  "supportScore": 7,
+  "cautionScore": 5,
+  "momentum": [
+    "restrained",
+    "gathering"
+  ],
+  "momentumNotes": [
+    "Great energy is being held and cultivated; restraint increases future usefulness."
+  ],
   "theme": "Great Taming stores immense force within the mountain. Power becomes fruitful when it is cultivated rather than spent too soon.",
   "basicInterpretation": "Hold your energy with purpose. Study, prepare, and strengthen the vessel so that action later can be clean and effective.",
   "reflectionPrompt": "What power needs cultivation before release?",

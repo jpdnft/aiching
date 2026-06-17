@@ -27,6 +27,20 @@
     "repetition",
     "courage"
   ],
+  "primaryTone": [
+    "dangerous",
+    "challenging",
+    "initiatory"
+  ],
+  "supportScore": 3,
+  "cautionScore": 10,
+  "momentum": [
+    "dangerous",
+    "repeating"
+  ],
+  "momentumNotes": [
+    "Danger repeats until steadiness becomes skill; panic worsens the current, sincerity helps one pass through."
+  ],
   "theme": "The Abysmal is water within water, depth repeated until fear becomes discipline. It does not remove danger; it teaches movement through it.",
   "basicInterpretation": "Stay sincere and keep flowing. When the same difficulty returns, steadiness may be the way intelligence takes shape.",
   "reflectionPrompt": "What danger asks for calm repetition rather than panic?",

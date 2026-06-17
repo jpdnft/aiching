@@ -27,6 +27,20 @@
     "small influence",
     "preparation"
   ],
+  "primaryTone": [
+    "restrained",
+    "supportive",
+    "incremental"
+  ],
+  "supportScore": 6,
+  "cautionScore": 5,
+  "momentum": [
+    "restrained",
+    "forming"
+  ],
+  "momentumNotes": [
+    "Small influences can shape the outcome, but the moment is not yet built for large force."
+  ],
   "theme": "Small Taming works by gentle restraint. Great force is present, but the moment asks for careful shaping through small, repeated influence.",
   "basicInterpretation": "Do not rush to force a result. Adjust details, refine your approach, and trust the quiet work that prepares larger movement.",
   "reflectionPrompt": "What small discipline would change the direction of the whole?",

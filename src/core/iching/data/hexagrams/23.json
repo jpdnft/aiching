@@ -27,6 +27,20 @@
     "stripping away",
     "decline"
   ],
+  "primaryTone": [
+    "dangerous",
+    "challenging",
+    "declining"
+  ],
+  "supportScore": 2,
+  "cautionScore": 9,
+  "momentum": [
+    "declining",
+    "disintegrating"
+  ],
+  "momentumNotes": [
+    "Structures are stripping away; the wise movement is preservation, not heroic expansion."
+  ],
   "theme": "Splitting Apart is the removal of what can no longer hold. It may feel like loss, but it also exposes what must be protected underneath.",
   "basicInterpretation": "Do not cling to the peeling layer. Preserve the seed, simplify your obligations, and let what is unstable fall away.",
   "reflectionPrompt": "What is being stripped away so something essential can remain?",

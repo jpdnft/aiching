@@ -1,12 +1,13 @@
-import { ReactNode, useCallback, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { setAudioModeAsync, useAudioPlayer } from 'expo-audio';
 import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { CastButton } from '@/components/CastButton';
 import { HexagramView } from '@/components/HexagramView';
-import { addCastLine, isCompleteHexagram } from '@/core/iching/generate';
+import { generateBasicLine, isCompleteHexagram } from '@/core/iching/generate';
 import { createCompletedReading } from '@/core/iching/interpretation';
 import { lookupHexagram } from '@/core/iching/lookup';
 import { CompletedReading, PartialHexagramLines } from '@/core/iching/types';
@@ -20,13 +21,21 @@ import { aiChingColors } from '@/theme/colors';
 import { getHomeBackgroundSource } from '@/theme/hexagramBackgrounds';
 import { getLocalDateKey } from '@/utils/date';
 
+const iChingLogo = require('../../assets/images/ichinglogo.png');
+const castLineSound = require('../../assets/sounds/cast-line.mp3');
+
 export default function CastScreen() {
   const router = useRouter();
-  const { themeId } = useAppTheme();
+  const { soundEffectsEnabled, themeId } = useAppTheme();
+  const castLinePlayer = useAudioPlayer(castLineSound, { downloadFirst: true });
   const [lines, setLines] = useState<PartialHexagramLines>([]);
   const [todaysReading, setTodaysReading] = useState<CompletedReading | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [animatedLineIndex, setAnimatedLineIndex] = useState<number | null>(null);
+  const [animationKey, setAnimationKey] = useState(0);
+  const [isCastingLineAnimating, setIsCastingLineAnimating] = useState(false);
+  const [castButtonStep, setCastButtonStep] = useState(1);
 
   useFocusEffect(
     useCallback(() => {
@@ -38,14 +47,51 @@ export default function CastScreen() {
 
   const castCount = lines.length;
   const isComplete = isCompleteHexagram(lines);
+  const castButtonLabel = isComplete ? 'REVEAL' : `Cast #${castButtonStep} of 6`;
   const homeBackgroundSource = getHomeBackgroundSource(themeId);
 
+  useEffect(() => {
+    castLinePlayer.volume = 0.42;
+
+    setAudioModeAsync({
+      interruptionMode: 'mixWithOthers',
+      playsInSilentMode: true,
+    }).catch(() => {
+      // Sound is ornamental; casting should never depend on audio setup.
+    });
+  }, [castLinePlayer]);
+
+  const playCastLineSound = useCallback(() => {
+    if (!soundEffectsEnabled) {
+      return;
+    }
+
+    castLinePlayer
+      .seekTo(0)
+      .then(() => castLinePlayer.play())
+      .catch(() => {
+        // Keep the casting flow silent if playback is unavailable.
+      });
+  }, [castLinePlayer, soundEffectsEnabled]);
+
   function handleCast() {
-    setLines((currentLines) => addCastLine(currentLines));
+    if (isCastingLineAnimating || lines.length >= 6) {
+      return;
+    }
+
+    playCastLineSound();
+
+    const nextLineIndex = lines.length;
+    const nextLine = generateBasicLine();
+
+    setLines([...lines, nextLine]);
+    setAnimatedLineIndex(nextLineIndex);
+    setAnimationKey((currentKey) => currentKey + 1);
+    setIsCastingLineAnimating(true);
   }
 
   async function handleReveal() {
-    if (!isCompleteHexagram(lines)) {
+    if (!isCompleteHexagram(lines) || isCastingLineAnimating) {
       return;
     }
 
@@ -67,7 +113,30 @@ export default function CastScreen() {
     await clearTodaysReadingForDev();
     setTodaysReading(null);
     setLines([]);
+    setAnimatedLineIndex(null);
+    setIsCastingLineAnimating(false);
+    setCastButtonStep(1);
   }
+
+  const handleLineAnimationComplete = useCallback(() => {
+    setIsCastingLineAnimating(false);
+    setAnimatedLineIndex(null);
+    setCastButtonStep((currentStep) => Math.min(currentStep + 1, 6));
+  }, []);
+
+  useEffect(() => {
+    if (!isCastingLineAnimating) {
+      return;
+    }
+
+    const releaseCastButton = setTimeout(() => {
+      setIsCastingLineAnimating(false);
+      setAnimatedLineIndex(null);
+      setCastButtonStep((currentStep) => Math.min(currentStep + 1, 6));
+    }, 1200);
+
+    return () => clearTimeout(releaseCastButton);
+  }, [isCastingLineAnimating, animationKey]);
 
   if (isLoading) {
     return (
@@ -83,6 +152,12 @@ export default function CastScreen() {
     return (
       <CastBackground backgroundSource={homeBackgroundSource}>
         <View style={styles.hero}>
+          <Image
+            source={iChingLogo}
+            style={styles.logo}
+            contentFit="contain"
+            accessibilityLabel="I Ching"
+          />
           <Text style={styles.kicker}>Today has been cast</Text>
           <HexagramView lines={todaysReading.lines} />
           <Text style={styles.title}>
@@ -104,19 +179,29 @@ export default function CastScreen() {
     <CastBackground backgroundSource={homeBackgroundSource}>
       <View style={styles.hero}>
         <View style={styles.heading}>
-          <Text style={styles.kicker}>AI Ching</Text>
+          <Image
+            source={iChingLogo}
+            style={styles.logo}
+            contentFit="contain"
+            accessibilityLabel="I Ching"
+          />
           <Text style={styles.title}>Cast one clear pattern for today.</Text>
           <Text style={styles.intention}>
             Hold a question, feeling, or intention in mind as each line arrives.
           </Text>
         </View>
 
-        <HexagramView lines={lines} />
+        <HexagramView
+          animatedLineIndex={animatedLineIndex}
+          animationKey={animationKey}
+          lines={lines}
+          onLineAnimationComplete={handleLineAnimationComplete}
+        />
 
         <Text style={styles.progress}>{castCount}/6 lines cast</Text>
         <CastButton
-          label={isComplete ? 'REVEAL' : 'CAST'}
-          disabled={isSaving}
+          label={castButtonLabel}
+          disabled={isSaving || isCastingLineAnimating}
           onPress={isComplete ? handleReveal : handleCast}
         />
       </View>
@@ -176,7 +261,14 @@ const styles = StyleSheet.create({
   },
   heading: {
     alignItems: 'center',
-    gap: 8,
+    gap: 12,
+  },
+  logo: {
+    width: '96%',
+    maxWidth: 680,
+    height: 220,
+    marginTop: -48,
+    marginBottom: -18,
   },
   kicker: {
     color: aiChingColors.gold,

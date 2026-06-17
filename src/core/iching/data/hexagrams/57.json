@@ -27,6 +27,20 @@
     "subtle influence",
     "persistence"
   ],
+  "primaryTone": [
+    "supportive",
+    "subtle",
+    "penetrating"
+  ],
+  "supportScore": 7,
+  "cautionScore": 4,
+  "momentum": [
+    "gradual",
+    "penetrating"
+  ],
+  "momentumNotes": [
+    "Influence enters by softness and repetition; gentle persistence reaches what force cannot."
+  ],
   "theme": "The Gentle is wind following wind, entering through small openings. It changes things by persistence, not force.",
   "basicInterpretation": "Move softly and keep returning. A subtle influence, patiently applied, may reach places that pressure cannot enter.",
   "reflectionPrompt": "Where would gentleness go farther than force?",

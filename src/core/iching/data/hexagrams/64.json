@@ -27,6 +27,20 @@
     "transition",
     "careful crossing"
   ],
+  "primaryTone": [
+    "uncertain",
+    "transitional",
+    "forming"
+  ],
+  "supportScore": 5,
+  "cautionScore": 7,
+  "momentum": [
+    "unfinished",
+    "forming"
+  ],
+  "momentumNotes": [
+    "The crossing is not complete; the moment favors alertness, sequencing, and patience before the final step."
+  ],
   "theme": "Before Completion stands at the edge of crossing. The pattern is not resolved, and that is why attention matters.",
   "basicInterpretation": "Do not rush the final step. Gather yourself, watch the conditions, and cross only with the care that unfinished things deserve.",
   "reflectionPrompt": "What is almost ready, but not yet asking to be forced?",

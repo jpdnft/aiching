@@ -27,6 +27,20 @@
     "timing",
     "trust"
   ],
+  "primaryTone": [
+    "restrained",
+    "transitional",
+    "supportive"
+  ],
+  "supportScore": 6,
+  "cautionScore": 5,
+  "momentum": [
+    "waiting",
+    "gathering"
+  ],
+  "momentumNotes": [
+    "Energy is accumulating before action; nourishment, trust, and timing matter more than force."
+  ],
   "theme": "Waiting is not emptiness; it is ripening. The rain has not yet fallen, but the clouds are already part of the answer.",
   "basicInterpretation": "This is a time to prepare, nourish yourself, and avoid forcing the gate. Patience becomes active when it protects readiness.",
   "reflectionPrompt": "What can be tended while the timing matures?",

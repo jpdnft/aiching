@@ -27,6 +27,20 @@
     "vigilance",
     "transition"
   ],
+  "primaryTone": [
+    "supportive",
+    "transitional",
+    "delicate"
+  ],
+  "supportScore": 7,
+  "cautionScore": 6,
+  "momentum": [
+    "completed",
+    "delicate"
+  ],
+  "momentumNotes": [
+    "Completion has been reached, but balance is fragile and must be maintained carefully."
+  ],
   "theme": "After Completion is order achieved, but not guaranteed. Fire and water are in their places; now the task is careful maintenance.",
   "basicInterpretation": "Honor what has been completed, then stay awake. The moment after success is delicate because balance can quietly begin to change.",
   "reflectionPrompt": "What completed thing still needs your care?",

@@ -6,7 +6,7 @@ import { aiChingColors } from '@/theme/colors';
 const sections = [
   {
     title: 'What is a hexagram?',
-    body: 'A hexagram is a stack of six yin or yang lines. In AI Ching, it becomes a simple symbolic mirror for the day.',
+    body: 'A hexagram is a stack of six yin or yang lines. Here, it becomes a simple symbolic mirror for the day.',
   },
   {
     title: 'How casting works',
@@ -18,22 +18,22 @@ const sections = [
   },
   {
     title: 'Yin and yang lines',
-    body: 'Yang appears as a solid line. Yin appears as a broken line. Phase 1 uses simple, non-changing lines.',
+    body: 'Yang appears as a solid line. Yin appears as a broken line. This release uses simple, non-changing lines.',
   },
   {
     title: 'Reflection, not prediction',
-    body: 'AI Ching is designed for reflection, journaling, and symbolic exploration. It does not predict the future and should not replace professional advice.',
+    body: 'This I Ching app is designed for reflection and symbolic exploration. It does not predict the future and should not replace professional advice.',
   },
   {
     title: 'Coming later',
-    body: 'Changing lines, resulting hexagrams, deeper interpretations, journaling, and optional AI features can build on this foundation.',
+    body: 'Changing lines, resulting hexagrams, questions and interpretations, possibly journaling, and AI features could appear within this application, depending on user feedback and development priorities.',
   },
 ];
 
 export default function GuideScreen() {
   return (
     <ScreenContainer>
-      <Text style={styles.title}>Guide</Text>
+      <Text style={styles.title}>User Guide</Text>
       <Text style={styles.intro}>
         A quiet ritual for noticing what the day may be asking of you.
       </Text>

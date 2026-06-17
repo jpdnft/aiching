@@ -27,6 +27,20 @@
     "questions",
     "guidance"
   ],
+  "primaryTone": [
+    "corrective",
+    "uncertain",
+    "instructive"
+  ],
+  "supportScore": 4,
+  "cautionScore": 6,
+  "momentum": [
+    "forming",
+    "learning"
+  ],
+  "momentumNotes": [
+    "The situation is immature rather than doomed; the next movement depends on humility and teachability."
+  ],
   "theme": "Youthful Folly meets the unknown with imperfect understanding. Its gift is the courage to ask sincerely and learn without pretending to know.",
   "basicInterpretation": "Approach the moment as a student. A clear question may matter more than a quick answer, and humility can open a door that certainty keeps closed.",
   "reflectionPrompt": "What are you ready to learn without needing to look wise?",

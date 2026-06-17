@@ -1,6 +1,6 @@
 export type HexagramThemeId = '01' | '02';
 
-export const defaultHexagramThemeId: HexagramThemeId = '01';
+export const defaultHexagramThemeId: HexagramThemeId = '02';
 
 type HexagramBackgrounds = Record<number, number>;
 

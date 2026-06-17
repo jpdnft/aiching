@@ -27,6 +27,20 @@
     "burden",
     "critical moment"
   ],
+  "primaryTone": [
+    "dangerous",
+    "transitional",
+    "overloaded"
+  ],
+  "supportScore": 4,
+  "cautionScore": 8,
+  "momentum": [
+    "peaking",
+    "overloaded"
+  ],
+  "momentumNotes": [
+    "Pressure has reached a critical point; something must shift before the structure bends too far."
+  ],
   "theme": "Great Preponderance is the beam bending under too much weight. The structure is strained, and the moment asks for courageous adjustment.",
   "basicInterpretation": "Do not pretend the load is ordinary. Name the excess, strengthen what can hold, and change what must be changed.",
   "reflectionPrompt": "Where has the burden outgrown the structure?",

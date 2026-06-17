@@ -27,6 +27,20 @@
     "response",
     "guidance"
   ],
+  "primaryTone": [
+    "supportive",
+    "adaptive",
+    "transitional"
+  ],
+  "supportScore": 7,
+  "cautionScore": 4,
+  "momentum": [
+    "moving",
+    "adaptive"
+  ],
+  "momentumNotes": [
+    "Progress comes by following the living current rather than imposing a rigid plan."
+  ],
   "theme": "Following is not passive drifting. It is the art of responding to what is alive, true, and already in motion.",
   "basicInterpretation": "Loosen the need to lead every step. The right path may reveal itself through listening, companionship, and timely adjustment.",
   "reflectionPrompt": "What becomes possible if you follow what is sincerely moving?",

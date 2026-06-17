@@ -27,6 +27,20 @@
     "germination",
     "support"
   ],
+  "primaryTone": [
+    "challenging",
+    "transitional",
+    "uncertain"
+  ],
+  "supportScore": 5,
+  "cautionScore": 7,
+  "momentum": [
+    "forming",
+    "blocked"
+  ],
+  "momentumNotes": [
+    "New life is pushing through difficulty; progress is real, but early disorder needs support and patience."
+  ],
   "theme": "New life often begins tangled. The first movement upward may feel chaotic because roots are still finding their way.",
   "basicInterpretation": "Do not mistake early difficulty for failure. Gather support, move carefully, and let the beginning be young before asking it to be strong.",
   "reflectionPrompt": "What small root needs protection before it can become visible?",

@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { useAppTheme } from '@/theme/appTheme';
@@ -6,7 +6,7 @@ import { aiChingColors } from '@/theme/colors';
 import { hexagramThemeList, HexagramThemeManifest } from '@/theme/hexagramBackgrounds';
 
 export default function SettingsScreen() {
-  const { themeId, setThemeId } = useAppTheme();
+  const { setSoundEffectsEnabled, setThemeId, soundEffectsEnabled, themeId } = useAppTheme();
 
   return (
     <ScreenContainer>
@@ -26,6 +26,26 @@ export default function SettingsScreen() {
               onPress={() => setThemeId(theme.id)}
             />
           ))}
+        </View>
+      </View>
+
+      <View style={styles.section}>
+        <View style={styles.settingRow}>
+          <View style={styles.settingText}>
+            <Text style={styles.sectionTitle}>Sound Effects</Text>
+            <Text style={styles.settingDescription}>
+              Play a soft sound when each casting line arrives.
+            </Text>
+          </View>
+          <Switch
+            onValueChange={setSoundEffectsEnabled}
+            thumbColor={soundEffectsEnabled ? aiChingColors.gold : '#8b918f'}
+            trackColor={{
+              false: 'rgba(231, 197, 111, 0.18)',
+              true: 'rgba(231, 197, 111, 0.44)',
+            }}
+            value={soundEffectsEnabled}
+          />
         </View>
       </View>
     </ScreenContainer>
@@ -85,6 +105,7 @@ const styles = StyleSheet.create({
     backgroundColor: aiChingColors.surface,
     padding: 18,
     gap: 14,
+    marginBottom: 14,
   },
   sectionTitle: {
     color: aiChingColors.gold,
@@ -138,5 +159,20 @@ const styles = StyleSheet.create({
   },
   themeStateSelected: {
     color: aiChingColors.gold,
+  },
+  settingRow: {
+    minHeight: 56,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
+  },
+  settingText: {
+    flex: 1,
+    gap: 4,
+  },
+  settingDescription: {
+    color: aiChingColors.muted,
+    fontSize: 14,
+    lineHeight: 20,
   },
 });

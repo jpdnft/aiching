@@ -27,6 +27,20 @@
     "leadership",
     "collective effort"
   ],
+  "primaryTone": [
+    "disciplined",
+    "challenging",
+    "organized"
+  ],
+  "supportScore": 5,
+  "cautionScore": 6,
+  "momentum": [
+    "organizing",
+    "moving"
+  ],
+  "momentumNotes": [
+    "Power can move effectively only when led with discipline, order, and a sober sense of responsibility."
+  ],
   "theme": "The Army is collective force given order. Its power depends on discipline, responsibility, and leadership that serves the whole.",
   "basicInterpretation": "Gather your resources and act with structure. The question is not only whether you have strength, but whether that strength is organized wisely.",
   "reflectionPrompt": "What needs clearer order before it can move as one?",

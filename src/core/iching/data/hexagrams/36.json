@@ -27,6 +27,20 @@
     "caution",
     "inner clarity"
   ],
+  "primaryTone": [
+    "dangerous",
+    "restrained",
+    "concealed"
+  ],
+  "supportScore": 3,
+  "cautionScore": 9,
+  "momentum": [
+    "concealed",
+    "declining"
+  ],
+  "momentumNotes": [
+    "Brightness is hidden under difficulty; survival may require discretion rather than display."
+  ],
   "theme": "Darkening of the Light buries radiance beneath the earth. The light is not gone; it is being protected from conditions that cannot honor it.",
   "basicInterpretation": "Keep your clarity inward if the outer world is unsafe or unreceptive. There are times when concealment is care, not cowardice.",
   "reflectionPrompt": "What brightness needs quiet protection?",

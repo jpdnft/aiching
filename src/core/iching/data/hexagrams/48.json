@@ -27,6 +27,20 @@
     "tradition",
     "access"
   ],
+  "primaryTone": [
+    "supportive",
+    "stabilizing",
+    "renewing"
+  ],
+  "supportScore": 7,
+  "cautionScore": 4,
+  "momentum": [
+    "sustaining",
+    "renewing"
+  ],
+  "momentumNotes": [
+    "The source remains available, but access and upkeep determine whether it can nourish people."
+  ],
   "theme": "The Well is the enduring source beneath changing villages. People come and go, but deep nourishment remains available when the way to it is kept clear.",
   "basicInterpretation": "Return to what sustains beyond mood and circumstance. Repair the bucket, clear the path, and draw from the source with respect.",
   "reflectionPrompt": "What old source of nourishment needs renewed access?",

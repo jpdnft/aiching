@@ -27,6 +27,20 @@
     "patience",
     "courtship"
   ],
+  "primaryTone": [
+    "supportive",
+    "gradual",
+    "transitional"
+  ],
+  "supportScore": 8,
+  "cautionScore": 3,
+  "momentum": [
+    "gradual",
+    "growing"
+  ],
+  "momentumNotes": [
+    "Progress is slow, orderly, and durable; each step prepares the next."
+  ],
   "theme": "Development is slow growth along the mountain. What matters matures by stages, gaining dignity through time.",
   "basicInterpretation": "Honor gradualness. Let the relationship, craft, or path become trustworthy through repeated care rather than sudden proof.",
   "reflectionPrompt": "What is asking to grow at the pace of trust?",

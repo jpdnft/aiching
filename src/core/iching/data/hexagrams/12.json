@@ -27,6 +27,20 @@
     "preservation",
     "endurance"
   ],
+  "primaryTone": [
+    "challenging",
+    "restrained",
+    "stagnant"
+  ],
+  "supportScore": 2,
+  "cautionScore": 8,
+  "momentum": [
+    "blocked",
+    "declining"
+  ],
+  "momentumNotes": [
+    "The channels are closed for now; dignity and preservation matter more than forcing response."
+  ],
   "theme": "Standstill marks a time when the living exchange is blocked. The wise response is not panic, but the preservation of what remains clear and true.",
   "basicInterpretation": "If the way is closed, do not spend yourself against the wall. Simplify, protect your center, and wait for conditions that can actually respond.",
   "reflectionPrompt": "What inner light needs protection while the outer path is closed?",

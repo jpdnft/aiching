@@ -27,6 +27,20 @@
     "care",
     "intake"
   ],
+  "primaryTone": [
+    "supportive",
+    "corrective",
+    "sustaining"
+  ],
+  "supportScore": 6,
+  "cautionScore": 5,
+  "momentum": [
+    "sustaining",
+    "forming"
+  ],
+  "momentumNotes": [
+    "Momentum depends on what is being taken in and given out; nourishment shapes the next form."
+  ],
   "theme": "Nourishment asks what you take in and what you feed. Food, words, images, habits, and silence all become part of the body of a life.",
   "basicInterpretation": "Choose what sustains rather than merely fills. Notice the mouth: what enters it, and what leaves it.",
   "reflectionPrompt": "What are you feeding in yourself today?",

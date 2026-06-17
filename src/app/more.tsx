@@ -11,7 +11,7 @@ const links = [
     href: '/settings',
   },
   {
-    title: 'Guide',
+    title: 'User Guide',
     body: 'Learn how casting works, why lines build upward, and how to frame readings.',
     href: '/guide',
   },
@@ -26,8 +26,8 @@ const links = [
     href: '/future',
   },
   {
-    title: 'About',
-    body: 'A short note about AI Ching will live here soon.',
+    title: 'About the Developer',
+    body: "Need a website, app, or other coded gizmo? Here's Jim's info.",
     href: '/about',
   },
 ] as const;

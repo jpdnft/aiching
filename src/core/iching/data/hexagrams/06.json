@@ -27,6 +27,20 @@
     "restraint",
     "truth"
   ],
+  "primaryTone": [
+    "challenging",
+    "corrective",
+    "contested"
+  ],
+  "supportScore": 3,
+  "cautionScore": 8,
+  "momentum": [
+    "blocked",
+    "contested"
+  ],
+  "momentumNotes": [
+    "The current is adversarial; escalation costs more than restraint, clarity, and a fair boundary."
+  ],
   "theme": "Conflict appears when inner truth and outer force pull against each other. Not every tension asks to be won; some ask to be understood before they harden.",
   "basicInterpretation": "Pause before escalation. Clarify your position, seek fairness, and notice where being right may be less useful than restoring proportion.",
   "reflectionPrompt": "Where can restraint reveal more truth than argument?",

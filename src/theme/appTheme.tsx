@@ -8,10 +8,13 @@ import {
 } from './hexagramBackgrounds';
 
 const THEME_STORAGE_KEY = 'aiching.theme.selected.v1';
+const SOUND_EFFECTS_STORAGE_KEY = 'aiching.soundEffects.enabled.v1';
 
 type AppThemeContextValue = {
   themeId: HexagramThemeId;
   setThemeId: (themeId: HexagramThemeId) => Promise<void>;
+  soundEffectsEnabled: boolean;
+  setSoundEffectsEnabled: (enabled: boolean) => Promise<void>;
 };
 
 const AppThemeContext = createContext<AppThemeContextValue | null>(null);
@@ -22,11 +25,18 @@ function isThemeId(value: string | null): value is HexagramThemeId {
 
 export function AppThemeProvider({ children }: PropsWithChildren) {
   const [themeId, setThemeIdState] = useState<HexagramThemeId>(defaultHexagramThemeId);
+  const [soundEffectsEnabled, setSoundEffectsEnabledState] = useState(true);
 
   useEffect(() => {
     AsyncStorage.getItem(THEME_STORAGE_KEY).then((storedThemeId) => {
       if (isThemeId(storedThemeId) && isHexagramThemeAvailable(storedThemeId)) {
         setThemeIdState(storedThemeId);
+      }
+    });
+
+    AsyncStorage.getItem(SOUND_EFFECTS_STORAGE_KEY).then((storedSoundEffectsEnabled) => {
+      if (storedSoundEffectsEnabled === 'false') {
+        setSoundEffectsEnabledState(false);
       }
     });
   }, []);
@@ -40,7 +50,15 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
     setThemeIdState(nextThemeId);
   }, []);
 
-  const value = useMemo(() => ({ themeId, setThemeId }), [setThemeId, themeId]);
+  const setSoundEffectsEnabled = useCallback(async (enabled: boolean) => {
+    await AsyncStorage.setItem(SOUND_EFFECTS_STORAGE_KEY, String(enabled));
+    setSoundEffectsEnabledState(enabled);
+  }, []);
+
+  const value = useMemo(
+    () => ({ themeId, setThemeId, soundEffectsEnabled, setSoundEffectsEnabled }),
+    [setSoundEffectsEnabled, setThemeId, soundEffectsEnabled, themeId],
+  );
 
   return <AppThemeContext.Provider value={value}>{children}</AppThemeContext.Provider>;
 }

@@ -75,6 +75,7 @@ export default function ReadingScreen() {
           <View style={styles.readingPanel}>
             <PrimaryReadingPanel
               imageSource={backgroundSource}
+              hexagram={hexagram}
               theme={reading.theme}
               reflection={reading.basicInterpretation}
             />
@@ -105,10 +106,12 @@ export default function ReadingScreen() {
 }
 
 function PrimaryReadingPanel({
+  hexagram,
   imageSource,
   theme,
   reflection,
 }: {
+  hexagram: Hexagram;
   imageSource?: number;
   theme: string;
   reflection: string;
@@ -121,10 +124,61 @@ function PrimaryReadingPanel({
         ) : null}
       </View>
       <View style={styles.primaryText}>
+        <ReadingMeter label="Caution / Challenging" score={hexagram.cautionScore} tone="caution" />
+        <ReadingMeter label="Supportive / Favorable" score={hexagram.supportScore} tone="support" />
         <Text style={styles.sectionTitle}>Theme</Text>
         <Text style={styles.relationshipBody}>{theme}</Text>
         <Text style={styles.sectionTitle}>Reflection</Text>
         <Text style={styles.relationshipBody}>{reflection}</Text>
+        <Text style={styles.sectionTitle}>Momentum</Text>
+        <View style={styles.keywordRow}>
+          {hexagram.momentum.map((momentum) => (
+            <Text key={momentum} style={styles.momentumChip}>
+              {formatLabel(momentum)}
+            </Text>
+          ))}
+        </View>
+        {hexagram.momentumNotes.map((note) => (
+          <Text key={note} style={styles.relationshipBody}>
+            {note}
+          </Text>
+        ))}
+      </View>
+    </View>
+  );
+}
+
+function ReadingMeter({
+  label,
+  score,
+  tone,
+}: {
+  label: string;
+  score: number;
+  tone: 'caution' | 'support';
+}) {
+  const activeColor = tone === 'caution' ? aiChingColors.danger : aiChingColors.gold;
+
+  return (
+    <View style={styles.meterRow}>
+      <Text style={styles.meterLabel}>{label}</Text>
+      <View style={styles.meterBlocks} accessibilityLabel={`${label}: ${score} out of 10`}>
+        {Array.from({ length: 10 }, (_, index) => {
+          const active = index < score;
+
+          return (
+            <View
+              key={`${label}-${index}`}
+              style={[
+                styles.meterBlock,
+                active && {
+                  backgroundColor: activeColor,
+                  borderColor: activeColor,
+                },
+              ]}
+            />
+          );
+        })}
       </View>
     </View>
   );
@@ -155,6 +209,13 @@ function RelationshipPanel({
       </View>
     </View>
   );
+}
+
+function formatLabel(value: string): string {
+  return value
+    .split('-')
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
 }
 
 const styles = StyleSheet.create({
@@ -241,7 +302,46 @@ const styles = StyleSheet.create({
   },
   primaryText: {
     flex: 1,
+    gap: 8,
+  },
+  meterRow: {
+    gap: 6,
+    marginBottom: 2,
+  },
+  meterLabel: {
+    color: aiChingColors.muted,
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '800',
+    textTransform: 'uppercase',
+  },
+  meterBlocks: {
+    flexDirection: 'row',
+    gap: 3,
+  },
+  meterBlock: {
+    width: 9,
+    height: 16,
+    borderRadius: 2,
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.2)',
+    backgroundColor: 'rgba(219, 226, 223, 0.12)',
+  },
+  keywordRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: 7,
+  },
+  momentumChip: {
+    color: aiChingColors.ink,
+    backgroundColor: aiChingColors.gold,
+    borderRadius: 8,
+    overflow: 'hidden',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '800',
   },
   relationshipSection: {
     width: '100%',

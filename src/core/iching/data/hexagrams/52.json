@@ -27,6 +27,20 @@
     "boundaries",
     "composure"
   ],
+  "primaryTone": [
+    "restrained",
+    "contemplative",
+    "stabilizing"
+  ],
+  "supportScore": 6,
+  "cautionScore": 4,
+  "momentum": [
+    "still",
+    "stabilizing"
+  ],
+  "momentumNotes": [
+    "Movement pauses at the boundary; stillness restores right proportion."
+  ],
   "theme": "Keeping Still is mountain resting upon mountain. It asks for the kind of stopping that lets the mind settle back into its own shape.",
   "basicInterpretation": "Pause without apology. Not every impulse deserves movement; stillness can be a precise and compassionate act.",
   "reflectionPrompt": "Where would stopping restore your true proportions?",

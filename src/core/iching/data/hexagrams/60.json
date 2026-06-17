@@ -27,6 +27,20 @@
     "discipline",
     "rhythm"
   ],
+  "primaryTone": [
+    "restrained",
+    "corrective",
+    "stabilizing"
+  ],
+  "supportScore": 6,
+  "cautionScore": 5,
+  "momentum": [
+    "limiting",
+    "stabilizing"
+  ],
+  "momentumNotes": [
+    "Limits create shape and rhythm; harsh restriction becomes counterproductive if it loses humanity."
+  ],
   "theme": "Limitation gives water a vessel. Wise boundaries do not diminish life; they help it become usable.",
   "basicInterpretation": "Choose limits that clarify rather than punish. Measure, rhythm, and restraint can turn scattered energy into a living form.",
   "reflectionPrompt": "What boundary would make more freedom possible?",

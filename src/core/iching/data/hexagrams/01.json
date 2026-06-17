@@ -27,6 +27,20 @@
     "strength",
     "clarity"
   ],
+  "primaryTone": [
+    "creative",
+    "powerful",
+    "supportive"
+  ],
+  "supportScore": 9,
+  "cautionScore": 4,
+  "momentum": [
+    "initiating",
+    "moving"
+  ],
+  "momentumNotes": [
+    "Strong beginning energy is available, but it needs timing and integrity to avoid becoming pressure."
+  ],
   "theme": "Creative power is awake before it has chosen a form. This hexagram invites strength that is clear, generative, and guided by purpose rather than urgency.",
   "basicInterpretation": "Something in you is ready to begin, lead, or bring a pattern into being. Let power move cleanly, with attention to timing and integrity.",
   "reflectionPrompt": "Where is life asking you to create from clarity rather than pressure?",

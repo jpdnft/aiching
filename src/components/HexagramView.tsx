@@ -1,4 +1,14 @@
+import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
+import Animated, {
+  Easing,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withSequence,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 
 import { HexagramLine } from './HexagramLine';
 
@@ -7,9 +17,18 @@ import { LineState, PartialHexagramLines } from '@/core/iching/types';
 type Props = {
   lines: PartialHexagramLines;
   size?: 'large' | 'small' | 'tiny' | 'mini';
+  animatedLineIndex?: number | null;
+  animationKey?: number;
+  onLineAnimationComplete?: () => void;
 };
 
-export function HexagramView({ lines, size = 'large' }: Props) {
+export function HexagramView({
+  lines,
+  size = 'large',
+  animatedLineIndex = null,
+  animationKey = 0,
+  onLineAnimationComplete,
+}: Props) {
   const displayLines: (LineState | undefined)[] = Array.from(
     { length: 6 },
     (_, visualIndex) => lines[5 - visualIndex],
@@ -23,14 +42,84 @@ export function HexagramView({ lines, size = 'large' }: Props) {
         size === 'tiny' && styles.tinyFrame,
         size === 'mini' && styles.miniFrame,
       ]}>
-      {displayLines.map((line, index) => (
+      {displayLines.map((line, visualIndex) => {
+        const storageIndex = 5 - visualIndex;
+        const shouldAnimate = Boolean(line) && storageIndex === animatedLineIndex && size === 'large';
+
+        return (
         <View
-          key={`${index}-${line ?? 'empty'}`}
+          key={`${visualIndex}-${line ?? 'empty'}`}
           style={[styles.lineSlot, size === 'mini' && styles.miniLineSlot]}>
-          <HexagramLine line={line} muted={!line} size={size === 'mini' ? 'mini' : 'default'} />
+          <AnimatedHexagramLine
+            animationKey={animationKey}
+            line={line}
+            muted={!line}
+            onAnimationComplete={onLineAnimationComplete}
+            shouldAnimate={shouldAnimate}
+            size={size === 'mini' ? 'mini' : 'default'}
+          />
         </View>
-      ))}
+        );
+      })}
     </View>
+  );
+}
+
+function AnimatedHexagramLine({
+  animationKey,
+  line,
+  muted,
+  onAnimationComplete,
+  shouldAnimate,
+  size,
+}: {
+  animationKey: number;
+  line?: LineState;
+  muted: boolean;
+  onAnimationComplete?: () => void;
+  shouldAnimate: boolean;
+  size: 'default' | 'mini';
+}) {
+  const opacity = useSharedValue(1);
+  const scale = useSharedValue(1);
+  const translateY = useSharedValue(0);
+
+  useEffect(() => {
+    if (!shouldAnimate) {
+      opacity.value = 1;
+      scale.value = 1;
+      translateY.value = 0;
+      return;
+    }
+
+    opacity.value = 0;
+    scale.value = 0.96;
+    translateY.value = -260;
+
+    opacity.value = withTiming(1, { duration: 120 });
+    scale.value = withSequence(
+      withTiming(1.02, { duration: 260, easing: Easing.out(Easing.cubic) }),
+      withSpring(1, { damping: 18, stiffness: 220 }),
+    );
+    translateY.value = withSequence(
+      withTiming(-8, { duration: 320, easing: Easing.out(Easing.cubic) }),
+      withSpring(0, { damping: 18, stiffness: 240 }, (finished) => {
+        if (finished && onAnimationComplete) {
+          runOnJS(onAnimationComplete)();
+        }
+      }),
+    );
+  }, [animationKey, onAnimationComplete, opacity, scale, shouldAnimate, translateY]);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    opacity: opacity.value,
+    transform: [{ translateY: translateY.value }, { scale: scale.value }],
+  }));
+
+  return (
+    <Animated.View style={[shouldAnimate && styles.animatedLine, animatedStyle]}>
+      <HexagramLine line={line} muted={muted} size={size} />
+    </Animated.View>
   );
 }
 
@@ -68,5 +157,8 @@ const styles = StyleSheet.create({
   },
   miniLineSlot: {
     height: 7,
+  },
+  animatedLine: {
+    zIndex: 3,
   },
 });
