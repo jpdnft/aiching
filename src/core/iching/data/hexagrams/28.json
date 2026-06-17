@@ -1,0 +1,46 @@
+{
+  "number": 28,
+  "name": "Great Preponderance",
+  "chineseName": "Da Guo",
+  "binaryKey": "011110",
+  "lines": [
+    "yin",
+    "yang",
+    "yang",
+    "yang",
+    "yang",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yin"
+  ],
+  "lowerTrigram": "wind",
+  "upperTrigram": "lake",
+  "keywords": [
+    "pressure",
+    "excess",
+    "burden",
+    "critical moment"
+  ],
+  "theme": "Great Preponderance is the beam bending under too much weight. The structure is strained, and the moment asks for courageous adjustment.",
+  "basicInterpretation": "Do not pretend the load is ordinary. Name the excess, strengthen what can hold, and change what must be changed.",
+  "reflectionPrompt": "Where has the burden outgrown the structure?",
+  "relationships": {
+    "reversed": {
+      "number": 28,
+      "sameAsPrimary": true,
+      "theme": "Turned around, Great Preponderance remains itself. The pattern keeps its shape from either side, suggesting a situation whose essential lesson does not depend much on viewpoint.",
+      "reflection": "This symmetry asks for directness. Instead of searching for a hidden opposite perspective, look again at the same truth with quieter attention."
+    },
+    "opposite": {
+      "number": 27,
+      "theme": "The contrast to Great Preponderance is Hexagram 27, Nourishment. Where the primary pattern emphasizes pressure, excess, burden, this complementary field points toward sustenance, speech, care.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Nourishment names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

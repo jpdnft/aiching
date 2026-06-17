@@ -1,0 +1,46 @@
+{
+  "number": 18,
+  "name": "Work on What Has Been Spoiled",
+  "chineseName": "Gu",
+  "binaryKey": "011001",
+  "lines": [
+    "yin",
+    "yang",
+    "yang",
+    "yin",
+    "yin",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yang"
+  ],
+  "lowerTrigram": "wind",
+  "upperTrigram": "mountain",
+  "keywords": [
+    "repair",
+    "neglect",
+    "inheritance",
+    "renewal"
+  ],
+  "theme": "What has been spoiled can become the beginning of repair. Decay is not only an ending; it is a message from what has been untended.",
+  "basicInterpretation": "Look honestly at the old pattern, inherited habit, or neglected place. Patient correction can turn shame into stewardship.",
+  "reflectionPrompt": "What asks to be repaired rather than hidden?",
+  "relationships": {
+    "reversed": {
+      "number": 17,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Work on What Has Been Spoiled becomes Hexagram 17, Following. This other side brings in the atmosphere of adaptation, trust, response, asking how the situation may look from another threshold.",
+      "reflection": "Let Following widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 17,
+      "theme": "The contrast to Work on What Has Been Spoiled is Hexagram 17, Following. Where the primary pattern emphasizes repair, neglect, inheritance, this complementary field points toward adaptation, trust, response.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Following names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

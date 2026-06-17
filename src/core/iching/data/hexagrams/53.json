@@ -1,0 +1,46 @@
+{
+  "number": 53,
+  "name": "Development",
+  "chineseName": "Jian",
+  "binaryKey": "001011",
+  "lines": [
+    "yin",
+    "yin",
+    "yang",
+    "yin",
+    "yang",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yang"
+  ],
+  "lowerTrigram": "mountain",
+  "upperTrigram": "wind",
+  "keywords": [
+    "gradual progress",
+    "maturation",
+    "patience",
+    "courtship"
+  ],
+  "theme": "Development is slow growth along the mountain. What matters matures by stages, gaining dignity through time.",
+  "basicInterpretation": "Honor gradualness. Let the relationship, craft, or path become trustworthy through repeated care rather than sudden proof.",
+  "reflectionPrompt": "What is asking to grow at the pace of trust?",
+  "relationships": {
+    "reversed": {
+      "number": 54,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Development becomes Hexagram 54, The Marrying Maiden. This other side brings in the atmosphere of position, desire, adaptation, asking how the situation may look from another threshold.",
+      "reflection": "Let The Marrying Maiden widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 54,
+      "theme": "The contrast to Development is Hexagram 54, The Marrying Maiden. Where the primary pattern emphasizes gradual progress, maturation, patience, this complementary field points toward position, desire, adaptation.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Marrying Maiden names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

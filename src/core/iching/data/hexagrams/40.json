@@ -1,0 +1,46 @@
+{
+  "number": 40,
+  "name": "Deliverance",
+  "chineseName": "Jie",
+  "binaryKey": "010100",
+  "lines": [
+    "yin",
+    "yang",
+    "yin",
+    "yang",
+    "yin",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yin"
+  ],
+  "lowerTrigram": "water",
+  "upperTrigram": "thunder",
+  "keywords": [
+    "release",
+    "relief",
+    "untangling",
+    "forgiveness"
+  ],
+  "theme": "Deliverance is the storm breaking and the knot loosening. Energy that was trapped can return to movement.",
+  "basicInterpretation": "Let what has been tense begin to release. Act promptly where release is possible, and do not keep carrying what has already opened.",
+  "reflectionPrompt": "What can be untied now?",
+  "relationships": {
+    "reversed": {
+      "number": 39,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Deliverance becomes Hexagram 39, Obstruction. This other side brings in the atmosphere of difficulty, delay, help, asking how the situation may look from another threshold.",
+      "reflection": "Let Obstruction widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 37,
+      "theme": "The contrast to Deliverance is Hexagram 37, The Family. Where the primary pattern emphasizes release, relief, untangling, this complementary field points toward home, roles, care.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Family names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

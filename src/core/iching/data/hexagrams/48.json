@@ -1,0 +1,46 @@
+{
+  "number": 48,
+  "name": "The Well",
+  "chineseName": "Jing",
+  "binaryKey": "011010",
+  "lines": [
+    "yin",
+    "yang",
+    "yang",
+    "yin",
+    "yang",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yin"
+  ],
+  "lowerTrigram": "wind",
+  "upperTrigram": "water",
+  "keywords": [
+    "source",
+    "nourishment",
+    "tradition",
+    "access"
+  ],
+  "theme": "The Well is the enduring source beneath changing villages. People come and go, but deep nourishment remains available when the way to it is kept clear.",
+  "basicInterpretation": "Return to what sustains beyond mood and circumstance. Repair the bucket, clear the path, and draw from the source with respect.",
+  "reflectionPrompt": "What old source of nourishment needs renewed access?",
+  "relationships": {
+    "reversed": {
+      "number": 47,
+      "sameAsPrimary": false,
+      "theme": "Turned around, The Well becomes Hexagram 47, Oppression. This other side brings in the atmosphere of confinement, exhaustion, truth under pressure, asking how the situation may look from another threshold.",
+      "reflection": "Let Oppression widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 21,
+      "theme": "The contrast to The Well is Hexagram 21, Biting Through. Where the primary pattern emphasizes source, nourishment, tradition, this complementary field points toward decision, justice, clarity.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Biting Through names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

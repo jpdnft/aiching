@@ -1,17 +1,23 @@
 import { useCallback, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { CastButton } from '@/components/CastButton';
 import { HexagramView } from '@/components/HexagramView';
 import { ScreenContainer } from '@/components/ScreenContainer';
-import { CompletedReading } from '@/core/iching/types';
+import { getHexagramByNumber } from '@/core/iching/hexagrams';
+import { CompletedReading, Hexagram, HexagramRelationship } from '@/core/iching/types';
 import { getTodaysReading } from '@/storage/readingsStorage';
+import { useAppTheme } from '@/theme/appTheme';
 import { aiChingColors } from '@/theme/colors';
+import { getHexagramBackgroundSource } from '@/theme/hexagramBackgrounds';
 import { formatReadingDate } from '@/utils/date';
 
 export default function ReadingScreen() {
   const router = useRouter();
+  const { themeId } = useAppTheme();
   const [reading, setReading] = useState<CompletedReading | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -45,34 +51,109 @@ export default function ReadingScreen() {
     );
   }
 
+  const hexagram = getHexagramByNumber(reading.hexagramNumber);
+  const backgroundSource = getHexagramBackgroundSource(reading.hexagramNumber, themeId);
+  const reversedHexagram = getHexagramByNumber(hexagram.relationships.reversed.number);
+  const oppositeHexagram = getHexagramByNumber(hexagram.relationships.opposite.number);
+
   return (
-    <ScreenContainer>
-      <View style={styles.header}>
-        <HexagramView lines={reading.lines} size="small" />
-        <Text style={styles.date}>{formatReadingDate(reading.localDate)}</Text>
-        <Text style={styles.title}>
-          Hexagram {reading.hexagramNumber}: {reading.hexagramName}
-        </Text>
-        {reading.question ? <Text style={styles.question}>{reading.question}</Text> : null}
-      </View>
+    <View style={styles.backgroundScreen}>
+      {backgroundSource ? (
+        <Image source={backgroundSource} style={styles.backgroundImage} contentFit="cover" />
+      ) : null}
+      <View style={styles.imageScrim} />
+      <SafeAreaView style={styles.readingSafeArea}>
+        <ScrollView contentContainerStyle={styles.readingContent}>
+          <View style={styles.header}>
+            <HexagramView lines={reading.lines} size="small" />
+            <Text style={styles.date}>{formatReadingDate(reading.localDate)}</Text>
+            <Text style={styles.title}>
+              Hexagram {reading.hexagramNumber}: {reading.hexagramName}
+            </Text>
+          </View>
 
-      <View style={styles.section}>
+          <View style={styles.readingPanel}>
+            <PrimaryReadingPanel
+              imageSource={backgroundSource}
+              theme={reading.theme}
+              reflection={reading.basicInterpretation}
+            />
+
+            <RelationshipPanel
+              title="Other Side"
+              relationship={hexagram.relationships.reversed}
+              relatedHexagram={reversedHexagram}
+            />
+
+            <RelationshipPanel
+              title="Contrast"
+              relationship={hexagram.relationships.opposite}
+              relatedHexagram={oppositeHexagram}
+            />
+
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Today&apos;s Prompt</Text>
+              <Text style={styles.body}>{reading.reflectionPrompt}</Text>
+            </View>
+          </View>
+
+          <CastButton label="RETURN TO CAST" onPress={() => router.push('/')} />
+        </ScrollView>
+      </SafeAreaView>
+    </View>
+  );
+}
+
+function PrimaryReadingPanel({
+  imageSource,
+  theme,
+  reflection,
+}: {
+  imageSource?: number;
+  theme: string;
+  reflection: string;
+}) {
+  return (
+    <View style={styles.primarySection}>
+      <View style={styles.primaryImageFrame}>
+        {imageSource ? (
+          <Image source={imageSource} style={styles.primaryImage} contentFit="cover" contentPosition="left" />
+        ) : null}
+      </View>
+      <View style={styles.primaryText}>
         <Text style={styles.sectionTitle}>Theme</Text>
-        <Text style={styles.body}>{reading.theme}</Text>
-      </View>
-
-      <View style={styles.section}>
+        <Text style={styles.relationshipBody}>{theme}</Text>
         <Text style={styles.sectionTitle}>Reflection</Text>
-        <Text style={styles.body}>{reading.basicInterpretation}</Text>
+        <Text style={styles.relationshipBody}>{reflection}</Text>
       </View>
+    </View>
+  );
+}
 
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Today&apos;s Prompt</Text>
-        <Text style={styles.body}>{reading.reflectionPrompt}</Text>
+function RelationshipPanel({
+  title,
+  relationship,
+  relatedHexagram,
+}: {
+  title: string;
+  relationship: HexagramRelationship;
+  relatedHexagram: Hexagram;
+}) {
+  return (
+    <View style={styles.relationshipSection}>
+      <View style={styles.relationshipVisual}>
+        <HexagramView lines={relatedHexagram.lineStates} size="tiny" />
       </View>
-
-      <CastButton label="RETURN TO CAST" onPress={() => router.push('/')} />
-    </ScreenContainer>
+      <View style={styles.relationshipText}>
+        <Text style={styles.sectionTitle}>{title}</Text>
+        <Text style={styles.relatedTitle}>
+          Hexagram {relatedHexagram.number}: {relatedHexagram.name}
+        </Text>
+        {relationship.sameAsPrimary ? <Text style={styles.sameNote}>unchanged when turned</Text> : null}
+        <Text style={styles.relationshipBody}>{relationship.theme}</Text>
+        <Text style={styles.relationshipBody}>{relationship.reflection}</Text>
+      </View>
+    </View>
   );
 }
 
@@ -88,10 +169,31 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 18,
   },
+  backgroundScreen: {
+    flex: 1,
+    backgroundColor: aiChingColors.ink,
+  },
+  backgroundImage: {
+    ...StyleSheet.absoluteFill,
+  },
+  imageScrim: {
+    ...StyleSheet.absoluteFill,
+    backgroundColor: 'rgba(10, 12, 16, 0.58)',
+  },
+  readingSafeArea: {
+    flex: 1,
+  },
+  readingContent: {
+    flexGrow: 1,
+    padding: 24,
+    paddingBottom: 112,
+    alignItems: 'center',
+  },
   header: {
     alignItems: 'center',
     gap: 14,
     marginBottom: 24,
+    width: '100%',
   },
   date: {
     color: aiChingColors.gold,
@@ -106,19 +208,84 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'center',
   },
-  question: {
-    color: aiChingColors.muted,
-    fontSize: 15,
-    lineHeight: 22,
-    textAlign: 'center',
-    fontStyle: 'italic',
-  },
   section: {
+    width: '100%',
     borderTopWidth: 1,
     borderTopColor: 'rgba(231, 197, 111, 0.16)',
     paddingTop: 18,
     marginBottom: 22,
     gap: 8,
+  },
+  primarySection: {
+    width: '100%',
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(231, 197, 111, 0.16)',
+    paddingTop: 18,
+    marginBottom: 22,
+    flexDirection: 'row',
+    gap: 16,
+    alignItems: 'flex-start',
+  },
+  primaryImageFrame: {
+    width: 88,
+    height: 118,
+    borderRadius: 8,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.28)',
+    backgroundColor: 'rgba(16, 19, 24, 0.42)',
+  },
+  primaryImage: {
+    width: '100%',
+    height: '100%',
+  },
+  primaryText: {
+    flex: 1,
+    gap: 7,
+  },
+  relationshipSection: {
+    width: '100%',
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(231, 197, 111, 0.16)',
+    paddingTop: 18,
+    marginBottom: 22,
+    flexDirection: 'row',
+    gap: 16,
+    alignItems: 'flex-start',
+  },
+  relationshipVisual: {
+    paddingTop: 2,
+  },
+  relationshipText: {
+    flex: 1,
+    gap: 7,
+  },
+  relatedTitle: {
+    color: aiChingColors.mist,
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '700',
+  },
+  sameNote: {
+    color: aiChingColors.muted,
+    fontSize: 12,
+    lineHeight: 17,
+    textTransform: 'uppercase',
+  },
+  relationshipBody: {
+    color: aiChingColors.mist,
+    fontSize: 15,
+    lineHeight: 22,
+  },
+  readingPanel: {
+    width: '100%',
+    maxWidth: 640,
+    borderRadius: 8,
+    backgroundColor: 'rgba(16, 19, 24, 0.72)',
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.18)',
+    padding: 18,
+    marginBottom: 24,
   },
   sectionTitle: {
     color: aiChingColors.gold,

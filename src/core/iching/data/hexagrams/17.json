@@ -1,0 +1,46 @@
+{
+  "number": 17,
+  "name": "Following",
+  "chineseName": "Sui",
+  "binaryKey": "100110",
+  "lines": [
+    "yang",
+    "yin",
+    "yin",
+    "yang",
+    "yang",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yin"
+  ],
+  "lowerTrigram": "thunder",
+  "upperTrigram": "lake",
+  "keywords": [
+    "adaptation",
+    "trust",
+    "response",
+    "guidance"
+  ],
+  "theme": "Following is not passive drifting. It is the art of responding to what is alive, true, and already in motion.",
+  "basicInterpretation": "Loosen the need to lead every step. The right path may reveal itself through listening, companionship, and timely adjustment.",
+  "reflectionPrompt": "What becomes possible if you follow what is sincerely moving?",
+  "relationships": {
+    "reversed": {
+      "number": 18,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Following becomes Hexagram 18, Work on What Has Been Spoiled. This other side brings in the atmosphere of repair, neglect, inheritance, asking how the situation may look from another threshold.",
+      "reflection": "Let Work on What Has Been Spoiled widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 18,
+      "theme": "The contrast to Following is Hexagram 18, Work on What Has Been Spoiled. Where the primary pattern emphasizes adaptation, trust, response, this complementary field points toward repair, neglect, inheritance.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Work on What Has Been Spoiled names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

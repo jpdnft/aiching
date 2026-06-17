@@ -1,0 +1,46 @@
+{
+  "number": 10,
+  "name": "Treading",
+  "chineseName": "Lu",
+  "binaryKey": "110111",
+  "lines": [
+    "yang",
+    "yang",
+    "yin",
+    "yang",
+    "yang",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yang"
+  ],
+  "lowerTrigram": "lake",
+  "upperTrigram": "heaven",
+  "keywords": [
+    "conduct",
+    "care",
+    "dignity",
+    "risk"
+  ],
+  "theme": "Treading asks for graceful conduct near power. The path may be narrow, but awareness can make each step clean.",
+  "basicInterpretation": "Move with courtesy, precision, and self-respect. When the situation is delicate, how you step may matter as much as where you go.",
+  "reflectionPrompt": "Where is careful conduct the truest form of courage?",
+  "relationships": {
+    "reversed": {
+      "number": 9,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Treading becomes Hexagram 9, Small Taming. This other side brings in the atmosphere of restraint, refinement, small influence, asking how the situation may look from another threshold.",
+      "reflection": "Let Small Taming widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 15,
+      "theme": "The contrast to Treading is Hexagram 15, Modesty. Where the primary pattern emphasizes conduct, care, dignity, this complementary field points toward humility, balance, proportion.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Modesty names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

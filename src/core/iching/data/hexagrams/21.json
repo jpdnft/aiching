@@ -1,0 +1,46 @@
+{
+  "number": 21,
+  "name": "Biting Through",
+  "chineseName": "Shi Ke",
+  "binaryKey": "100101",
+  "lines": [
+    "yang",
+    "yin",
+    "yin",
+    "yang",
+    "yin",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yang"
+  ],
+  "lowerTrigram": "thunder",
+  "upperTrigram": "fire",
+  "keywords": [
+    "decision",
+    "justice",
+    "clarity",
+    "obstacle"
+  ],
+  "theme": "Biting Through names the obstruction and applies clear force. Confusion is resolved by decisive contact with what has been avoided.",
+  "basicInterpretation": "This is a time for honest discernment and clean action. Do not chew forever; identify the knot and bring enough clarity to pass through it.",
+  "reflectionPrompt": "What obstacle needs a clear and truthful bite?",
+  "relationships": {
+    "reversed": {
+      "number": 22,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Biting Through becomes Hexagram 22, Grace. This other side brings in the atmosphere of beauty, adornment, form, asking how the situation may look from another threshold.",
+      "reflection": "Let Grace widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 48,
+      "theme": "The contrast to Biting Through is Hexagram 48, The Well. Where the primary pattern emphasizes decision, justice, clarity, this complementary field points toward source, nourishment, tradition.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Well names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

@@ -6,7 +6,7 @@ import { LineState, PartialHexagramLines } from '@/core/iching/types';
 
 type Props = {
   lines: PartialHexagramLines;
-  size?: 'large' | 'small';
+  size?: 'large' | 'small' | 'tiny' | 'mini';
 };
 
 export function HexagramView({ lines, size = 'large' }: Props) {
@@ -16,10 +16,18 @@ export function HexagramView({ lines, size = 'large' }: Props) {
   );
 
   return (
-    <View style={[styles.frame, size === 'small' && styles.smallFrame]}>
+    <View
+      style={[
+        styles.frame,
+        size === 'small' && styles.smallFrame,
+        size === 'tiny' && styles.tinyFrame,
+        size === 'mini' && styles.miniFrame,
+      ]}>
       {displayLines.map((line, index) => (
-        <View key={`${index}-${line ?? 'empty'}`} style={styles.lineSlot}>
-          <HexagramLine line={line} muted={!line} />
+        <View
+          key={`${index}-${line ?? 'empty'}`}
+          style={[styles.lineSlot, size === 'mini' && styles.miniLineSlot]}>
+          <HexagramLine line={line} muted={!line} size={size === 'mini' ? 'mini' : 'default'} />
         </View>
       ))}
     </View>
@@ -42,8 +50,23 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     paddingHorizontal: 18,
   },
+  tinyFrame: {
+    width: 88,
+    minHeight: 118,
+    paddingVertical: 14,
+    paddingHorizontal: 10,
+  },
+  miniFrame: {
+    width: 48,
+    minHeight: 68,
+    paddingVertical: 8,
+    paddingHorizontal: 6,
+  },
   lineSlot: {
     height: 16,
     justifyContent: 'center',
+  },
+  miniLineSlot: {
+    height: 7,
   },
 });

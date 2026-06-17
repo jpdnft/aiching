@@ -1,0 +1,46 @@
+{
+  "number": 20,
+  "name": "Contemplation",
+  "chineseName": "Guan",
+  "binaryKey": "000011",
+  "lines": [
+    "yin",
+    "yin",
+    "yin",
+    "yin",
+    "yang",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yang"
+  ],
+  "lowerTrigram": "earth",
+  "upperTrigram": "wind",
+  "keywords": [
+    "observation",
+    "perspective",
+    "reverence",
+    "attention"
+  ],
+  "theme": "Contemplation stands still enough to see the whole. The wind moves over the earth, revealing patterns to those who do not hurry past them.",
+  "basicInterpretation": "Before acting, look. A wider view may transform the question itself and show where your presence has influence.",
+  "reflectionPrompt": "What can you understand only by becoming still enough to see?",
+  "relationships": {
+    "reversed": {
+      "number": 19,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Contemplation becomes Hexagram 19, Approach. This other side brings in the atmosphere of arrival, encouragement, growth, asking how the situation may look from another threshold.",
+      "reflection": "Let Approach widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 34,
+      "theme": "The contrast to Contemplation is Hexagram 34, Great Power. Where the primary pattern emphasizes observation, perspective, reverence, this complementary field points toward strength, momentum, responsibility.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Great Power names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

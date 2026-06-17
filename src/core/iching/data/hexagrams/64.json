@@ -1,0 +1,46 @@
+{
+  "number": 64,
+  "name": "Before Completion",
+  "chineseName": "Wei Ji",
+  "binaryKey": "010101",
+  "lines": [
+    "yin",
+    "yang",
+    "yin",
+    "yang",
+    "yin",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yang"
+  ],
+  "lowerTrigram": "water",
+  "upperTrigram": "fire",
+  "keywords": [
+    "incompletion",
+    "threshold",
+    "transition",
+    "careful crossing"
+  ],
+  "theme": "Before Completion stands at the edge of crossing. The pattern is not resolved, and that is why attention matters.",
+  "basicInterpretation": "Do not rush the final step. Gather yourself, watch the conditions, and cross only with the care that unfinished things deserve.",
+  "reflectionPrompt": "What is almost ready, but not yet asking to be forced?",
+  "relationships": {
+    "reversed": {
+      "number": 63,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Before Completion becomes Hexagram 63, After Completion. This other side brings in the atmosphere of completion, balance, vigilance, asking how the situation may look from another threshold.",
+      "reflection": "Let After Completion widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 63,
+      "theme": "The contrast to Before Completion is Hexagram 63, After Completion. Where the primary pattern emphasizes incompletion, threshold, transition, this complementary field points toward completion, balance, vigilance.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where After Completion names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

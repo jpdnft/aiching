@@ -1,0 +1,46 @@
+{
+  "number": 32,
+  "name": "Duration",
+  "chineseName": "Heng",
+  "binaryKey": "011100",
+  "lines": [
+    "yin",
+    "yang",
+    "yang",
+    "yang",
+    "yin",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yin"
+  ],
+  "lowerTrigram": "wind",
+  "upperTrigram": "thunder",
+  "keywords": [
+    "constancy",
+    "commitment",
+    "rhythm",
+    "endurance"
+  ],
+  "theme": "Duration is not stillness; it is a living rhythm that continues through change. What lasts must be renewed by movement.",
+  "basicInterpretation": "Return to the practice, promise, or pattern that deserves continuity. Endurance is made from many small renewals.",
+  "reflectionPrompt": "What rhythm is asking you to keep faith with it?",
+  "relationships": {
+    "reversed": {
+      "number": 31,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Duration becomes Hexagram 31, Influence. This other side brings in the atmosphere of attraction, response, sensitivity, asking how the situation may look from another threshold.",
+      "reflection": "Let Influence widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 42,
+      "theme": "The contrast to Duration is Hexagram 42, Increase. Where the primary pattern emphasizes constancy, commitment, rhythm, this complementary field points toward growth, generosity, blessing.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Increase names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

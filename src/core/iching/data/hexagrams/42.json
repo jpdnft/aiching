@@ -1,0 +1,46 @@
+{
+  "number": 42,
+  "name": "Increase",
+  "chineseName": "Yi",
+  "binaryKey": "100011",
+  "lines": [
+    "yang",
+    "yin",
+    "yin",
+    "yin",
+    "yang",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yang"
+  ],
+  "lowerTrigram": "thunder",
+  "upperTrigram": "wind",
+  "keywords": [
+    "growth",
+    "generosity",
+    "blessing",
+    "movement"
+  ],
+  "theme": "Increase is growth carried by movement and generosity. What is shared in the right direction becomes larger than what is held alone.",
+  "basicInterpretation": "Use momentum for benefit. Give where giving increases life, and accept help that makes a good path more possible.",
+  "reflectionPrompt": "Where would generosity multiply what is already alive?",
+  "relationships": {
+    "reversed": {
+      "number": 41,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Increase becomes Hexagram 41, Decrease. This other side brings in the atmosphere of simplification, sacrifice, sincerity, asking how the situation may look from another threshold.",
+      "reflection": "Let Decrease widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 32,
+      "theme": "The contrast to Increase is Hexagram 32, Duration. Where the primary pattern emphasizes growth, generosity, blessing, this complementary field points toward constancy, commitment, rhythm.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Duration names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

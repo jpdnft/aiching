@@ -1,0 +1,46 @@
+{
+  "number": 58,
+  "name": "The Joyous",
+  "chineseName": "Dui",
+  "binaryKey": "110110",
+  "lines": [
+    "yang",
+    "yang",
+    "yin",
+    "yang",
+    "yang",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yin"
+  ],
+  "lowerTrigram": "lake",
+  "upperTrigram": "lake",
+  "keywords": [
+    "joy",
+    "exchange",
+    "openness",
+    "delight"
+  ],
+  "theme": "The Joyous is lake joined to lake, openness answering openness. True delight refreshes rather than consumes.",
+  "basicInterpretation": "Let pleasure be clean, shared, and sincere. Joy can teach when it opens the heart without making it careless.",
+  "reflectionPrompt": "What simple joy wants to be shared?",
+  "relationships": {
+    "reversed": {
+      "number": 57,
+      "sameAsPrimary": false,
+      "theme": "Turned around, The Joyous becomes Hexagram 57, The Gentle. This other side brings in the atmosphere of penetration, patience, subtle influence, asking how the situation may look from another threshold.",
+      "reflection": "Let The Gentle widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 52,
+      "theme": "The contrast to The Joyous is Hexagram 52, Keeping Still. Where the primary pattern emphasizes joy, exchange, openness, this complementary field points toward stillness, meditation, boundaries.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Keeping Still names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

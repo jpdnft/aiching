@@ -1,0 +1,46 @@
+{
+  "number": 19,
+  "name": "Approach",
+  "chineseName": "Lin",
+  "binaryKey": "110000",
+  "lines": [
+    "yang",
+    "yang",
+    "yin",
+    "yin",
+    "yin",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yin"
+  ],
+  "lowerTrigram": "lake",
+  "upperTrigram": "earth",
+  "keywords": [
+    "arrival",
+    "encouragement",
+    "growth",
+    "attention"
+  ],
+  "theme": "Approach is the feeling of something generous drawing near. Growth becomes visible when attention descends toward what is ready.",
+  "basicInterpretation": "Meet the opening with care. What comes closer now may need welcome, guidance, and respect for its season.",
+  "reflectionPrompt": "What is approaching that deserves your full attention?",
+  "relationships": {
+    "reversed": {
+      "number": 20,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Approach becomes Hexagram 20, Contemplation. This other side brings in the atmosphere of observation, perspective, reverence, asking how the situation may look from another threshold.",
+      "reflection": "Let Contemplation widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 33,
+      "theme": "The contrast to Approach is Hexagram 33, Retreat. Where the primary pattern emphasizes arrival, encouragement, growth, this complementary field points toward withdrawal, timing, distance.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Retreat names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

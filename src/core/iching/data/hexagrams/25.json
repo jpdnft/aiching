@@ -1,0 +1,46 @@
+{
+  "number": 25,
+  "name": "Innocence",
+  "chineseName": "Wu Wang",
+  "binaryKey": "100111",
+  "lines": [
+    "yang",
+    "yin",
+    "yin",
+    "yang",
+    "yang",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yang"
+  ],
+  "lowerTrigram": "thunder",
+  "upperTrigram": "heaven",
+  "keywords": [
+    "sincerity",
+    "naturalness",
+    "integrity",
+    "the unexpected"
+  ],
+  "theme": "Innocence acts without contrivance. When the heart is unforced, life can respond in ways planning could not manufacture.",
+  "basicInterpretation": "Let sincerity simplify the moment. Release the clever strategy if it pulls you away from what is natural and true.",
+  "reflectionPrompt": "Where can you act without calculation?",
+  "relationships": {
+    "reversed": {
+      "number": 26,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Innocence becomes Hexagram 26, Great Taming. This other side brings in the atmosphere of restraint, stored power, cultivation, asking how the situation may look from another threshold.",
+      "reflection": "Let Great Taming widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 46,
+      "theme": "The contrast to Innocence is Hexagram 46, Pushing Upward. Where the primary pattern emphasizes sincerity, naturalness, integrity, this complementary field points toward ascent, gradual growth, effort.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Pushing Upward names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

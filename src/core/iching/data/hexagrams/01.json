@@ -1,0 +1,46 @@
+{
+  "number": 1,
+  "name": "The Creative",
+  "chineseName": "Qian",
+  "binaryKey": "111111",
+  "lines": [
+    "yang",
+    "yang",
+    "yang",
+    "yang",
+    "yang",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yang"
+  ],
+  "lowerTrigram": "heaven",
+  "upperTrigram": "heaven",
+  "keywords": [
+    "creative force",
+    "initiation",
+    "strength",
+    "clarity"
+  ],
+  "theme": "Creative power is awake before it has chosen a form. This hexagram invites strength that is clear, generative, and guided by purpose rather than urgency.",
+  "basicInterpretation": "Something in you is ready to begin, lead, or bring a pattern into being. Let power move cleanly, with attention to timing and integrity.",
+  "reflectionPrompt": "Where is life asking you to create from clarity rather than pressure?",
+  "relationships": {
+    "reversed": {
+      "number": 1,
+      "sameAsPrimary": true,
+      "theme": "Turned around, The Creative remains itself. The pattern keeps its shape from either side, suggesting a situation whose essential lesson does not depend much on viewpoint.",
+      "reflection": "This symmetry asks for directness. Instead of searching for a hidden opposite perspective, look again at the same truth with quieter attention."
+    },
+    "opposite": {
+      "number": 2,
+      "theme": "The contrast to The Creative is Hexagram 2, The Receptive. Where the primary pattern emphasizes creative force, initiation, strength, this complementary field points toward receptivity, devotion, patience.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Receptive names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

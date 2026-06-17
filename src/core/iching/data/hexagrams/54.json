@@ -1,0 +1,46 @@
+{
+  "number": 54,
+  "name": "The Marrying Maiden",
+  "chineseName": "Gui Mei",
+  "binaryKey": "110100",
+  "lines": [
+    "yang",
+    "yang",
+    "yin",
+    "yang",
+    "yin",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yin"
+  ],
+  "lowerTrigram": "lake",
+  "upperTrigram": "thunder",
+  "keywords": [
+    "position",
+    "desire",
+    "adaptation",
+    "imperfect conditions"
+  ],
+  "theme": "The Marrying Maiden enters a situation where not everything is hers to command. Dignity is found by understanding position, timing, and desire.",
+  "basicInterpretation": "Move carefully in arrangements that are unequal or not fully chosen. Preserve self-respect while seeing the situation clearly.",
+  "reflectionPrompt": "Where do you need dignity within imperfect conditions?",
+  "relationships": {
+    "reversed": {
+      "number": 53,
+      "sameAsPrimary": false,
+      "theme": "Turned around, The Marrying Maiden becomes Hexagram 53, Development. This other side brings in the atmosphere of gradual progress, maturation, patience, asking how the situation may look from another threshold.",
+      "reflection": "Let Development widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 53,
+      "theme": "The contrast to The Marrying Maiden is Hexagram 53, Development. Where the primary pattern emphasizes position, desire, adaptation, this complementary field points toward gradual progress, maturation, patience.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Development names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

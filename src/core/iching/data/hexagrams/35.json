@@ -1,0 +1,46 @@
+{
+  "number": 35,
+  "name": "Progress",
+  "chineseName": "Jin",
+  "binaryKey": "000101",
+  "lines": [
+    "yin",
+    "yin",
+    "yin",
+    "yang",
+    "yin",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yang"
+  ],
+  "lowerTrigram": "earth",
+  "upperTrigram": "fire",
+  "keywords": [
+    "advancement",
+    "visibility",
+    "growth",
+    "recognition"
+  ],
+  "theme": "Progress is light rising over the earth. What has been prepared can now become visible and move forward.",
+  "basicInterpretation": "Accept the invitation to advance, but keep your brightness generous. Recognition is most useful when it helps the work continue.",
+  "reflectionPrompt": "What is ready to step into the light?",
+  "relationships": {
+    "reversed": {
+      "number": 36,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Progress becomes Hexagram 36, Darkening of the Light. This other side brings in the atmosphere of hidden light, wounding, caution, asking how the situation may look from another threshold.",
+      "reflection": "Let Darkening of the Light widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 5,
+      "theme": "The contrast to Progress is Hexagram 5, Waiting. Where the primary pattern emphasizes advancement, visibility, growth, this complementary field points toward patience, nourishment, timing.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Waiting names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

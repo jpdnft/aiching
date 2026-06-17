@@ -1,0 +1,46 @@
+{
+  "number": 60,
+  "name": "Limitation",
+  "chineseName": "Jie",
+  "binaryKey": "110010",
+  "lines": [
+    "yang",
+    "yang",
+    "yin",
+    "yin",
+    "yang",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yin"
+  ],
+  "lowerTrigram": "lake",
+  "upperTrigram": "water",
+  "keywords": [
+    "boundaries",
+    "measure",
+    "discipline",
+    "rhythm"
+  ],
+  "theme": "Limitation gives water a vessel. Wise boundaries do not diminish life; they help it become usable.",
+  "basicInterpretation": "Choose limits that clarify rather than punish. Measure, rhythm, and restraint can turn scattered energy into a living form.",
+  "reflectionPrompt": "What boundary would make more freedom possible?",
+  "relationships": {
+    "reversed": {
+      "number": 59,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Limitation becomes Hexagram 59, Dispersion. This other side brings in the atmosphere of dissolution, release, reconnection, asking how the situation may look from another threshold.",
+      "reflection": "Let Dispersion widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 56,
+      "theme": "The contrast to Limitation is Hexagram 56, The Wanderer. Where the primary pattern emphasizes boundaries, measure, discipline, this complementary field points toward travel, impermanence, caution.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Wanderer names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "number": 23,
+  "name": "Splitting Apart",
+  "chineseName": "Bo",
+  "binaryKey": "000001",
+  "lines": [
+    "yin",
+    "yin",
+    "yin",
+    "yin",
+    "yin",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yang"
+  ],
+  "lowerTrigram": "earth",
+  "upperTrigram": "mountain",
+  "keywords": [
+    "erosion",
+    "release",
+    "stripping away",
+    "decline"
+  ],
+  "theme": "Splitting Apart is the removal of what can no longer hold. It may feel like loss, but it also exposes what must be protected underneath.",
+  "basicInterpretation": "Do not cling to the peeling layer. Preserve the seed, simplify your obligations, and let what is unstable fall away.",
+  "reflectionPrompt": "What is being stripped away so something essential can remain?",
+  "relationships": {
+    "reversed": {
+      "number": 24,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Splitting Apart becomes Hexagram 24, Return. This other side brings in the atmosphere of renewal, turning point, recovery, asking how the situation may look from another threshold.",
+      "reflection": "Let Return widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 43,
+      "theme": "The contrast to Splitting Apart is Hexagram 43, Breakthrough. Where the primary pattern emphasizes erosion, release, stripping away, this complementary field points toward resolution, declaration, truth.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Breakthrough names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

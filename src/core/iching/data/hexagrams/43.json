@@ -1,0 +1,46 @@
+{
+  "number": 43,
+  "name": "Breakthrough",
+  "chineseName": "Guai",
+  "binaryKey": "111110",
+  "lines": [
+    "yang",
+    "yang",
+    "yang",
+    "yang",
+    "yang",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yin"
+  ],
+  "lowerTrigram": "heaven",
+  "upperTrigram": "lake",
+  "keywords": [
+    "resolution",
+    "declaration",
+    "truth",
+    "release"
+  ],
+  "theme": "Breakthrough is the moment truth can no longer remain sealed. A clear declaration releases pressure and restores direction.",
+  "basicInterpretation": "Speak or act with firmness, but without cruelty. Remove what blocks integrity, and let the breakthrough serve clarity rather than anger.",
+  "reflectionPrompt": "What truth is ready to be stated cleanly?",
+  "relationships": {
+    "reversed": {
+      "number": 44,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Breakthrough becomes Hexagram 44, Coming to Meet. This other side brings in the atmosphere of encounter, temptation, influence, asking how the situation may look from another threshold.",
+      "reflection": "Let Coming to Meet widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 23,
+      "theme": "The contrast to Breakthrough is Hexagram 23, Splitting Apart. Where the primary pattern emphasizes resolution, declaration, truth, this complementary field points toward erosion, release, stripping away.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Splitting Apart names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

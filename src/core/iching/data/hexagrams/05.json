@@ -1,0 +1,46 @@
+{
+  "number": 5,
+  "name": "Waiting",
+  "chineseName": "Xu",
+  "binaryKey": "111010",
+  "lines": [
+    "yang",
+    "yang",
+    "yang",
+    "yin",
+    "yang",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yin"
+  ],
+  "lowerTrigram": "heaven",
+  "upperTrigram": "water",
+  "keywords": [
+    "patience",
+    "nourishment",
+    "timing",
+    "trust"
+  ],
+  "theme": "Waiting is not emptiness; it is ripening. The rain has not yet fallen, but the clouds are already part of the answer.",
+  "basicInterpretation": "This is a time to prepare, nourish yourself, and avoid forcing the gate. Patience becomes active when it protects readiness.",
+  "reflectionPrompt": "What can be tended while the timing matures?",
+  "relationships": {
+    "reversed": {
+      "number": 6,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Waiting becomes Hexagram 6, Conflict. This other side brings in the atmosphere of dispute, tension, restraint, asking how the situation may look from another threshold.",
+      "reflection": "Let Conflict widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 35,
+      "theme": "The contrast to Waiting is Hexagram 35, Progress. Where the primary pattern emphasizes patience, nourishment, timing, this complementary field points toward advancement, visibility, growth.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Progress names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

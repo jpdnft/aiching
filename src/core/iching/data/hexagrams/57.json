@@ -1,0 +1,46 @@
+{
+  "number": 57,
+  "name": "The Gentle",
+  "chineseName": "Xun",
+  "binaryKey": "011011",
+  "lines": [
+    "yin",
+    "yang",
+    "yang",
+    "yin",
+    "yang",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yang"
+  ],
+  "lowerTrigram": "wind",
+  "upperTrigram": "wind",
+  "keywords": [
+    "penetration",
+    "patience",
+    "subtle influence",
+    "persistence"
+  ],
+  "theme": "The Gentle is wind following wind, entering through small openings. It changes things by persistence, not force.",
+  "basicInterpretation": "Move softly and keep returning. A subtle influence, patiently applied, may reach places that pressure cannot enter.",
+  "reflectionPrompt": "Where would gentleness go farther than force?",
+  "relationships": {
+    "reversed": {
+      "number": 58,
+      "sameAsPrimary": false,
+      "theme": "Turned around, The Gentle becomes Hexagram 58, The Joyous. This other side brings in the atmosphere of joy, exchange, openness, asking how the situation may look from another threshold.",
+      "reflection": "Let The Joyous widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 51,
+      "theme": "The contrast to The Gentle is Hexagram 51, The Arousing. Where the primary pattern emphasizes penetration, patience, subtle influence, this complementary field points toward shock, awakening, movement.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Arousing names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

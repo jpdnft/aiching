@@ -1,0 +1,46 @@
+{
+  "number": 49,
+  "name": "Revolution",
+  "chineseName": "Ge",
+  "binaryKey": "101110",
+  "lines": [
+    "yang",
+    "yin",
+    "yang",
+    "yang",
+    "yang",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yin"
+  ],
+  "lowerTrigram": "fire",
+  "upperTrigram": "lake",
+  "keywords": [
+    "transformation",
+    "renewal",
+    "timing",
+    "change"
+  ],
+  "theme": "Revolution is the shedding of an old skin when the season has truly changed. Transformation needs both conviction and timing.",
+  "basicInterpretation": "Do not change merely from restlessness, but do not refuse the change that truth requires. Let renewal be deliberate, humane, and complete enough to matter.",
+  "reflectionPrompt": "What form has become too small for the life within it?",
+  "relationships": {
+    "reversed": {
+      "number": 50,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Revolution becomes Hexagram 50, The Cauldron. This other side brings in the atmosphere of transformation, culture, offering, asking how the situation may look from another threshold.",
+      "reflection": "Let The Cauldron widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 4,
+      "theme": "The contrast to Revolution is Hexagram 4, Youthful Folly. Where the primary pattern emphasizes transformation, renewal, timing, this complementary field points toward learning, humility, questions.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Youthful Folly names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

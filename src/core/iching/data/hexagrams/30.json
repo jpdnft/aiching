@@ -1,0 +1,46 @@
+{
+  "number": 30,
+  "name": "Radiance",
+  "chineseName": "Li",
+  "binaryKey": "101101",
+  "lines": [
+    "yang",
+    "yin",
+    "yang",
+    "yang",
+    "yin",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yang"
+  ],
+  "lowerTrigram": "fire",
+  "upperTrigram": "fire",
+  "keywords": [
+    "clarity",
+    "illumination",
+    "perception",
+    "devotion"
+  ],
+  "theme": "Radiance is fire joined to fire, the discipline of seeing and being seen. Light reveals, but it also depends on what it clings to for fuel.",
+  "basicInterpretation": "Seek clarity without harshness. Let attention illuminate what is present, and choose carefully what your energy attaches itself to.",
+  "reflectionPrompt": "What needs to be seen clearly before you act?",
+  "relationships": {
+    "reversed": {
+      "number": 30,
+      "sameAsPrimary": true,
+      "theme": "Turned around, Radiance remains itself. The pattern keeps its shape from either side, suggesting a situation whose essential lesson does not depend much on viewpoint.",
+      "reflection": "This symmetry asks for directness. Instead of searching for a hidden opposite perspective, look again at the same truth with quieter attention."
+    },
+    "opposite": {
+      "number": 29,
+      "theme": "The contrast to Radiance is Hexagram 29, The Abysmal. Where the primary pattern emphasizes clarity, illumination, perception, this complementary field points toward depth, danger, repetition.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Abysmal names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

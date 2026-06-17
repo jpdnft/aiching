@@ -1,0 +1,46 @@
+{
+  "number": 9,
+  "name": "Small Taming",
+  "chineseName": "Xiao Xu",
+  "binaryKey": "111011",
+  "lines": [
+    "yang",
+    "yang",
+    "yang",
+    "yin",
+    "yang",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yang"
+  ],
+  "lowerTrigram": "heaven",
+  "upperTrigram": "wind",
+  "keywords": [
+    "restraint",
+    "refinement",
+    "small influence",
+    "preparation"
+  ],
+  "theme": "Small Taming works by gentle restraint. Great force is present, but the moment asks for careful shaping through small, repeated influence.",
+  "basicInterpretation": "Do not rush to force a result. Adjust details, refine your approach, and trust the quiet work that prepares larger movement.",
+  "reflectionPrompt": "What small discipline would change the direction of the whole?",
+  "relationships": {
+    "reversed": {
+      "number": 10,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Small Taming becomes Hexagram 10, Treading. This other side brings in the atmosphere of conduct, care, dignity, asking how the situation may look from another threshold.",
+      "reflection": "Let Treading widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 16,
+      "theme": "The contrast to Small Taming is Hexagram 16, Enthusiasm. Where the primary pattern emphasizes restraint, refinement, small influence, this complementary field points toward inspiration, rhythm, motivation.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Enthusiasm names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

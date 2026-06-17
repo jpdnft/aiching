@@ -1,22 +1,29 @@
-import { useCallback, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ReactNode, useCallback, useState } from 'react';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { CastButton } from '@/components/CastButton';
 import { HexagramView } from '@/components/HexagramView';
-import { ScreenContainer } from '@/components/ScreenContainer';
 import { addCastLine, isCompleteHexagram } from '@/core/iching/generate';
 import { createCompletedReading } from '@/core/iching/interpretation';
 import { lookupHexagram } from '@/core/iching/lookup';
 import { CompletedReading, PartialHexagramLines } from '@/core/iching/types';
-import { getTodaysReading, saveCompletedReading } from '@/storage/readingsStorage';
+import {
+  clearTodaysReadingForDev,
+  getTodaysReading,
+  saveCompletedReading,
+} from '@/storage/readingsStorage';
+import { useAppTheme } from '@/theme/appTheme';
 import { aiChingColors } from '@/theme/colors';
+import { getHomeBackgroundSource } from '@/theme/hexagramBackgrounds';
 import { getLocalDateKey } from '@/utils/date';
 
 export default function CastScreen() {
   const router = useRouter();
+  const { themeId } = useAppTheme();
   const [lines, setLines] = useState<PartialHexagramLines>([]);
-  const [question, setQuestion] = useState('');
   const [todaysReading, setTodaysReading] = useState<CompletedReading | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -31,6 +38,7 @@ export default function CastScreen() {
 
   const castCount = lines.length;
   const isComplete = isCompleteHexagram(lines);
+  const homeBackgroundSource = getHomeBackgroundSource(themeId);
 
   function handleCast() {
     setLines((currentLines) => addCastLine(currentLines));
@@ -47,7 +55,6 @@ export default function CastScreen() {
       lines,
       hexagram,
       localDate: getLocalDateKey(),
-      question,
     });
 
     await saveCompletedReading(reading);
@@ -56,19 +63,25 @@ export default function CastScreen() {
     router.push('/reading');
   }
 
+  async function handleDevResetToday() {
+    await clearTodaysReadingForDev();
+    setTodaysReading(null);
+    setLines([]);
+  }
+
   if (isLoading) {
     return (
-      <ScreenContainer scroll={false}>
+      <CastBackground backgroundSource={homeBackgroundSource}>
         <View style={styles.centered}>
           <ActivityIndicator color={aiChingColors.gold} />
         </View>
-      </ScreenContainer>
+      </CastBackground>
     );
   }
 
   if (todaysReading) {
     return (
-      <ScreenContainer scroll={false}>
+      <CastBackground backgroundSource={homeBackgroundSource}>
         <View style={styles.hero}>
           <Text style={styles.kicker}>Today has been cast</Text>
           <HexagramView lines={todaysReading.lines} />
@@ -77,27 +90,26 @@ export default function CastScreen() {
           </Text>
           <Text style={styles.body}>Return tomorrow for a new reading.</Text>
           <CastButton label="VIEW READING" onPress={() => router.push('/reading')} />
+          {__DEV__ ? (
+            <Text onPress={handleDevResetToday} style={styles.devReset}>
+              Reset today for testing
+            </Text>
+          ) : null}
         </View>
-      </ScreenContainer>
+      </CastBackground>
     );
   }
 
   return (
-    <ScreenContainer scroll={false}>
+    <CastBackground backgroundSource={homeBackgroundSource}>
       <View style={styles.hero}>
         <View style={styles.heading}>
           <Text style={styles.kicker}>AI Ching</Text>
           <Text style={styles.title}>Cast one clear pattern for today.</Text>
+          <Text style={styles.intention}>
+            Hold a question, feeling, or intention in mind as each line arrives.
+          </Text>
         </View>
-
-        <TextInput
-          value={question}
-          onChangeText={setQuestion}
-          placeholder="A question or intention, optional"
-          placeholderTextColor="rgba(219, 226, 223, 0.48)"
-          style={styles.input}
-          multiline
-        />
 
         <HexagramView lines={lines} />
 
@@ -108,7 +120,27 @@ export default function CastScreen() {
           onPress={isComplete ? handleReveal : handleCast}
         />
       </View>
-    </ScreenContainer>
+    </CastBackground>
+  );
+}
+
+function CastBackground({
+  backgroundSource,
+  children,
+}: {
+  backgroundSource?: number;
+  children: ReactNode;
+}) {
+  return (
+    <View style={styles.backgroundScreen}>
+      {backgroundSource ? (
+        <Image source={backgroundSource} style={styles.backgroundImage} contentFit="cover" />
+      ) : null}
+      <View style={styles.imageScrim} />
+      <SafeAreaView style={styles.castSafeArea}>
+        <View style={styles.castContent}>{children}</View>
+      </SafeAreaView>
+    </View>
   );
 }
 
@@ -117,6 +149,24 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  backgroundScreen: {
+    flex: 1,
+    backgroundColor: aiChingColors.ink,
+  },
+  backgroundImage: {
+    ...StyleSheet.absoluteFill,
+  },
+  imageScrim: {
+    ...StyleSheet.absoluteFill,
+    backgroundColor: 'rgba(10, 12, 16, 0.52)',
+  },
+  castSafeArea: {
+    flex: 1,
+  },
+  castContent: {
+    flex: 1,
+    padding: 24,
   },
   hero: {
     flex: 1,
@@ -147,22 +197,20 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     textAlign: 'center',
   },
-  input: {
-    width: '100%',
-    maxWidth: 360,
-    minHeight: 72,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.2)',
-    backgroundColor: aiChingColors.surface,
-    color: aiChingColors.mist,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    fontSize: 15,
-    textAlignVertical: 'top',
+  intention: {
+    maxWidth: 340,
+    color: aiChingColors.muted,
+    fontSize: 16,
+    lineHeight: 24,
+    textAlign: 'center',
   },
   progress: {
     color: aiChingColors.muted,
     fontSize: 14,
+  },
+  devReset: {
+    color: aiChingColors.muted,
+    fontSize: 13,
+    textDecorationLine: 'underline',
   },
 });

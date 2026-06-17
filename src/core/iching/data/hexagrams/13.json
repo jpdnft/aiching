@@ -1,0 +1,46 @@
+{
+  "number": 13,
+  "name": "Fellowship",
+  "chineseName": "Tong Ren",
+  "binaryKey": "101111",
+  "lines": [
+    "yang",
+    "yin",
+    "yang",
+    "yang",
+    "yang",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yang"
+  ],
+  "lowerTrigram": "fire",
+  "upperTrigram": "heaven",
+  "keywords": [
+    "community",
+    "shared purpose",
+    "openness",
+    "kinship"
+  ],
+  "theme": "Fellowship is connection under a wide sky. It asks for bonds formed by shared purpose rather than convenience or private advantage.",
+  "basicInterpretation": "Look for the larger human field. Honest participation can turn separate lights into a constellation.",
+  "reflectionPrompt": "Where does your private clarity want to join a wider purpose?",
+  "relationships": {
+    "reversed": {
+      "number": 14,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Fellowship becomes Hexagram 14, Great Possession. This other side brings in the atmosphere of abundance, stewardship, radiance, asking how the situation may look from another threshold.",
+      "reflection": "Let Great Possession widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 7,
+      "theme": "The contrast to Fellowship is Hexagram 7, The Army. Where the primary pattern emphasizes community, shared purpose, openness, this complementary field points toward discipline, organization, leadership.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Army names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

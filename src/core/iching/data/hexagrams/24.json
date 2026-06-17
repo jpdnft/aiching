@@ -1,0 +1,46 @@
+{
+  "number": 24,
+  "name": "Return",
+  "chineseName": "Fu",
+  "binaryKey": "100000",
+  "lines": [
+    "yang",
+    "yin",
+    "yin",
+    "yin",
+    "yin",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yin"
+  ],
+  "lowerTrigram": "thunder",
+  "upperTrigram": "earth",
+  "keywords": [
+    "renewal",
+    "turning point",
+    "recovery",
+    "homecoming"
+  ],
+  "theme": "Return is the first movement of light after stillness. The turn may be small, but it carries the promise of renewal.",
+  "basicInterpretation": "Come back to the path without drama. A true return begins gently, with one honest step toward what restores life.",
+  "reflectionPrompt": "What simple return would bring you closer to yourself?",
+  "relationships": {
+    "reversed": {
+      "number": 23,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Return becomes Hexagram 23, Splitting Apart. This other side brings in the atmosphere of erosion, release, stripping away, asking how the situation may look from another threshold.",
+      "reflection": "Let Splitting Apart widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 44,
+      "theme": "The contrast to Return is Hexagram 44, Coming to Meet. Where the primary pattern emphasizes renewal, turning point, recovery, this complementary field points toward encounter, temptation, influence.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Coming to Meet names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

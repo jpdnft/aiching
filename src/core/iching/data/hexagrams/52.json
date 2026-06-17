@@ -1,0 +1,46 @@
+{
+  "number": 52,
+  "name": "Keeping Still",
+  "chineseName": "Gen",
+  "binaryKey": "001001",
+  "lines": [
+    "yin",
+    "yin",
+    "yang",
+    "yin",
+    "yin",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yang"
+  ],
+  "lowerTrigram": "mountain",
+  "upperTrigram": "mountain",
+  "keywords": [
+    "stillness",
+    "meditation",
+    "boundaries",
+    "composure"
+  ],
+  "theme": "Keeping Still is mountain resting upon mountain. It asks for the kind of stopping that lets the mind settle back into its own shape.",
+  "basicInterpretation": "Pause without apology. Not every impulse deserves movement; stillness can be a precise and compassionate act.",
+  "reflectionPrompt": "Where would stopping restore your true proportions?",
+  "relationships": {
+    "reversed": {
+      "number": 51,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Keeping Still becomes Hexagram 51, The Arousing. This other side brings in the atmosphere of shock, awakening, movement, asking how the situation may look from another threshold.",
+      "reflection": "Let The Arousing widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 58,
+      "theme": "The contrast to Keeping Still is Hexagram 58, The Joyous. Where the primary pattern emphasizes stillness, meditation, boundaries, this complementary field points toward joy, exchange, openness.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Joyous names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

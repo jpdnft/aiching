@@ -1,0 +1,46 @@
+{
+  "number": 34,
+  "name": "Great Power",
+  "chineseName": "Da Zhuang",
+  "binaryKey": "111100",
+  "lines": [
+    "yang",
+    "yang",
+    "yang",
+    "yang",
+    "yin",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yin"
+  ],
+  "lowerTrigram": "heaven",
+  "upperTrigram": "thunder",
+  "keywords": [
+    "strength",
+    "momentum",
+    "responsibility",
+    "restraint"
+  ],
+  "theme": "Great Power is force in motion. Its test is whether strength can remain aligned with what is right.",
+  "basicInterpretation": "You may have more power than usual now. Let conduct govern momentum, so that force becomes service rather than excess.",
+  "reflectionPrompt": "How can your strength stay answerable to wisdom?",
+  "relationships": {
+    "reversed": {
+      "number": 33,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Great Power becomes Hexagram 33, Retreat. This other side brings in the atmosphere of withdrawal, timing, distance, asking how the situation may look from another threshold.",
+      "reflection": "Let Retreat widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 20,
+      "theme": "The contrast to Great Power is Hexagram 20, Contemplation. Where the primary pattern emphasizes strength, momentum, responsibility, this complementary field points toward observation, perspective, reverence.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Contemplation names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

@@ -49,3 +49,7 @@ export async function saveCompletedReading(reading: CompletedReading): Promise<v
 export async function hasCompletedReadingToday(): Promise<boolean> {
   return (await getTodaysReading()) !== null;
 }
+
+export async function clearTodaysReadingForDev(): Promise<void> {
+  await AsyncStorage.removeItem(TODAY_KEY);
+}

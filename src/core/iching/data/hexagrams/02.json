@@ -1,0 +1,46 @@
+{
+  "number": 2,
+  "name": "The Receptive",
+  "chineseName": "Kun",
+  "binaryKey": "000000",
+  "lines": [
+    "yin",
+    "yin",
+    "yin",
+    "yin",
+    "yin",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yin"
+  ],
+  "lowerTrigram": "earth",
+  "upperTrigram": "earth",
+  "keywords": [
+    "receptivity",
+    "devotion",
+    "patience",
+    "support"
+  ],
+  "theme": "The Receptive is the field that makes growth possible. Its wisdom is spacious, steady, and willing to carry what is taking shape.",
+  "basicInterpretation": "This reading invites you to listen, receive, and cooperate with conditions as they are. Strength may come through softness, patience, and loyal attention.",
+  "reflectionPrompt": "What would change if you stopped pushing and made room instead?",
+  "relationships": {
+    "reversed": {
+      "number": 2,
+      "sameAsPrimary": true,
+      "theme": "Turned around, The Receptive remains itself. The pattern keeps its shape from either side, suggesting a situation whose essential lesson does not depend much on viewpoint.",
+      "reflection": "This symmetry asks for directness. Instead of searching for a hidden opposite perspective, look again at the same truth with quieter attention."
+    },
+    "opposite": {
+      "number": 1,
+      "theme": "The contrast to The Receptive is Hexagram 1, The Creative. Where the primary pattern emphasizes receptivity, devotion, patience, this complementary field points toward creative force, initiation, strength.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Creative names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

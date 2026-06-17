@@ -1,0 +1,46 @@
+{
+  "number": 8,
+  "name": "Holding Together",
+  "chineseName": "Bi",
+  "binaryKey": "000010",
+  "lines": [
+    "yin",
+    "yin",
+    "yin",
+    "yin",
+    "yang",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yin"
+  ],
+  "lowerTrigram": "earth",
+  "upperTrigram": "water",
+  "keywords": [
+    "belonging",
+    "alliance",
+    "support",
+    "sincerity"
+  ],
+  "theme": "Holding Together gathers scattered streams into one center. Real belonging is not possession; it is a shared sincerity that people can trust.",
+  "basicInterpretation": "Consider where you are joining, supporting, or being supported. Choose alliances that deepen integrity rather than blur it.",
+  "reflectionPrompt": "What shared center is worthy of your loyalty?",
+  "relationships": {
+    "reversed": {
+      "number": 7,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Holding Together becomes Hexagram 7, The Army. This other side brings in the atmosphere of discipline, organization, leadership, asking how the situation may look from another threshold.",
+      "reflection": "Let The Army widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 14,
+      "theme": "The contrast to Holding Together is Hexagram 14, Great Possession. Where the primary pattern emphasizes belonging, alliance, support, this complementary field points toward abundance, stewardship, radiance.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Great Possession names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

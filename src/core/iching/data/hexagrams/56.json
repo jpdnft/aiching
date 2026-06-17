@@ -1,0 +1,46 @@
+{
+  "number": 56,
+  "name": "The Wanderer",
+  "chineseName": "Lu",
+  "binaryKey": "001101",
+  "lines": [
+    "yin",
+    "yin",
+    "yang",
+    "yang",
+    "yin",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yang"
+  ],
+  "lowerTrigram": "mountain",
+  "upperTrigram": "fire",
+  "keywords": [
+    "travel",
+    "impermanence",
+    "caution",
+    "inner fire"
+  ],
+  "theme": "The Wanderer carries fire over the mountain. When you are not at home, warmth must be tended carefully and lightly.",
+  "basicInterpretation": "Respect temporary conditions. Travel simply, avoid arrogance, and let your inner light guide you without demanding that the world become familiar.",
+  "reflectionPrompt": "How can you carry warmth through unfamiliar ground?",
+  "relationships": {
+    "reversed": {
+      "number": 55,
+      "sameAsPrimary": false,
+      "theme": "Turned around, The Wanderer becomes Hexagram 55, Abundance. This other side brings in the atmosphere of fullness, visibility, peak moment, asking how the situation may look from another threshold.",
+      "reflection": "Let Abundance widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 60,
+      "theme": "The contrast to The Wanderer is Hexagram 60, Limitation. Where the primary pattern emphasizes travel, impermanence, caution, this complementary field points toward boundaries, measure, discipline.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Limitation names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

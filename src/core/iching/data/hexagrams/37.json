@@ -1,0 +1,46 @@
+{
+  "number": 37,
+  "name": "The Family",
+  "chineseName": "Jia Ren",
+  "binaryKey": "101011",
+  "lines": [
+    "yang",
+    "yin",
+    "yang",
+    "yin",
+    "yang",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yang"
+  ],
+  "lowerTrigram": "fire",
+  "upperTrigram": "wind",
+  "keywords": [
+    "home",
+    "roles",
+    "care",
+    "inner order"
+  ],
+  "theme": "The Family is the order of the hearth. Care becomes powerful when each part of the household, literal or symbolic, knows how it serves the whole.",
+  "basicInterpretation": "Attend to the near field: home, habits, roles, and intimate responsibilities. The world is shaped first by how we tend what is close.",
+  "reflectionPrompt": "What small order at home would restore warmth?",
+  "relationships": {
+    "reversed": {
+      "number": 38,
+      "sameAsPrimary": false,
+      "theme": "Turned around, The Family becomes Hexagram 38, Opposition. This other side brings in the atmosphere of difference, polarity, estrangement, asking how the situation may look from another threshold.",
+      "reflection": "Let Opposition widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 40,
+      "theme": "The contrast to The Family is Hexagram 40, Deliverance. Where the primary pattern emphasizes home, roles, care, this complementary field points toward release, relief, untangling.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Deliverance names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

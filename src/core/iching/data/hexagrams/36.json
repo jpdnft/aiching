@@ -1,0 +1,46 @@
+{
+  "number": 36,
+  "name": "Darkening of the Light",
+  "chineseName": "Ming Yi",
+  "binaryKey": "101000",
+  "lines": [
+    "yang",
+    "yin",
+    "yang",
+    "yin",
+    "yin",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yin"
+  ],
+  "lowerTrigram": "fire",
+  "upperTrigram": "earth",
+  "keywords": [
+    "hidden light",
+    "wounding",
+    "caution",
+    "inner clarity"
+  ],
+  "theme": "Darkening of the Light buries radiance beneath the earth. The light is not gone; it is being protected from conditions that cannot honor it.",
+  "basicInterpretation": "Keep your clarity inward if the outer world is unsafe or unreceptive. There are times when concealment is care, not cowardice.",
+  "reflectionPrompt": "What brightness needs quiet protection?",
+  "relationships": {
+    "reversed": {
+      "number": 35,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Darkening of the Light becomes Hexagram 35, Progress. This other side brings in the atmosphere of advancement, visibility, growth, asking how the situation may look from another threshold.",
+      "reflection": "Let Progress widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 6,
+      "theme": "The contrast to Darkening of the Light is Hexagram 6, Conflict. Where the primary pattern emphasizes hidden light, wounding, caution, this complementary field points toward dispute, tension, restraint.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Conflict names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

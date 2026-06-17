@@ -1,0 +1,46 @@
+{
+  "number": 14,
+  "name": "Great Possession",
+  "chineseName": "Da You",
+  "binaryKey": "111101",
+  "lines": [
+    "yang",
+    "yang",
+    "yang",
+    "yang",
+    "yin",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yang"
+  ],
+  "lowerTrigram": "heaven",
+  "upperTrigram": "fire",
+  "keywords": [
+    "abundance",
+    "stewardship",
+    "radiance",
+    "capacity"
+  ],
+  "theme": "Great Possession is abundance lit by awareness. What you hold becomes meaningful when it is governed by generosity and care.",
+  "basicInterpretation": "Recognize your resources without clinging to them. Capacity is a responsibility; let what you possess serve what is luminous in you.",
+  "reflectionPrompt": "What abundance are you being asked to steward wisely?",
+  "relationships": {
+    "reversed": {
+      "number": 13,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Great Possession becomes Hexagram 13, Fellowship. This other side brings in the atmosphere of community, shared purpose, openness, asking how the situation may look from another threshold.",
+      "reflection": "Let Fellowship widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 8,
+      "theme": "The contrast to Great Possession is Hexagram 8, Holding Together. Where the primary pattern emphasizes abundance, stewardship, radiance, this complementary field points toward belonging, alliance, support.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Holding Together names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

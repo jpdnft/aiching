@@ -23,10 +23,17 @@ export type Hexagram = {
   chineseName?: string;
   binaryKey: string;
   lines: BasicLine[];
+  lineStates: HexagramLines;
+  lowerTrigram?: string;
+  upperTrigram?: string;
   keywords: string[];
   theme: string;
   basicInterpretation: string;
   reflectionPrompt: string;
+  relationships: {
+    reversed: HexagramRelationship;
+    opposite: HexagramRelationship;
+  };
   future?: {
     traditional?: string;
     career?: string;
@@ -34,6 +41,13 @@ export type Hexagram = {
     creative?: string;
     shadow?: string;
   };
+};
+
+export type HexagramRelationship = {
+  number: number;
+  sameAsPrimary?: boolean;
+  theme: string;
+  reflection: string;
 };
 
 export type CompletedReading = {

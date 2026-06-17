@@ -1,0 +1,46 @@
+{
+  "number": 22,
+  "name": "Grace",
+  "chineseName": "Bi",
+  "binaryKey": "101001",
+  "lines": [
+    "yang",
+    "yin",
+    "yang",
+    "yin",
+    "yin",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yang"
+  ],
+  "lowerTrigram": "fire",
+  "upperTrigram": "mountain",
+  "keywords": [
+    "beauty",
+    "adornment",
+    "form",
+    "restraint"
+  ],
+  "theme": "Grace is beauty that reveals rather than distracts. Form matters when it helps truth become visible.",
+  "basicInterpretation": "Refine the surface, but do not worship it. The most enduring beauty is simple enough to let the inner light show through.",
+  "reflectionPrompt": "Where could a little grace make truth easier to receive?",
+  "relationships": {
+    "reversed": {
+      "number": 21,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Grace becomes Hexagram 21, Biting Through. This other side brings in the atmosphere of decision, justice, clarity, asking how the situation may look from another threshold.",
+      "reflection": "Let Biting Through widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 47,
+      "theme": "The contrast to Grace is Hexagram 47, Oppression. Where the primary pattern emphasizes beauty, adornment, form, this complementary field points toward confinement, exhaustion, truth under pressure.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Oppression names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

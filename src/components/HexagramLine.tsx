@@ -7,26 +7,28 @@ import { aiChingColors } from '@/theme/colors';
 type Props = {
   line?: LineState;
   muted?: boolean;
+  size?: 'default' | 'mini';
 };
 
-export function HexagramLine({ line, muted = false }: Props) {
+export function HexagramLine({ line, muted = false, size = 'default' }: Props) {
   const isYin = line ? toBasicLine(line) === 'yin' : false;
   const color = muted ? 'rgba(231, 197, 111, 0.22)' : aiChingColors.gold;
+  const isMini = size === 'mini';
 
   if (!line) {
-    return <View style={[styles.placeholder, { borderColor: color }]} />;
+    return <View style={[styles.placeholder, isMini && styles.miniPlaceholder, { borderColor: color }]} />;
   }
 
   if (isYin) {
     return (
-      <View style={styles.yinContainer}>
-        <View style={[styles.segment, { backgroundColor: color }]} />
-        <View style={[styles.segment, { backgroundColor: color }]} />
+      <View style={[styles.yinContainer, isMini && styles.miniLine]}>
+        <View style={[styles.segment, isMini && styles.miniSegment, { backgroundColor: color }]} />
+        <View style={[styles.segment, isMini && styles.miniSegment, { backgroundColor: color }]} />
       </View>
     );
   }
 
-  return <View style={[styles.yang, { backgroundColor: color }]} />;
+  return <View style={[styles.yang, isMini && styles.miniLine, { backgroundColor: color }]} />;
 }
 
 const styles = StyleSheet.create({
@@ -52,5 +54,16 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderBottomWidth: 1,
     opacity: 0.5,
+  },
+  miniLine: {
+    height: 5,
+    borderRadius: 1,
+  },
+  miniSegment: {
+    height: 5,
+    borderRadius: 1,
+  },
+  miniPlaceholder: {
+    height: 5,
   },
 });

@@ -1,0 +1,46 @@
+{
+  "number": 51,
+  "name": "The Arousing",
+  "chineseName": "Zhen",
+  "binaryKey": "100100",
+  "lines": [
+    "yang",
+    "yin",
+    "yin",
+    "yang",
+    "yin",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yin"
+  ],
+  "lowerTrigram": "thunder",
+  "upperTrigram": "thunder",
+  "keywords": [
+    "shock",
+    "awakening",
+    "movement",
+    "attention"
+  ],
+  "theme": "The Arousing is thunder doubled, a shock that wakes the sleeping heart. Fear may arrive first, but attention can follow.",
+  "basicInterpretation": "Let the disturbance wake you without ruling you. After the first tremor, return to center and notice what has become newly alive.",
+  "reflectionPrompt": "What has startled you into awareness?",
+  "relationships": {
+    "reversed": {
+      "number": 52,
+      "sameAsPrimary": false,
+      "theme": "Turned around, The Arousing becomes Hexagram 52, Keeping Still. This other side brings in the atmosphere of stillness, meditation, boundaries, asking how the situation may look from another threshold.",
+      "reflection": "Let Keeping Still widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 57,
+      "theme": "The contrast to The Arousing is Hexagram 57, The Gentle. Where the primary pattern emphasizes shock, awakening, movement, this complementary field points toward penetration, patience, subtle influence.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Gentle names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

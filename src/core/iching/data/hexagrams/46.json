@@ -1,0 +1,46 @@
+{
+  "number": 46,
+  "name": "Pushing Upward",
+  "chineseName": "Sheng",
+  "binaryKey": "011000",
+  "lines": [
+    "yin",
+    "yang",
+    "yang",
+    "yin",
+    "yin",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yin"
+  ],
+  "lowerTrigram": "wind",
+  "upperTrigram": "earth",
+  "keywords": [
+    "ascent",
+    "gradual growth",
+    "effort",
+    "cultivation"
+  ],
+  "theme": "Pushing Upward is growth through patient ascent. The tree does not leap; it rises by faithful increments.",
+  "basicInterpretation": "Small steady effort is favored. Respect the steps, seek support where needed, and let progress accumulate quietly.",
+  "reflectionPrompt": "What patient step would move you upward today?",
+  "relationships": {
+    "reversed": {
+      "number": 45,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Pushing Upward becomes Hexagram 45, Gathering Together. This other side brings in the atmosphere of assembly, community, focus, asking how the situation may look from another threshold.",
+      "reflection": "Let Gathering Together widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 25,
+      "theme": "The contrast to Pushing Upward is Hexagram 25, Innocence. Where the primary pattern emphasizes ascent, gradual growth, effort, this complementary field points toward sincerity, naturalness, integrity.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Innocence names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

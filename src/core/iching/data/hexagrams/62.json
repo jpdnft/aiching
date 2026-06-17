@@ -1,0 +1,46 @@
+{
+  "number": 62,
+  "name": "Small Preponderance",
+  "chineseName": "Xiao Guo",
+  "binaryKey": "001100",
+  "lines": [
+    "yin",
+    "yin",
+    "yang",
+    "yang",
+    "yin",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yin"
+  ],
+  "lowerTrigram": "mountain",
+  "upperTrigram": "thunder",
+  "keywords": [
+    "small matters",
+    "carefulness",
+    "humility",
+    "precision"
+  ],
+  "theme": "Small Preponderance favors careful attention to what is near and modest. The great gesture may miss what the small gesture can save.",
+  "basicInterpretation": "Keep low, precise, and practical. Success now may come through humility, detail, and not flying higher than the moment allows.",
+  "reflectionPrompt": "What small thing deserves exact care?",
+  "relationships": {
+    "reversed": {
+      "number": 62,
+      "sameAsPrimary": true,
+      "theme": "Turned around, Small Preponderance remains itself. The pattern keeps its shape from either side, suggesting a situation whose essential lesson does not depend much on viewpoint.",
+      "reflection": "This symmetry asks for directness. Instead of searching for a hidden opposite perspective, look again at the same truth with quieter attention."
+    },
+    "opposite": {
+      "number": 61,
+      "theme": "The contrast to Small Preponderance is Hexagram 61, Inner Truth. Where the primary pattern emphasizes small matters, carefulness, humility, this complementary field points toward sincerity, trust, resonance.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Inner Truth names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

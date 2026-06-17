@@ -1,15 +1,19 @@
 import { useCallback, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import { useFocusEffect } from 'expo-router';
 
 import { HexagramView } from '@/components/HexagramView';
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { CompletedReading } from '@/core/iching/types';
 import { getReadingHistory } from '@/storage/readingsStorage';
+import { useAppTheme } from '@/theme/appTheme';
 import { aiChingColors } from '@/theme/colors';
+import { getHexagramBackgroundSource } from '@/theme/hexagramBackgrounds';
 import { formatReadingDate } from '@/utils/date';
 
 export default function HistoryScreen() {
+  const { themeId } = useAppTheme();
   const [readings, setReadings] = useState<CompletedReading[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -41,18 +45,31 @@ export default function HistoryScreen() {
         </View>
       ) : (
         <View style={styles.list}>
-          {readings.map((reading) => (
-            <View key={reading.id} style={styles.card}>
-              <HexagramView lines={reading.lines} size="small" />
-              <View style={styles.cardText}>
-                <Text style={styles.date}>{formatReadingDate(reading.localDate)}</Text>
-                <Text style={styles.cardTitle}>
-                  Hexagram {reading.hexagramNumber}: {reading.hexagramName}
-                </Text>
-                <Text style={styles.body}>{reading.theme}</Text>
+          {readings.map((reading) => {
+            const backgroundSource = getHexagramBackgroundSource(
+              reading.hexagramNumber,
+              themeId,
+            );
+
+            return (
+              <View key={reading.id} style={styles.card}>
+                {backgroundSource ? (
+                  <Image source={backgroundSource} style={styles.cardImage} contentFit="cover" />
+                ) : null}
+                <View style={styles.cardScrim} />
+                <View style={styles.cardContent}>
+                  <HexagramView lines={reading.lines} size="small" />
+                  <View style={styles.cardText}>
+                    <Text style={styles.date}>{formatReadingDate(reading.localDate)}</Text>
+                    <Text style={styles.cardTitle}>
+                      Hexagram {reading.hexagramNumber}: {reading.hexagramName}
+                    </Text>
+                    <Text style={styles.cardBody}>{reading.theme}</Text>
+                  </View>
+                </View>
               </View>
-            </View>
-          ))}
+            );
+          })}
         </View>
       )}
     </ScreenContainer>
@@ -89,13 +106,26 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   card: {
+    minHeight: 380,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.16)',
+    borderColor: 'rgba(231, 197, 111, 0.22)',
     backgroundColor: aiChingColors.surface,
+    overflow: 'hidden',
+  },
+  cardImage: {
+    ...StyleSheet.absoluteFill,
+  },
+  cardScrim: {
+    ...StyleSheet.absoluteFill,
+    backgroundColor: 'rgba(10, 12, 16, 0.56)',
+  },
+  cardContent: {
+    flex: 1,
     padding: 16,
     gap: 16,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   cardText: {
     gap: 6,
@@ -116,6 +146,12 @@ const styles = StyleSheet.create({
   },
   body: {
     color: aiChingColors.muted,
+    fontSize: 15,
+    lineHeight: 22,
+    textAlign: 'center',
+  },
+  cardBody: {
+    color: aiChingColors.mist,
     fontSize: 15,
     lineHeight: 22,
     textAlign: 'center',

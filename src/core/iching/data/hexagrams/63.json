@@ -1,0 +1,46 @@
+{
+  "number": 63,
+  "name": "After Completion",
+  "chineseName": "Ji Ji",
+  "binaryKey": "101010",
+  "lines": [
+    "yang",
+    "yin",
+    "yang",
+    "yin",
+    "yang",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yin"
+  ],
+  "lowerTrigram": "fire",
+  "upperTrigram": "water",
+  "keywords": [
+    "completion",
+    "balance",
+    "vigilance",
+    "transition"
+  ],
+  "theme": "After Completion is order achieved, but not guaranteed. Fire and water are in their places; now the task is careful maintenance.",
+  "basicInterpretation": "Honor what has been completed, then stay awake. The moment after success is delicate because balance can quietly begin to change.",
+  "reflectionPrompt": "What completed thing still needs your care?",
+  "relationships": {
+    "reversed": {
+      "number": 64,
+      "sameAsPrimary": false,
+      "theme": "Turned around, After Completion becomes Hexagram 64, Before Completion. This other side brings in the atmosphere of incompletion, threshold, transition, asking how the situation may look from another threshold.",
+      "reflection": "Let Before Completion widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 64,
+      "theme": "The contrast to After Completion is Hexagram 64, Before Completion. Where the primary pattern emphasizes completion, balance, vigilance, this complementary field points toward incompletion, threshold, transition.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Before Completion names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

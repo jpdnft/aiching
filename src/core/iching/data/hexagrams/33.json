@@ -1,0 +1,46 @@
+{
+  "number": 33,
+  "name": "Retreat",
+  "chineseName": "Dun",
+  "binaryKey": "001111",
+  "lines": [
+    "yin",
+    "yin",
+    "yang",
+    "yang",
+    "yang",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yang"
+  ],
+  "lowerTrigram": "mountain",
+  "upperTrigram": "heaven",
+  "keywords": [
+    "withdrawal",
+    "timing",
+    "distance",
+    "preservation"
+  ],
+  "theme": "Retreat is dignified distance. Stepping back can preserve strength, clarity, and the possibility of wiser action later.",
+  "basicInterpretation": "Do not confuse withdrawal with defeat. Leave the field that wastes your essence, and protect what still has a future.",
+  "reflectionPrompt": "Where would stepping back be an act of wisdom?",
+  "relationships": {
+    "reversed": {
+      "number": 34,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Retreat becomes Hexagram 34, Great Power. This other side brings in the atmosphere of strength, momentum, responsibility, asking how the situation may look from another threshold.",
+      "reflection": "Let Great Power widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 19,
+      "theme": "The contrast to Retreat is Hexagram 19, Approach. Where the primary pattern emphasizes withdrawal, timing, distance, this complementary field points toward arrival, encouragement, growth.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Approach names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

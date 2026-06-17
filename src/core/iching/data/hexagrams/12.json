@@ -1,0 +1,46 @@
+{
+  "number": 12,
+  "name": "Standstill",
+  "chineseName": "Pi",
+  "binaryKey": "000111",
+  "lines": [
+    "yin",
+    "yin",
+    "yin",
+    "yang",
+    "yang",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yang"
+  ],
+  "lowerTrigram": "earth",
+  "upperTrigram": "heaven",
+  "keywords": [
+    "stagnation",
+    "separation",
+    "preservation",
+    "endurance"
+  ],
+  "theme": "Standstill marks a time when the living exchange is blocked. The wise response is not panic, but the preservation of what remains clear and true.",
+  "basicInterpretation": "If the way is closed, do not spend yourself against the wall. Simplify, protect your center, and wait for conditions that can actually respond.",
+  "reflectionPrompt": "What inner light needs protection while the outer path is closed?",
+  "relationships": {
+    "reversed": {
+      "number": 11,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Standstill becomes Hexagram 11, Peace. This other side brings in the atmosphere of harmony, flow, prosperity, asking how the situation may look from another threshold.",
+      "reflection": "Let Peace widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 11,
+      "theme": "The contrast to Standstill is Hexagram 11, Peace. Where the primary pattern emphasizes stagnation, separation, preservation, this complementary field points toward harmony, flow, prosperity.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Peace names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

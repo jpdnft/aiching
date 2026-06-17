@@ -1,0 +1,46 @@
+{
+  "number": 47,
+  "name": "Oppression",
+  "chineseName": "Kun",
+  "binaryKey": "010110",
+  "lines": [
+    "yin",
+    "yang",
+    "yin",
+    "yang",
+    "yang",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yin"
+  ],
+  "lowerTrigram": "water",
+  "upperTrigram": "lake",
+  "keywords": [
+    "confinement",
+    "exhaustion",
+    "truth under pressure",
+    "endurance"
+  ],
+  "theme": "Oppression is the feeling of water trapped beneath the lake. Outer resources may be thin, but inner truth can still remain unbroken.",
+  "basicInterpretation": "When expression is limited, guard the dignity of your inner voice. Reduce waste, speak simply, and do not abandon what is true because it is hard.",
+  "reflectionPrompt": "What remains honest in you when support is scarce?",
+  "relationships": {
+    "reversed": {
+      "number": 48,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Oppression becomes Hexagram 48, The Well. This other side brings in the atmosphere of source, nourishment, tradition, asking how the situation may look from another threshold.",
+      "reflection": "Let The Well widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 22,
+      "theme": "The contrast to Oppression is Hexagram 22, Grace. Where the primary pattern emphasizes confinement, exhaustion, truth under pressure, this complementary field points toward beauty, adornment, form.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Grace names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

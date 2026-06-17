@@ -1,0 +1,46 @@
+{
+  "number": 59,
+  "name": "Dispersion",
+  "chineseName": "Huan",
+  "binaryKey": "010011",
+  "lines": [
+    "yin",
+    "yang",
+    "yin",
+    "yin",
+    "yang",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yang"
+  ],
+  "lowerTrigram": "water",
+  "upperTrigram": "wind",
+  "keywords": [
+    "dissolution",
+    "release",
+    "reconnection",
+    "thawing"
+  ],
+  "theme": "Dispersion is wind moving over water, dissolving what has become rigid. Separation softens when blocked feeling can move again.",
+  "basicInterpretation": "Let the hardened place thaw. Release isolation, loosen fixed stories, and allow movement to reconnect what was divided.",
+  "reflectionPrompt": "What needs to soften so life can flow again?",
+  "relationships": {
+    "reversed": {
+      "number": 60,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Dispersion becomes Hexagram 60, Limitation. This other side brings in the atmosphere of boundaries, measure, discipline, asking how the situation may look from another threshold.",
+      "reflection": "Let Limitation widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 55,
+      "theme": "The contrast to Dispersion is Hexagram 55, Abundance. Where the primary pattern emphasizes dissolution, release, reconnection, this complementary field points toward fullness, visibility, peak moment.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Abundance names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

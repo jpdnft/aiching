@@ -1,16 +1,18 @@
 import { getBinaryKey } from './generate';
-import { hexagrams } from './hexagrams';
+import { getHexagramByNumber, hexagramSummaries } from './hexagrams';
 import { Hexagram, HexagramLines } from './types';
 
-const hexagramsByKey = new Map(hexagrams.map((hexagram) => [hexagram.binaryKey, hexagram]));
+const hexagramNumbersByKey = new Map(
+  hexagramSummaries.map((hexagram) => [hexagram.binaryKey, hexagram.number]),
+);
 
 export function lookupHexagram(lines: HexagramLines): Hexagram {
   const key = getBinaryKey(lines);
-  const hexagram = hexagramsByKey.get(key);
+  const hexagramNumber = hexagramNumbersByKey.get(key);
 
-  if (!hexagram) {
+  if (!hexagramNumber) {
     throw new Error(`No hexagram found for binary key ${key}`);
   }
 
-  return hexagram;
+  return getHexagramByNumber(hexagramNumber);
 }

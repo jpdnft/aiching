@@ -1,0 +1,46 @@
+{
+  "number": 39,
+  "name": "Obstruction",
+  "chineseName": "Jian",
+  "binaryKey": "001010",
+  "lines": [
+    "yin",
+    "yin",
+    "yang",
+    "yin",
+    "yang",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yin"
+  ],
+  "lowerTrigram": "mountain",
+  "upperTrigram": "water",
+  "keywords": [
+    "difficulty",
+    "delay",
+    "help",
+    "redirection"
+  ],
+  "theme": "Obstruction blocks the direct path so another intelligence can appear. Difficulty may be asking for humility, help, or a different route.",
+  "basicInterpretation": "Stop pushing against the hardest face of the problem. Turn toward support, patience, and the side path that the obstacle reveals.",
+  "reflectionPrompt": "What is the obstacle teaching you to seek?",
+  "relationships": {
+    "reversed": {
+      "number": 40,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Obstruction becomes Hexagram 40, Deliverance. This other side brings in the atmosphere of release, relief, untangling, asking how the situation may look from another threshold.",
+      "reflection": "Let Deliverance widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 38,
+      "theme": "The contrast to Obstruction is Hexagram 38, Opposition. Where the primary pattern emphasizes difficulty, delay, help, this complementary field points toward difference, polarity, estrangement.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Opposition names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

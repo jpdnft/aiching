@@ -1,0 +1,46 @@
+{
+  "number": 3,
+  "name": "Difficulty at the Beginning",
+  "chineseName": "Zhun",
+  "binaryKey": "100010",
+  "lines": [
+    "yang",
+    "yin",
+    "yin",
+    "yin",
+    "yang",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yin"
+  ],
+  "lowerTrigram": "thunder",
+  "upperTrigram": "water",
+  "keywords": [
+    "beginnings",
+    "confusion",
+    "germination",
+    "support"
+  ],
+  "theme": "New life often begins tangled. The first movement upward may feel chaotic because roots are still finding their way.",
+  "basicInterpretation": "Do not mistake early difficulty for failure. Gather support, move carefully, and let the beginning be young before asking it to be strong.",
+  "reflectionPrompt": "What small root needs protection before it can become visible?",
+  "relationships": {
+    "reversed": {
+      "number": 4,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Difficulty at the Beginning becomes Hexagram 4, Youthful Folly. This other side brings in the atmosphere of learning, humility, questions, asking how the situation may look from another threshold.",
+      "reflection": "Let Youthful Folly widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 50,
+      "theme": "The contrast to Difficulty at the Beginning is Hexagram 50, The Cauldron. Where the primary pattern emphasizes beginnings, confusion, germination, this complementary field points toward transformation, culture, offering.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Cauldron names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

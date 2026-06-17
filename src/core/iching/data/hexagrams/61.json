@@ -1,0 +1,46 @@
+{
+  "number": 61,
+  "name": "Inner Truth",
+  "chineseName": "Zhong Fu",
+  "binaryKey": "110011",
+  "lines": [
+    "yang",
+    "yang",
+    "yin",
+    "yin",
+    "yang",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yang"
+  ],
+  "lowerTrigram": "lake",
+  "upperTrigram": "wind",
+  "keywords": [
+    "sincerity",
+    "trust",
+    "resonance",
+    "truthfulness"
+  ],
+  "theme": "Inner Truth is openness moved by gentle wind. Sincerity travels farther than performance because it resonates from the center.",
+  "basicInterpretation": "Listen for the note that rings true inside you. Trust grows when speech, feeling, and action begin to sound like one thing.",
+  "reflectionPrompt": "What truth becomes quiet when you perform?",
+  "relationships": {
+    "reversed": {
+      "number": 61,
+      "sameAsPrimary": true,
+      "theme": "Turned around, Inner Truth remains itself. The pattern keeps its shape from either side, suggesting a situation whose essential lesson does not depend much on viewpoint.",
+      "reflection": "This symmetry asks for directness. Instead of searching for a hidden opposite perspective, look again at the same truth with quieter attention."
+    },
+    "opposite": {
+      "number": 62,
+      "theme": "The contrast to Inner Truth is Hexagram 62, Small Preponderance. Where the primary pattern emphasizes sincerity, trust, resonance, this complementary field points toward small matters, carefulness, humility.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Small Preponderance names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "number": 11,
+  "name": "Peace",
+  "chineseName": "Tai",
+  "binaryKey": "111000",
+  "lines": [
+    "yang",
+    "yang",
+    "yang",
+    "yin",
+    "yin",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yin"
+  ],
+  "lowerTrigram": "heaven",
+  "upperTrigram": "earth",
+  "keywords": [
+    "harmony",
+    "flow",
+    "prosperity",
+    "union"
+  ],
+  "theme": "Peace arrives when heaven and earth move toward one another. Inner clarity and outer receptivity can meet in an easy, living flow.",
+  "basicInterpretation": "Receive the openness of this moment without becoming careless. When things move well, tend the conditions that allow harmony to continue.",
+  "reflectionPrompt": "What relationship or pattern is ready to breathe more freely?",
+  "relationships": {
+    "reversed": {
+      "number": 12,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Peace becomes Hexagram 12, Standstill. This other side brings in the atmosphere of stagnation, separation, preservation, asking how the situation may look from another threshold.",
+      "reflection": "Let Standstill widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 12,
+      "theme": "The contrast to Peace is Hexagram 12, Standstill. Where the primary pattern emphasizes harmony, flow, prosperity, this complementary field points toward stagnation, separation, preservation.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Standstill names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

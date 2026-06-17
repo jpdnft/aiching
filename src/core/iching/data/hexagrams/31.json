@@ -1,0 +1,46 @@
+{
+  "number": 31,
+  "name": "Influence",
+  "chineseName": "Xian",
+  "binaryKey": "001110",
+  "lines": [
+    "yin",
+    "yin",
+    "yang",
+    "yang",
+    "yang",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yin",
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yin"
+  ],
+  "lowerTrigram": "mountain",
+  "upperTrigram": "lake",
+  "keywords": [
+    "attraction",
+    "response",
+    "sensitivity",
+    "mutuality"
+  ],
+  "theme": "Influence is the quiet movement between stillness and openness. A small touch can stir the lake when the heart is receptive.",
+  "basicInterpretation": "Notice what moves you and how you move others. The deepest influence may be gentle, mutual, and almost wordless.",
+  "reflectionPrompt": "What is touching you beneath the surface?",
+  "relationships": {
+    "reversed": {
+      "number": 32,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Influence becomes Hexagram 32, Duration. This other side brings in the atmosphere of constancy, commitment, rhythm, asking how the situation may look from another threshold.",
+      "reflection": "Let Duration widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 41,
+      "theme": "The contrast to Influence is Hexagram 41, Decrease. Where the primary pattern emphasizes attraction, response, sensitivity, this complementary field points toward simplification, sacrifice, sincerity.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Decrease names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

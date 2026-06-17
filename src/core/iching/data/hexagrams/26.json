@@ -1,0 +1,46 @@
+{
+  "number": 26,
+  "name": "Great Taming",
+  "chineseName": "Da Xu",
+  "binaryKey": "111001",
+  "lines": [
+    "yang",
+    "yang",
+    "yang",
+    "yin",
+    "yin",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yang"
+  ],
+  "lowerTrigram": "heaven",
+  "upperTrigram": "mountain",
+  "keywords": [
+    "restraint",
+    "stored power",
+    "cultivation",
+    "discipline"
+  ],
+  "theme": "Great Taming stores immense force within the mountain. Power becomes fruitful when it is cultivated rather than spent too soon.",
+  "basicInterpretation": "Hold your energy with purpose. Study, prepare, and strengthen the vessel so that action later can be clean and effective.",
+  "reflectionPrompt": "What power needs cultivation before release?",
+  "relationships": {
+    "reversed": {
+      "number": 25,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Great Taming becomes Hexagram 25, Innocence. This other side brings in the atmosphere of sincerity, naturalness, integrity, asking how the situation may look from another threshold.",
+      "reflection": "Let Innocence widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 45,
+      "theme": "The contrast to Great Taming is Hexagram 45, Gathering Together. Where the primary pattern emphasizes restraint, stored power, cultivation, this complementary field points toward assembly, community, focus.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Gathering Together names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

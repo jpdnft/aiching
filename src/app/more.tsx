@@ -1,0 +1,112 @@
+import { useRouter } from 'expo-router';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+
+import { ScreenContainer } from '@/components/ScreenContainer';
+import { aiChingColors } from '@/theme/colors';
+
+const links = [
+  {
+    title: 'Settings',
+    body: 'Theme selection, reading preferences, and controls will live here.',
+    href: '/settings',
+  },
+  {
+    title: 'Guide',
+    body: 'Learn how casting works, why lines build upward, and how to frame readings.',
+    href: '/guide',
+  },
+  {
+    title: 'Browse Hexagrams',
+    body: 'Explore the 64 hexagrams and their themes.',
+    href: '/browse-hexagrams',
+  },
+  {
+    title: 'Future',
+    body: 'Preview possible additions like themes, journaling, deeper readings, and feedback.',
+    href: '/future',
+  },
+  {
+    title: 'About',
+    body: 'A short note about AI Ching will live here soon.',
+    href: '/about',
+  },
+] as const;
+
+export default function MoreScreen() {
+  const router = useRouter();
+
+  return (
+    <ScreenContainer>
+      <Text style={styles.title}>More</Text>
+      <Text style={styles.intro}>Settings, guidance, and what may come next.</Text>
+
+      <View style={styles.list}>
+        {links.map((link) => (
+          <Pressable
+            key={link.href}
+            onPress={() => router.push(link.href)}
+            style={({ pressed }) => [styles.row, pressed && styles.rowPressed]}>
+            <View style={styles.rowText}>
+              <Text style={styles.rowTitle}>{link.title}</Text>
+              <Text style={styles.rowBody}>{link.body}</Text>
+            </View>
+            <Text style={styles.chevron}>{'>'}</Text>
+          </Pressable>
+        ))}
+      </View>
+    </ScreenContainer>
+  );
+}
+
+const styles = StyleSheet.create({
+  title: {
+    color: aiChingColors.mist,
+    fontSize: 32,
+    lineHeight: 40,
+    fontWeight: '700',
+    marginBottom: 10,
+  },
+  intro: {
+    color: aiChingColors.muted,
+    fontSize: 17,
+    lineHeight: 25,
+    marginBottom: 24,
+  },
+  list: {
+    gap: 12,
+  },
+  row: {
+    minHeight: 92,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.16)',
+    backgroundColor: aiChingColors.surface,
+    padding: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  rowPressed: {
+    opacity: 0.78,
+  },
+  rowText: {
+    flex: 1,
+    gap: 6,
+  },
+  rowTitle: {
+    color: aiChingColors.mist,
+    fontSize: 18,
+    lineHeight: 24,
+    fontWeight: '700',
+  },
+  rowBody: {
+    color: aiChingColors.muted,
+    fontSize: 15,
+    lineHeight: 22,
+  },
+  chevron: {
+    color: aiChingColors.gold,
+    fontSize: 32,
+    lineHeight: 36,
+  },
+});

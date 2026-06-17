@@ -1,0 +1,46 @@
+{
+  "number": 38,
+  "name": "Opposition",
+  "chineseName": "Kui",
+  "binaryKey": "110101",
+  "lines": [
+    "yang",
+    "yang",
+    "yin",
+    "yang",
+    "yin",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yang"
+  ],
+  "lowerTrigram": "lake",
+  "upperTrigram": "fire",
+  "keywords": [
+    "difference",
+    "polarity",
+    "estrangement",
+    "perspective"
+  ],
+  "theme": "Opposition reveals difference without requiring immediate unity. Two lights may face away from each other and still belong to one sky.",
+  "basicInterpretation": "Do not force agreement too quickly. Clarify the difference, respect the distance, and look for the smaller harmony available now.",
+  "reflectionPrompt": "What can difference teach before it is resolved?",
+  "relationships": {
+    "reversed": {
+      "number": 37,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Opposition becomes Hexagram 37, The Family. This other side brings in the atmosphere of home, roles, care, asking how the situation may look from another threshold.",
+      "reflection": "Let The Family widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 39,
+      "theme": "The contrast to Opposition is Hexagram 39, Obstruction. Where the primary pattern emphasizes difference, polarity, estrangement, this complementary field points toward difficulty, delay, help.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Obstruction names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

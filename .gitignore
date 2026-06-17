@@ -37,6 +37,7 @@ expo-*.log
 .env.local
 .env.development
 .env.production
+private/
 
 # typescript
 *.tsbuildinfo

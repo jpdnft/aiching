@@ -1,0 +1,46 @@
+{
+  "number": 27,
+  "name": "Nourishment",
+  "chineseName": "Yi",
+  "binaryKey": "100001",
+  "lines": [
+    "yang",
+    "yin",
+    "yin",
+    "yin",
+    "yin",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yang"
+  ],
+  "lowerTrigram": "thunder",
+  "upperTrigram": "mountain",
+  "keywords": [
+    "sustenance",
+    "speech",
+    "care",
+    "intake"
+  ],
+  "theme": "Nourishment asks what you take in and what you feed. Food, words, images, habits, and silence all become part of the body of a life.",
+  "basicInterpretation": "Choose what sustains rather than merely fills. Notice the mouth: what enters it, and what leaves it.",
+  "reflectionPrompt": "What are you feeding in yourself today?",
+  "relationships": {
+    "reversed": {
+      "number": 27,
+      "sameAsPrimary": true,
+      "theme": "Turned around, Nourishment remains itself. The pattern keeps its shape from either side, suggesting a situation whose essential lesson does not depend much on viewpoint.",
+      "reflection": "This symmetry asks for directness. Instead of searching for a hidden opposite perspective, look again at the same truth with quieter attention."
+    },
+    "opposite": {
+      "number": 28,
+      "theme": "The contrast to Nourishment is Hexagram 28, Great Preponderance. Where the primary pattern emphasizes sustenance, speech, care, this complementary field points toward pressure, excess, burden.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Great Preponderance names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

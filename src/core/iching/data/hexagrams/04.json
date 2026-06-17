@@ -1,0 +1,46 @@
+{
+  "number": 4,
+  "name": "Youthful Folly",
+  "chineseName": "Meng",
+  "binaryKey": "010001",
+  "lines": [
+    "yin",
+    "yang",
+    "yin",
+    "yin",
+    "yin",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yang"
+  ],
+  "lowerTrigram": "water",
+  "upperTrigram": "mountain",
+  "keywords": [
+    "learning",
+    "humility",
+    "questions",
+    "guidance"
+  ],
+  "theme": "Youthful Folly meets the unknown with imperfect understanding. Its gift is the courage to ask sincerely and learn without pretending to know.",
+  "basicInterpretation": "Approach the moment as a student. A clear question may matter more than a quick answer, and humility can open a door that certainty keeps closed.",
+  "reflectionPrompt": "What are you ready to learn without needing to look wise?",
+  "relationships": {
+    "reversed": {
+      "number": 3,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Youthful Folly becomes Hexagram 3, Difficulty at the Beginning. This other side brings in the atmosphere of beginnings, confusion, germination, asking how the situation may look from another threshold.",
+      "reflection": "Let Difficulty at the Beginning widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 49,
+      "theme": "The contrast to Youthful Folly is Hexagram 49, Revolution. Where the primary pattern emphasizes learning, humility, questions, this complementary field points toward transformation, renewal, timing.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Revolution names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

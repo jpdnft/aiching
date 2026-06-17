@@ -1,0 +1,46 @@
+{
+  "number": 7,
+  "name": "The Army",
+  "chineseName": "Shi",
+  "binaryKey": "010000",
+  "lines": [
+    "yin",
+    "yang",
+    "yin",
+    "yin",
+    "yin",
+    "yin"
+  ],
+  "lineStates": [
+    "young_yin",
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yin"
+  ],
+  "lowerTrigram": "water",
+  "upperTrigram": "earth",
+  "keywords": [
+    "discipline",
+    "organization",
+    "leadership",
+    "collective effort"
+  ],
+  "theme": "The Army is collective force given order. Its power depends on discipline, responsibility, and leadership that serves the whole.",
+  "basicInterpretation": "Gather your resources and act with structure. The question is not only whether you have strength, but whether that strength is organized wisely.",
+  "reflectionPrompt": "What needs clearer order before it can move as one?",
+  "relationships": {
+    "reversed": {
+      "number": 8,
+      "sameAsPrimary": false,
+      "theme": "Turned around, The Army becomes Hexagram 8, Holding Together. This other side brings in the atmosphere of belonging, alliance, support, asking how the situation may look from another threshold.",
+      "reflection": "Let Holding Together widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 13,
+      "theme": "The contrast to The Army is Hexagram 13, Fellowship. Where the primary pattern emphasizes discipline, organization, leadership, this complementary field points toward community, shared purpose, openness.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Fellowship names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}

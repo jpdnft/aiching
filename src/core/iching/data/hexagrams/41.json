@@ -1,0 +1,46 @@
+{
+  "number": 41,
+  "name": "Decrease",
+  "chineseName": "Sun",
+  "binaryKey": "110001",
+  "lines": [
+    "yang",
+    "yang",
+    "yin",
+    "yin",
+    "yin",
+    "yang"
+  ],
+  "lineStates": [
+    "young_yang",
+    "young_yang",
+    "young_yin",
+    "young_yin",
+    "young_yin",
+    "young_yang"
+  ],
+  "lowerTrigram": "lake",
+  "upperTrigram": "mountain",
+  "keywords": [
+    "simplification",
+    "sacrifice",
+    "sincerity",
+    "lessening"
+  ],
+  "theme": "Decrease removes excess so sincerity can be felt. Less is not deprivation when it returns attention to what matters.",
+  "basicInterpretation": "Offer something unnecessary back to the world. A smaller gesture made with truth can carry more life than an impressive display.",
+  "reflectionPrompt": "What could you release to become more sincere?",
+  "relationships": {
+    "reversed": {
+      "number": 42,
+      "sameAsPrimary": false,
+      "theme": "Turned around, Decrease becomes Hexagram 42, Increase. This other side brings in the atmosphere of growth, generosity, blessing, asking how the situation may look from another threshold.",
+      "reflection": "Let Increase widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+    },
+    "opposite": {
+      "number": 31,
+      "theme": "The contrast to Decrease is Hexagram 31, Influence. Where the primary pattern emphasizes simplification, sacrifice, sincerity, this complementary field points toward attraction, response, sensitivity.",
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Influence names the medicine, shadow, or unchosen path beside the situation."
+    }
+  }
+}
