@@ -1,98 +1,168 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useCallback, useState } from 'react';
+import { ActivityIndicator, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useFocusEffect, useRouter } from 'expo-router';
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+import { CastButton } from '@/components/CastButton';
+import { HexagramView } from '@/components/HexagramView';
+import { ScreenContainer } from '@/components/ScreenContainer';
+import { addCastLine, isCompleteHexagram } from '@/core/iching/generate';
+import { createCompletedReading } from '@/core/iching/interpretation';
+import { lookupHexagram } from '@/core/iching/lookup';
+import { CompletedReading, PartialHexagramLines } from '@/core/iching/types';
+import { getTodaysReading, saveCompletedReading } from '@/storage/readingsStorage';
+import { aiChingColors } from '@/theme/colors';
+import { getLocalDateKey } from '@/utils/date';
 
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
+export default function CastScreen() {
+  const router = useRouter();
+  const [lines, setLines] = useState<PartialHexagramLines>([]);
+  const [question, setQuestion] = useState('');
+  const [todaysReading, setTodaysReading] = useState<CompletedReading | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
+
+  useFocusEffect(
+    useCallback(() => {
+      getTodaysReading()
+        .then(setTodaysReading)
+        .finally(() => setIsLoading(false));
+    }, []),
+  );
+
+  const castCount = lines.length;
+  const isComplete = isCompleteHexagram(lines);
+
+  function handleCast() {
+    setLines((currentLines) => addCastLine(currentLines));
   }
-  if (Device.isDevice) {
+
+  async function handleReveal() {
+    if (!isCompleteHexagram(lines)) {
+      return;
+    }
+
+    setIsSaving(true);
+    const hexagram = lookupHexagram(lines);
+    const reading = createCompletedReading({
+      lines,
+      hexagram,
+      localDate: getLocalDateKey(),
+      question,
+    });
+
+    await saveCompletedReading(reading);
+    setTodaysReading(reading);
+    setIsSaving(false);
+    router.push('/reading');
+  }
+
+  if (isLoading) {
     return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
+      <ScreenContainer scroll={false}>
+        <View style={styles.centered}>
+          <ActivityIndicator color={aiChingColors.gold} />
+        </View>
+      </ScreenContainer>
     );
   }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
+
+  if (todaysReading) {
+    return (
+      <ScreenContainer scroll={false}>
+        <View style={styles.hero}>
+          <Text style={styles.kicker}>Today has been cast</Text>
+          <HexagramView lines={todaysReading.lines} />
+          <Text style={styles.title}>
+            Hexagram {todaysReading.hexagramNumber}: {todaysReading.hexagramName}
+          </Text>
+          <Text style={styles.body}>Return tomorrow for a new reading.</Text>
+          <CastButton label="VIEW READING" onPress={() => router.push('/reading')} />
+        </View>
+      </ScreenContainer>
+    );
+  }
+
   return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
-}
+    <ScreenContainer scroll={false}>
+      <View style={styles.hero}>
+        <View style={styles.heading}>
+          <Text style={styles.kicker}>AI Ching</Text>
+          <Text style={styles.title}>Cast one clear pattern for today.</Text>
+        </View>
 
-export default function HomeScreen() {
-  return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
+        <TextInput
+          value={question}
+          onChangeText={setQuestion}
+          placeholder="A question or intention, optional"
+          placeholderTextColor="rgba(219, 226, 223, 0.48)"
+          style={styles.input}
+          multiline
+        />
 
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
+        <HexagramView lines={lines} />
 
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
-
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
+        <Text style={styles.progress}>{castCount}/6 lines cast</Text>
+        <CastButton
+          label={isComplete ? 'REVEAL' : 'CAST'}
+          disabled={isSaving}
+          onPress={isComplete ? handleReveal : handleCast}
+        />
+      </View>
+    </ScreenContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  centered: {
     flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
-  },
-  heroSection: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  hero: {
     flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 24,
   },
-  title: {
-    textAlign: 'center',
+  heading: {
+    alignItems: 'center',
+    gap: 8,
   },
-  code: {
+  kicker: {
+    color: aiChingColors.gold,
+    fontSize: 13,
+    fontWeight: '700',
     textTransform: 'uppercase',
   },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
+  title: {
+    color: aiChingColors.mist,
+    fontSize: 26,
+    lineHeight: 34,
+    fontWeight: '700',
+    textAlign: 'center',
+  },
+  body: {
+    color: aiChingColors.muted,
+    fontSize: 16,
+    lineHeight: 24,
+    textAlign: 'center',
+  },
+  input: {
+    width: '100%',
+    maxWidth: 360,
+    minHeight: 72,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.2)',
+    backgroundColor: aiChingColors.surface,
+    color: aiChingColors.mist,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    fontSize: 15,
+    textAlignVertical: 'top',
+  },
+  progress: {
+    color: aiChingColors.muted,
+    fontSize: 14,
   },
 });
