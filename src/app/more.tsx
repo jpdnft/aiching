@@ -6,6 +6,11 @@ import { aiChingColors } from '@/theme/colors';
 
 const links = [
   {
+    title: 'Manage Version',
+    body: 'Select and manage your version of this app.',
+    href: '/version',
+  },
+  {
     title: 'Settings',
     body: 'Theme selection, reading preferences, and controls will live here.',
     href: '/settings',

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { aiChingColors } from '@/theme/colors';
@@ -28,6 +28,12 @@ const sections = [
     title: 'Coming later',
     body: 'Changing lines, resulting hexagrams, questions and interpretations, possibly journaling, and AI features could appear within this application, depending on user feedback and development priorities.',
   },
+  {
+    title: 'Need Support, or Have Feedback?',
+    body: 'For questions, help, or feedback, please visit Jim Dee\'s contact page.',
+    linkLabel: 'jpd3.com/contact',
+    url: 'https://jpd3.com/contact',
+  },
 ];
 
 export default function GuideScreen() {
@@ -43,6 +49,14 @@ export default function GuideScreen() {
           <View key={section.title} style={styles.section}>
             <Text style={styles.sectionTitle}>{section.title}</Text>
             <Text style={styles.body}>{section.body}</Text>
+            {'url' in section && section.url ? (
+              <Pressable
+                accessibilityRole="link"
+                onPress={() => Linking.openURL(section.url)}
+                style={({ pressed }) => pressed && styles.linkPressed}>
+                <Text style={styles.link}>{section.linkLabel}</Text>
+              </Pressable>
+            ) : null}
           </View>
         ))}
       </View>
@@ -82,5 +96,15 @@ const styles = StyleSheet.create({
     color: aiChingColors.mist,
     fontSize: 16,
     lineHeight: 24,
+  },
+  link: {
+    color: aiChingColors.gold,
+    fontSize: 16,
+    lineHeight: 24,
+    fontWeight: '700',
+    textDecorationLine: 'underline',
+  },
+  linkPressed: {
+    opacity: 0.72,
   },
 });

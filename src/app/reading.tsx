@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, ScrollView, StyleSheet, Text, TextStyle, View } from 'react-native';
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, TextStyle, View } from 'react-native';
 import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -124,6 +124,16 @@ export default function ReadingScreen() {
               <Text style={[styles.body, readingTextStyles.body]}>{reading.reflectionPrompt}</Text>
             </View>
           </View>
+
+          <Pressable
+            onPress={() => router.push('/version')}
+            style={({ pressed }) => [styles.premiumCta, pressed && styles.premiumCtaPressed]}>
+            <Text style={styles.premiumCtaTitle}>Want a deeper interpretation?</Text>
+            <Text style={styles.premiumCtaBody}>
+              Go Premium to unlock AI-enhanced readings shaped around your question.
+            </Text>
+            <Text style={styles.premiumCtaLink}>Manage Version</Text>
+          </Pressable>
 
           <CastButton label="RETURN TO CAST" onPress={() => router.push('/')} />
         </ScrollView>
@@ -492,6 +502,41 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(231, 197, 111, 0.18)',
     padding: 18,
     marginBottom: 24,
+  },
+  premiumCta: {
+    width: '100%',
+    maxWidth: 640,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.34)',
+    backgroundColor: 'rgba(16, 19, 24, 0.78)',
+    padding: 18,
+    gap: 8,
+    marginBottom: 24,
+  },
+  premiumCtaPressed: {
+    opacity: 0.78,
+  },
+  premiumCtaTitle: {
+    color: aiChingColors.gold,
+    fontSize: 18,
+    lineHeight: 24,
+    fontWeight: '800',
+    textAlign: 'center',
+  },
+  premiumCtaBody: {
+    color: aiChingColors.mist,
+    fontSize: 15,
+    lineHeight: 22,
+    textAlign: 'center',
+  },
+  premiumCtaLink: {
+    color: aiChingColors.gold,
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '800',
+    textAlign: 'center',
+    textTransform: 'uppercase',
   },
   sectionTitle: {
     color: aiChingColors.gold,

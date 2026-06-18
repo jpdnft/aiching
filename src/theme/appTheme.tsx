@@ -16,10 +16,23 @@ const THEME_STORAGE_KEY = 'aiching.theme.selected.v1';
 const SOUND_EFFECTS_STORAGE_KEY = 'aiching.soundEffects.enabled.v1';
 const CASTING_SOUND_STORAGE_KEY = 'aiching.soundEffects.castingSound.v1';
 const READING_TEXT_SIZE_STORAGE_KEY = 'aiching.reading.textSize.v1';
+const APP_VERSION_STORAGE_KEY = 'aiching.version.selected.v1';
 
 export type ReadingTextSize = 'comfortable' | 'large' | 'extraLarge';
+export type AppVersion = 'basic' | 'premium';
+
+export type AppEntitlements = {
+  adsEnabled: boolean;
+  aiReadingsEnabled: boolean;
+  notificationsEnabled: boolean;
+  premiumThemesEnabled: boolean;
+  unlimitedCastingEnabled: boolean;
+};
 
 type AppThemeContextValue = {
+  appVersion: AppVersion;
+  entitlements: AppEntitlements;
+  setAppVersion: (version: AppVersion) => Promise<void>;
   themeId: HexagramThemeId;
   setThemeId: (themeId: HexagramThemeId) => Promise<void>;
   soundEffectsEnabled: boolean;
@@ -40,7 +53,24 @@ function isReadingTextSize(value: string | null): value is ReadingTextSize {
   return value === 'comfortable' || value === 'large' || value === 'extraLarge';
 }
 
+function isAppVersion(value: string | null): value is AppVersion {
+  return value === 'basic' || value === 'premium';
+}
+
+function getEntitlements(version: AppVersion): AppEntitlements {
+  const isPremium = version === 'premium';
+
+  return {
+    adsEnabled: !isPremium,
+    aiReadingsEnabled: isPremium,
+    notificationsEnabled: isPremium,
+    premiumThemesEnabled: isPremium,
+    unlimitedCastingEnabled: isPremium,
+  };
+}
+
 export function AppThemeProvider({ children }: PropsWithChildren) {
+  const [appVersion, setAppVersionState] = useState<AppVersion>('basic');
   const [themeId, setThemeIdState] = useState<HexagramThemeId>(defaultHexagramThemeId);
   const [soundEffectsEnabled, setSoundEffectsEnabledState] = useState(true);
   const [castingSoundId, setCastingSoundIdState] = useState<CastingSoundId>(defaultCastingSoundId);
@@ -70,6 +100,17 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
         setReadingTextSizeState(storedReadingTextSize);
       }
     });
+
+    AsyncStorage.getItem(APP_VERSION_STORAGE_KEY).then((storedAppVersion) => {
+      if (isAppVersion(storedAppVersion)) {
+        setAppVersionState(storedAppVersion);
+      }
+    });
+  }, []);
+
+  const setAppVersion = useCallback(async (version: AppVersion) => {
+    await AsyncStorage.setItem(APP_VERSION_STORAGE_KEY, version);
+    setAppVersionState(version);
   }, []);
 
   const setThemeId = useCallback(async (nextThemeId: HexagramThemeId) => {
@@ -98,8 +139,11 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
 
   const value = useMemo(
     () => ({
+      appVersion,
       castingSoundId,
+      entitlements: getEntitlements(appVersion),
       readingTextSize,
+      setAppVersion,
       setCastingSoundId,
       setReadingTextSize,
       setSoundEffectsEnabled,
@@ -108,8 +152,10 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
       themeId,
     }),
     [
+      appVersion,
       castingSoundId,
       readingTextSize,
+      setAppVersion,
       setCastingSoundId,
       setReadingTextSize,
       setSoundEffectsEnabled,

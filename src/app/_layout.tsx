@@ -95,6 +95,8 @@ export default function TabLayout() {
           <Tabs.Screen name="hexagram" options={{ href: null }} />
           <Tabs.Screen name="future" options={{ href: null }} />
           <Tabs.Screen name="about" options={{ href: null }} />
+          <Tabs.Screen name="version" options={{ href: null }} />
+          <Tabs.Screen name="reading-premium" options={{ href: null }} />
         </Tabs>
       </AppThemeProvider>
     </ThemeProvider>

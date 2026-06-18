@@ -1,5 +1,14 @@
 import { ReactNode, useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, Image as NativeImage, ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Image as NativeImage,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import { setAudioModeAsync, useAudioPlayer } from 'expo-audio';
 import { Image as ExpoImage } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
@@ -26,10 +35,11 @@ const iChingLogo = require('../../assets/images/ichinglogo.png');
 
 export default function CastScreen() {
   const router = useRouter();
-  const { castingSoundId, soundEffectsEnabled, themeId } = useAppTheme();
+  const { appVersion, castingSoundId, entitlements, soundEffectsEnabled, themeId } = useAppTheme();
   const castLineSound = getCastingSoundSource(castingSoundId);
   const castLinePlayer = useAudioPlayer(castLineSound, { downloadFirst: true });
   const [lines, setLines] = useState<PartialHexagramLines>([]);
+  const [question, setQuestion] = useState('');
   const [todaysReading, setTodaysReading] = useState<CompletedReading | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -103,18 +113,31 @@ export default function CastScreen() {
       lines,
       hexagram,
       localDate: getLocalDateKey(),
+      question: entitlements.aiReadingsEnabled ? question.trim() || undefined : undefined,
     });
 
     await saveCompletedReading(reading);
     setTodaysReading(reading);
     setIsSaving(false);
-    router.push('/reading');
+    router.push(entitlements.aiReadingsEnabled ? '/reading-premium' : '/reading');
   }
 
   async function handleDevResetToday() {
     await clearTodaysReadingForDev();
     setTodaysReading(null);
     setLines([]);
+    setQuestion('');
+    setAnimatedLineIndex(null);
+    setIsCastingLineAnimating(false);
+    setCastButtonStep(1);
+    setCastScreenKey((currentKey) => currentKey + 1);
+  }
+
+  async function handleClearCurrentReading() {
+    await clearTodaysReadingForDev();
+    setTodaysReading(null);
+    setLines([]);
+    setQuestion('');
     setAnimatedLineIndex(null);
     setIsCastingLineAnimating(false);
     setCastButtonStep(1);
@@ -155,13 +178,23 @@ export default function CastScreen() {
     return (
       <CastBackground backgroundSource={homeBackgroundSource} scrollKey={`today-${castScreenKey}`} showLogo>
         <View style={styles.hero}>
-          <Text style={styles.kicker}>Today has been cast</Text>
+          {appVersion === 'basic' ? <Text style={styles.kicker}>Today has been cast</Text> : null}
           <HexagramView lines={todaysReading.lines} />
           <Text style={styles.title}>
             Hexagram {todaysReading.hexagramNumber}: {todaysReading.hexagramName}
           </Text>
-          <Text style={styles.body}>Return tomorrow for a new reading.</Text>
-          <CastButton label="VIEW READING" onPress={() => router.push('/reading')} />
+          <CastButton
+            label="VIEW READING"
+            onPress={() => router.push(entitlements.aiReadingsEnabled ? '/reading-premium' : '/reading')}
+          />
+          {appVersion === 'basic' ? <PremiumPromoBox /> : null}
+          {entitlements.unlimitedCastingEnabled ? (
+            <Pressable
+              onPress={handleClearCurrentReading}
+              style={({ pressed }) => [styles.secondaryButton, pressed && styles.secondaryButtonPressed]}>
+              <Text style={styles.secondaryButtonText}>Clear current hexagram and ask new question</Text>
+            </Pressable>
+          ) : null}
           {__DEV__ ? (
             <Text onPress={handleDevResetToday} style={styles.devReset}>
               Reset today for testing
@@ -176,7 +209,22 @@ export default function CastScreen() {
     <CastBackground backgroundSource={homeBackgroundSource} scrollKey={`cast-${castScreenKey}`} showLogo>
       <View style={styles.hero}>
         <View style={styles.heading}>
-          <Text style={styles.title}>Hold a question, feeling, or intention in mind as you cast a hexagram!</Text>
+          {appVersion === 'basic' ? (
+            <Text style={styles.title}>Hold a question, feeling, or intention in mind as you cast a hexagram!</Text>
+          ) : (
+            <View style={styles.questionBox}>
+              <Text style={styles.questionLabel}>Optional Question</Text>
+              <TextInput
+                multiline
+                onChangeText={setQuestion}
+                placeholder="What would you like to ask?"
+                placeholderTextColor="rgba(219, 226, 223, 0.52)"
+                style={styles.questionInput}
+                textAlignVertical="top"
+                value={question}
+              />
+            </View>
+          )}
         </View>
 
         <HexagramView
@@ -192,9 +240,28 @@ export default function CastScreen() {
           disabled={isSaving || isCastingLineAnimating}
           onPress={isComplete ? handleReveal : handleCast}
         />
-        <Text style={styles.intention}>Careful! You can only cast one hexagram per day.</Text>
+        {appVersion === 'basic' ? (
+          <>
+            <Text style={styles.intention}>Careful! You can only cast one hexagram per day.</Text>
+            <PremiumPromoBox />
+          </>
+        ) : null}
       </View>
     </CastBackground>
+  );
+}
+
+function PremiumPromoBox() {
+  const router = useRouter();
+
+  return (
+    <Pressable
+      onPress={() => router.push('/version')}
+      style={({ pressed }) => [styles.premiumPromo, pressed && styles.premiumPromoPressed]}>
+      <Text style={styles.premiumPromoTitle}>Want unlimited readings?</Text>
+      <Text style={styles.premiumPromoBody}>Go Premium to unlock more readings and deeper features.</Text>
+      <Text style={styles.premiumPromoLink}>View premium features</Text>
+    </Pressable>
   );
 }
 
@@ -301,11 +368,92 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     textAlign: 'center',
   },
+  questionBox: {
+    width: '100%',
+    maxWidth: 420,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.22)',
+    backgroundColor: 'rgba(16, 19, 24, 0.72)',
+    padding: 14,
+    gap: 8,
+  },
+  questionLabel: {
+    color: aiChingColors.gold,
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '800',
+    textTransform: 'uppercase',
+  },
+  questionInput: {
+    minHeight: 92,
+    color: aiChingColors.mist,
+    fontSize: 16,
+    lineHeight: 23,
+    padding: 0,
+  },
   intention: {
     maxWidth: 340,
     color: aiChingColors.muted,
     fontSize: 16,
     lineHeight: 24,
+    textAlign: 'center',
+  },
+  premiumPromo: {
+    width: '100%',
+    maxWidth: 420,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.34)',
+    backgroundColor: 'rgba(16, 19, 24, 0.76)',
+    padding: 16,
+    gap: 6,
+  },
+  premiumPromoPressed: {
+    opacity: 0.78,
+  },
+  premiumPromoTitle: {
+    color: aiChingColors.gold,
+    fontSize: 17,
+    lineHeight: 23,
+    fontWeight: '800',
+    textAlign: 'center',
+  },
+  premiumPromoBody: {
+    color: aiChingColors.mist,
+    fontSize: 14,
+    lineHeight: 20,
+    textAlign: 'center',
+  },
+  premiumPromoLink: {
+    color: aiChingColors.gold,
+    fontSize: 12,
+    lineHeight: 17,
+    fontWeight: '800',
+    textAlign: 'center',
+    textTransform: 'uppercase',
+  },
+  secondaryButton: {
+    width: '100%',
+    maxWidth: 420,
+    minHeight: 48,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.34)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    backgroundColor: 'rgba(16, 19, 24, 0.64)',
+  },
+  secondaryButtonPressed: {
+    opacity: 0.78,
+  },
+  secondaryButtonText: {
+    color: aiChingColors.gold,
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '800',
     textAlign: 'center',
   },
   progress: {
