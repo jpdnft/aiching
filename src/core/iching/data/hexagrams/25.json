@@ -48,13 +48,15 @@
     "reversed": {
       "number": 26,
       "sameAsPrimary": false,
-      "theme": "Turned around, Innocence becomes Hexagram 26, Great Taming. This other side brings in the atmosphere of restraint, stored power, cultivation, asking how the situation may look from another threshold.",
-      "reflection": "Let Great Taming widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, Innocence becomes Hexagram 26, Great Taming. This other side brings in the atmosphere of restraint, stored power, cultivation, asking how the situation may look from another threshold.",
+      "reflection": "Let Great Taming widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through Great Taming. Notice where restraint, stored power, cultivation and a restrained, gathering movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 46,
       "theme": "The contrast to Innocence is Hexagram 46, Pushing Upward. Where the primary pattern emphasizes sincerity, naturalness, integrity, this complementary field points toward ascent, gradual growth, effort.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Pushing Upward names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Pushing Upward names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Pushing Upward as the contrasting color laid beside Innocence. Ask what hidden cause, missing medicine, or opposing pressure is suggested by ascent, gradual growth, effort, especially where the situation carries a supportive, gradual tone."
     }
   }
 }

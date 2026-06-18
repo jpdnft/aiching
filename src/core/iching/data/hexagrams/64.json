@@ -48,13 +48,15 @@
     "reversed": {
       "number": 63,
       "sameAsPrimary": false,
-      "theme": "Turned around, Before Completion becomes Hexagram 63, After Completion. This other side brings in the atmosphere of completion, balance, vigilance, asking how the situation may look from another threshold.",
-      "reflection": "Let After Completion widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, Before Completion becomes Hexagram 63, After Completion. This other side brings in the atmosphere of completion, balance, vigilance, asking how the situation may look from another threshold.",
+      "reflection": "Let After Completion widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through After Completion. Notice where completion, balance, vigilance and a completed, delicate movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 63,
       "theme": "The contrast to Before Completion is Hexagram 63, After Completion. Where the primary pattern emphasizes incompletion, threshold, transition, this complementary field points toward completion, balance, vigilance.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where After Completion names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where After Completion names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize After Completion as the contrasting color laid beside Before Completion. Ask what hidden cause, missing medicine, or opposing pressure is suggested by completion, balance, vigilance, especially where the situation carries a supportive, transitional tone."
     }
   }
 }

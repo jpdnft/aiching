@@ -48,13 +48,15 @@
     "reversed": {
       "number": 15,
       "sameAsPrimary": false,
-      "theme": "Turned around, Enthusiasm becomes Hexagram 15, Modesty. This other side brings in the atmosphere of humility, balance, proportion, asking how the situation may look from another threshold.",
-      "reflection": "Let Modesty widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, Enthusiasm becomes Hexagram 15, Modesty. This other side brings in the atmosphere of humility, balance, proportion, asking how the situation may look from another threshold.",
+      "reflection": "Let Modesty widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through Modesty. Notice where humility, balance, proportion and a stabilizing, restrained movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 9,
       "theme": "The contrast to Enthusiasm is Hexagram 9, Small Taming. Where the primary pattern emphasizes inspiration, rhythm, motivation, this complementary field points toward restraint, refinement, small influence.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Small Taming names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Small Taming names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Small Taming as the contrasting color laid beside Enthusiasm. Ask what hidden cause, missing medicine, or opposing pressure is suggested by restraint, refinement, small influence, especially where the situation carries a restrained, supportive tone."
     }
   }
 }

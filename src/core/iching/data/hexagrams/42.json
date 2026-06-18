@@ -48,13 +48,15 @@
     "reversed": {
       "number": 41,
       "sameAsPrimary": false,
-      "theme": "Turned around, Increase becomes Hexagram 41, Decrease. This other side brings in the atmosphere of simplification, sacrifice, sincerity, asking how the situation may look from another threshold.",
-      "reflection": "Let Decrease widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, Increase becomes Hexagram 41, Decrease. This other side brings in the atmosphere of simplification, sacrifice, sincerity, asking how the situation may look from another threshold.",
+      "reflection": "Let Decrease widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through Decrease. Notice where simplification, sacrifice, sincerity and a simplifying, declining movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 32,
       "theme": "The contrast to Increase is Hexagram 32, Duration. Where the primary pattern emphasizes growth, generosity, blessing, this complementary field points toward constancy, commitment, rhythm.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Duration names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Duration names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Duration as the contrasting color laid beside Increase. Ask what hidden cause, missing medicine, or opposing pressure is suggested by constancy, commitment, rhythm, especially where the situation carries a supportive, stabilizing tone."
     }
   }
 }

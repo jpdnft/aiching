@@ -48,13 +48,15 @@
     "reversed": {
       "number": 58,
       "sameAsPrimary": false,
-      "theme": "Turned around, The Gentle becomes Hexagram 58, The Joyous. This other side brings in the atmosphere of joy, exchange, openness, asking how the situation may look from another threshold.",
-      "reflection": "Let The Joyous widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, The Gentle becomes Hexagram 58, The Joyous. This other side brings in the atmosphere of joy, exchange, openness, asking how the situation may look from another threshold.",
+      "reflection": "Let The Joyous widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through The Joyous. Notice where joy, exchange, openness and a opening, shared movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 51,
       "theme": "The contrast to The Gentle is Hexagram 51, The Arousing. Where the primary pattern emphasizes penetration, patience, subtle influence, this complementary field points toward shock, awakening, movement.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Arousing names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where The Arousing names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize The Arousing as the contrasting color laid beside The Gentle. Ask what hidden cause, missing medicine, or opposing pressure is suggested by shock, awakening, movement, especially where the situation carries a challenging, volatile tone."
     }
   }
 }

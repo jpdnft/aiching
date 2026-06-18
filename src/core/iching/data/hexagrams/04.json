@@ -48,13 +48,15 @@
     "reversed": {
       "number": 3,
       "sameAsPrimary": false,
-      "theme": "Turned around, Youthful Folly becomes Hexagram 3, Difficulty at the Beginning. This other side brings in the atmosphere of beginnings, confusion, germination, asking how the situation may look from another threshold.",
-      "reflection": "Let Difficulty at the Beginning widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, Youthful Folly becomes Hexagram 3, Difficulty at the Beginning. This other side brings in the atmosphere of beginnings, confusion, germination, asking how the situation may look from another threshold.",
+      "reflection": "Let Difficulty at the Beginning widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through Difficulty at the Beginning. Notice where beginnings, confusion, germination and a forming, blocked movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 49,
       "theme": "The contrast to Youthful Folly is Hexagram 49, Revolution. Where the primary pattern emphasizes learning, humility, questions, this complementary field points toward transformation, renewal, timing.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Revolution names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Revolution names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Revolution as the contrasting color laid beside Youthful Folly. Ask what hidden cause, missing medicine, or opposing pressure is suggested by transformation, renewal, timing, especially where the situation carries a transformative, challenging tone."
     }
   }
 }

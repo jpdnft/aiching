@@ -1,7 +1,7 @@
 import { ReactNode, useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Image as NativeImage, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { setAudioModeAsync, useAudioPlayer } from 'expo-audio';
-import { Image } from 'expo-image';
+import { Image as ExpoImage } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -17,16 +17,17 @@ import {
   saveCompletedReading,
 } from '@/storage/readingsStorage';
 import { useAppTheme } from '@/theme/appTheme';
+import { getCastingSoundSource } from '@/theme/castingSounds';
 import { aiChingColors } from '@/theme/colors';
 import { getHomeBackgroundSource } from '@/theme/hexagramBackgrounds';
 import { getLocalDateKey } from '@/utils/date';
 
 const iChingLogo = require('../../assets/images/ichinglogo.png');
-const castLineSound = require('../../assets/sounds/cast-line.mp3');
 
 export default function CastScreen() {
   const router = useRouter();
-  const { soundEffectsEnabled, themeId } = useAppTheme();
+  const { castingSoundId, soundEffectsEnabled, themeId } = useAppTheme();
+  const castLineSound = getCastingSoundSource(castingSoundId);
   const castLinePlayer = useAudioPlayer(castLineSound, { downloadFirst: true });
   const [lines, setLines] = useState<PartialHexagramLines>([]);
   const [todaysReading, setTodaysReading] = useState<CompletedReading | null>(null);
@@ -36,6 +37,7 @@ export default function CastScreen() {
   const [animationKey, setAnimationKey] = useState(0);
   const [isCastingLineAnimating, setIsCastingLineAnimating] = useState(false);
   const [castButtonStep, setCastButtonStep] = useState(1);
+  const [castScreenKey, setCastScreenKey] = useState(0);
 
   useFocusEffect(
     useCallback(() => {
@@ -116,6 +118,7 @@ export default function CastScreen() {
     setAnimatedLineIndex(null);
     setIsCastingLineAnimating(false);
     setCastButtonStep(1);
+    setCastScreenKey((currentKey) => currentKey + 1);
   }
 
   const handleLineAnimationComplete = useCallback(() => {
@@ -140,7 +143,7 @@ export default function CastScreen() {
 
   if (isLoading) {
     return (
-      <CastBackground backgroundSource={homeBackgroundSource}>
+      <CastBackground backgroundSource={homeBackgroundSource} scrollKey="loading">
         <View style={styles.centered}>
           <ActivityIndicator color={aiChingColors.gold} />
         </View>
@@ -150,14 +153,8 @@ export default function CastScreen() {
 
   if (todaysReading) {
     return (
-      <CastBackground backgroundSource={homeBackgroundSource}>
+      <CastBackground backgroundSource={homeBackgroundSource} scrollKey={`today-${castScreenKey}`} showLogo>
         <View style={styles.hero}>
-          <Image
-            source={iChingLogo}
-            style={styles.logo}
-            contentFit="contain"
-            accessibilityLabel="I Ching"
-          />
           <Text style={styles.kicker}>Today has been cast</Text>
           <HexagramView lines={todaysReading.lines} />
           <Text style={styles.title}>
@@ -176,15 +173,9 @@ export default function CastScreen() {
   }
 
   return (
-    <CastBackground backgroundSource={homeBackgroundSource}>
+    <CastBackground backgroundSource={homeBackgroundSource} scrollKey={`cast-${castScreenKey}`} showLogo>
       <View style={styles.hero}>
         <View style={styles.heading}>
-          <Image
-            source={iChingLogo}
-            style={styles.logo}
-            contentFit="contain"
-            accessibilityLabel="I Ching"
-          />
           <Text style={styles.title}>Cast one clear pattern for today.</Text>
           <Text style={styles.intention}>
             Hold a question, feeling, or intention in mind as each line arrives.
@@ -212,18 +203,34 @@ export default function CastScreen() {
 function CastBackground({
   backgroundSource,
   children,
+  showLogo = false,
+  scrollKey,
 }: {
   backgroundSource?: number;
   children: ReactNode;
+  showLogo?: boolean;
+  scrollKey?: string;
 }) {
   return (
     <View style={styles.backgroundScreen}>
       {backgroundSource ? (
-        <Image source={backgroundSource} style={styles.backgroundImage} contentFit="cover" />
+        <ExpoImage source={backgroundSource} style={styles.backgroundImage} contentFit="cover" />
       ) : null}
       <View style={styles.imageScrim} />
       <SafeAreaView style={styles.castSafeArea}>
-        <View style={styles.castContent}>{children}</View>
+        {showLogo ? (
+          <View style={styles.logoHeader}>
+            <NativeImage
+              source={iChingLogo}
+              style={styles.logo}
+              resizeMode="contain"
+              accessibilityLabel="I Ching"
+            />
+          </View>
+        ) : null}
+        <ScrollView key={scrollKey} contentContainerStyle={styles.castContent}>
+          {children}
+        </ScrollView>
       </SafeAreaView>
     </View>
   );
@@ -250,25 +257,32 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   castContent: {
-    flex: 1,
-    padding: 24,
+    flexGrow: 1,
+    paddingHorizontal: 24,
+    paddingTop: 8,
+    paddingBottom: 126,
   },
   hero: {
-    flex: 1,
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 24,
+    gap: 18,
+    paddingVertical: 8,
   },
   heading: {
     alignItems: 'center',
     gap: 12,
   },
+  logoHeader: {
+    alignItems: 'center',
+    paddingHorizontal: 24,
+    paddingTop: 8,
+    paddingBottom: 2,
+  },
   logo: {
-    width: '96%',
-    maxWidth: 680,
-    height: 220,
-    marginTop: -48,
-    marginBottom: -18,
+    width: '92%',
+    maxWidth: 560,
+    height: 142,
   },
   kicker: {
     color: aiChingColors.gold,

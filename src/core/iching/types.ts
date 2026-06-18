@@ -184,6 +184,7 @@ export type HexagramRelationship = {
   sameAsPrimary?: boolean;
   theme: string;
   reflection: string;
+  applicationPrompt: string;
 };
 
 export type CompletedReading = {

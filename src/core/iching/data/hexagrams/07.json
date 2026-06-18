@@ -48,13 +48,15 @@
     "reversed": {
       "number": 8,
       "sameAsPrimary": false,
-      "theme": "Turned around, The Army becomes Hexagram 8, Holding Together. This other side brings in the atmosphere of belonging, alliance, support, asking how the situation may look from another threshold.",
-      "reflection": "Let Holding Together widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, The Army becomes Hexagram 8, Holding Together. This other side brings in the atmosphere of belonging, alliance, support, asking how the situation may look from another threshold.",
+      "reflection": "Let Holding Together widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through Holding Together. Notice where belonging, alliance, support and a gathering, stabilizing movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 13,
       "theme": "The contrast to The Army is Hexagram 13, Fellowship. Where the primary pattern emphasizes discipline, organization, leadership, this complementary field points toward community, shared purpose, openness.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Fellowship names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Fellowship names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Fellowship as the contrasting color laid beside The Army. Ask what hidden cause, missing medicine, or opposing pressure is suggested by community, shared purpose, openness, especially where the situation carries a communal, supportive tone."
     }
   }
 }

@@ -48,13 +48,15 @@
     "reversed": {
       "number": 43,
       "sameAsPrimary": false,
-      "theme": "Turned around, Coming to Meet becomes Hexagram 43, Breakthrough. This other side brings in the atmosphere of resolution, declaration, truth, asking how the situation may look from another threshold.",
-      "reflection": "Let Breakthrough widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, Coming to Meet becomes Hexagram 43, Breakthrough. This other side brings in the atmosphere of resolution, declaration, truth, asking how the situation may look from another threshold.",
+      "reflection": "Let Breakthrough widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through Breakthrough. Notice where resolution, declaration, truth and a breaking through, peaking movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 24,
       "theme": "The contrast to Coming to Meet is Hexagram 24, Return. Where the primary pattern emphasizes encounter, temptation, influence, this complementary field points toward renewal, turning point, recovery.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Return names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Return names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Return as the contrasting color laid beside Coming to Meet. Ask what hidden cause, missing medicine, or opposing pressure is suggested by renewal, turning point, recovery, especially where the situation carries a supportive, renewing tone."
     }
   }
 }

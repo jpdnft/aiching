@@ -20,29 +20,27 @@ export default function AboutScreen() {
           source={webDevCard}
           style={styles.heroImage}
           contentFit="cover"
-          accessibilityLabel="Jim Dee web developer portfolio card"
+          accessibilityLabel="Jim Dee developer portfolio card"
         />
 
         <Text style={styles.body}>
-          Hi, I'm Jim Dee, a full-stack web developer with 15+ years of experience shipping
+          Hi, I'm Jim Dee, a full-stack developer with 15+ years of experience shipping
           practical software that solves real problems.
         </Text>
         <Text style={styles.body}>
-          I build modern React Native, React, Next.js, and Firebase applications, along with
-          Web3/smart contract platforms, AI-driven tools, APIs, and legacy CMS/database systems.
-          My work includes high-stakes launches, tricky integrations, clean front ends, reliable
+          I build modern React Native, React, Next.js, and Firebase applications, along with web3 / blockchain applications, AI-driven tools, APIs, and even legacy CMS / database systems. Got PHP and MySQL? I can help there too. My work includes high-stakes launches, tricky integrations, clean front ends, reliable
           back-end workflows, and documentation that helps teams move faster.
         </Text>
         <Text style={styles.body}>
-          If you need a thoughtful builder who can turn a fuzzy idea into working software without
-          drama, I would be glad to talk.
+          If you need a thoughtful builder who can turn a fuzzy idea into working software fast and without
+          drama, I'd be glad to talk. Click the button below to view my resume and contact me.
         </Text>
 
         <Pressable
           accessibilityRole="link"
           onPress={() => Linking.openURL(portfolioUrl)}
           style={({ pressed }) => [styles.linkButton, pressed && styles.linkButtonPressed]}>
-          <Text style={styles.linkButtonText}>✨ View Portfolio and Resume</Text>
+          <Text style={styles.linkButtonText}>🖥️ View Portfolio and Resume ➜</Text>
         </Pressable>
       </View>
 

@@ -48,13 +48,15 @@
     "reversed": {
       "number": 51,
       "sameAsPrimary": false,
-      "theme": "Turned around, Keeping Still becomes Hexagram 51, The Arousing. This other side brings in the atmosphere of shock, awakening, movement, asking how the situation may look from another threshold.",
-      "reflection": "Let The Arousing widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, Keeping Still becomes Hexagram 51, The Arousing. This other side brings in the atmosphere of shock, awakening, movement, asking how the situation may look from another threshold.",
+      "reflection": "Let The Arousing widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through The Arousing. Notice where shock, awakening, movement and a disruptive, awakening movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 58,
       "theme": "The contrast to Keeping Still is Hexagram 58, The Joyous. Where the primary pattern emphasizes stillness, meditation, boundaries, this complementary field points toward joy, exchange, openness.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Joyous names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where The Joyous names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize The Joyous as the contrasting color laid beside Keeping Still. Ask what hidden cause, missing medicine, or opposing pressure is suggested by joy, exchange, openness, especially where the situation carries a joyful, supportive tone."
     }
   }
 }

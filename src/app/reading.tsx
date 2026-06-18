@@ -81,19 +81,29 @@ export default function ReadingScreen() {
             />
 
             <RelationshipPanel
-              title="Other Side"
+              title="Other Side - Your question as viewed by others, or perhaps when looking back afterward"
               relationship={hexagram.relationships.reversed}
               relatedHexagram={reversedHexagram}
             />
 
             <RelationshipPanel
-              title="Contrast"
+              title="Complementary View - What Your Situation is Not."
               relationship={hexagram.relationships.opposite}
               relatedHexagram={oppositeHexagram}
             />
 
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Today&apos;s Prompt</Text>
+              {backgroundSource ? (
+                <View style={styles.promptImageFrame}>
+                  <Image
+                    source={backgroundSource}
+                    style={styles.promptImage}
+                    contentFit="cover"
+                    contentPosition="left"
+                  />
+                </View>
+              ) : null}
               <Text style={styles.body}>{reading.reflectionPrompt}</Text>
             </View>
           </View>
@@ -126,11 +136,11 @@ function PrimaryReadingPanel({
       <View style={styles.primaryText}>
         <ReadingMeter label="Caution / Challenging" score={hexagram.cautionScore} tone="caution" />
         <ReadingMeter label="Supportive / Favorable" score={hexagram.supportScore} tone="support" />
-        <Text style={styles.sectionTitle}>Theme</Text>
+        <Text style={styles.sectionTitle}>{hexagram.name}: Theme</Text>
         <Text style={styles.relationshipBody}>{theme}</Text>
-        <Text style={styles.sectionTitle}>Reflection</Text>
+        <Text style={styles.sectionTitle}>{hexagram.name}: Reflection</Text>
         <Text style={styles.relationshipBody}>{reflection}</Text>
-        <Text style={styles.sectionTitle}>Momentum</Text>
+        <Text style={styles.sectionTitle}>{hexagram.name}: Momentum</Text>
         <View style={styles.keywordRow}>
           {hexagram.momentum.map((momentum) => (
             <Text key={momentum} style={styles.momentumChip}>
@@ -206,6 +216,8 @@ function RelationshipPanel({
         {relationship.sameAsPrimary ? <Text style={styles.sameNote}>unchanged when turned</Text> : null}
         <Text style={styles.relationshipBody}>{relationship.theme}</Text>
         <Text style={styles.relationshipBody}>{relationship.reflection}</Text>
+        <Text style={styles.applicationTitle}>Try This</Text>
+        <Text style={styles.relationshipBody}>{relationship.applicationPrompt}</Text>
       </View>
     </View>
   );
@@ -275,7 +287,8 @@ const styles = StyleSheet.create({
     borderTopColor: 'rgba(231, 197, 111, 0.16)',
     paddingTop: 18,
     marginBottom: 22,
-    gap: 8,
+    gap: 10,
+    alignItems: 'center',
   },
   primarySection: {
     width: '100%',
@@ -297,6 +310,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(16, 19, 24, 0.42)',
   },
   primaryImage: {
+    width: '100%',
+    height: '100%',
+  },
+  promptImageFrame: {
+    width: '100%',
+    maxWidth: 264,
+    aspectRatio: 9 / 16,
+    borderRadius: 8,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.28)',
+    backgroundColor: 'rgba(16, 19, 24, 0.42)',
+  },
+  promptImage: {
     width: '100%',
     height: '100%',
   },
@@ -376,6 +403,14 @@ const styles = StyleSheet.create({
     color: aiChingColors.mist,
     fontSize: 15,
     lineHeight: 22,
+  },
+  applicationTitle: {
+    color: aiChingColors.gold,
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '800',
+    textTransform: 'uppercase',
+    marginTop: 2,
   },
   readingPanel: {
     width: '100%',

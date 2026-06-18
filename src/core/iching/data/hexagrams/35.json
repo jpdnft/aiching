@@ -48,13 +48,15 @@
     "reversed": {
       "number": 36,
       "sameAsPrimary": false,
-      "theme": "Turned around, Progress becomes Hexagram 36, Darkening of the Light. This other side brings in the atmosphere of hidden light, wounding, caution, asking how the situation may look from another threshold.",
-      "reflection": "Let Darkening of the Light widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, Progress becomes Hexagram 36, Darkening of the Light. This other side brings in the atmosphere of hidden light, wounding, caution, asking how the situation may look from another threshold.",
+      "reflection": "Let Darkening of the Light widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through Darkening of the Light. Notice where hidden light, wounding, caution and a concealed, declining movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 5,
       "theme": "The contrast to Progress is Hexagram 5, Waiting. Where the primary pattern emphasizes advancement, visibility, growth, this complementary field points toward patience, nourishment, timing.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Waiting names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Waiting names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Waiting as the contrasting color laid beside Progress. Ask what hidden cause, missing medicine, or opposing pressure is suggested by patience, nourishment, timing, especially where the situation carries a restrained, transitional tone."
     }
   }
 }

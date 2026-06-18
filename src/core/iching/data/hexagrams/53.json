@@ -48,13 +48,15 @@
     "reversed": {
       "number": 54,
       "sameAsPrimary": false,
-      "theme": "Turned around, Development becomes Hexagram 54, The Marrying Maiden. This other side brings in the atmosphere of position, desire, adaptation, asking how the situation may look from another threshold.",
-      "reflection": "Let The Marrying Maiden widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, Development becomes Hexagram 54, The Marrying Maiden. This other side brings in the atmosphere of position, desire, adaptation, asking how the situation may look from another threshold.",
+      "reflection": "Let The Marrying Maiden widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through The Marrying Maiden. Notice where position, desire, adaptation and a subordinated, unsettled movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 54,
       "theme": "The contrast to Development is Hexagram 54, The Marrying Maiden. Where the primary pattern emphasizes gradual progress, maturation, patience, this complementary field points toward position, desire, adaptation.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Marrying Maiden names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where The Marrying Maiden names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize The Marrying Maiden as the contrasting color laid beside Development. Ask what hidden cause, missing medicine, or opposing pressure is suggested by position, desire, adaptation, especially where the situation carries a challenging, restrained tone."
     }
   }
 }

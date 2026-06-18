@@ -48,13 +48,15 @@
     "reversed": {
       "number": 30,
       "sameAsPrimary": true,
-      "theme": "Turned around, Radiance remains itself. The pattern keeps its shape from either side, suggesting a situation whose essential lesson does not depend much on viewpoint.",
-      "reflection": "This symmetry asks for directness. Instead of searching for a hidden opposite perspective, look again at the same truth with quieter attention."
+      "theme": "Flipped upside down, Radiance remains itself. The pattern keeps its shape from either side, suggesting a situation whose essential lesson does not depend much on viewpoint.",
+      "reflection": "This symmetry asks for directness. Instead of searching for a hidden opposite perspective, look again at the same truth with quieter attention.",
+      "applicationPrompt": "Visualize the hexagram turning upside down and becoming the same figure again. Let that symmetry suggest a lesson that remains steady from every angle; ask where Radiance needs direct attention rather than another interpretation."
     },
     "opposite": {
       "number": 29,
       "theme": "The contrast to Radiance is Hexagram 29, The Abysmal. Where the primary pattern emphasizes clarity, illumination, perception, this complementary field points toward depth, danger, repetition.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Abysmal names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where The Abysmal names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize The Abysmal as the contrasting color laid beside Radiance. Ask what hidden cause, missing medicine, or opposing pressure is suggested by depth, danger, repetition, especially where the situation carries a dangerous, challenging tone."
     }
   }
 }

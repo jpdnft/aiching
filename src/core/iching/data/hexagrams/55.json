@@ -48,13 +48,15 @@
     "reversed": {
       "number": 56,
       "sameAsPrimary": false,
-      "theme": "Turned around, Abundance becomes Hexagram 56, The Wanderer. This other side brings in the atmosphere of travel, impermanence, caution, asking how the situation may look from another threshold.",
-      "reflection": "Let The Wanderer widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, Abundance becomes Hexagram 56, The Wanderer. This other side brings in the atmosphere of travel, impermanence, caution, asking how the situation may look from another threshold.",
+      "reflection": "Let The Wanderer widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through The Wanderer. Notice where travel, impermanence, caution and a unsettled, moving movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 59,
       "theme": "The contrast to Abundance is Hexagram 59, Dispersion. Where the primary pattern emphasizes fullness, visibility, peak moment, this complementary field points toward dissolution, release, reconnection.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Dispersion names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Dispersion names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Dispersion as the contrasting color laid beside Abundance. Ask what hidden cause, missing medicine, or opposing pressure is suggested by dissolution, release, reconnection, especially where the situation carries a restorative, transitional tone."
     }
   }
 }

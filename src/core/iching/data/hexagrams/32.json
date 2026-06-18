@@ -48,13 +48,15 @@
     "reversed": {
       "number": 31,
       "sameAsPrimary": false,
-      "theme": "Turned around, Duration becomes Hexagram 31, Influence. This other side brings in the atmosphere of attraction, response, sensitivity, asking how the situation may look from another threshold.",
-      "reflection": "Let Influence widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, Duration becomes Hexagram 31, Influence. This other side brings in the atmosphere of attraction, response, sensitivity, asking how the situation may look from another threshold.",
+      "reflection": "Let Influence widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through Influence. Notice where attraction, response, sensitivity and a opening, moving movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 42,
       "theme": "The contrast to Duration is Hexagram 42, Increase. Where the primary pattern emphasizes constancy, commitment, rhythm, this complementary field points toward growth, generosity, blessing.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Increase names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Increase names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Increase as the contrasting color laid beside Duration. Ask what hidden cause, missing medicine, or opposing pressure is suggested by growth, generosity, blessing, especially where the situation carries a abundant, supportive tone."
     }
   }
 }

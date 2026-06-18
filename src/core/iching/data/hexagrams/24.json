@@ -48,13 +48,15 @@
     "reversed": {
       "number": 23,
       "sameAsPrimary": false,
-      "theme": "Turned around, Return becomes Hexagram 23, Splitting Apart. This other side brings in the atmosphere of erosion, release, stripping away, asking how the situation may look from another threshold.",
-      "reflection": "Let Splitting Apart widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, Return becomes Hexagram 23, Splitting Apart. This other side brings in the atmosphere of erosion, release, stripping away, asking how the situation may look from another threshold.",
+      "reflection": "Let Splitting Apart widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through Splitting Apart. Notice where erosion, release, stripping away and a declining, disintegrating movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 44,
       "theme": "The contrast to Return is Hexagram 44, Coming to Meet. Where the primary pattern emphasizes renewal, turning point, recovery, this complementary field points toward encounter, temptation, influence.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Coming to Meet names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Coming to Meet names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Coming to Meet as the contrasting color laid beside Return. Ask what hidden cause, missing medicine, or opposing pressure is suggested by encounter, temptation, influence, especially where the situation carries a dangerous, uncertain tone."
     }
   }
 }

@@ -48,13 +48,15 @@
     "reversed": {
       "number": 52,
       "sameAsPrimary": false,
-      "theme": "Turned around, The Arousing becomes Hexagram 52, Keeping Still. This other side brings in the atmosphere of stillness, meditation, boundaries, asking how the situation may look from another threshold.",
-      "reflection": "Let Keeping Still widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, The Arousing becomes Hexagram 52, Keeping Still. This other side brings in the atmosphere of stillness, meditation, boundaries, asking how the situation may look from another threshold.",
+      "reflection": "Let Keeping Still widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through Keeping Still. Notice where stillness, meditation, boundaries and a still, stabilizing movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 57,
       "theme": "The contrast to The Arousing is Hexagram 57, The Gentle. Where the primary pattern emphasizes shock, awakening, movement, this complementary field points toward penetration, patience, subtle influence.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Gentle names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where The Gentle names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize The Gentle as the contrasting color laid beside The Arousing. Ask what hidden cause, missing medicine, or opposing pressure is suggested by penetration, patience, subtle influence, especially where the situation carries a supportive, subtle tone."
     }
   }
 }

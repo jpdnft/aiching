@@ -48,13 +48,15 @@
     "reversed": {
       "number": 28,
       "sameAsPrimary": true,
-      "theme": "Turned around, Great Preponderance remains itself. The pattern keeps its shape from either side, suggesting a situation whose essential lesson does not depend much on viewpoint.",
-      "reflection": "This symmetry asks for directness. Instead of searching for a hidden opposite perspective, look again at the same truth with quieter attention."
+      "theme": "Flipped upside down, Great Preponderance remains itself. The pattern keeps its shape from either side, suggesting a situation whose essential lesson does not depend much on viewpoint.",
+      "reflection": "This symmetry asks for directness. Instead of searching for a hidden opposite perspective, look again at the same truth with quieter attention.",
+      "applicationPrompt": "Visualize the hexagram turning upside down and becoming the same figure again. Let that symmetry suggest a lesson that remains steady from every angle; ask where Great Preponderance needs direct attention rather than another interpretation."
     },
     "opposite": {
       "number": 27,
       "theme": "The contrast to Great Preponderance is Hexagram 27, Nourishment. Where the primary pattern emphasizes pressure, excess, burden, this complementary field points toward sustenance, speech, care.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Nourishment names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Nourishment names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Nourishment as the contrasting color laid beside Great Preponderance. Ask what hidden cause, missing medicine, or opposing pressure is suggested by sustenance, speech, care, especially where the situation carries a supportive, corrective tone."
     }
   }
 }

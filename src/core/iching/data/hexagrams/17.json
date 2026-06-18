@@ -48,13 +48,15 @@
     "reversed": {
       "number": 18,
       "sameAsPrimary": false,
-      "theme": "Turned around, Following becomes Hexagram 18, Work on What Has Been Spoiled. This other side brings in the atmosphere of repair, neglect, inheritance, asking how the situation may look from another threshold.",
-      "reflection": "Let Work on What Has Been Spoiled widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, Following becomes Hexagram 18, Work on What Has Been Spoiled. This other side brings in the atmosphere of repair, neglect, inheritance, asking how the situation may look from another threshold.",
+      "reflection": "Let Work on What Has Been Spoiled widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through Work on What Has Been Spoiled. Notice where repair, neglect, inheritance and a correcting, restoring movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 18,
       "theme": "The contrast to Following is Hexagram 18, Work on What Has Been Spoiled. Where the primary pattern emphasizes adaptation, trust, response, this complementary field points toward repair, neglect, inheritance.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Work on What Has Been Spoiled names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Work on What Has Been Spoiled names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Work on What Has Been Spoiled as the contrasting color laid beside Following. Ask what hidden cause, missing medicine, or opposing pressure is suggested by repair, neglect, inheritance, especially where the situation carries a corrective, challenging tone."
     }
   }
 }

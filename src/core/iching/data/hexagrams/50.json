@@ -48,13 +48,15 @@
     "reversed": {
       "number": 49,
       "sameAsPrimary": false,
-      "theme": "Turned around, The Cauldron becomes Hexagram 49, Revolution. This other side brings in the atmosphere of transformation, renewal, timing, asking how the situation may look from another threshold.",
-      "reflection": "Let Revolution widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, The Cauldron becomes Hexagram 49, Revolution. This other side brings in the atmosphere of transformation, renewal, timing, asking how the situation may look from another threshold.",
+      "reflection": "Let Revolution widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through Revolution. Notice where transformation, renewal, timing and a transforming, disruptive movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 3,
       "theme": "The contrast to The Cauldron is Hexagram 3, Difficulty at the Beginning. Where the primary pattern emphasizes transformation, culture, offering, this complementary field points toward beginnings, confusion, germination.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Difficulty at the Beginning names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Difficulty at the Beginning names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Difficulty at the Beginning as the contrasting color laid beside The Cauldron. Ask what hidden cause, missing medicine, or opposing pressure is suggested by beginnings, confusion, germination, especially where the situation carries a challenging, transitional tone."
     }
   }
 }

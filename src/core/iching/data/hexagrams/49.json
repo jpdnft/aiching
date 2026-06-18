@@ -48,13 +48,15 @@
     "reversed": {
       "number": 50,
       "sameAsPrimary": false,
-      "theme": "Turned around, Revolution becomes Hexagram 50, The Cauldron. This other side brings in the atmosphere of transformation, culture, offering, asking how the situation may look from another threshold.",
-      "reflection": "Let The Cauldron widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, Revolution becomes Hexagram 50, The Cauldron. This other side brings in the atmosphere of transformation, culture, offering, asking how the situation may look from another threshold.",
+      "reflection": "Let The Cauldron widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through The Cauldron. Notice where transformation, culture, offering and a transforming, stabilizing movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 4,
       "theme": "The contrast to Revolution is Hexagram 4, Youthful Folly. Where the primary pattern emphasizes transformation, renewal, timing, this complementary field points toward learning, humility, questions.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Youthful Folly names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Youthful Folly names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Youthful Folly as the contrasting color laid beside Revolution. Ask what hidden cause, missing medicine, or opposing pressure is suggested by learning, humility, questions, especially where the situation carries a corrective, uncertain tone."
     }
   }
 }

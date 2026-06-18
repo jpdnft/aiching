@@ -48,13 +48,15 @@
     "reversed": {
       "number": 60,
       "sameAsPrimary": false,
-      "theme": "Turned around, Dispersion becomes Hexagram 60, Limitation. This other side brings in the atmosphere of boundaries, measure, discipline, asking how the situation may look from another threshold.",
-      "reflection": "Let Limitation widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, Dispersion becomes Hexagram 60, Limitation. This other side brings in the atmosphere of boundaries, measure, discipline, asking how the situation may look from another threshold.",
+      "reflection": "Let Limitation widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through Limitation. Notice where boundaries, measure, discipline and a limiting, stabilizing movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 55,
       "theme": "The contrast to Dispersion is Hexagram 55, Abundance. Where the primary pattern emphasizes dissolution, release, reconnection, this complementary field points toward fullness, visibility, peak moment.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Abundance names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Abundance names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Abundance as the contrasting color laid beside Dispersion. Ask what hidden cause, missing medicine, or opposing pressure is suggested by fullness, visibility, peak moment, especially where the situation carries a abundant, supportive tone."
     }
   }
 }

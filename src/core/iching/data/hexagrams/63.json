@@ -48,13 +48,15 @@
     "reversed": {
       "number": 64,
       "sameAsPrimary": false,
-      "theme": "Turned around, After Completion becomes Hexagram 64, Before Completion. This other side brings in the atmosphere of incompletion, threshold, transition, asking how the situation may look from another threshold.",
-      "reflection": "Let Before Completion widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, After Completion becomes Hexagram 64, Before Completion. This other side brings in the atmosphere of incompletion, threshold, transition, asking how the situation may look from another threshold.",
+      "reflection": "Let Before Completion widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through Before Completion. Notice where incompletion, threshold, transition and a unfinished, forming movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 64,
       "theme": "The contrast to After Completion is Hexagram 64, Before Completion. Where the primary pattern emphasizes completion, balance, vigilance, this complementary field points toward incompletion, threshold, transition.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Before Completion names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Before Completion names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Before Completion as the contrasting color laid beside After Completion. Ask what hidden cause, missing medicine, or opposing pressure is suggested by incompletion, threshold, transition, especially where the situation carries a uncertain, transitional tone."
     }
   }
 }

@@ -48,13 +48,15 @@
     "reversed": {
       "number": 47,
       "sameAsPrimary": false,
-      "theme": "Turned around, The Well becomes Hexagram 47, Oppression. This other side brings in the atmosphere of confinement, exhaustion, truth under pressure, asking how the situation may look from another threshold.",
-      "reflection": "Let Oppression widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, The Well becomes Hexagram 47, Oppression. This other side brings in the atmosphere of confinement, exhaustion, truth under pressure, asking how the situation may look from another threshold.",
+      "reflection": "Let Oppression widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through Oppression. Notice where confinement, exhaustion, truth under pressure and a constrained, exhausted movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 21,
       "theme": "The contrast to The Well is Hexagram 21, Biting Through. Where the primary pattern emphasizes source, nourishment, tradition, this complementary field points toward decision, justice, clarity.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Biting Through names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Biting Through names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Biting Through as the contrasting color laid beside The Well. Ask what hidden cause, missing medicine, or opposing pressure is suggested by decision, justice, clarity, especially where the situation carries a corrective, challenging tone."
     }
   }
 }

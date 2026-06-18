@@ -48,13 +48,15 @@
     "reversed": {
       "number": 4,
       "sameAsPrimary": false,
-      "theme": "Turned around, Difficulty at the Beginning becomes Hexagram 4, Youthful Folly. This other side brings in the atmosphere of learning, humility, questions, asking how the situation may look from another threshold.",
-      "reflection": "Let Youthful Folly widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side."
+      "theme": "Flipped upside down, Difficulty at the Beginning becomes Hexagram 4, Youthful Folly. This other side brings in the atmosphere of learning, humility, questions, asking how the situation may look from another threshold.",
+      "reflection": "Let Youthful Folly widen the reading rather than replace it. Consider what another person, timing, or hidden part of you might see when the pattern is viewed from the far side.",
+      "applicationPrompt": "Visualize your question from the far side, as if another person or your future self is looking back through Youthful Folly. Notice where learning, humility, questions and a forming, learning movement reveal needs, timing, or motives that the first view may miss."
     },
     "opposite": {
       "number": 50,
       "theme": "The contrast to Difficulty at the Beginning is Hexagram 50, The Cauldron. Where the primary pattern emphasizes beginnings, confusion, germination, this complementary field points toward transformation, culture, offering.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where The Cauldron names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where The Cauldron names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize The Cauldron as the contrasting color laid beside Difficulty at the Beginning. Ask what hidden cause, missing medicine, or opposing pressure is suggested by transformation, culture, offering, especially where the situation carries a transformative, supportive tone."
     }
   }
 }

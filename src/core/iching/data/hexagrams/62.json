@@ -48,13 +48,15 @@
     "reversed": {
       "number": 62,
       "sameAsPrimary": true,
-      "theme": "Turned around, Small Preponderance remains itself. The pattern keeps its shape from either side, suggesting a situation whose essential lesson does not depend much on viewpoint.",
-      "reflection": "This symmetry asks for directness. Instead of searching for a hidden opposite perspective, look again at the same truth with quieter attention."
+      "theme": "Flipped upside down, Small Preponderance remains itself. The pattern keeps its shape from either side, suggesting a situation whose essential lesson does not depend much on viewpoint.",
+      "reflection": "This symmetry asks for directness. Instead of searching for a hidden opposite perspective, look again at the same truth with quieter attention.",
+      "applicationPrompt": "Visualize the hexagram turning upside down and becoming the same figure again. Let that symmetry suggest a lesson that remains steady from every angle; ask where Small Preponderance needs direct attention rather than another interpretation."
     },
     "opposite": {
       "number": 61,
       "theme": "The contrast to Small Preponderance is Hexagram 61, Inner Truth. Where the primary pattern emphasizes small matters, carefulness, humility, this complementary field points toward sincerity, trust, resonance.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Inner Truth names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Inner Truth names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Inner Truth as the contrasting color laid beside Small Preponderance. Ask what hidden cause, missing medicine, or opposing pressure is suggested by sincerity, trust, resonance, especially where the situation carries a supportive, clarifying tone."
     }
   }
 }

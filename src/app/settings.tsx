@@ -1,12 +1,23 @@
+import { useEffect } from 'react';
 import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
+import { setAudioModeAsync, useAudioPlayer } from 'expo-audio';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
+import { appInfo } from '@/config/appInfo';
 import { useAppTheme } from '@/theme/appTheme';
+import { CastingSound, castingSoundList } from '@/theme/castingSounds';
 import { aiChingColors } from '@/theme/colors';
 import { hexagramThemeList, HexagramThemeManifest } from '@/theme/hexagramBackgrounds';
 
 export default function SettingsScreen() {
-  const { setSoundEffectsEnabled, setThemeId, soundEffectsEnabled, themeId } = useAppTheme();
+  const {
+    castingSoundId,
+    setCastingSoundId,
+    setSoundEffectsEnabled,
+    setThemeId,
+    soundEffectsEnabled,
+    themeId,
+  } = useAppTheme();
 
   return (
     <ScreenContainer>
@@ -47,6 +58,23 @@ export default function SettingsScreen() {
             value={soundEffectsEnabled}
           />
         </View>
+
+        <View style={styles.soundList}>
+          {castingSoundList.map((sound) => (
+            <SoundOption
+              key={sound.id}
+              onSelect={() => setCastingSoundId(sound.id)}
+              selected={sound.id === castingSoundId}
+              sound={sound}
+            />
+          ))}
+        </View>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Build</Text>
+        <Text style={styles.settingDescription}>Version {appInfo.version}</Text>
+        <Text style={styles.settingDescription}>Bundle {appInfo.buildLabel}</Text>
       </View>
     </ScreenContainer>
   );
@@ -81,6 +109,60 @@ function ThemeOption({
         {selected ? 'Selected' : disabled ? 'Locked' : 'Select'}
       </Text>
     </Pressable>
+  );
+}
+
+function SoundOption({
+  onSelect,
+  selected,
+  sound,
+}: {
+  onSelect: () => void;
+  selected: boolean;
+  sound: CastingSound;
+}) {
+  const player = useAudioPlayer(sound.source, { downloadFirst: true });
+
+  useEffect(() => {
+    player.volume = 0.5;
+
+    setAudioModeAsync({
+      interruptionMode: 'mixWithOthers',
+      playsInSilentMode: true,
+    }).catch(() => {
+      // Sound previews are optional; settings should remain usable without playback.
+    });
+  }, [player]);
+
+  function handlePreview() {
+    player
+      .seekTo(0)
+      .then(() => player.play())
+      .catch(() => {
+        // Keep the chooser quiet if a preview cannot play.
+      });
+  }
+
+  return (
+    <View style={[styles.soundOption, selected && styles.soundOptionSelected]}>
+      <Pressable
+        accessibilityLabel={`Preview ${sound.name}`}
+        onPress={handlePreview}
+        style={({ pressed }) => [styles.previewButton, pressed && styles.previewButtonPressed]}>
+        <Text style={styles.previewButtonText}>Play</Text>
+      </Pressable>
+      <Pressable
+        onPress={onSelect}
+        style={({ pressed }) => [styles.soundTextButton, pressed && styles.themeOptionPressed]}>
+        <View style={styles.themeText}>
+          <Text style={styles.themeName}>{sound.name}</Text>
+          <Text style={styles.themeMeta}>{sound.filename}</Text>
+        </View>
+        <Text style={[styles.themeState, selected && styles.themeStateSelected]}>
+          {selected ? 'Selected' : 'Select'}
+        </Text>
+      </Pressable>
+    </View>
   );
 }
 
@@ -174,5 +256,46 @@ const styles = StyleSheet.create({
     color: aiChingColors.muted,
     fontSize: 14,
     lineHeight: 20,
+  },
+  soundList: {
+    gap: 10,
+  },
+  soundOption: {
+    minHeight: 72,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.16)',
+    backgroundColor: 'rgba(16, 19, 24, 0.52)',
+    padding: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  soundOptionSelected: {
+    borderColor: 'rgba(231, 197, 111, 0.72)',
+  },
+  previewButton: {
+    width: 50,
+    height: 38,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: aiChingColors.gold,
+  },
+  previewButtonPressed: {
+    opacity: 0.78,
+  },
+  previewButtonText: {
+    color: aiChingColors.ink,
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '800',
+  },
+  soundTextButton: {
+    flex: 1,
+    minHeight: 48,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
   },
 });

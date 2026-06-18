@@ -48,13 +48,15 @@
     "reversed": {
       "number": 29,
       "sameAsPrimary": true,
-      "theme": "Turned around, The Abysmal remains itself. The pattern keeps its shape from either side, suggesting a situation whose essential lesson does not depend much on viewpoint.",
-      "reflection": "This symmetry asks for directness. Instead of searching for a hidden opposite perspective, look again at the same truth with quieter attention."
+      "theme": "Flipped upside down, The Abysmal remains itself. The pattern keeps its shape from either side, suggesting a situation whose essential lesson does not depend much on viewpoint.",
+      "reflection": "This symmetry asks for directness. Instead of searching for a hidden opposite perspective, look again at the same truth with quieter attention.",
+      "applicationPrompt": "Visualize the hexagram turning upside down and becoming the same figure again. Let that symmetry suggest a lesson that remains steady from every angle; ask where The Abysmal needs direct attention rather than another interpretation."
     },
     "opposite": {
       "number": 30,
       "theme": "The contrast to The Abysmal is Hexagram 30, Radiance. Where the primary pattern emphasizes depth, danger, repetition, this complementary field points toward clarity, illumination, perception.",
-      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. Notice where Radiance names the medicine, shadow, or unchosen path beside the situation."
+      "reflection": "This is not the main movement of the reading, but it shows what balances or challenges it. It can also highlight hidden causes or contrasting forces at play. Notice where Radiance names the medicine, shadow, or unchosen path beside the situation.",
+      "applicationPrompt": "Visualize Radiance as the contrasting color laid beside The Abysmal. Ask what hidden cause, missing medicine, or opposing pressure is suggested by clarity, illumination, perception, especially where the situation carries a clarifying, supportive tone."
     }
   }
 }

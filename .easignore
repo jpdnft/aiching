@@ -1,0 +1,15 @@
+private/
+.git/
+node_modules/
+.expo/
+dist/
+web-build/
+coverage/
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+expo-*.log
+.DS_Store
+*.apk
+*.aab
+*.ipa
