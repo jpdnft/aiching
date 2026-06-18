@@ -1,5 +1,5 @@
-import { useCallback, useState } from 'react';
-import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useCallback, useMemo, useRef, useState } from 'react';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, TextStyle, View } from 'react-native';
 import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -10,23 +10,37 @@ import { ScreenContainer } from '@/components/ScreenContainer';
 import { getHexagramByNumber } from '@/core/iching/hexagrams';
 import { CompletedReading, Hexagram, HexagramRelationship } from '@/core/iching/types';
 import { getTodaysReading } from '@/storage/readingsStorage';
-import { useAppTheme } from '@/theme/appTheme';
+import { ReadingTextSize, useAppTheme } from '@/theme/appTheme';
 import { aiChingColors } from '@/theme/colors';
 import { getHexagramBackgroundSource } from '@/theme/hexagramBackgrounds';
 import { formatReadingDate } from '@/utils/date';
 
 export default function ReadingScreen() {
   const router = useRouter();
-  const { themeId } = useAppTheme();
+  const { readingTextSize, themeId } = useAppTheme();
+  const scrollViewRef = useRef<ScrollView>(null);
   const [reading, setReading] = useState<CompletedReading | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const readingTextStyles = useMemo(
+    () => getReadingTextStyles(readingTextSize),
+    [readingTextSize],
+  );
+
+  const scrollToTop = useCallback(() => {
+    requestAnimationFrame(() => {
+      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
+    });
+  }, []);
 
   useFocusEffect(
     useCallback(() => {
       getTodaysReading()
-        .then(setReading)
+        .then((todaysReading) => {
+          setReading(todaysReading);
+          scrollToTop();
+        })
         .finally(() => setIsLoading(false));
-    }, []),
+    }, [scrollToTop]),
   );
 
   if (isLoading) {
@@ -63,7 +77,7 @@ export default function ReadingScreen() {
       ) : null}
       <View style={styles.imageScrim} />
       <SafeAreaView style={styles.readingSafeArea}>
-        <ScrollView contentContainerStyle={styles.readingContent}>
+        <ScrollView ref={scrollViewRef} contentContainerStyle={styles.readingContent}>
           <View style={styles.header}>
             <HexagramView lines={reading.lines} size="small" />
             <Text style={styles.date}>{formatReadingDate(reading.localDate)}</Text>
@@ -76,6 +90,7 @@ export default function ReadingScreen() {
             <PrimaryReadingPanel
               imageSource={backgroundSource}
               hexagram={hexagram}
+              textStyles={readingTextStyles}
               theme={reading.theme}
               reflection={reading.basicInterpretation}
             />
@@ -84,12 +99,14 @@ export default function ReadingScreen() {
               title="Other Side - Your question as viewed by others, or perhaps when looking back afterward"
               relationship={hexagram.relationships.reversed}
               relatedHexagram={reversedHexagram}
+              textStyles={readingTextStyles}
             />
 
             <RelationshipPanel
               title="Complementary View - What Your Situation is Not."
               relationship={hexagram.relationships.opposite}
               relatedHexagram={oppositeHexagram}
+              textStyles={readingTextStyles}
             />
 
             <View style={styles.section}>
@@ -104,7 +121,7 @@ export default function ReadingScreen() {
                   />
                 </View>
               ) : null}
-              <Text style={styles.body}>{reading.reflectionPrompt}</Text>
+              <Text style={[styles.body, readingTextStyles.body]}>{reading.reflectionPrompt}</Text>
             </View>
           </View>
 
@@ -118,11 +135,13 @@ export default function ReadingScreen() {
 function PrimaryReadingPanel({
   hexagram,
   imageSource,
+  textStyles,
   theme,
   reflection,
 }: {
   hexagram: Hexagram;
   imageSource?: number;
+  textStyles: ReadingTextStyles;
   theme: string;
   reflection: string;
 }) {
@@ -137,9 +156,9 @@ function PrimaryReadingPanel({
         <ReadingMeter label="Caution / Challenging" score={hexagram.cautionScore} tone="caution" />
         <ReadingMeter label="Supportive / Favorable" score={hexagram.supportScore} tone="support" />
         <Text style={styles.sectionTitle}>{hexagram.name}: Theme</Text>
-        <Text style={styles.relationshipBody}>{theme}</Text>
+        <Text style={[styles.relationshipBody, textStyles.relationshipBody]}>{theme}</Text>
         <Text style={styles.sectionTitle}>{hexagram.name}: Reflection</Text>
-        <Text style={styles.relationshipBody}>{reflection}</Text>
+        <Text style={[styles.relationshipBody, textStyles.relationshipBody]}>{reflection}</Text>
         <Text style={styles.sectionTitle}>{hexagram.name}: Momentum</Text>
         <View style={styles.keywordRow}>
           {hexagram.momentum.map((momentum) => (
@@ -149,7 +168,7 @@ function PrimaryReadingPanel({
           ))}
         </View>
         {hexagram.momentumNotes.map((note) => (
-          <Text key={note} style={styles.relationshipBody}>
+          <Text key={note} style={[styles.relationshipBody, textStyles.relationshipBody]}>
             {note}
           </Text>
         ))}
@@ -198,10 +217,12 @@ function RelationshipPanel({
   title,
   relationship,
   relatedHexagram,
+  textStyles,
 }: {
   title: string;
   relationship: HexagramRelationship;
   relatedHexagram: Hexagram;
+  textStyles: ReadingTextStyles;
 }) {
   return (
     <View style={styles.relationshipSection}>
@@ -210,17 +231,67 @@ function RelationshipPanel({
       </View>
       <View style={styles.relationshipText}>
         <Text style={styles.sectionTitle}>{title}</Text>
-        <Text style={styles.relatedTitle}>
+        <Text style={[styles.relatedTitle, textStyles.relatedTitle]}>
           Hexagram {relatedHexagram.number}: {relatedHexagram.name}
         </Text>
         {relationship.sameAsPrimary ? <Text style={styles.sameNote}>unchanged when turned</Text> : null}
-        <Text style={styles.relationshipBody}>{relationship.theme}</Text>
-        <Text style={styles.relationshipBody}>{relationship.reflection}</Text>
+        <Text style={[styles.relationshipBody, textStyles.relationshipBody]}>{relationship.theme}</Text>
+        <Text style={[styles.relationshipBody, textStyles.relationshipBody]}>{relationship.reflection}</Text>
         <Text style={styles.applicationTitle}>Try This</Text>
-        <Text style={styles.relationshipBody}>{relationship.applicationPrompt}</Text>
+        <Text style={[styles.relationshipBody, textStyles.relationshipBody]}>
+          {relationship.applicationPrompt}
+        </Text>
       </View>
     </View>
   );
+}
+
+type ReadingTextStyles = {
+  body: TextStyle;
+  relatedTitle: TextStyle;
+  relationshipBody: TextStyle;
+};
+
+function getReadingTextStyles(textSize: ReadingTextSize): ReadingTextStyles {
+  if (textSize === 'extraLarge') {
+    return {
+      body: {
+        fontSize: 20,
+        lineHeight: 31,
+      },
+      relatedTitle: {
+        fontSize: 20,
+        lineHeight: 28,
+      },
+      relationshipBody: {
+        fontSize: 19,
+        lineHeight: 29,
+      },
+    };
+  }
+
+  if (textSize === 'large') {
+    return {
+      body: {
+        fontSize: 18,
+        lineHeight: 28,
+      },
+      relatedTitle: {
+        fontSize: 18,
+        lineHeight: 25,
+      },
+      relationshipBody: {
+        fontSize: 17,
+        lineHeight: 26,
+      },
+    };
+  }
+
+  return {
+    body: {},
+    relatedTitle: {},
+    relationshipBody: {},
+  };
 }
 
 function formatLabel(value: string): string {

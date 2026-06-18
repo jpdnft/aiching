@@ -176,10 +176,7 @@ export default function CastScreen() {
     <CastBackground backgroundSource={homeBackgroundSource} scrollKey={`cast-${castScreenKey}`} showLogo>
       <View style={styles.hero}>
         <View style={styles.heading}>
-          <Text style={styles.title}>Cast one clear pattern for today.</Text>
-          <Text style={styles.intention}>
-            Hold a question, feeling, or intention in mind as each line arrives.
-          </Text>
+          <Text style={styles.title}>Hold a question, feeling, or intention in mind as you cast a hexagram!</Text>
         </View>
 
         <HexagramView
@@ -195,6 +192,7 @@ export default function CastScreen() {
           disabled={isSaving || isCastingLineAnimating}
           onPress={isComplete ? handleReveal : handleCast}
         />
+        <Text style={styles.intention}>Careful! You can only cast one hexagram per day.</Text>
       </View>
     </CastBackground>
   );
@@ -277,12 +275,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 24,
     paddingTop: 8,
-    paddingBottom: 2,
+    paddingBottom: 4,
   },
   logo: {
-    width: '92%',
-    maxWidth: 560,
-    height: 142,
+    width: '96%',
+    maxWidth: 620,
+    height: 178,
   },
   kicker: {
     color: aiChingColors.gold,

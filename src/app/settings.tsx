@@ -4,7 +4,7 @@ import { setAudioModeAsync, useAudioPlayer } from 'expo-audio';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { appInfo } from '@/config/appInfo';
-import { useAppTheme } from '@/theme/appTheme';
+import { ReadingTextSize, useAppTheme } from '@/theme/appTheme';
 import { CastingSound, castingSoundList } from '@/theme/castingSounds';
 import { aiChingColors } from '@/theme/colors';
 import { hexagramThemeList, HexagramThemeManifest } from '@/theme/hexagramBackgrounds';
@@ -13,8 +13,10 @@ export default function SettingsScreen() {
   const {
     castingSoundId,
     setCastingSoundId,
+    setReadingTextSize,
     setSoundEffectsEnabled,
     setThemeId,
+    readingTextSize,
     soundEffectsEnabled,
     themeId,
   } = useAppTheme();
@@ -38,6 +40,36 @@ export default function SettingsScreen() {
             />
           ))}
         </View>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Reading Text Size</Text>
+        <Text style={styles.settingDescription}>
+          Adjust the reading page text for easier, more comfortable reading.
+        </Text>
+        <View style={styles.textSizeOptions}>
+          {readingTextSizeOptions.map((option) => (
+            <Pressable
+              key={option.value}
+              onPress={() => setReadingTextSize(option.value)}
+              style={({ pressed }) => [
+                styles.textSizeOption,
+                option.value === readingTextSize && styles.textSizeOptionSelected,
+                pressed && styles.themeOptionPressed,
+              ]}>
+              <Text
+                style={[
+                  styles.textSizeOptionText,
+                  option.value === readingTextSize && styles.textSizeOptionTextSelected,
+                ]}>
+                {option.label}
+              </Text>
+            </Pressable>
+          ))}
+        </View>
+        <Text style={[styles.textSizePreview, textSizePreviewStyles[readingTextSize]]}>
+          PREVIEW: This is how the text will look on the Readings page with the setting selected.
+        </Text>
       </View>
 
       <View style={styles.section}>
@@ -79,6 +111,27 @@ export default function SettingsScreen() {
     </ScreenContainer>
   );
 }
+
+const readingTextSizeOptions: Array<{ label: string; value: ReadingTextSize }> = [
+  { label: 'Comfortable', value: 'comfortable' },
+  { label: 'Large', value: 'large' },
+  { label: 'Extra Large', value: 'extraLarge' },
+];
+
+const textSizePreviewStyles: Record<ReadingTextSize, { fontSize: number; lineHeight: number }> = {
+  comfortable: {
+    fontSize: 15,
+    lineHeight: 22,
+  },
+  large: {
+    fontSize: 17,
+    lineHeight: 26,
+  },
+  extraLarge: {
+    fontSize: 19,
+    lineHeight: 29,
+  },
+};
 
 function ThemeOption({
   theme,
@@ -256,6 +309,38 @@ const styles = StyleSheet.create({
     color: aiChingColors.muted,
     fontSize: 14,
     lineHeight: 20,
+  },
+  textSizeOptions: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  textSizeOption: {
+    flex: 1,
+    minHeight: 42,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.16)',
+    backgroundColor: 'rgba(16, 19, 24, 0.52)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 8,
+  },
+  textSizeOptionSelected: {
+    borderColor: 'rgba(231, 197, 111, 0.72)',
+    backgroundColor: 'rgba(231, 197, 111, 0.16)',
+  },
+  textSizeOptionText: {
+    color: aiChingColors.muted,
+    fontSize: 13,
+    lineHeight: 17,
+    fontWeight: '800',
+    textAlign: 'center',
+  },
+  textSizeOptionTextSelected: {
+    color: aiChingColors.gold,
+  },
+  textSizePreview: {
+    color: aiChingColors.mist,
   },
   soundList: {
     gap: 10,
