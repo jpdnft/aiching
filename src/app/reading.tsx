@@ -9,7 +9,7 @@ import { HexagramView } from '@/components/HexagramView';
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { getHexagramByNumber } from '@/core/iching/hexagrams';
 import { CompletedReading, Hexagram, HexagramRelationship } from '@/core/iching/types';
-import { getTodaysReading } from '@/storage/readingsStorage';
+import { getCurrentReading } from '@/storage/readingsStorage';
 import { ReadingTextSize, useAppTheme } from '@/theme/appTheme';
 import { aiChingColors } from '@/theme/colors';
 import { getHexagramBackgroundSource } from '@/theme/hexagramBackgrounds';
@@ -34,7 +34,7 @@ export default function ReadingScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      getTodaysReading()
+      getCurrentReading()
         .then((todaysReading) => {
           setReading(todaysReading);
           scrollToTop();

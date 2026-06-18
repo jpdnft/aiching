@@ -4,6 +4,7 @@ import { setAudioModeAsync, useAudioPlayer } from 'expo-audio';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { appInfo } from '@/config/appInfo';
+import { aiReadingPersonalities, AiReadingPersonality } from '@/core/aiReadings/personalities';
 import { ReadingTextSize, useAppTheme } from '@/theme/appTheme';
 import { CastingSound, castingSoundList } from '@/theme/castingSounds';
 import { aiChingColors } from '@/theme/colors';
@@ -11,7 +12,10 @@ import { hexagramThemeList, HexagramThemeManifest } from '@/theme/hexagramBackgr
 
 export default function SettingsScreen() {
   const {
+    aiReadingPersonalityId,
     castingSoundId,
+    entitlements,
+    setAiReadingPersonalityId,
     setCastingSoundId,
     setReadingTextSize,
     setSoundEffectsEnabled,
@@ -70,6 +74,27 @@ export default function SettingsScreen() {
         <Text style={[styles.textSizePreview, textSizePreviewStyles[readingTextSize]]}>
           PREVIEW: This is how the text will look on the Readings page with the setting selected.
         </Text>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>AI Reading Personality</Text>
+        <Text style={styles.settingDescription}>
+          Choose the voice used for premium AI-enhanced readings.
+        </Text>
+        {!entitlements.aiReadingsEnabled ? (
+          <Text style={styles.lockedNote}>Premium feature. Manage Version to unlock AI readings.</Text>
+        ) : null}
+        <View style={styles.personalityList}>
+          {aiReadingPersonalities.map((personality) => (
+            <PersonalityOption
+              disabled={!entitlements.aiReadingsEnabled}
+              key={personality.id}
+              onSelect={() => setAiReadingPersonalityId(personality.id)}
+              personality={personality}
+              selected={personality.id === aiReadingPersonalityId}
+            />
+          ))}
+        </View>
       </View>
 
       <View style={styles.section}>
@@ -219,6 +244,38 @@ function SoundOption({
   );
 }
 
+function PersonalityOption({
+  disabled,
+  onSelect,
+  personality,
+  selected,
+}: {
+  disabled: boolean;
+  onSelect: () => void;
+  personality: AiReadingPersonality;
+  selected: boolean;
+}) {
+  return (
+    <Pressable
+      disabled={disabled}
+      onPress={onSelect}
+      style={({ pressed }) => [
+        styles.personalityOption,
+        selected && styles.textSizeOptionSelected,
+        disabled && styles.themeOptionDisabled,
+        pressed && !disabled && styles.themeOptionPressed,
+      ]}>
+      <View style={styles.themeText}>
+        <Text style={[styles.themeName, selected && styles.themeStateSelected]}>{personality.name}</Text>
+        <Text style={styles.themeMeta}>{personality.description}</Text>
+      </View>
+      <Text style={[styles.themeState, selected && styles.themeStateSelected]}>
+        {selected ? 'Selected' : disabled ? 'Locked' : 'Select'}
+      </Text>
+    </Pressable>
+  );
+}
+
 const styles = StyleSheet.create({
   title: {
     color: aiChingColors.mist,
@@ -341,6 +398,26 @@ const styles = StyleSheet.create({
   },
   textSizePreview: {
     color: aiChingColors.mist,
+  },
+  personalityList: {
+    gap: 10,
+  },
+  personalityOption: {
+    minHeight: 84,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.16)',
+    backgroundColor: 'rgba(16, 19, 24, 0.52)',
+    padding: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  lockedNote: {
+    color: aiChingColors.gold,
+    fontSize: 13,
+    lineHeight: 19,
+    fontWeight: '700',
   },
   soundList: {
     gap: 10,

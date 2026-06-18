@@ -27,7 +27,7 @@
       "package": "com.jpd3.aiching"
     },
     "web": {
-      "output": "static",
+      "output": "server",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [

@@ -192,6 +192,7 @@ export type CompletedReading = {
   localDate: string;
   createdAt: string;
   question?: string;
+  premiumReading?: PremiumReading;
   lines: HexagramLines;
   binaryKey: string;
   hexagramNumber: number;
@@ -199,4 +200,12 @@ export type CompletedReading = {
   theme: string;
   basicInterpretation: string;
   reflectionPrompt: string;
+};
+
+export type PremiumReading = {
+  generatedAt: string;
+  model: string;
+  personalityId: string;
+  personalityName: string;
+  text: string;
 };

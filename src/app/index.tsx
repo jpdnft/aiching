@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { setAudioModeAsync, useAudioPlayer } from 'expo-audio';
 import { Image as ExpoImage } from 'expo-image';
-import { useFocusEffect, useRouter } from 'expo-router';
+import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { CastButton } from '@/components/CastButton';
@@ -22,7 +22,8 @@ import { lookupHexagram } from '@/core/iching/lookup';
 import { CompletedReading, PartialHexagramLines } from '@/core/iching/types';
 import {
   clearTodaysReadingForDev,
-  getTodaysReading,
+  clearCurrentReading,
+  getCurrentReading,
   saveCompletedReading,
 } from '@/storage/readingsStorage';
 import { useAppTheme } from '@/theme/appTheme';
@@ -35,6 +36,7 @@ const iChingLogo = require('../../assets/images/ichinglogo.png');
 
 export default function CastScreen() {
   const router = useRouter();
+  const { freshCast } = useLocalSearchParams<{ freshCast?: string }>();
   const { appVersion, castingSoundId, entitlements, soundEffectsEnabled, themeId } = useAppTheme();
   const castLineSound = getCastingSoundSource(castingSoundId);
   const castLinePlayer = useAudioPlayer(castLineSound, { downloadFirst: true });
@@ -51,11 +53,38 @@ export default function CastScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      getTodaysReading()
-        .then(setTodaysReading)
+      getCurrentReading()
+        .then((storedReading) => {
+          if (storedReading) {
+            setTodaysReading(storedReading);
+            return;
+          }
+
+          setTodaysReading(null);
+          setLines([]);
+          setQuestion('');
+          setAnimatedLineIndex(null);
+          setIsCastingLineAnimating(false);
+          setCastButtonStep(1);
+          setCastScreenKey((currentKey) => currentKey + 1);
+        })
         .finally(() => setIsLoading(false));
     }, []),
   );
+
+  useEffect(() => {
+    if (!freshCast) {
+      return;
+    }
+
+    setTodaysReading(null);
+    setLines([]);
+    setQuestion('');
+    setAnimatedLineIndex(null);
+    setIsCastingLineAnimating(false);
+    setCastButtonStep(1);
+    setCastScreenKey((currentKey) => currentKey + 1);
+  }, [freshCast]);
 
   const castCount = lines.length;
   const isComplete = isCompleteHexagram(lines);
@@ -134,7 +163,7 @@ export default function CastScreen() {
   }
 
   async function handleClearCurrentReading() {
-    await clearTodaysReadingForDev();
+    await clearCurrentReading();
     setTodaysReading(null);
     setLines([]);
     setQuestion('');
@@ -213,7 +242,7 @@ export default function CastScreen() {
             <Text style={styles.title}>Hold a question, feeling, or intention in mind as you cast a hexagram!</Text>
           ) : (
             <View style={styles.questionBox}>
-              <Text style={styles.questionLabel}>Optional Question</Text>
+              <Text style={styles.questionLabel}>Ask the Oracle (Optional)</Text>
               <TextInput
                 multiline
                 onChangeText={setQuestion}
