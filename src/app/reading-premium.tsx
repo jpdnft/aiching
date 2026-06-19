@@ -14,7 +14,7 @@ import { CompletedReading } from '@/core/iching/types';
 import { clearCurrentReading, getCurrentReading, savePremiumReadingForToday } from '@/storage/readingsStorage';
 import { useAppTheme } from '@/theme/appTheme';
 import { aiChingColors } from '@/theme/colors';
-import { getHexagramBackgroundSource } from '@/theme/hexagramBackgrounds';
+import { getAiReadingAvatarSource, getHexagramBackgroundSource } from '@/theme/hexagramBackgrounds';
 import { formatReadingDate } from '@/utils/date';
 
 export default function PremiumReadingScreen() {
@@ -133,6 +133,7 @@ export default function PremiumReadingScreen() {
   const backgroundSource = getHexagramBackgroundSource(reading.hexagramNumber, themeId);
   const askedQuestion = reading.question?.trim();
   const selectedPersonality = getAiReadingPersonality(aiReadingPersonalityId);
+  const aiReadingAvatarSource = getAiReadingAvatarSource(selectedPersonality.id, themeId);
   const premiumReading = reading.premiumReading;
 
   return (
@@ -152,6 +153,15 @@ export default function PremiumReadingScreen() {
           </View>
 
           <View style={styles.card}>
+            <Text style={styles.cardTitle}>
+              Hexagram {reading.hexagramNumber}: {reading.hexagramName}
+            </Text>
+            {backgroundSource ? (
+              <Image source={backgroundSource} style={styles.hexagramThemeImage} contentFit="cover" />
+            ) : null}
+          </View>
+
+          <View style={styles.card}>
             <Text style={styles.cardTitle}>{askedQuestion ? 'Your Question' : 'General Outlook'}</Text>
             <Text style={styles.body}>
               {askedQuestion ??
@@ -160,12 +170,19 @@ export default function PremiumReadingScreen() {
           </View>
 
           <View style={styles.card}>
-            <Text style={styles.cardTitle}>AI Reading Space</Text>
+            <Text style={styles.cardTitle}>The Oracle Answers Here ...</Text>
             {premiumReading ? (
               <>
                 <Text style={styles.meta}>
                   Voice: {premiumReading.personalityName} | Model: {premiumReading.model}
                 </Text>
+                {aiReadingAvatarSource ? (
+                  <Image
+                    source={aiReadingAvatarSource}
+                    style={styles.aiReadingAvatar}
+                    contentFit="cover"
+                  />
+                ) : null}
                 <PremiumReadingText text={premiumReading.text} />
               </>
             ) : (
@@ -276,6 +293,18 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'center',
     textTransform: 'uppercase',
+  },
+  aiReadingAvatar: {
+    width: '100%',
+    aspectRatio: 1,
+    borderRadius: 8,
+    marginTop: 2,
+    marginBottom: 6,
+  },
+  hexagramThemeImage: {
+    width: '100%',
+    aspectRatio: 9 / 16,
+    borderRadius: 8,
   },
   body: {
     color: aiChingColors.mist,

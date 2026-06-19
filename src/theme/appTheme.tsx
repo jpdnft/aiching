@@ -54,7 +54,7 @@ type AppThemeContextValue = {
 const AppThemeContext = createContext<AppThemeContextValue | null>(null);
 
 function isThemeId(value: string | null): value is HexagramThemeId {
-  return value === '01' || value === '02';
+  return value === '01' || value === '02' || value === '03';
 }
 
 function isReadingTextSize(value: string | null): value is ReadingTextSize {

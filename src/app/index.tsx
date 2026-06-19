@@ -88,7 +88,7 @@ export default function CastScreen() {
 
   const castCount = lines.length;
   const isComplete = isCompleteHexagram(lines);
-  const castButtonLabel = isComplete ? 'REVEAL' : `Cast #${castButtonStep} of 6`;
+  const castButtonLabel = isComplete ? '📜 REVEAL ➤' : `➜ Cast #${castButtonStep} of 6 ➜`;
   const homeBackgroundSource = getHomeBackgroundSource(themeId);
 
   useEffect(() => {
