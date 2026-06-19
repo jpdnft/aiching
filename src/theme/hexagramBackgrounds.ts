@@ -216,6 +216,32 @@ const theme03Backgrounds: HexagramBackgrounds = {
   64: require('@/assets/hexagrams/themes/03/64.jpg'),
 };
 
+const theme01AiReadingAvatars: AiReadingAvatarSources = {
+  dream_librarian: require('@/assets/hexagrams/themes/01/dream_librarian.jpg'),
+  garden_monk: require('@/assets/hexagrams/themes/01/garden_monk.jpg'),
+  lantern_oracle: require('@/assets/hexagrams/themes/01/lantern_oracle.jpg'),
+  mountain_strategist: require('@/assets/hexagrams/themes/01/mountain_strategist.jpg'),
+  river_hermit: require('@/assets/hexagrams/themes/01/river_hermit.jpg'),
+  star_cartographer: require('@/assets/hexagrams/themes/01/star_cartographer.jpg'),
+  storm_witch: require('@/assets/hexagrams/themes/01/storm_witch.jpg'),
+  tea_house_auntie: require('@/assets/hexagrams/themes/01/tea_house_auntie.jpg'),
+  temple_poet: require('@/assets/hexagrams/themes/01/temple_poet.jpg'),
+  weathered_sage: require('@/assets/hexagrams/themes/01/weathered_sage.jpg'),
+};
+
+const theme02AiReadingAvatars: AiReadingAvatarSources = {
+  dream_librarian: require('@/assets/hexagrams/themes/02/dream_librarian.jpg'),
+  garden_monk: require('@/assets/hexagrams/themes/02/garden_monk.jpg'),
+  lantern_oracle: require('@/assets/hexagrams/themes/02/lantern_oracle.jpg'),
+  mountain_strategist: require('@/assets/hexagrams/themes/02/mountain_strategist.jpg'),
+  river_hermit: require('@/assets/hexagrams/themes/02/river_hermit.jpg'),
+  star_cartographer: require('@/assets/hexagrams/themes/02/star_cartographer.jpg'),
+  storm_witch: require('@/assets/hexagrams/themes/02/storm_witch.jpg'),
+  tea_house_auntie: require('@/assets/hexagrams/themes/02/tea_house_auntie.jpg'),
+  temple_poet: require('@/assets/hexagrams/themes/02/temple_poet.jpg'),
+  weathered_sage: require('@/assets/hexagrams/themes/02/weathered_sage.jpg'),
+};
+
 const theme03AiReadingAvatars: AiReadingAvatarSources = {
   dream_librarian: require('@/assets/hexagrams/themes/03/dream_librarian.jpg'),
   garden_monk: require('@/assets/hexagrams/themes/03/garden_monk.jpg'),
@@ -235,6 +261,7 @@ export const hexagramThemes: Record<HexagramThemeId, HexagramThemeManifest> = {
     name: 'Ink Mist',
     description: 'Dark ink-wash landscapes, elemental atmosphere, mist, and restrained gold light.',
     isAvailable: true,
+    aiReadingAvatars: theme01AiReadingAvatars,
     homeBackground: require('@/assets/hexagrams/themes/01/home.jpg'),
     hexagramBackgrounds: theme01Backgrounds,
   },
@@ -243,6 +270,7 @@ export const hexagramThemes: Record<HexagramThemeId, HexagramThemeManifest> = {
     name: 'Soft Wonder',
     description: 'Painterly anime softness, lived-in warmth, emotional weather, and quiet everyday magic.',
     isAvailable: true,
+    aiReadingAvatars: theme02AiReadingAvatars,
     homeBackground: require('@/assets/hexagrams/themes/02/home.jpg'),
     hexagramBackgrounds: theme02Backgrounds,
   },

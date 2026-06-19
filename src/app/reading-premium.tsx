@@ -8,6 +8,7 @@ import { CastButton } from '@/components/CastButton';
 import { HexagramView } from '@/components/HexagramView';
 import { PremiumReadingText } from '@/components/PremiumReadingText';
 import { ScreenContainer } from '@/components/ScreenContainer';
+import { ShareHexagramButton } from '@/components/ShareHexagramButton';
 import { generatePremiumReading } from '@/core/aiReadings/client';
 import { getAiReadingPersonality } from '@/core/aiReadings/personalities';
 import { CompletedReading } from '@/core/iching/types';
@@ -217,6 +218,7 @@ export default function PremiumReadingScreen() {
           </View>
 
           <CastButton label="ASK ANOTHER QUESTION" onPress={handleAskAnotherQuestion} />
+          <ShareHexagramButton hexagramNumber={reading.hexagramNumber} themeId={themeId} />
         </ScrollView>
       </SafeAreaView>
     </View>

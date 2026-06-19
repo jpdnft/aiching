@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { CastButton } from '@/components/CastButton';
 import { HexagramView } from '@/components/HexagramView';
 import { ScreenContainer } from '@/components/ScreenContainer';
+import { ShareHexagramButton } from '@/components/ShareHexagramButton';
 import {
   aiReadingPersonalities,
   aiReadingPersonalityCount,
@@ -151,6 +152,7 @@ export default function ReadingScreen() {
           </Pressable>
 
           <CastButton label="RETURN TO CAST" onPress={() => router.push('/')} />
+          <ShareHexagramButton hexagramNumber={reading.hexagramNumber} themeId={themeId} />
         </ScrollView>
       </SafeAreaView>
     </View>

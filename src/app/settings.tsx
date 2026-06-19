@@ -77,9 +77,9 @@ export default function SettingsScreen() {
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>AI Reading Personality</Text>
+        <Text style={styles.sectionTitle}>Select Your Oracle / Personality</Text>
         <Text style={styles.settingDescription}>
-          Choose the voice used for premium AI-enhanced readings.
+          Choose the persnality that your oracle has for your readings.
         </Text>
         {!entitlements.aiReadingsEnabled ? (
           <Text style={styles.lockedNote}>Premium feature. Manage Version to unlock AI readings.</Text>

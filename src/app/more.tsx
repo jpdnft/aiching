@@ -1,3 +1,4 @@
+import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -9,31 +10,37 @@ const links = [
     title: 'Manage Version',
     body: 'Select and manage your version of this app.',
     href: '/version',
+    avatar: require('@/assets/hexagrams/themes/01/lantern_oracle.jpg'),
   },
   {
     title: 'Settings',
     body: 'Theme selection, reading preferences, and controls will live here.',
     href: '/settings',
+    avatar: require('@/assets/hexagrams/themes/02/garden_monk.jpg'),
   },
   {
     title: 'User Guide',
     body: 'Learn how casting works, why lines build upward, and how to frame readings.',
     href: '/guide',
+    avatar: require('@/assets/hexagrams/themes/03/weathered_sage.jpg'),
   },
   {
     title: 'Browse Hexagrams',
     body: 'Explore the 64 hexagrams and their themes.',
     href: '/browse-hexagrams',
+    avatar: require('@/assets/hexagrams/themes/01/river_hermit.jpg'),
   },
   {
     title: 'Future',
     body: 'Preview possible additions like themes, journaling, deeper readings, and feedback.',
     href: '/future',
+    avatar: require('@/assets/hexagrams/themes/02/star_cartographer.jpg'),
   },
   {
     title: 'About the Developer',
     body: "Need a website, app, or other coded gizmo? Here's Jim's info.",
     href: '/about',
+    avatar: require('@/assets/hexagrams/themes/03/tea_house_auntie.jpg'),
   },
 ] as const;
 
@@ -51,6 +58,7 @@ export default function MoreScreen() {
             key={link.href}
             onPress={() => router.push(link.href)}
             style={({ pressed }) => [styles.row, pressed && styles.rowPressed]}>
+            <Image source={link.avatar} style={styles.avatar} contentFit="cover" />
             <View style={styles.rowText}>
               <Text style={styles.rowTitle}>{link.title}</Text>
               <Text style={styles.rowBody}>{link.body}</Text>
@@ -90,6 +98,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
+  },
+  avatar: {
+    width: 75,
+    height: 75,
+    borderRadius: 8,
+    backgroundColor: 'rgba(219, 226, 223, 0.08)',
   },
   rowPressed: {
     opacity: 0.78,
