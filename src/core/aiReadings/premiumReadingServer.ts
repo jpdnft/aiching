@@ -48,12 +48,13 @@ export async function generatePremiumReadingOnServer(body: PremiumReadingRequest
     throw new PremiumReadingError('A valid hexagramNumber from 1 to 64 is required.', 400);
   }
 
+  const question = getValidatedQuestion(body.question);
   const hexagram = getHexagramByNumber(body.hexagramNumber);
   const personality = getAiReadingPersonality(body.personalityId);
   const prompt = buildAiReadingPrompt({
     hexagram,
     personality,
-    question: body.question,
+    question,
   });
   const model = process.env.OPENAI_READING_MODEL || aiReadingConfig.defaultModel;
   const reasoningEffort = process.env.OPENAI_READING_REASONING_EFFORT || aiReadingConfig.reasoningEffort;
@@ -95,6 +96,28 @@ export async function generatePremiumReadingOnServer(body: PremiumReadingRequest
     personalityName: personality.name,
     text,
   };
+}
+
+function getValidatedQuestion(question: unknown): string | undefined {
+  if (question === undefined || question === null) {
+    return undefined;
+  }
+
+  if (typeof question !== 'string') {
+    throw new PremiumReadingError('Question must be text.', 400);
+  }
+
+  const trimmed = question.trim();
+
+  if (!trimmed) {
+    return undefined;
+  }
+
+  if (trimmed.length > 600) {
+    throw new PremiumReadingError('Question must be 600 characters or fewer.', 400);
+  }
+
+  return trimmed;
 }
 
 function extractResponseText(data: OpenAiResponse | null): string {
