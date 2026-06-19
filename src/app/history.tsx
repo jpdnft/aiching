@@ -21,6 +21,7 @@ export default function HistoryScreen() {
   const [readings, setReadings] = useState<CompletedReading[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [visibleReadingCount, setVisibleReadingCount] = useState(historyPageSize);
 
   useFocusEffect(
     useCallback(() => {
@@ -39,6 +40,15 @@ export default function HistoryScreen() {
 
     return readings.filter((reading) => getReadingSearchText(reading).includes(query));
   }, [readings, searchQuery]);
+  const visibleReadings = filteredReadings.slice(0, visibleReadingCount);
+  const hiddenReadingCount = Math.max(filteredReadings.length - visibleReadings.length, 0);
+  const hasMoreReadings = hiddenReadingCount > 0;
+
+  function handleSearchQueryChange(query: string) {
+    setSearchQuery(query);
+    setVisibleReadingCount(historyPageSize);
+    setExpandedReadingIds([]);
+  }
 
   function toggleExpanded(readingId: string) {
     setExpandedReadingIds((currentIds) =>
@@ -61,6 +71,7 @@ export default function HistoryScreen() {
     setReadings([]);
     setExpandedReadingIds([]);
     setSearchQuery('');
+    setVisibleReadingCount(historyPageSize);
     setClearConfirmVisible(false);
   }
 
@@ -124,7 +135,7 @@ export default function HistoryScreen() {
       ) : null}
       <View style={styles.searchBox}>
         <TextInput
-          onChangeText={setSearchQuery}
+          onChangeText={handleSearchQueryChange}
           placeholder="Search questions, answers, hexagrams..."
           placeholderTextColor="rgba(219, 226, 223, 0.52)"
           style={styles.searchInput}
@@ -143,7 +154,11 @@ export default function HistoryScreen() {
         </View>
       ) : (
         <View style={styles.list}>
-          {filteredReadings.map((reading) => {
+          <Text style={styles.resultCount}>
+            Showing {visibleReadings.length} of {filteredReadings.length} reading
+            {filteredReadings.length === 1 ? '' : 's'}
+          </Text>
+          {visibleReadings.map((reading) => {
             const backgroundSource = getHexagramBackgroundSource(
               reading.hexagramNumber,
               themeId,
@@ -221,6 +236,15 @@ export default function HistoryScreen() {
               </View>
             );
           })}
+          {hasMoreReadings ? (
+            <Pressable
+              onPress={() => setVisibleReadingCount((currentCount) => currentCount + historyPageSize)}
+              style={({ pressed }) => [styles.loadMoreButton, pressed && styles.expandButtonPressed]}>
+              <Text style={styles.loadMoreButtonText}>
+                Load {Math.min(historyPageSize, hiddenReadingCount)} More
+              </Text>
+            </Pressable>
+          ) : null}
         </View>
       )}
     </ScreenContainer>
@@ -228,6 +252,7 @@ export default function HistoryScreen() {
 }
 
 const historyExcerptLength = 360;
+const historyPageSize = 25;
 
 function getExcerpt(text: string): string {
   const normalized = normalizeHistoryText(text);
@@ -396,6 +421,12 @@ const styles = StyleSheet.create({
   list: {
     gap: 16,
   },
+  resultCount: {
+    color: aiChingColors.muted,
+    fontSize: 13,
+    lineHeight: 18,
+    textAlign: 'center',
+  },
   card: {
     minHeight: 320,
     borderRadius: 8,
@@ -487,6 +518,25 @@ const styles = StyleSheet.create({
     color: aiChingColors.gold,
     fontSize: 12,
     lineHeight: 16,
+    fontWeight: '800',
+    textTransform: 'uppercase',
+  },
+  loadMoreButton: {
+    alignSelf: 'center',
+    minHeight: 44,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.34)',
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+    justifyContent: 'center',
+    marginTop: 2,
+    marginBottom: 4,
+  },
+  loadMoreButtonText: {
+    color: aiChingColors.gold,
+    fontSize: 13,
+    lineHeight: 18,
     fontWeight: '800',
     textTransform: 'uppercase',
   },

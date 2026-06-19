@@ -370,7 +370,7 @@ const styles = StyleSheet.create({
   logoHeader: {
     alignItems: 'center',
     paddingHorizontal: 24,
-    paddingTop: 8,
+    paddingTop: 28,
     paddingBottom: 4,
   },
   logo: {

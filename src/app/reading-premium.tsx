@@ -177,11 +177,17 @@ export default function PremiumReadingScreen() {
                   Voice: {premiumReading.personalityName} | Model: {premiumReading.model}
                 </Text>
                 {aiReadingAvatarSource ? (
-                  <Image
-                    source={aiReadingAvatarSource}
-                    style={styles.aiReadingAvatar}
-                    contentFit="cover"
-                  />
+                  <>
+                    <Image
+                      source={aiReadingAvatarSource}
+                      style={styles.aiReadingAvatar}
+                      contentFit="cover"
+                    />
+                    <Text style={styles.avatarCaption}>
+                      Greetings, seeker. The {premiumReading.personalityName} avatar has considered
+                      your question and offers a custom reading below.
+                    </Text>
+                  </>
                 ) : null}
                 <PremiumReadingText text={premiumReading.text} />
               </>
@@ -299,6 +305,14 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     borderRadius: 8,
     marginTop: 2,
+    marginBottom: 6,
+  },
+  avatarCaption: {
+    color: aiChingColors.mist,
+    fontSize: 15,
+    lineHeight: 22,
+    fontWeight: '700',
+    textAlign: 'center',
     marginBottom: 6,
   },
   hexagramThemeImage: {

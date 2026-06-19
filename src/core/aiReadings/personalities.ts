@@ -103,6 +103,8 @@ export const aiReadingPersonalities: AiReadingPersonality[] = [
   },
 ];
 
+export const aiReadingPersonalityCount = aiReadingPersonalities.length;
+
 export function getAiReadingPersonality(id: string | null | undefined): AiReadingPersonality {
   return (
     aiReadingPersonalities.find((personality) => personality.id === id) ??

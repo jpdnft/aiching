@@ -7,17 +7,22 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { CastButton } from '@/components/CastButton';
 import { HexagramView } from '@/components/HexagramView';
 import { ScreenContainer } from '@/components/ScreenContainer';
+import {
+  aiReadingPersonalities,
+  aiReadingPersonalityCount,
+  AiReadingPersonality,
+} from '@/core/aiReadings/personalities';
 import { getHexagramByNumber } from '@/core/iching/hexagrams';
 import { CompletedReading, Hexagram, HexagramRelationship } from '@/core/iching/types';
 import { getCurrentReading } from '@/storage/readingsStorage';
 import { ReadingTextSize, useAppTheme } from '@/theme/appTheme';
 import { aiChingColors } from '@/theme/colors';
-import { getHexagramBackgroundSource } from '@/theme/hexagramBackgrounds';
+import { getAiReadingAvatarSource, getHexagramBackgroundSource } from '@/theme/hexagramBackgrounds';
 import { formatReadingDate } from '@/utils/date';
 
 export default function ReadingScreen() {
   const router = useRouter();
-  const { readingTextSize, themeId } = useAppTheme();
+  const { entitlements, readingTextSize, themeId } = useAppTheme();
   const scrollViewRef = useRef<ScrollView>(null);
   const [reading, setReading] = useState<CompletedReading | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -69,6 +74,8 @@ export default function ReadingScreen() {
   const backgroundSource = getHexagramBackgroundSource(reading.hexagramNumber, themeId);
   const reversedHexagram = getHexagramByNumber(hexagram.relationships.reversed.number);
   const oppositeHexagram = getHexagramByNumber(hexagram.relationships.opposite.number);
+  const promoPersonality = getStablePromoPersonality(reading);
+  const promoAvatarSource = getAiReadingAvatarSource(promoPersonality.id, themeId);
 
   return (
     <View style={styles.backgroundScreen}>
@@ -87,6 +94,14 @@ export default function ReadingScreen() {
           </View>
 
           <View style={styles.readingPanel}>
+            {entitlements.adsEnabled ? (
+              <BasicAvatarPromo
+                avatarSource={promoAvatarSource}
+                personality={promoPersonality}
+                onPressVersion={() => router.push('/version')}
+              />
+            ) : null}
+
             <PrimaryReadingPanel
               imageSource={backgroundSource}
               hexagram={hexagram}
@@ -138,6 +153,37 @@ export default function ReadingScreen() {
           <CastButton label="RETURN TO CAST" onPress={() => router.push('/')} />
         </ScrollView>
       </SafeAreaView>
+    </View>
+  );
+}
+
+function BasicAvatarPromo({
+  avatarSource,
+  onPressVersion,
+  personality,
+}: {
+  avatarSource?: number;
+  onPressVersion: () => void;
+  personality: AiReadingPersonality;
+}) {
+  return (
+    <View style={styles.avatarPromo}>
+      {avatarSource ? (
+        <Image source={avatarSource} style={styles.avatarPromoImage} contentFit="cover" />
+      ) : null}
+      <Text style={styles.avatarPromoBody}>
+        Meet {personality.name}: {personality.description} This is one of {aiReadingPersonalityCount}{' '}
+        oracle avatars available to Premium users, each offering a distinct perspective on your questions.
+      </Text>
+      <Pressable
+        onPress={onPressVersion}
+        style={({ pressed }) => [styles.avatarPromoLinkButton, pressed && styles.premiumCtaPressed]}>
+        <Text style={styles.avatarPromoLink}>Read more about Premium</Text>
+      </Pressable>
+      <Text style={styles.avatarPromoNote}>
+        Basic readings still offer plenty of useful guidance, so read on.
+      </Text>
+      <Text style={styles.avatarPromoReadingTitle}>Your Basic Reading Begins Here</Text>
     </View>
   );
 }
@@ -311,6 +357,19 @@ function formatLabel(value: string): string {
     .join(' ');
 }
 
+function getStablePromoPersonality(reading: CompletedReading): AiReadingPersonality {
+  const seed = `${reading.id}-${reading.localDate}-${reading.hexagramNumber}`;
+  const index = hashString(seed) % aiReadingPersonalityCount;
+
+  return aiReadingPersonalities[index] ?? aiReadingPersonalities[0];
+}
+
+function hashString(value: string): number {
+  return value.split('').reduce((hash, character) => {
+    return (hash * 31 + character.charCodeAt(0)) >>> 0;
+  }, 0);
+}
+
 const styles = StyleSheet.create({
   centered: {
     flex: 1,
@@ -380,6 +439,56 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 16,
     alignItems: 'flex-start',
+  },
+  avatarPromo: {
+    width: '100%',
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(231, 197, 111, 0.16)',
+    paddingTop: 18,
+    marginBottom: 22,
+    gap: 10,
+  },
+  avatarPromoImage: {
+    width: '100%',
+    aspectRatio: 1,
+    borderRadius: 8,
+  },
+  avatarPromoBody: {
+    color: aiChingColors.mist,
+    fontSize: 15,
+    lineHeight: 22,
+    textAlign: 'center',
+  },
+  avatarPromoLinkButton: {
+    alignSelf: 'center',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.34)',
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+  },
+  avatarPromoLink: {
+    color: aiChingColors.gold,
+    fontSize: 12,
+    lineHeight: 17,
+    fontWeight: '800',
+    textAlign: 'center',
+    textTransform: 'uppercase',
+  },
+  avatarPromoNote: {
+    color: aiChingColors.muted,
+    fontSize: 14,
+    lineHeight: 20,
+    textAlign: 'center',
+  },
+  avatarPromoReadingTitle: {
+    color: aiChingColors.gold,
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '800',
+    marginTop: 4,
+    textAlign: 'center',
+    textTransform: 'uppercase',
   },
   primaryImageFrame: {
     width: 88,
