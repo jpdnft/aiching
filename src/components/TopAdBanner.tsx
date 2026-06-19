@@ -3,13 +3,14 @@ import { Platform, StyleSheet, Text, View } from 'react-native';
 import mobileAds, { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
 const productionAndroidTopBannerAdUnitId = 'ca-app-pub-6827002425129688/6148893375';
+const productionIosTopBannerAdUnitId = 'ca-app-pub-6827002425129688/2097967722';
 
 export function TopAdBanner() {
   const adUnitId = __DEV__
     ? TestIds.BANNER
     : Platform.select({
         android: productionAndroidTopBannerAdUnitId,
-        ios: TestIds.BANNER,
+        ios: productionIosTopBannerAdUnitId,
         default: TestIds.BANNER,
       });
 
