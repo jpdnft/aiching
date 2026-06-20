@@ -24,7 +24,9 @@ import {
   clearTodaysReadingForDev,
   clearCurrentReading,
   getCurrentReading,
+  getTodaysCastCount,
   saveCompletedReading,
+  saveNewCompletedReading,
 } from '@/storage/readingsStorage';
 import { useAppTheme } from '@/theme/appTheme';
 import { getCastingSoundSource } from '@/theme/castingSounds';
@@ -33,6 +35,7 @@ import { getHomeBackgroundSource } from '@/theme/hexagramBackgrounds';
 import { getLocalDateKey } from '@/utils/date';
 
 const iChingLogo = require('../../assets/images/ichinglogo.png');
+const BASIC_DAILY_CAST_LIMIT = 2;
 
 export default function CastScreen() {
   const router = useRouter();
@@ -43,6 +46,7 @@ export default function CastScreen() {
   const [lines, setLines] = useState<PartialHexagramLines>([]);
   const [question, setQuestion] = useState('');
   const [todaysReading, setTodaysReading] = useState<CompletedReading | null>(null);
+  const [todaysCastCount, setTodaysCastCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [animatedLineIndex, setAnimatedLineIndex] = useState<number | null>(null);
@@ -53,8 +57,10 @@ export default function CastScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      getCurrentReading()
-        .then((storedReading) => {
+      Promise.all([getCurrentReading(), getTodaysCastCount()])
+        .then(([storedReading, castCountToday]) => {
+          setTodaysCastCount(castCountToday);
+
           if (storedReading) {
             setTodaysReading(storedReading);
             return;
@@ -87,6 +93,8 @@ export default function CastScreen() {
   }, [freshCast]);
 
   const castCount = lines.length;
+  const basicCastsRemaining = Math.max(BASIC_DAILY_CAST_LIMIT - todaysCastCount, 0);
+  const basicLimitReached = appVersion === 'basic' && basicCastsRemaining <= 0;
   const isComplete = isCompleteHexagram(lines);
   const castButtonLabel = isComplete ? '📜 REVEAL ➤' : `➜ Cast #${castButtonStep} of 6 ➜`;
   const homeBackgroundSource = getHomeBackgroundSource(themeId);
@@ -145,7 +153,12 @@ export default function CastScreen() {
       question: entitlements.aiReadingsEnabled ? question.trim() || undefined : undefined,
     });
 
-    await saveCompletedReading(reading);
+    if (appVersion === 'basic') {
+      await saveNewCompletedReading(reading);
+      setTodaysCastCount((currentCount) => currentCount + 1);
+    } else {
+      await saveCompletedReading(reading);
+    }
     setTodaysReading(reading);
     setIsSaving(false);
     router.push(entitlements.aiReadingsEnabled ? '/reading-premium' : '/reading');
@@ -153,6 +166,7 @@ export default function CastScreen() {
 
   async function handleDevResetToday() {
     await clearTodaysReadingForDev();
+    setTodaysCastCount(0);
     setTodaysReading(null);
     setLines([]);
     setQuestion('');
@@ -164,6 +178,19 @@ export default function CastScreen() {
 
   async function handleClearCurrentReading() {
     await clearCurrentReading();
+    startFreshCast();
+  }
+
+  async function handleStartAnotherBasicReading() {
+    if (basicLimitReached) {
+      return;
+    }
+
+    await clearCurrentReading();
+    startFreshCast();
+  }
+
+  function startFreshCast() {
     setTodaysReading(null);
     setLines([]);
     setQuestion('');
@@ -207,7 +234,11 @@ export default function CastScreen() {
     return (
       <CastBackground backgroundSource={homeBackgroundSource} scrollKey={`today-${castScreenKey}`} showLogo>
         <View style={styles.hero}>
-          {appVersion === 'basic' ? <Text style={styles.kicker}>Today has been cast</Text> : null}
+          {appVersion === 'basic' ? (
+            <Text style={styles.kicker}>
+              {basicLimitReached ? 'Today has been cast' : `${basicCastsRemaining} reading left today`}
+            </Text>
+          ) : null}
           <HexagramView lines={todaysReading.lines} />
           <Text style={styles.title}>
             Hexagram {todaysReading.hexagramNumber}: {todaysReading.hexagramName}
@@ -216,6 +247,13 @@ export default function CastScreen() {
             label="VIEW READING"
             onPress={() => router.push(entitlements.aiReadingsEnabled ? '/reading-premium' : '/reading')}
           />
+          {appVersion === 'basic' && !basicLimitReached ? (
+            <Pressable
+              onPress={handleStartAnotherBasicReading}
+              style={({ pressed }) => [styles.secondaryButton, pressed && styles.secondaryButtonPressed]}>
+              <Text style={styles.secondaryButtonText}>Cast your second free reading today</Text>
+            </Pressable>
+          ) : null}
           {appVersion === 'basic' ? <PremiumPromoBox /> : null}
           {entitlements.unlimitedCastingEnabled ? (
             <Pressable
@@ -239,7 +277,9 @@ export default function CastScreen() {
       <View style={styles.hero}>
         <View style={styles.heading}>
           {appVersion === 'basic' ? (
-            <Text style={styles.title}>Hold a question, feeling, or intention in mind as you cast a hexagram!</Text>
+            <Text style={[styles.title, styles.castPromptTitle]}>
+              Hold a question, feeling, or intention in mind as you cast a hexagram!
+            </Text>
           ) : (
             <View style={styles.questionBox}>
               <Text style={styles.questionLabel}>Ask the Oracle (Optional)</Text>
@@ -266,12 +306,16 @@ export default function CastScreen() {
         <Text style={styles.progress}>{castCount}/6 lines cast</Text>
         <CastButton
           label={castButtonLabel}
-          disabled={isSaving || isCastingLineAnimating}
+          disabled={basicLimitReached || isSaving || isCastingLineAnimating}
           onPress={isComplete ? handleReveal : handleCast}
         />
         {appVersion === 'basic' ? (
           <>
-            <Text style={styles.intention}>Careful! You can only cast one hexagram per day.</Text>
+            <Text style={styles.intention}>
+              {basicLimitReached
+                ? 'You have used both free readings for today.'
+                : `${basicCastsRemaining} free reading${basicCastsRemaining === 1 ? '' : 's'} left today.`}
+            </Text>
             <PremiumPromoBox />
           </>
         ) : null}
@@ -390,6 +434,9 @@ const styles = StyleSheet.create({
     lineHeight: 34,
     fontWeight: '700',
     textAlign: 'center',
+  },
+  castPromptTitle: {
+    maxWidth: '85%',
   },
   body: {
     color: aiChingColors.muted,

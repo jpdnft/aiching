@@ -1,9 +1,19 @@
 import { ReactNode } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TextStyle, View } from 'react-native';
 
 import { aiChingColors } from '@/theme/colors';
 
-export function PremiumReadingText({ compact = false, text }: { compact?: boolean; text: string }) {
+export function PremiumReadingText({
+  compact = false,
+  headingStyle,
+  text,
+  textStyle,
+}: {
+  compact?: boolean;
+  headingStyle?: TextStyle;
+  text: string;
+  textStyle?: TextStyle;
+}) {
   const blocks = text
     .split(/\n{2,}/)
     .map((block) => block.trim())
@@ -25,6 +35,7 @@ export function PremiumReadingText({ compact = false, text }: { compact?: boolea
               style={[
                 marks.length === 1 ? styles.headingLarge : styles.heading,
                 compact && styles.headingCompact,
+                headingStyle,
               ]}>
               {stripTrailingMarkdownMarks(heading)}
             </Text>
@@ -42,8 +53,8 @@ export function PremiumReadingText({ compact = false, text }: { compact?: boolea
 
                 return (
                   <View key={`list-item-${blockIndex}-${lineIndex}`} style={styles.listItem}>
-                    <Text style={[styles.bullet, compact && styles.textCompact]}>{bullet}</Text>
-                    <Text style={[styles.listText, compact && styles.textCompact]}>
+                    <Text style={[styles.bullet, compact && styles.textCompact, textStyle]}>{bullet}</Text>
+                    <Text style={[styles.listText, compact && styles.textCompact, textStyle]}>
                       {renderInlineMarkdown(content, `list-${blockIndex}-${lineIndex}`)}
                     </Text>
                   </View>
@@ -54,7 +65,9 @@ export function PremiumReadingText({ compact = false, text }: { compact?: boolea
         }
 
         return (
-          <Text key={`paragraph-${blockIndex}`} style={[styles.paragraph, compact && styles.textCompact]}>
+          <Text
+            key={`paragraph-${blockIndex}`}
+            style={[styles.paragraph, compact && styles.textCompact, textStyle]}>
             {renderInlineMarkdown(lines.join(' '), `paragraph-${blockIndex}`)}
           </Text>
         );

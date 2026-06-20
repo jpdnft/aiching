@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import { ActivityIndicator, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, Text, TextInput, TextStyle, View } from 'react-native';
 import { Image } from 'expo-image';
 import { useFocusEffect } from 'expo-router';
 
@@ -8,13 +8,13 @@ import { PremiumReadingText } from '@/components/PremiumReadingText';
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { CompletedReading } from '@/core/iching/types';
 import { clearReadingHistory, deleteReadingFromHistory, getReadingHistory } from '@/storage/readingsStorage';
-import { useAppTheme } from '@/theme/appTheme';
+import { ReadingTextSize, useAppTheme } from '@/theme/appTheme';
 import { aiChingColors } from '@/theme/colors';
 import { getHexagramBackgroundSource } from '@/theme/hexagramBackgrounds';
 import { formatReadingDate } from '@/utils/date';
 
 export default function HistoryScreen() {
-  const { themeId } = useAppTheme();
+  const { readingTextSize, themeId } = useAppTheme();
   const [clearConfirmVisible, setClearConfirmVisible] = useState(false);
   const [deleteConfirmReadingId, setDeleteConfirmReadingId] = useState<string | null>(null);
   const [expandedReadingIds, setExpandedReadingIds] = useState<string[]>([]);
@@ -22,6 +22,10 @@ export default function HistoryScreen() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [visibleReadingCount, setVisibleReadingCount] = useState(historyPageSize);
+  const historyTextStyles = useMemo(
+    () => getHistoryTextStyles(readingTextSize),
+    [readingTextSize],
+  );
 
   useFocusEffect(
     useCallback(() => {
@@ -145,12 +149,16 @@ export default function HistoryScreen() {
       {readings.length === 0 ? (
         <View style={styles.empty}>
           <Text style={styles.emptyTitle}>Your past readings will appear here.</Text>
-          <Text style={styles.body}>Readings and premium answers are saved locally on this device.</Text>
+          <Text style={[styles.body, historyTextStyles.body]}>
+            Readings and premium answers are saved locally on this device.
+          </Text>
         </View>
       ) : filteredReadings.length === 0 ? (
         <View style={styles.empty}>
           <Text style={styles.emptyTitle}>No readings match that search.</Text>
-          <Text style={styles.body}>Try a hexagram name, question, answer phrase, or reader voice.</Text>
+          <Text style={[styles.body, historyTextStyles.body]}>
+            Try a hexagram name, question, answer phrase, or reader voice.
+          </Text>
         </View>
       ) : (
         <View style={styles.list}>
@@ -180,11 +188,11 @@ export default function HistoryScreen() {
                     <Text style={styles.cardTitle}>
                       Hexagram {reading.hexagramNumber}: {reading.hexagramName}
                     </Text>
-                    <Text style={styles.cardBody}>{reading.theme}</Text>
+                    <Text style={[styles.cardBody, historyTextStyles.cardBody]}>{reading.theme}</Text>
                     {askedQuestion ? (
                       <View style={styles.detailBlock}>
                         <Text style={styles.detailLabel}>Question</Text>
-                        <Text style={styles.detailText}>{askedQuestion}</Text>
+                        <Text style={[styles.detailText, historyTextStyles.detailText]}>{askedQuestion}</Text>
                       </View>
                     ) : null}
                     {premiumReading ? (
@@ -193,9 +201,16 @@ export default function HistoryScreen() {
                           Premium Answer by {premiumReading.personalityName}
                         </Text>
                         {isExpanded ? (
-                          <PremiumReadingText compact text={premiumReading.text} />
+                          <PremiumReadingText
+                            compact
+                            headingStyle={historyTextStyles.premiumHeading}
+                            text={premiumReading.text}
+                            textStyle={historyTextStyles.premiumText}
+                          />
                         ) : (
-                          <Text style={styles.detailText}>{getExcerpt(premiumReading.text)}</Text>
+                          <Text style={[styles.detailText, historyTextStyles.detailText]}>
+                            {getExcerpt(premiumReading.text)}
+                          </Text>
                         )}
                         {premiumReading.text.length > historyExcerptLength ? (
                           <Pressable
@@ -253,6 +268,74 @@ export default function HistoryScreen() {
 
 const historyExcerptLength = 360;
 const historyPageSize = 25;
+
+type HistoryTextStyles = {
+  body: TextStyle;
+  cardBody: TextStyle;
+  detailText: TextStyle;
+  premiumHeading: TextStyle;
+  premiumText: TextStyle;
+};
+
+function getHistoryTextStyles(textSize: ReadingTextSize): HistoryTextStyles {
+  if (textSize === 'extraLarge') {
+    return {
+      body: {
+        fontSize: 19,
+        lineHeight: 29,
+      },
+      cardBody: {
+        fontSize: 19,
+        lineHeight: 29,
+      },
+      detailText: {
+        fontSize: 18,
+        lineHeight: 27,
+      },
+      premiumHeading: {
+        fontSize: 19,
+        lineHeight: 26,
+      },
+      premiumText: {
+        fontSize: 18,
+        lineHeight: 27,
+      },
+    };
+  }
+
+  if (textSize === 'large') {
+    return {
+      body: {
+        fontSize: 17,
+        lineHeight: 26,
+      },
+      cardBody: {
+        fontSize: 17,
+        lineHeight: 26,
+      },
+      detailText: {
+        fontSize: 16,
+        lineHeight: 24,
+      },
+      premiumHeading: {
+        fontSize: 17,
+        lineHeight: 23,
+      },
+      premiumText: {
+        fontSize: 16,
+        lineHeight: 24,
+      },
+    };
+  }
+
+  return {
+    body: {},
+    cardBody: {},
+    detailText: {},
+    premiumHeading: {},
+    premiumText: {},
+  };
+}
 
 function getExcerpt(text: string): string {
   const normalized = normalizeHistoryText(text);

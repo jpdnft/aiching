@@ -7,7 +7,7 @@ import { aiChingColors } from '@/theme/colors';
 
 const versionOptions: Array<{ body: string; label: string; value: AppVersion }> = [
   {
-    body: 'The free version with one daily cast, static readings, and ads when ad support is enabled.',
+    body: 'The free version with two daily casts, static readings, and ads when ad support is enabled.',
     label: 'Basic',
     value: 'basic',
   },
@@ -50,6 +50,11 @@ export default function VersionScreen() {
           <Text style={styles.note}>
             Internet or Wi-Fi access is required for AI-enhanced reading features.
           </Text>
+          <Pressable
+            onPress={() => router.push('/sample')}
+            style={({ pressed }) => [styles.secondaryButton, pressed && styles.pressed]}>
+            <Text style={styles.secondaryButtonText}>View Sample Premium Reading</Text>
+          </Pressable>
           <Pressable style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]}>
             <Text style={styles.primaryButtonText}>Upgrade to Premium</Text>
           </Pressable>

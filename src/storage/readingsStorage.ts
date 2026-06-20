@@ -5,7 +5,13 @@ import { getLocalDateKey } from '@/utils/date';
 
 const HISTORY_KEY = 'aiching.readings.history.v1';
 const TODAY_KEY = 'aiching.readings.today.v1';
+const DAILY_CAST_USAGE_KEY = 'aiching.readings.dailyCastUsage.v1';
 const MAX_HISTORY_ENTRIES = 1000;
+
+type DailyCastUsage = {
+  count: number;
+  localDate: string;
+};
 
 async function readJson<T>(key: string, fallback: T): Promise<T> {
   const raw = await AsyncStorage.getItem(key);
@@ -58,8 +64,38 @@ export async function saveCompletedReading(reading: CompletedReading): Promise<v
   ]);
 }
 
+export async function saveNewCompletedReading(reading: CompletedReading): Promise<void> {
+  await recordDailyCast();
+  await saveCompletedReading(reading);
+}
+
+export async function getTodaysCastCount(): Promise<number> {
+  const today = getLocalDateKey();
+  const stored = await readJson<DailyCastUsage | null>(DAILY_CAST_USAGE_KEY, null);
+
+  if (stored?.localDate === today) {
+    return stored.count;
+  }
+
+  const history = await getReadingHistory();
+  return history.filter((reading) => reading.localDate === today).length;
+}
+
+async function recordDailyCast(): Promise<void> {
+  const today = getLocalDateKey();
+  const currentCount = await getTodaysCastCount();
+
+  await AsyncStorage.setItem(
+    DAILY_CAST_USAGE_KEY,
+    JSON.stringify({
+      count: currentCount + 1,
+      localDate: today,
+    }),
+  );
+}
+
 export async function clearReadingHistory(): Promise<void> {
-  await AsyncStorage.multiRemove([HISTORY_KEY, TODAY_KEY]);
+  await AsyncStorage.multiRemove([HISTORY_KEY, TODAY_KEY, DAILY_CAST_USAGE_KEY]);
 }
 
 export async function deleteReadingFromHistory(readingId: string): Promise<void> {
@@ -101,4 +137,5 @@ export async function clearCurrentReading(): Promise<void> {
 
 export async function clearTodaysReadingForDev(): Promise<void> {
   await clearCurrentReading();
+  await AsyncStorage.removeItem(DAILY_CAST_USAGE_KEY);
 }

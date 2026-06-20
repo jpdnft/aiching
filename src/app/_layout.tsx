@@ -112,6 +112,7 @@ function AppTabs({ colorScheme }: { colorScheme: ReturnType<typeof useColorSchem
           <Tabs.Screen name="future" options={{ href: null }} />
           <Tabs.Screen name="about" options={{ href: null }} />
           <Tabs.Screen name="version" options={{ href: null }} />
+          <Tabs.Screen name="sample" options={{ href: null }} />
           <Tabs.Screen name="reading-premium" options={{ href: null }} />
         </Tabs>
       </View>

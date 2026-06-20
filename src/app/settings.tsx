@@ -1,14 +1,42 @@
 import { useEffect } from 'react';
+import { Image } from 'expo-image';
 import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
 import { setAudioModeAsync, useAudioPlayer } from 'expo-audio';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { appInfo } from '@/config/appInfo';
-import { aiReadingPersonalities, AiReadingPersonality } from '@/core/aiReadings/personalities';
+import {
+  aiReadingPersonalities,
+  AiReadingPersonality,
+  AiReadingPersonalityId,
+} from '@/core/aiReadings/personalities';
 import { ReadingTextSize, useAppTheme } from '@/theme/appTheme';
 import { CastingSound, castingSoundList } from '@/theme/castingSounds';
 import { aiChingColors } from '@/theme/colors';
-import { hexagramThemeList, HexagramThemeManifest } from '@/theme/hexagramBackgrounds';
+import {
+  hexagramThemeList,
+  HexagramThemeId,
+  HexagramThemeManifest,
+} from '@/theme/hexagramBackgrounds';
+
+const themeOracleSamples: Record<HexagramThemeId, number> = {
+  '01': require('@/assets/hexagrams/themes/01/lantern_oracle.jpg'),
+  '02': require('@/assets/hexagrams/themes/02/lantern_oracle.jpg'),
+  '03': require('@/assets/hexagrams/themes/03/lantern_oracle.jpg'),
+};
+
+const personalitySamples: Record<AiReadingPersonalityId, number> = {
+  lantern_oracle: require('@/assets/hexagrams/themes/02/lantern_oracle.jpg'),
+  weathered_sage: require('@/assets/hexagrams/themes/01/weathered_sage.jpg'),
+  temple_poet: require('@/assets/hexagrams/themes/03/temple_poet.jpg'),
+  river_hermit: require('@/assets/hexagrams/themes/02/river_hermit.jpg'),
+  star_cartographer: require('@/assets/hexagrams/themes/03/star_cartographer.jpg'),
+  tea_house_auntie: require('@/assets/hexagrams/themes/01/tea_house_auntie.jpg'),
+  mountain_strategist: require('@/assets/hexagrams/themes/02/mountain_strategist.jpg'),
+  dream_librarian: require('@/assets/hexagrams/themes/03/dream_librarian.jpg'),
+  storm_witch: require('@/assets/hexagrams/themes/01/storm_witch.jpg'),
+  garden_monk: require('@/assets/hexagrams/themes/02/garden_monk.jpg'),
+};
 
 export default function SettingsScreen() {
   const {
@@ -38,6 +66,7 @@ export default function SettingsScreen() {
           {hexagramThemeList.map((theme) => (
             <ThemeOption
               key={theme.id}
+              avatarSource={themeOracleSamples[theme.id]}
               theme={theme}
               selected={theme.id === themeId}
               onPress={() => setThemeId(theme.id)}
@@ -89,6 +118,7 @@ export default function SettingsScreen() {
             <PersonalityOption
               disabled={!entitlements.aiReadingsEnabled}
               key={personality.id}
+              avatarSource={personalitySamples[personality.id]}
               onSelect={() => setAiReadingPersonalityId(personality.id)}
               personality={personality}
               selected={personality.id === aiReadingPersonalityId}
@@ -132,6 +162,7 @@ export default function SettingsScreen() {
         <Text style={styles.sectionTitle}>Build</Text>
         <Text style={styles.settingDescription}>Version {appInfo.version}</Text>
         <Text style={styles.settingDescription}>Bundle {appInfo.buildLabel}</Text>
+        <Text style={styles.settingDescription}>Timestamp {appInfo.buildTimestampCode}</Text>
       </View>
     </ScreenContainer>
   );
@@ -159,10 +190,12 @@ const textSizePreviewStyles: Record<ReadingTextSize, { fontSize: number; lineHei
 };
 
 function ThemeOption({
+  avatarSource,
   theme,
   selected,
   onPress,
 }: {
+  avatarSource: number;
   theme: HexagramThemeManifest;
   selected: boolean;
   onPress: () => void;
@@ -179,6 +212,7 @@ function ThemeOption({
         disabled && styles.themeOptionDisabled,
         pressed && !disabled && styles.themeOptionPressed,
       ]}>
+      <Image source={avatarSource} style={styles.optionAvatar} contentFit="cover" />
       <View style={styles.themeText}>
         <Text style={styles.themeName}>{theme.name}</Text>
         <Text style={styles.themeMeta}>{theme.description}</Text>
@@ -245,11 +279,13 @@ function SoundOption({
 }
 
 function PersonalityOption({
+  avatarSource,
   disabled,
   onSelect,
   personality,
   selected,
 }: {
+  avatarSource: number;
   disabled: boolean;
   onSelect: () => void;
   personality: AiReadingPersonality;
@@ -265,6 +301,7 @@ function PersonalityOption({
         disabled && styles.themeOptionDisabled,
         pressed && !disabled && styles.themeOptionPressed,
       ]}>
+      <Image source={avatarSource} style={styles.optionAvatar} contentFit="cover" />
       <View style={styles.themeText}>
         <Text style={[styles.themeName, selected && styles.themeStateSelected]}>{personality.name}</Text>
         <Text style={styles.themeMeta}>{personality.description}</Text>
@@ -327,6 +364,12 @@ const styles = StyleSheet.create({
   },
   themeOptionPressed: {
     opacity: 0.78,
+  },
+  optionAvatar: {
+    width: 64,
+    height: 64,
+    borderRadius: 8,
+    backgroundColor: 'rgba(219, 226, 223, 0.08)',
   },
   themeText: {
     flex: 1,
