@@ -5,6 +5,7 @@ export type GeneratePremiumReadingParams = {
   personalityId: string;
   question?: string;
   readingId: string;
+  themeId: string;
 };
 
 export type GeneratePremiumReadingResult = {

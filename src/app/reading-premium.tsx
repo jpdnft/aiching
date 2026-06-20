@@ -44,6 +44,7 @@ export default function PremiumReadingScreen() {
         personalityId: aiReadingPersonalityId,
         question: readingToGenerate.question,
         readingId: readingToGenerate.id,
+        themeId,
       });
       const updatedReading = await savePremiumReadingForToday(premiumReading);
       setReading(updatedReading);
@@ -53,7 +54,7 @@ export default function PremiumReadingScreen() {
       isGeneratingRef.current = false;
       setIsGenerating(false);
     }
-  }, [aiReadingPersonalityId]);
+  }, [aiReadingPersonalityId, themeId]);
 
   useFocusEffect(
     useCallback(() => {

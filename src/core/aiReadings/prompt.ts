@@ -2,6 +2,7 @@ import { aiReadingConfig } from '@/config/aiReading';
 import { Hexagram } from '@/core/iching/types';
 
 import { AiReadingPersonality } from './personalities';
+import { AiReadingThemeMood } from './themeMoods';
 
 export const AI_READING_PREPEND_NOTE = `You are a professional I Ching interpreter with deep knowledge of the ancient Book of Changes, its symbolic structure, and its practical use as a mirror for timing, character, tension, and transformation.
 
@@ -17,23 +18,37 @@ export function buildAiReadingPrompt({
   hexagram,
   personality,
   question,
+  themeMood,
 }: {
   hexagram: Hexagram;
   personality: AiReadingPersonality;
   question?: string;
+  themeMood?: AiReadingThemeMood;
 }): string {
-  return `${buildPrependNote(personality)}
+  return `${buildPrependNote(personality, themeMood)}
 
 ${buildBodyPrompt(hexagram)}
 
 ${buildQuestionPrompt(question)}`;
 }
 
-export function buildPrependNote(personality: AiReadingPersonality): string {
+export function buildPrependNote(
+  personality: AiReadingPersonality,
+  themeMood?: AiReadingThemeMood,
+): string {
+  const themeNote = themeMood
+    ? `
+
+THEME ATMOSPHERE:
+The selected visual theme is ${themeMood.name}. ${themeMood.instruction}
+Let this theme influence imagery, pacing, and emotional weather lightly. Do not let it override the oracle personality, and do not mention the theme by name unless it feels natural.`
+    : '';
+
   return `${AI_READING_PREPEND_NOTE}
 
 PERSONALITY NOTE:
-${personality.instruction}`;
+${personality.instruction}
+Let this personality shape word choice, metaphors, emotional tone, section framing, and practical counsel throughout the entire reading. Keep the voice distinct enough to feel chosen, while still sounding wise, useful, and human.${themeNote}`;
 }
 
 function buildBodyPrompt(hexagram: Hexagram): string {

@@ -2,12 +2,14 @@ import { aiReadingConfig } from '../../config/aiReading';
 import { getHexagramByNumber } from '../iching/hexagrams';
 import { buildAiReadingPrompt } from './prompt';
 import { getAiReadingPersonality } from './personalities';
+import { getAiReadingThemeMood } from './themeMoods';
 
 export type PremiumReadingRequest = {
   hexagramNumber?: number;
   personalityId?: string;
   question?: string;
   readingId?: string;
+  themeId?: string;
 };
 
 type OpenAiTextContent = {
@@ -51,10 +53,12 @@ export async function generatePremiumReadingOnServer(body: PremiumReadingRequest
   const question = getValidatedQuestion(body.question);
   const hexagram = getHexagramByNumber(body.hexagramNumber);
   const personality = getAiReadingPersonality(body.personalityId);
+  const themeMood = getAiReadingThemeMood(body.themeId);
   const prompt = buildAiReadingPrompt({
     hexagram,
     personality,
     question,
+    themeMood,
   });
   const model = process.env.OPENAI_READING_MODEL || aiReadingConfig.defaultModel;
   const reasoningEffort = process.env.OPENAI_READING_REASONING_EFFORT || aiReadingConfig.reasoningEffort;
