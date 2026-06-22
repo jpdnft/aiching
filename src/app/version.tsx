@@ -1,4 +1,5 @@
 import { useRouter } from 'expo-router';
+import { Image } from 'expo-image';
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -6,6 +7,8 @@ import { ScreenContainer } from '@/components/ScreenContainer';
 import { usageLimits } from '@/config/usageLimits';
 import { AppVersion, useAppTheme } from '@/theme/appTheme';
 import { aiChingColors } from '@/theme/colors';
+
+const premiumOracleImage = require('@/assets/hexagrams/themes/03/mountain_strategist.jpg');
 
 const versionOptions: Array<{ body: string; label: string; value: AppVersion }> = [
   {
@@ -62,17 +65,27 @@ export default function VersionScreen() {
       </View>
 
       {appVersion === 'basic' ? (
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Upgrade to Premium</Text>
-          <Text style={styles.price}>$3.99 / month</Text>
+        <View style={[styles.card, styles.premiumOfferCard]}>
+          <View style={styles.offerHero}>
+            <View style={styles.offerCopy}>
+              <Text style={styles.offerKicker}>Premium Oracle</Text>
+              <Text style={styles.offerTitle}>Upgrade to Premium</Text>
+              <Text style={styles.price}>$3.99 / month</Text>
+            </View>
+            <Image source={premiumOracleImage} style={styles.offerImage} contentFit="cover" />
+          </View>
           <View style={styles.featureList}>
-            <Text style={styles.featureItem}>- Oracle-powered readings shaped around your question</Text>
-            <Text style={styles.featureItem}>- Changing lines powered by traditional casting logic</Text>
             <Text style={styles.featureItem}>
-              - Up to {usageLimits.premiumDailyAiReadingLimit} premium oracle-powered readings per day
+              - Impossibly detailed Oracle-powered readings shaped around your specific question
             </Text>
-            <Text style={styles.featureItem}>- Ad-free experience</Text>
-            <Text style={styles.featureItem}>- Daily reminder notifications</Text>
+            <Text style={styles.featureItem}>
+              - Changing lines powered by traditional casting logic, with full interpretations
+            </Text>
+            <Text style={styles.featureItem}>
+              - Up to {usageLimits.premiumDailyAiReadingLimit} full oracle-powered readings per day
+            </Text>
+            <Text style={styles.featureItem}>- Totally ad-free experience</Text>
+            <Text style={styles.featureItem}>- Daily reminder notifications (optional feature)</Text>
             <Text style={styles.featureItem}>- Premium visual themes</Text>
           </View>
           <Text style={styles.note}>
@@ -221,6 +234,55 @@ const styles = StyleSheet.create({
     padding: 18,
     gap: 8,
     marginBottom: 18,
+  },
+  premiumOfferCard: {
+    borderColor: 'rgba(231, 197, 111, 0.54)',
+    backgroundColor: 'rgba(33, 27, 13, 0.72)',
+    shadowColor: '#e7c56f',
+    shadowOpacity: 0.25,
+    shadowRadius: 18,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+  },
+  offerKicker: {
+    alignSelf: 'flex-start',
+    borderRadius: 8,
+    overflow: 'hidden',
+    backgroundColor: 'rgba(231, 197, 111, 0.16)',
+    color: aiChingColors.gold,
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '900',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    textTransform: 'uppercase',
+  },
+  offerTitle: {
+    color: aiChingColors.mist,
+    fontSize: 24,
+    lineHeight: 30,
+    fontWeight: '900',
+  },
+  offerHero: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 14,
+  },
+  offerCopy: {
+    flex: 1,
+    gap: 8,
+  },
+  offerImage: {
+    width: '42%',
+    maxWidth: 180,
+    minWidth: 120,
+    aspectRatio: 1,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.44)',
+    backgroundColor: 'rgba(16, 19, 24, 0.52)',
   },
   cardTitle: {
     color: aiChingColors.gold,

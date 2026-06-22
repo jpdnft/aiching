@@ -2,90 +2,120 @@ import { useRouter } from 'expo-router';
 import { Image } from 'expo-image';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { HexagramView } from '@/components/HexagramView';
 import { PremiumReadingText } from '@/components/PremiumReadingText';
 import { ScreenContainer } from '@/components/ScreenContainer';
+import { HexagramLines } from '@/core/iching/types';
 import { aiChingColors } from '@/theme/colors';
 
-const sampleReadingQuestion = 'Will I be successful in my job search?';
-const sampleReadingHexagram = 'Hexagram 52: Keeping Still';
-const sampleReadingPersonality = 'Weathered Sage';
+const sampleReadingQuestion = 'What is the wise move in my work situation right now?';
+const sampleReadingHexagram = 'Hexagram 4: Youthful Folly';
+const sampleChangingHexagram = 'Changing line 6 points toward Hexagram 7: The Army';
+const sampleReadingPersonality = 'Dream Librarian';
 const sampleReadingTheme = 'Mystical Cats';
-const sampleOracleImage = require('@/assets/hexagrams/themes/03/weathered_sage.jpg');
+const sampleOracleImage = require('@/assets/hexagrams/themes/03/dream_librarian.jpg');
+const sampleReadingLines: HexagramLines = [
+  'young_yin',
+  'young_yang',
+  'young_yin',
+  'young_yin',
+  'young_yin',
+  'old_yang',
+];
 
-const sampleReadingText = `## The Heart of the Reading: Keeping Still
+const sampleReadingText = `## Reading: Youthful Folly at the Desk of the Mountain
 
-Hexagram 52, **Keeping Still**, is a plainspoken oracle for a job search that may be asking for more composure than speed. Mountain upon mountain: there is no dramatic climbing here, no charge up the ridge with banner flying. The image is of a person who knows when to stop, breathe, and let the mind settle back into its true proportions.
+Your work situation is not asking for brilliance first. It is asking for teachability.
 
-So, to your question: **the reading does not favor frantic effort; it favors disciplined stillness, selective action, and clear boundaries.** In practical terms, this means your job search is more likely to bear fruit if you resist the urge to scatter yourself. Pause without apology. Not every posting deserves an application. Not every opportunity deserves your energy. And not every silence from the world is a rejection; some silences are simply the world not yet having formed its answer.
+Hexagram 4, Youthful Folly, is the image of a bright but unfinished mind meeting a steep and unfamiliar landscape. In work, this often appears when the terrain is real, the stakes matter, but the map is incomplete. The oracle does not scold you for not knowing enough; it warns against pretending you already do. The wise move is to become the kind of person who can ask the right question before making the wrong declaration.
 
-There is a quiet dignity in this hexagram. It suggests that success comes not by proving yourself at every turn, but by becoming centered enough that your next step is well chosen.
+Mountain above Water gives a particular mood: the mountain stops; the water seeks. Something in the situation is blocked, held back, or not yet ready to flow freely. That is not failure. It is a timing problem, and possibly a learning problem. The path opens more by patience, clarity, and well-aimed inquiry than by force.
 
-## What “Success” Looks Like Here
+## The Core Counsel
 
-This is not the kind of omen that says, “Press harder and you shall prevail.” It says something subtler: **success comes through proportion**.
+The good move now is to **adopt a student's posture with a strategist's eyes**.
 
-In a job search, keeping still can mean:
+That means:
 
-- refining your materials instead of endlessly sending them out,
-- waiting long enough to recognize the right opening,
-- not collapsing your worth into the outcome of one interview,
-- making room for discernment rather than desperation,
-- and holding your ground when self-doubt tries to make a fool of you.
+- ask for clarification where the situation is blurry,
+- check assumptions before acting on them,
+- do not overperform certainty,
+- and let the process teach you what the role, project, or people are actually asking of you.
 
-A mountain does not chase the clouds; it stands, and in time the weather reveals the shape of things. That is the counsel here. If you are too restless, you may blur your own signal. If you are too passive, you may miss the moment. The art is in **stillness with alertness**.
+The old books would say: the master does not shame the novice, but neither does the master indulge sloppy attention. There is a narrow, useful dignity here: to be humble without being passive.
 
-## The Reversed View: Hexagram 51, The Arousing
+If you are feeling pressure to "prove yourself," beware. Youthful Folly often tempts a person into looking wise instead of becoming wise. In work, that usually means speaking too soon, committing too early, or agreeing to a structure before you understand its cost.
 
-Flipped over, Keeping Still becomes **The Arousing**—shock, awakening, thunder. This is the hidden counterpoint. It suggests that beneath the quiet surface, something may jolt you into motion: an unexpected contact, a sudden opening, a sharp realization about what kind of work you truly want.
+## What the Moving Line Says
 
-So the job search may not unfold as a smooth, linear ascent. There may be a moment of interruption, a bit of news that startles you, or a push that reveals what you had been avoiding. Sometimes the mountain must be shaken before one discovers what is loose and what is solid.
+Only the top line changes, and that matters. The hexagram has been climbing through the lower terrain of uncertainty, and at the top there is a solid yang line turning. This suggests the decisive issue is not at the beginning of the matter, but at the threshold of how you respond to its highest demand.
 
-This is useful counsel: **do not mistake stillness for stagnation**. The reading asks you to prepare inwardly so that when the jolt comes, you can move cleanly rather than flail. Keep your documents ready. Keep your mind ready. Keep your nerves from writing checks your future cannot cash.
+At the summit, the changing line points toward **The Army**.
 
-From the far side, another self is looking back through The Arousing and saying: *Be ready. The opening may not arrive in the form you expected.*
+That is a strong sign: the situation wants order, coordination, role clarity, and disciplined action. Not chaos, not improvisation by personality alone. The next stage is not "more feeling" but **better organization**.
 
-## The Complementary Field: Hexagram 58, The Joyous
+So the wise move is to gather the scattered pieces:
 
-The opposite current is **The Joyous**—exchange, openness, shared delight, gracious communication. This matters a great deal in a job search, because it points to the medicine that balances your mountain-stillness.
+- define who is responsible for what,
+- create a structure for follow-through,
+- make expectations visible,
+- and let your energy become coordinated rather than diffuse.
 
-If Keeping Still says, “Do not overreach,” The Joyous says, “Do not harden.”
+If there has been ambiguity, the remedy is not to guess harder. It is to bring the matter into form.
 
-A job search is not only a matter of qualifications; it is also a matter of resonance. Do you sound like someone who can exchange ideas, take part in a team, bring some warmth into the room? Do you allow a little human ease to come through your words? The Joyous suggests that **connection, conversation, and a light touch** may be more persuasive than anxious self-justification.
+## The Reversed View: Difficulty at the Beginning
 
-But there is also a shadow here: you may be tempted to cheer yourself into pretending all is well, or to smile through uncertainty until you no longer know what you actually need. The balance is to be open without being porous, friendly without being inflated.
+Turn the hexagram upside down and it becomes Difficulty at the Beginning. This is useful. It suggests the situation may be younger than it looks. Something is still germinating. A process, team dynamic, or responsibility may be in its awkward first stage, even if people are behaving as though it should already be mature.
 
-So the contrast between 52 and 58 is instructive:  
-- **52** protects your center.  
-- **58** helps you relate without rigidity.  
+From the far side, the question is not "Why is this so unclear?" but "What is just now trying to be born here?"
 
-Together they say: be steady, but not sealed.
+That view changes your posture. You do not force a seed to behave like a tree. You protect the beginning, simplify the next step, and remain attentive to what is forming beneath the surface.
 
-## What This Says About Timing
+In practical terms: if the work situation feels jammed, the jam may not be solved by speed. It may need a cleaner beginning: one clearer conversation, one smaller deliverable, one properly named role, one honest admission of what is not yet established.
 
-Timing is the secret spine of this reading. Mountain times are not thunder times. If you rush, you may arrive out of season. If you wait too long, you may miss the gate. The counsel is to **watch for the boundary**—that moment where movement becomes appropriate rather than merely habitual.
+## The Complementary Field: Revolution
 
-A good question to ask yourself is:  
-**Where would stopping restore my true proportions?**
+The opposite hexagram, Revolution, stands nearby like a moonlit cat watching from the wall. It does not mean upheaval must happen now, but it reveals a hidden pressure: the situation may contain a need for renewal, not merely adjustment.
 
-That may mean stopping the endless scrolling, stopping the self-reproach, stopping the habit of applying in a fever, stopping the urge to interpret every delay as doom. It may also mean stopping long enough to notice what kind of job actually fits your character, rather than only your fear.
+This is the shadow and medicine beside Youthful Folly. Where there is confusion, there may also be an outdated pattern that must eventually be replaced. Where people are relying on vague assumptions, the deeper cure may be a change in structure, process, authority, or expectations.
 
-## A Practical Reading for the Search Itself
+So ask yourself:
 
-If I were to translate this into plain worldly advice, I would say:
+- What in this work arrangement is no longer serving the real task?
+- What needs to be redefined rather than merely endured?
+- Where is the old way still pretending to be enough?
 
-- Tighten your search to the roles that genuinely suit you.
-- Revise your resume and cover letter with patience, not haste.
-- Ask one or two trusted people for feedback rather than everyone at once.
-- Prepare carefully for interviews; don’t improvise your worth.
-- Keep one eye on openings, and the other on your own steadiness.
-- Let a surprise contact or sudden opportunity wake you up, but do not let it unseat you.
+Revolution does not say "burn it down." It says: when the moment is ripe, truth may require a new form. But timing matters. Youthful Folly says: do not force the revolution before you understand the terrain.
 
-This is not an oracle of easy victory, but it is not gloomy either. It suggests that **success is available when you stop wasting force**. The mountain does not shout. Yet it endures, and endurance has its own way of opening doors.
+## How to Act Now
+
+The oracle's practical advice is beautifully plain:
+
+1. **Ask one or two precise questions.**  
+   Not a flood of uncertainty. Just enough to illuminate the structure.
+
+2. **Clarify your role and the expected outcome.**  
+   If your work is vague, make it legible.
+
+3. **Do not overpromise.**  
+   Honest limits are stronger than polished confusion.
+
+4. **Organize your next steps like a small campaign.**  
+   This is the Army's gift: sequence, coordination, responsibility.
+
+5. **Watch for what must be reformed.**  
+   If something is fundamentally misaligned, name it gently but clearly.
+
+## Emotional Weather
+
+This is a reading of becoming competent inside uncertainty. It may feel humbling, even a little embarrassing at times, because the work reveals what is not yet known. But that is not a mark against you. It is the beginning of real authority.
+
+There is also a quiet blessing here: the situation is not sealed. It is teachable. A teachable situation can improve. A teachable person can move.
 
 ## Concise Practical Counsel
 
-**Pause, refine, and choose.**  
-Apply less widely but more wisely. Stay ready for a sudden opening, and let warmth and clear communication soften your stillness. Keep your center, and let the right opportunity find the shape of it.`;
+**Be humble, ask clearly, and bring order to the next step.**  
+Do not act as if you already know the whole shape of the matter. Find out what is actually being asked, organize your efforts like a small disciplined unit, and be alert to whether this work needs reform more than reassurance.`;
 
 export default function SampleScreen() {
   const router = useRouter();
@@ -111,12 +141,11 @@ export default function SampleScreen() {
         <Text style={styles.metaLabel}>Oracle / Personality</Text>
         <Text style={styles.body}>
           In this example, the user had two settings selected: they were using the {sampleReadingTheme}{' '}
-          theme, and they had selected the {sampleReadingPersonality} as the oracle handling the
-          reading.
+          theme, and they had selected the {sampleReadingPersonality} oracle to handle the reading.
         </Text>
         <Text style={styles.body}>
           With multiple themes offered, 10 personalities available per theme, custom questions, and
-          the power of LLM-based interpretation shaped by all of that, the possibilities for
+          the power of oracle-powered interpretation shaped by all of that, the possibilities for
           responses are wonderfully wide open. And the responses can be amazing, too. Have a look.
         </Text>
         <Image source={sampleOracleImage} style={styles.oracleImage} contentFit="cover" />
@@ -124,6 +153,14 @@ export default function SampleScreen() {
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>{sampleReadingHexagram}</Text>
+        <Text style={styles.body}>
+          The cast includes one changing line, so the reading also considers the movement from the
+          original hexagram into its changed form.
+        </Text>
+        <View style={styles.hexagramPreview}>
+          <HexagramView lines={sampleReadingLines} size="small" />
+        </View>
+        <Text style={styles.changeNote}>{sampleChangingHexagram}</Text>
       </View>
 
       <View style={styles.readingCard}>
@@ -203,6 +240,18 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginTop: 8,
     backgroundColor: 'rgba(16, 19, 24, 0.42)',
+  },
+  hexagramPreview: {
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 8,
+  },
+  changeNote: {
+    color: aiChingColors.gold,
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '800',
+    textAlign: 'center',
   },
   readingCard: {
     borderRadius: 8,

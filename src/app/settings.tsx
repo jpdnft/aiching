@@ -17,6 +17,7 @@ import {
   hexagramThemeList,
   HexagramThemeId,
   HexagramThemeManifest,
+  isHexagramThemePremiumOnly,
 } from '@/theme/hexagramBackgrounds';
 
 const themeOracleSamples: Record<HexagramThemeId, number> = {
@@ -67,6 +68,7 @@ export default function SettingsScreen() {
             <ThemeOption
               key={theme.id}
               avatarSource={themeOracleSamples[theme.id]}
+              premiumThemesEnabled={entitlements.premiumThemesEnabled}
               theme={theme}
               selected={theme.id === themeId}
               onPress={() => setThemeId(theme.id)}
@@ -111,7 +113,7 @@ export default function SettingsScreen() {
           Choose the persnality that your oracle has for your readings.
         </Text>
         {!entitlements.aiReadingsEnabled ? (
-          <Text style={styles.lockedNote}>Premium feature. Manage Version to unlock AI readings.</Text>
+          <Text style={styles.lockedNote}>Premium feature. Manage Version to unlock oracle-powered readings.</Text>
         ) : null}
         <View style={styles.personalityList}>
           {aiReadingPersonalities.map((personality) => (
@@ -191,16 +193,19 @@ const textSizePreviewStyles: Record<ReadingTextSize, { fontSize: number; lineHei
 
 function ThemeOption({
   avatarSource,
+  premiumThemesEnabled,
   theme,
   selected,
   onPress,
 }: {
   avatarSource: number;
+  premiumThemesEnabled: boolean;
   theme: HexagramThemeManifest;
   selected: boolean;
   onPress: () => void;
 }) {
-  const disabled = !theme.isAvailable;
+  const premiumLocked = isHexagramThemePremiumOnly(theme.id) && !premiumThemesEnabled;
+  const disabled = !theme.isAvailable || premiumLocked;
 
   return (
     <Pressable
@@ -218,7 +223,7 @@ function ThemeOption({
         <Text style={styles.themeMeta}>{theme.description}</Text>
       </View>
       <Text style={[styles.themeState, selected && styles.themeStateSelected]}>
-        {selected ? 'Selected' : disabled ? 'Locked' : 'Select'}
+        {selected ? 'Selected' : disabled ? 'Premium' : 'Select'}
       </Text>
     </Pressable>
   );

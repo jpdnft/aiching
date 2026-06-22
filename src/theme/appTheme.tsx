@@ -15,6 +15,7 @@ import {
   defaultHexagramThemeId,
   HexagramThemeId,
   isHexagramThemeAvailable,
+  isHexagramThemePremiumOnly,
 } from './hexagramBackgrounds';
 import {
   getDefaultRevenueCatState,
@@ -153,6 +154,8 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
     setRevenueCat(await presentRevenueCatCustomerCenter());
   }, []);
 
+  const isPremium = revenueCat.isPremium || (__DEV__ && appVersion === 'premium');
+
   const setAppVersion = useCallback(async (version: AppVersion) => {
     await AsyncStorage.setItem(APP_VERSION_STORAGE_KEY, version);
     setAppVersionState(version);
@@ -168,9 +171,13 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
       return;
     }
 
+    if (isHexagramThemePremiumOnly(nextThemeId) && !isPremium) {
+      return;
+    }
+
     await AsyncStorage.setItem(THEME_STORAGE_KEY, nextThemeId);
     setThemeIdState(nextThemeId);
-  }, []);
+  }, [isPremium]);
 
   const setSoundEffectsEnabled = useCallback(async (enabled: boolean) => {
     await AsyncStorage.setItem(SOUND_EFFECTS_STORAGE_KEY, String(enabled));
@@ -189,8 +196,9 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
 
   const value = useMemo(
     () => {
-      const isPremium = revenueCat.isPremium || (__DEV__ && appVersion === 'premium');
       const effectiveAppVersion: AppVersion = isPremium ? 'premium' : 'basic';
+      const effectiveThemeId =
+        !isPremium && isHexagramThemePremiumOnly(themeId) ? defaultHexagramThemeId : themeId;
 
       return {
         appVersion: effectiveAppVersion,
@@ -210,7 +218,7 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
         setSoundEffectsEnabled,
         setThemeId,
         soundEffectsEnabled,
-        themeId,
+        themeId: effectiveThemeId,
       };
     },
     [
@@ -231,6 +239,7 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
       setThemeId,
       soundEffectsEnabled,
       themeId,
+      isPremium,
     ],
   );
 

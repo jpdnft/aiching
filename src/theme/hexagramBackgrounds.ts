@@ -10,6 +10,7 @@ export type HexagramThemeManifest = {
   name: string;
   description: string;
   isAvailable: boolean;
+  isPremiumOnly?: boolean;
   aiReadingAvatars?: AiReadingAvatarSources;
   homeBackground?: number;
   hexagramBackgrounds?: HexagramBackgrounds;
@@ -279,6 +280,7 @@ export const hexagramThemes: Record<HexagramThemeId, HexagramThemeManifest> = {
     name: 'Mystical Cats',
     description: 'Hand-painted Japanese storybook cats, moonlit folktale mood, ink wash, mist, and lantern glow.',
     isAvailable: true,
+    isPremiumOnly: true,
     aiReadingAvatars: theme03AiReadingAvatars,
     homeBackground: require('@/assets/hexagrams/themes/03/home.jpg'),
     hexagramBackgrounds: theme03Backgrounds,
@@ -289,6 +291,10 @@ export const hexagramThemeList = Object.values(hexagramThemes);
 
 export function isHexagramThemeAvailable(themeId: HexagramThemeId): boolean {
   return hexagramThemes[themeId].isAvailable;
+}
+
+export function isHexagramThemePremiumOnly(themeId: HexagramThemeId): boolean {
+  return Boolean(hexagramThemes[themeId].isPremiumOnly);
 }
 
 export function getThemeName(themeId: HexagramThemeId): string {
