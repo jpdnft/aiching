@@ -8,7 +8,8 @@
     "scheme": "aiching",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.jpd3.iching"
     },
     "android": {
       "adaptiveIcon": {
@@ -24,7 +25,7 @@
         "android.permission.FOREGROUND_SERVICE",
         "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
       ],
-      "package": "com.jpd3.aiching"
+      "package": "com.jpd3.iching"
     },
     "web": {
       "output": "server",

@@ -2,6 +2,17 @@ export type BasicLine = 'yin' | 'yang';
 
 export type LineState = 'young_yin' | 'young_yang' | 'old_yin' | 'old_yang';
 
+export type CastValue = 2 | 3;
+
+export type CastLineTotal = 6 | 7 | 8 | 9;
+
+export type CastLineDetail = {
+  line: LineState;
+  position: number;
+  total: CastLineTotal;
+  values: [CastValue, CastValue, CastValue];
+};
+
 export type HexagramTone =
   | 'abundant'
   | 'adaptive'
@@ -191,12 +202,16 @@ export type CompletedReading = {
   id: string;
   localDate: string;
   createdAt: string;
+  lineCastDetails?: CastLineDetail[];
   question?: string;
   premiumReading?: PremiumReading;
   lines: HexagramLines;
   binaryKey: string;
   hexagramNumber: number;
   hexagramName: string;
+  resultingBinaryKey?: string;
+  resultingHexagramName?: string;
+  resultingHexagramNumber?: number;
   theme: string;
   basicInterpretation: string;
   reflectionPrompt: string;

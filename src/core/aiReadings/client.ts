@@ -1,6 +1,8 @@
 import { aiReadingConfig } from '@/config/aiReading';
+import { CastLineDetail } from '@/core/iching/types';
 
 export type GeneratePremiumReadingParams = {
+  lineCastDetails?: CastLineDetail[];
   hexagramNumber: number;
   personalityId: string;
   question?: string;

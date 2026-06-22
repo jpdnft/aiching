@@ -12,7 +12,12 @@ const features = [
     avatar: require('@/assets/hexagrams/themes/01/storm_witch.jpg'),
   },
   {
-    title: 'AI chat about your reading',
+    title: 'iOS Version',
+    body: 'For launch, we are starting with Google Play. An iPhone and iPad version is on the roadmap once the app earns enough to justify Apple developer program costs.',
+    avatar: require('@/assets/hexagrams/themes/03/lantern_oracle.jpg'),
+  },
+  {
+    title: 'Interactive chat about your reading',
     body: 'A future conversational layer for gentle follow-up questions.',
     avatar: require('@/assets/hexagrams/themes/02/star_cartographer.jpg'),
   },

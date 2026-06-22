@@ -1,5 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 
+import { isChangingLine } from '@/core/iching/changingLines';
 import { toBasicLine } from '@/core/iching/generate';
 import { LineState } from '@/core/iching/types';
 import { aiChingColors } from '@/theme/colors';
@@ -12,7 +13,8 @@ type Props = {
 
 export function HexagramLine({ line, muted = false, size = 'default' }: Props) {
   const isYin = line ? toBasicLine(line) === 'yin' : false;
-  const color = muted ? 'rgba(231, 197, 111, 0.22)' : aiChingColors.gold;
+  const isChanging = line ? isChangingLine(line) : false;
+  const color = muted ? 'rgba(231, 197, 111, 0.22)' : isChanging ? '#f8e7a1' : aiChingColors.gold;
   const isMini = size === 'mini';
 
   if (!line) {
@@ -21,17 +23,37 @@ export function HexagramLine({ line, muted = false, size = 'default' }: Props) {
 
   if (isYin) {
     return (
-      <View style={[styles.yinContainer, isMini && styles.miniLine]}>
-        <View style={[styles.segment, isMini && styles.miniSegment, { backgroundColor: color }]} />
-        <View style={[styles.segment, isMini && styles.miniSegment, { backgroundColor: color }]} />
+      <View style={[styles.lineWrap, isChanging && !isMini && styles.changingGlow]}>
+        <View style={[styles.yinContainer, isMini && styles.miniLine]}>
+          <View style={[styles.segment, isMini && styles.miniSegment, { backgroundColor: color }]} />
+          <View style={[styles.segment, isMini && styles.miniSegment, { backgroundColor: color }]} />
+        </View>
       </View>
     );
   }
 
-  return <View style={[styles.yang, isMini && styles.miniLine, { backgroundColor: color }]} />;
+  return (
+    <View style={[styles.lineWrap, isChanging && !isMini && styles.changingGlow]}>
+      <View style={[styles.yang, isMini && styles.miniLine, { backgroundColor: color }]} />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
+  lineWrap: {
+    position: 'relative',
+    width: '100%',
+    justifyContent: 'center',
+  },
+  changingGlow: {
+    shadowColor: '#f8e7a1',
+    shadowOpacity: 0.8,
+    shadowRadius: 10,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+  },
   yang: {
     width: '100%',
     height: 12,

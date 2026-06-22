@@ -12,7 +12,8 @@ import { ShareHexagramButton } from '@/components/ShareHexagramButton';
 import { usageLimits } from '@/config/usageLimits';
 import { generatePremiumReading } from '@/core/aiReadings/client';
 import { getAiReadingPersonality } from '@/core/aiReadings/personalities';
-import { CompletedReading } from '@/core/iching/types';
+import { getCastLineDescription } from '@/core/iching/generate';
+import { CastLineDetail, CompletedReading } from '@/core/iching/types';
 import {
   clearCurrentReading,
   getCurrentReading,
@@ -61,6 +62,7 @@ export default function PremiumReadingScreen() {
 
       const premiumReading = await generatePremiumReading({
         hexagramNumber: readingToGenerate.hexagramNumber,
+        lineCastDetails: readingToGenerate.lineCastDetails,
         personalityId: aiReadingPersonalityId,
         question: readingToGenerate.question,
         readingId: readingToGenerate.id,
@@ -183,6 +185,14 @@ export default function PremiumReadingScreen() {
             ) : null}
           </View>
 
+          {reading.lineCastDetails?.length ? (
+            <CastingDetailsCard
+              lineCastDetails={reading.lineCastDetails}
+              resultingHexagramName={reading.resultingHexagramName}
+              resultingHexagramNumber={reading.resultingHexagramNumber}
+            />
+          ) : null}
+
           <View style={styles.card}>
             <Text style={styles.cardTitle}>{askedQuestion ? 'Your Question' : 'General Outlook'}</Text>
             <Text style={styles.body}>
@@ -242,6 +252,42 @@ export default function PremiumReadingScreen() {
           <ShareHexagramButton hexagramNumber={reading.hexagramNumber} themeId={themeId} />
         </ScrollView>
       </SafeAreaView>
+    </View>
+  );
+}
+
+function CastingDetailsCard({
+  lineCastDetails,
+  resultingHexagramName,
+  resultingHexagramNumber,
+}: {
+  lineCastDetails: CastLineDetail[];
+  resultingHexagramName?: string;
+  resultingHexagramNumber?: number;
+}) {
+  const visibleLineDetails = [...lineCastDetails].reverse();
+
+  return (
+    <View style={styles.card}>
+      <Text style={styles.cardTitle}>Casting Details</Text>
+      <Text style={styles.body}>
+        This reading used the traditional three-part casting flow. Each line was drawn from three
+        values, then interpreted as 6, 7, 8, or 9.
+      </Text>
+      <View style={styles.castDetailList}>
+        {visibleLineDetails.map((detail) => (
+          <Text key={`cast-line-${detail.position}`} style={styles.castDetailItem}>
+            Line {detail.position}: {getCastLineDescription(detail)}
+          </Text>
+        ))}
+      </View>
+      {resultingHexagramNumber && resultingHexagramName ? (
+        <Text style={styles.changeNote}>
+          Changing lines point toward Hexagram {resultingHexagramNumber}: {resultingHexagramName}.
+        </Text>
+      ) : (
+        <Text style={styles.changeNote}>No changing lines appeared in this cast.</Text>
+      )}
     </View>
   );
 }
@@ -347,6 +393,21 @@ const styles = StyleSheet.create({
     color: aiChingColors.mist,
     fontSize: 16,
     lineHeight: 25,
+    textAlign: 'center',
+  },
+  castDetailList: {
+    gap: 6,
+  },
+  castDetailItem: {
+    color: aiChingColors.mist,
+    fontSize: 14,
+    lineHeight: 20,
+  },
+  changeNote: {
+    color: aiChingColors.gold,
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '800',
     textAlign: 'center',
   },
   errorText: {

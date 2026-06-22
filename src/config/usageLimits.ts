@@ -1,4 +1,4 @@
 export const usageLimits = {
-  basicDailyCastLimit: 2,
+  basicDailyCastLimit: 3,
   premiumDailyAiReadingLimit: 50,
 };

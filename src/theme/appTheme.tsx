@@ -16,6 +16,14 @@ import {
   HexagramThemeId,
   isHexagramThemeAvailable,
 } from './hexagramBackgrounds';
+import {
+  getDefaultRevenueCatState,
+  loadRevenueCatState,
+  presentRevenueCatCustomerCenter,
+  presentRevenueCatPaywall,
+  restoreRevenueCatPurchases,
+  RevenueCatState,
+} from '@/services/revenueCat';
 
 const THEME_STORAGE_KEY = 'aiching.theme.selected.v1';
 const SOUND_EFFECTS_STORAGE_KEY = 'aiching.soundEffects.enabled.v1';
@@ -38,6 +46,11 @@ type AppThemeContextValue = {
   appVersion: AppVersion;
   aiReadingPersonalityId: AiReadingPersonalityId;
   entitlements: AppEntitlements;
+  revenueCat: RevenueCatState;
+  manageSubscription: () => Promise<void>;
+  presentPaywall: () => Promise<void>;
+  refreshSubscriptionStatus: () => Promise<void>;
+  restorePurchases: () => Promise<void>;
   setAppVersion: (version: AppVersion) => Promise<void>;
   setAiReadingPersonalityId: (personalityId: AiReadingPersonalityId) => Promise<void>;
   themeId: HexagramThemeId;
@@ -64,9 +77,7 @@ function isAppVersion(value: string | null): value is AppVersion {
   return value === 'basic' || value === 'premium';
 }
 
-function getEntitlements(version: AppVersion): AppEntitlements {
-  const isPremium = version === 'premium';
-
+function getEntitlements(isPremium: boolean): AppEntitlements {
   return {
     adsEnabled: !isPremium,
     aiReadingsEnabled: isPremium,
@@ -77,6 +88,7 @@ function getEntitlements(version: AppVersion): AppEntitlements {
 
 export function AppThemeProvider({ children }: PropsWithChildren) {
   const [appVersion, setAppVersionState] = useState<AppVersion>('basic');
+  const [revenueCat, setRevenueCat] = useState<RevenueCatState>(getDefaultRevenueCatState);
   const [aiReadingPersonalityId, setAiReadingPersonalityIdState] = useState<AiReadingPersonalityId>(
     defaultAiReadingPersonalityId,
   );
@@ -121,6 +133,24 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
         setAiReadingPersonalityIdState(storedPersonalityId);
       }
     });
+
+    loadRevenueCatState().then(setRevenueCat);
+  }, []);
+
+  const refreshSubscriptionStatus = useCallback(async () => {
+    setRevenueCat(await loadRevenueCatState());
+  }, []);
+
+  const presentPaywall = useCallback(async () => {
+    setRevenueCat(await presentRevenueCatPaywall());
+  }, []);
+
+  const restorePurchases = useCallback(async () => {
+    setRevenueCat(await restoreRevenueCatPurchases());
+  }, []);
+
+  const manageSubscription = useCallback(async () => {
+    setRevenueCat(await presentRevenueCatCustomerCenter());
   }, []);
 
   const setAppVersion = useCallback(async (version: AppVersion) => {
@@ -158,26 +188,41 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
   }, []);
 
   const value = useMemo(
-    () => ({
-      appVersion,
-      aiReadingPersonalityId,
-      castingSoundId,
-      entitlements: getEntitlements(appVersion),
-      readingTextSize,
-      setAiReadingPersonalityId,
-      setAppVersion,
-      setCastingSoundId,
-      setReadingTextSize,
-      setSoundEffectsEnabled,
-      setThemeId,
-      soundEffectsEnabled,
-      themeId,
-    }),
+    () => {
+      const isPremium = revenueCat.isPremium || (__DEV__ && appVersion === 'premium');
+      const effectiveAppVersion: AppVersion = isPremium ? 'premium' : 'basic';
+
+      return {
+        appVersion: effectiveAppVersion,
+        aiReadingPersonalityId,
+        castingSoundId,
+        entitlements: getEntitlements(isPremium),
+        manageSubscription,
+        readingTextSize,
+        revenueCat,
+        presentPaywall,
+        refreshSubscriptionStatus,
+        restorePurchases,
+        setAiReadingPersonalityId,
+        setAppVersion,
+        setCastingSoundId,
+        setReadingTextSize,
+        setSoundEffectsEnabled,
+        setThemeId,
+        soundEffectsEnabled,
+        themeId,
+      };
+    },
     [
       appVersion,
       aiReadingPersonalityId,
       castingSoundId,
+      manageSubscription,
+      presentPaywall,
       readingTextSize,
+      refreshSubscriptionStatus,
+      restorePurchases,
+      revenueCat,
       setAiReadingPersonalityId,
       setAppVersion,
       setCastingSoundId,

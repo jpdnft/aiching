@@ -1,4 +1,5 @@
 import { useRouter } from 'expo-router';
+import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
@@ -8,12 +9,12 @@ import { aiChingColors } from '@/theme/colors';
 
 const versionOptions: Array<{ body: string; label: string; value: AppVersion }> = [
   {
-    body: 'The free version with two daily casts, static readings, and ads when ad support is enabled.',
+    body: 'The free version with three daily casts, static readings, and ads when ad support is enabled.',
     label: 'Basic',
     value: 'basic',
   },
   {
-    body: 'The future premium version with generous daily AI-enhanced readings, ad removal, reminders, and premium themes.',
+    body: 'The future premium version with generous daily oracle-powered readings, ad removal, reminders, and premium themes.',
     label: 'Premium',
     value: 'premium',
   },
@@ -21,7 +22,30 @@ const versionOptions: Array<{ body: string; label: string; value: AppVersion }> 
 
 export default function VersionScreen() {
   const router = useRouter();
-  const { appVersion, entitlements, setAppVersion } = useAppTheme();
+  const {
+    appVersion,
+    entitlements,
+    manageSubscription,
+    presentPaywall,
+    restorePurchases,
+    revenueCat,
+    setAppVersion,
+  } = useAppTheme();
+  const [isSubscriptionActionRunning, setIsSubscriptionActionRunning] = useState(false);
+
+  async function runSubscriptionAction(action: () => Promise<void>) {
+    if (isSubscriptionActionRunning) {
+      return;
+    }
+
+    setIsSubscriptionActionRunning(true);
+
+    try {
+      await action();
+    } finally {
+      setIsSubscriptionActionRunning(false);
+    }
+  }
 
   return (
     <ScreenContainer>
@@ -42,25 +66,40 @@ export default function VersionScreen() {
           <Text style={styles.cardTitle}>Upgrade to Premium</Text>
           <Text style={styles.price}>$3.99 / month</Text>
           <View style={styles.featureList}>
-            <Text style={styles.featureItem}>- AI-enhanced readings shaped around your question</Text>
+            <Text style={styles.featureItem}>- Oracle-powered readings shaped around your question</Text>
+            <Text style={styles.featureItem}>- Changing lines powered by traditional casting logic</Text>
             <Text style={styles.featureItem}>
-              - Up to {usageLimits.premiumDailyAiReadingLimit} premium AI readings per day
+              - Up to {usageLimits.premiumDailyAiReadingLimit} premium oracle-powered readings per day
             </Text>
             <Text style={styles.featureItem}>- Ad-free experience</Text>
             <Text style={styles.featureItem}>- Daily reminder notifications</Text>
             <Text style={styles.featureItem}>- Premium visual themes</Text>
           </View>
           <Text style={styles.note}>
-            Internet or Wi-Fi access is required for AI-enhanced reading features.
+            Internet or Wi-Fi access is required for oracle-powered reading features.
           </Text>
           <Pressable
             onPress={() => router.push('/sample')}
             style={({ pressed }) => [styles.secondaryButton, pressed && styles.pressed]}>
             <Text style={styles.secondaryButtonText}>View Sample Premium Reading</Text>
           </Pressable>
-          <Pressable style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]}>
-            <Text style={styles.primaryButtonText}>Upgrade to Premium</Text>
+          <Pressable
+            onPress={() => runSubscriptionAction(presentPaywall)}
+            style={({ pressed }) => [
+              styles.primaryButton,
+              isSubscriptionActionRunning && styles.disabledButton,
+              pressed && styles.pressed,
+            ]}>
+            <Text style={styles.primaryButtonText}>
+              {isSubscriptionActionRunning ? 'Opening...' : 'Upgrade to Premium'}
+            </Text>
           </Pressable>
+          <Pressable
+            onPress={() => runSubscriptionAction(restorePurchases)}
+            style={({ pressed }) => [styles.secondaryButton, pressed && styles.pressed]}>
+            <Text style={styles.secondaryButtonText}>Restore Purchases</Text>
+          </Pressable>
+          <RevenueCatStatusNote availability={revenueCat.availability} errorMessage={revenueCat.errorMessage} />
         </View>
       ) : (
         <View style={styles.card}>
@@ -70,11 +109,21 @@ export default function VersionScreen() {
             cancellation, Premium access remains available until the end of the paid billing period.
           </Text>
           <Text style={styles.note}>
-            Placeholder: this will later open the correct subscription management screen for your device.
+            You can manage your Premium subscription through the subscription tools for your device.
           </Text>
-          <Pressable style={({ pressed }) => [styles.secondaryButton, pressed && styles.pressed]}>
-            <Text style={styles.secondaryButtonText}>Cancel subscription and downgrade to Basic</Text>
+          <Pressable
+            onPress={() => runSubscriptionAction(manageSubscription)}
+            style={({ pressed }) => [styles.secondaryButton, pressed && styles.pressed]}>
+            <Text style={styles.secondaryButtonText}>
+              {isSubscriptionActionRunning ? 'Opening...' : 'Manage Subscription'}
+            </Text>
           </Pressable>
+          <Pressable
+            onPress={() => runSubscriptionAction(restorePurchases)}
+            style={({ pressed }) => [styles.secondaryButton, pressed && styles.pressed]}>
+            <Text style={styles.secondaryButtonText}>Restore Purchases</Text>
+          </Pressable>
+          <RevenueCatStatusNote availability={revenueCat.availability} errorMessage={revenueCat.errorMessage} />
         </View>
       )}
 
@@ -112,7 +161,7 @@ export default function VersionScreen() {
         <Text style={styles.cardTitle}>Enabled Features</Text>
         <Text style={styles.body}>Ads: {entitlements.adsEnabled ? 'On' : 'Off'}</Text>
         <Text style={styles.body}>
-          AI-enhanced readings: {entitlements.aiReadingsEnabled ? 'On' : 'Off'}
+          Oracle-powered readings: {entitlements.aiReadingsEnabled ? 'On' : 'Off'}
         </Text>
         <Text style={styles.body}>
           Daily reminders: {entitlements.notificationsEnabled ? 'On' : 'Off'}
@@ -127,6 +176,27 @@ export default function VersionScreen() {
       </Pressable>
     </ScreenContainer>
   );
+}
+
+function RevenueCatStatusNote({
+  availability,
+  errorMessage,
+}: {
+  availability: string;
+  errorMessage?: string;
+}) {
+  if (availability === 'configured') {
+    return null;
+  }
+
+  const note =
+    availability === 'unsupported_platform'
+      ? 'Subscription purchases require the Android app build. iOS is planned for a future version.'
+      : availability === 'not_configured'
+        ? 'Subscription purchases are not configured yet. Add the RevenueCat Android public API key to enable the live paywall.'
+        : `Subscription purchases are currently unavailable.${errorMessage ? ` ${errorMessage}` : ''}`;
+
+  return <Text style={styles.note}>{note}</Text>;
 }
 
 const styles = StyleSheet.create({
@@ -219,6 +289,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 18,
     paddingVertical: 10,
+  },
+  disabledButton: {
+    opacity: 0.62,
   },
   primaryButtonText: {
     color: aiChingColors.ink,

@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   Image as NativeImage,
@@ -17,10 +17,15 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { CastButton } from '@/components/CastButton';
 import { HexagramView } from '@/components/HexagramView';
 import { usageLimits } from '@/config/usageLimits';
-import { generateBasicLine, isCompleteHexagram } from '@/core/iching/generate';
+import {
+  generateBasicLine,
+  generatePremiumCastLine,
+  getCastLineDescription,
+  isCompleteHexagram,
+} from '@/core/iching/generate';
 import { createCompletedReading } from '@/core/iching/interpretation';
 import { lookupHexagram } from '@/core/iching/lookup';
-import { CompletedReading, PartialHexagramLines } from '@/core/iching/types';
+import { CastLineDetail, CompletedReading, PartialHexagramLines } from '@/core/iching/types';
 import {
   clearTodaysReadingForDev,
   clearCurrentReading,
@@ -44,6 +49,8 @@ export default function CastScreen() {
   const castLineSound = getCastingSoundSource(castingSoundId);
   const castLinePlayer = useAudioPlayer(castLineSound, { downloadFirst: true });
   const [lines, setLines] = useState<PartialHexagramLines>([]);
+  const [lineCastDetails, setLineCastDetails] = useState<CastLineDetail[]>([]);
+  const [latestPremiumCastNote, setLatestPremiumCastNote] = useState<string | null>(null);
   const [question, setQuestion] = useState('');
   const [todaysReading, setTodaysReading] = useState<CompletedReading | null>(null);
   const [todaysCastCount, setTodaysCastCount] = useState(0);
@@ -54,6 +61,7 @@ export default function CastScreen() {
   const [isCastingLineAnimating, setIsCastingLineAnimating] = useState(false);
   const [castButtonStep, setCastButtonStep] = useState(1);
   const [castScreenKey, setCastScreenKey] = useState(0);
+  const premiumCastNoteTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useFocusEffect(
     useCallback(() => {
@@ -68,6 +76,8 @@ export default function CastScreen() {
 
           setTodaysReading(null);
           setLines([]);
+          setLineCastDetails([]);
+          setLatestPremiumCastNote(null);
           setQuestion('');
           setAnimatedLineIndex(null);
           setIsCastingLineAnimating(false);
@@ -85,6 +95,8 @@ export default function CastScreen() {
 
     setTodaysReading(null);
     setLines([]);
+    setLineCastDetails([]);
+    setLatestPremiumCastNote(null);
     setQuestion('');
     setAnimatedLineIndex(null);
     setIsCastingLineAnimating(false);
@@ -131,9 +143,16 @@ export default function CastScreen() {
     playCastLineSound();
 
     const nextLineIndex = lines.length;
-    const nextLine = generateBasicLine();
+    const premiumCastDetail = entitlements.aiReadingsEnabled
+      ? generatePremiumCastLine(nextLineIndex + 1)
+      : null;
+    const nextLine = premiumCastDetail?.line ?? generateBasicLine();
 
     setLines([...lines, nextLine]);
+    if (premiumCastDetail) {
+      setLineCastDetails((currentDetails) => [...currentDetails, premiumCastDetail]);
+      showPremiumCastNote(getCastLineDescription(premiumCastDetail));
+    }
     setAnimatedLineIndex(nextLineIndex);
     setAnimationKey((currentKey) => currentKey + 1);
     setIsCastingLineAnimating(true);
@@ -148,6 +167,7 @@ export default function CastScreen() {
     const hexagram = lookupHexagram(lines);
     const reading = createCompletedReading({
       lines,
+      lineCastDetails: entitlements.aiReadingsEnabled ? lineCastDetails : undefined,
       hexagram,
       localDate: getLocalDateKey(),
       question: entitlements.aiReadingsEnabled ? question.trim() || undefined : undefined,
@@ -169,6 +189,8 @@ export default function CastScreen() {
     setTodaysCastCount(0);
     setTodaysReading(null);
     setLines([]);
+    setLineCastDetails([]);
+    setLatestPremiumCastNote(null);
     setQuestion('');
     setAnimatedLineIndex(null);
     setIsCastingLineAnimating(false);
@@ -193,6 +215,8 @@ export default function CastScreen() {
   function startFreshCast() {
     setTodaysReading(null);
     setLines([]);
+    setLineCastDetails([]);
+    setLatestPremiumCastNote(null);
     setQuestion('');
     setAnimatedLineIndex(null);
     setIsCastingLineAnimating(false);
@@ -205,6 +229,18 @@ export default function CastScreen() {
     setAnimatedLineIndex(null);
     setCastButtonStep((currentStep) => Math.min(currentStep + 1, 6));
   }, []);
+
+  function showPremiumCastNote(note: string) {
+    if (premiumCastNoteTimeoutRef.current) {
+      clearTimeout(premiumCastNoteTimeoutRef.current);
+    }
+
+    setLatestPremiumCastNote(note);
+    premiumCastNoteTimeoutRef.current = setTimeout(() => {
+      setLatestPremiumCastNote(null);
+      premiumCastNoteTimeoutRef.current = null;
+    }, 2000);
+  }
 
   useEffect(() => {
     if (!isCastingLineAnimating) {
@@ -219,6 +255,14 @@ export default function CastScreen() {
 
     return () => clearTimeout(releaseCastButton);
   }, [isCastingLineAnimating, animationKey]);
+
+  useEffect(() => {
+    return () => {
+      if (premiumCastNoteTimeoutRef.current) {
+        clearTimeout(premiumCastNoteTimeoutRef.current);
+      }
+    };
+  }, []);
 
   if (isLoading) {
     return (
@@ -251,7 +295,7 @@ export default function CastScreen() {
             <Pressable
               onPress={handleStartAnotherBasicReading}
               style={({ pressed }) => [styles.secondaryButton, pressed && styles.secondaryButtonPressed]}>
-              <Text style={styles.secondaryButtonText}>Cast your second free reading today</Text>
+              <Text style={styles.secondaryButtonText}>Cast another free reading today</Text>
             </Pressable>
           ) : null}
           {appVersion === 'basic' ? <PremiumPromoBox /> : null}
@@ -304,6 +348,9 @@ export default function CastScreen() {
         />
 
         <Text style={styles.progress}>{castCount}/6 lines cast</Text>
+        {entitlements.aiReadingsEnabled && latestPremiumCastNote ? (
+          <Text style={styles.premiumCastNote}>{latestPremiumCastNote}</Text>
+        ) : null}
         <CastButton
           label={castButtonLabel}
           disabled={basicLimitReached || isSaving || isCastingLineAnimating}
@@ -313,7 +360,7 @@ export default function CastScreen() {
           <>
             <Text style={styles.intention}>
               {basicLimitReached
-                ? 'You have used both free readings for today.'
+                ? 'You have used your free readings for today.'
                 : `${basicCastsRemaining} free reading${basicCastsRemaining === 1 ? '' : 's'} left today.`}
             </Text>
             <PremiumPromoBox />
@@ -535,6 +582,14 @@ const styles = StyleSheet.create({
   progress: {
     color: aiChingColors.muted,
     fontSize: 14,
+  },
+  premiumCastNote: {
+    color: aiChingColors.gold,
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '800',
+    textAlign: 'center',
+    textTransform: 'uppercase',
   },
   devReset: {
     color: aiChingColors.muted,

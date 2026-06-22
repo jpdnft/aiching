@@ -1,5 +1,9 @@
 import { aiReadingConfig } from '@/config/aiReading';
-import { Hexagram } from '@/core/iching/types';
+import { getChangedHexagramLines, hasChangingLines, isChangingLine } from '@/core/iching/changingLines';
+import { getCastLineDescription } from '@/core/iching/generate';
+import { getHexagramByNumber } from '@/core/iching/hexagrams';
+import { lookupHexagram } from '@/core/iching/lookup';
+import { CastLineDetail, Hexagram, HexagramLines } from '@/core/iching/types';
 
 import { AiReadingPersonality } from './personalities';
 import { AiReadingThemeMood } from './themeMoods';
@@ -16,18 +20,20 @@ Structure the response with short readable sections using plain section titles. 
 
 export function buildAiReadingPrompt({
   hexagram,
+  lineCastDetails,
   personality,
   question,
   themeMood,
 }: {
   hexagram: Hexagram;
+  lineCastDetails?: CastLineDetail[];
   personality: AiReadingPersonality;
   question?: string;
   themeMood?: AiReadingThemeMood;
 }): string {
   return `${buildPrependNote(personality, themeMood)}
 
-${buildBodyPrompt(hexagram)}
+${buildBodyPrompt(hexagram, lineCastDetails)}
 
 ${buildQuestionPrompt(question)}`;
 }
@@ -51,9 +57,10 @@ ${personality.instruction}
 Let this personality shape word choice, metaphors, emotional tone, section framing, and practical counsel throughout the entire reading. Keep the voice distinct enough to feel chosen, while still sounding wise, useful, and human.${themeNote}`;
 }
 
-function buildBodyPrompt(hexagram: Hexagram): string {
+function buildBodyPrompt(hexagram: Hexagram, lineCastDetails?: CastLineDetail[]): string {
   const reversed = hexagram.relationships.reversed;
   const opposite = hexagram.relationships.opposite;
+  const changingLinesPrompt = buildChangingLinesPrompt(lineCastDetails);
 
   return `BODY PROMPT:
 Interpret this I Ching cast using the following structured source data.
@@ -86,6 +93,7 @@ Opposite / complementary aspect:
 - Theme: ${opposite.theme}
 - Reflection: ${opposite.reflection}
 - Application prompt: ${opposite.applicationPrompt}
+${changingLinesPrompt}
 
 Future-facing lenses:
 - Traditional: ${hexagram.future?.traditional ?? 'No separate traditional lens provided.'}
@@ -93,6 +101,51 @@ Future-facing lenses:
 - Relationship: ${hexagram.future?.relationship ?? 'No separate relationship lens provided.'}
 - Creative: ${hexagram.future?.creative ?? 'No separate creative lens provided.'}
 - Shadow: ${hexagram.future?.shadow ?? 'No separate shadow lens provided.'}`;
+}
+
+function buildChangingLinesPrompt(lineCastDetails?: CastLineDetail[]): string {
+  if (!lineCastDetails?.length) {
+    return '';
+  }
+
+  const orderedDetails = [...lineCastDetails].sort((left, right) => left.position - right.position);
+  const lines = orderedDetails.map((detail) => detail.line) as HexagramLines;
+  const changingDetails = orderedDetails.filter((detail) => isChangingLine(detail.line));
+  const allChanging = changingDetails.length === orderedDetails.length;
+  const allUnchanging = changingDetails.length === 0;
+  const castingSummary = orderedDetails
+    .map((detail) => `- Line ${detail.position}: ${getCastLineDescription(detail)}`)
+    .join('\n');
+
+  const specialPatternPrompt = allChanging
+    ? `\n\nSpecial line pattern:\n- All six lines are changing. Treat this as a highly dynamic cast: the present pattern is under strong pressure to transform, and the resulting hexagram should be given meaningful attention. Mention this explicitly in the reading.`
+    : allUnchanging
+      ? `\n\nSpecial line pattern:\n- All six lines are stable, with no changing lines. Treat this as a comparatively settled or self-contained cast: the primary hexagram stands on its own with less emphasis on transition. Mention this explicitly in the reading.`
+      : '';
+
+  if (!hasChangingLines(lines)) {
+    return `
+
+Casting details:
+${castingSummary}${specialPatternPrompt}`;
+  }
+
+  const resultingHexagram = lookupHexagram(getChangedHexagramLines(lines));
+  const changingLineList = changingDetails.map((detail) => detail.position).join(', ');
+  const resultingSourceHexagram = getHexagramByNumber(resultingHexagram.number);
+
+  return `
+
+Casting details:
+${castingSummary}
+
+Changing lines aspect:
+- Changing line positions, bottom to top: ${changingLineList}
+- Related hexagram number: ${resultingSourceHexagram.number}
+- Related hexagram name: ${resultingSourceHexagram.name}
+- Theme: ${resultingSourceHexagram.theme}
+- Reflection: ${resultingSourceHexagram.basicInterpretation}
+- Application prompt: Read this related hexagram as the direction of change implied by the moving lines. Let it show how the primary situation may evolve, release pressure, or reveal its next form.${specialPatternPrompt}`;
 }
 
 function buildQuestionPrompt(question?: string): string {
