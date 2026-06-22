@@ -1,49 +1,74 @@
 {
   "expo": {
-    "name": "aiching",
-    "slug": "aiching",
+    "name": "I Ching by JPD3",
+    "slug": "i-ching-by-jpd3",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "aiching",
+    "icon": "./assets/icons/icon.png",
+    "scheme": "ichingbyjpd3",
     "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/icons/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F3DBBC"
+    },
     "ios": {
-      "icon": "./assets/expo.icon",
-      "bundleIdentifier": "com.jpd3.iching"
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jpd3.iching",
+      "icon": "./assets/icons/icon.png",
+      "userInterfaceStyle": "automatic"
     },
     "android": {
+      "package": "com.jpd3.iching",
+      "icon": "./assets/icons/icon.png",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "foregroundImage": "./assets/icons/adaptive-icon.png",
+        "backgroundColor": "#F3DBBC"
       },
+      "userInterfaceStyle": "automatic",
+      "edgeToEdgeEnabled": true,
+      "navigationBarColor": "#211A14",
+      "statusBarColor": "#211A14",
       "predictiveBackGestureEnabled": false,
-      "permissions": [
-        "android.permission.RECORD_AUDIO",
-        "android.permission.MODIFY_AUDIO_SETTINGS",
-        "android.permission.FOREGROUND_SERVICE",
-        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
-      ],
-      "package": "com.jpd3.iching"
+      "permissions": []
     },
     "web": {
       "output": "server",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/icons/icon.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "image": "./assets/icons/splash-icon.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#F3DBBC",
           "android": {
-            "image": "./assets/images/splash-icon.png",
-            "imageWidth": 76
+            "image": "./assets/icons/splash-icon.png",
+            "imageWidth": 160,
+            "backgroundColor": "#F3DBBC"
+          },
+          "ios": {
+            "image": "./assets/icons/splash-icon.png",
+            "backgroundColor": "#F3DBBC"
+          },
+          "dark": {
+            "backgroundColor": "#211A14",
+            "image": "./assets/icons/splash-icon.png"
           }
         }
       ],
-      "expo-audio",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": false,
+          "recordAudioAndroid": false,
+          "enableBackgroundPlayback": false,
+          "enableBackgroundRecording": false
+        }
+      ],
       [
         "react-native-google-mobile-ads",
         {
