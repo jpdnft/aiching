@@ -2,6 +2,7 @@ import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
+import { usageLimits } from '@/config/usageLimits';
 import { AppVersion, useAppTheme } from '@/theme/appTheme';
 import { aiChingColors } from '@/theme/colors';
 
@@ -12,7 +13,7 @@ const versionOptions: Array<{ body: string; label: string; value: AppVersion }> 
     value: 'basic',
   },
   {
-    body: 'The future premium version with AI-enhanced readings, ad removal, reminders, and premium themes.',
+    body: 'The future premium version with generous daily AI-enhanced readings, ad removal, reminders, and premium themes.',
     label: 'Premium',
     value: 'premium',
   },
@@ -42,7 +43,9 @@ export default function VersionScreen() {
           <Text style={styles.price}>$3.99 / month</Text>
           <View style={styles.featureList}>
             <Text style={styles.featureItem}>- AI-enhanced readings shaped around your question</Text>
-            <Text style={styles.featureItem}>- Unlimited hexagram casting</Text>
+            <Text style={styles.featureItem}>
+              - Up to {usageLimits.premiumDailyAiReadingLimit} premium AI readings per day
+            </Text>
             <Text style={styles.featureItem}>- Ad-free experience</Text>
             <Text style={styles.featureItem}>- Daily reminder notifications</Text>
             <Text style={styles.featureItem}>- Premium visual themes</Text>

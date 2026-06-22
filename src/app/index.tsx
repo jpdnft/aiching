@@ -16,6 +16,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { CastButton } from '@/components/CastButton';
 import { HexagramView } from '@/components/HexagramView';
+import { usageLimits } from '@/config/usageLimits';
 import { generateBasicLine, isCompleteHexagram } from '@/core/iching/generate';
 import { createCompletedReading } from '@/core/iching/interpretation';
 import { lookupHexagram } from '@/core/iching/lookup';
@@ -35,7 +36,6 @@ import { getHomeBackgroundSource } from '@/theme/hexagramBackgrounds';
 import { getLocalDateKey } from '@/utils/date';
 
 const iChingLogo = require('../../assets/images/ichinglogo.png');
-const BASIC_DAILY_CAST_LIMIT = 2;
 
 export default function CastScreen() {
   const router = useRouter();
@@ -93,7 +93,7 @@ export default function CastScreen() {
   }, [freshCast]);
 
   const castCount = lines.length;
-  const basicCastsRemaining = Math.max(BASIC_DAILY_CAST_LIMIT - todaysCastCount, 0);
+  const basicCastsRemaining = Math.max(usageLimits.basicDailyCastLimit - todaysCastCount, 0);
   const basicLimitReached = appVersion === 'basic' && basicCastsRemaining <= 0;
   const isComplete = isCompleteHexagram(lines);
   const castButtonLabel = isComplete ? '📜 REVEAL ➤' : `➜ Cast #${castButtonStep} of 6 ➜`;
@@ -255,7 +255,7 @@ export default function CastScreen() {
             </Pressable>
           ) : null}
           {appVersion === 'basic' ? <PremiumPromoBox /> : null}
-          {entitlements.unlimitedCastingEnabled ? (
+          {entitlements.aiReadingsEnabled ? (
             <Pressable
               onPress={handleClearCurrentReading}
               style={({ pressed }) => [styles.secondaryButton, pressed && styles.secondaryButtonPressed]}>
@@ -331,8 +331,8 @@ function PremiumPromoBox() {
     <Pressable
       onPress={() => router.push('/version')}
       style={({ pressed }) => [styles.premiumPromo, pressed && styles.premiumPromoPressed]}>
-      <Text style={styles.premiumPromoTitle}>Want unlimited readings?</Text>
-      <Text style={styles.premiumPromoBody}>Go Premium to unlock more readings and deeper features.</Text>
+      <Text style={styles.premiumPromoTitle}>Want deeper readings?</Text>
+      <Text style={styles.premiumPromoBody}>Go Premium to unlock more daily readings and deeper features.</Text>
       <Text style={styles.premiumPromoLink}>View premium features</Text>
     </Pressable>
   );

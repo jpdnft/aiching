@@ -7,16 +7,16 @@ import { aiChingColors } from '@/theme/colors';
 
 const links = [
   {
-    title: 'Manage Version',
-    body: 'Select and manage your version of this app.',
-    href: '/version',
-    avatar: require('@/assets/hexagrams/themes/01/lantern_oracle.jpg'),
+    title: 'What Is the I Ching?',
+    body: 'A brief historical and practical introduction to the Book of Changes.',
+    href: '/what-is-iching',
+    avatar: require('@/assets/hexagrams/themes/02/52.jpg'),
   },
   {
-    title: 'Settings',
-    body: 'Theme selection, reading preferences, and controls will live here.',
-    href: '/settings',
-    avatar: require('@/assets/hexagrams/themes/02/garden_monk.jpg'),
+    title: 'Browse Hexagrams',
+    body: 'Explore the 64 hexagrams and their themes.',
+    href: '/browse-hexagrams',
+    avatar: require('@/assets/hexagrams/themes/01/river_hermit.jpg'),
   },
   {
     title: 'User Guide',
@@ -25,10 +25,28 @@ const links = [
     avatar: require('@/assets/hexagrams/themes/03/weathered_sage.jpg'),
   },
   {
-    title: 'Browse Hexagrams',
-    body: 'Explore the 64 hexagrams and their themes.',
-    href: '/browse-hexagrams',
-    avatar: require('@/assets/hexagrams/themes/01/river_hermit.jpg'),
+    title: 'Settings',
+    body: 'Theme selection, reading preferences, and controls will live here.',
+    href: '/settings',
+    avatar: require('@/assets/hexagrams/themes/02/garden_monk.jpg'),
+  },
+  {
+    title: 'Manage Version',
+    body: 'Select and manage your version of this app.',
+    href: '/version',
+    avatar: require('@/assets/hexagrams/themes/01/lantern_oracle.jpg'),
+  },
+  {
+    title: 'Sample Premium Reading',
+    body: 'See a real Premium reading generated around a custom question.',
+    href: '/sample',
+    avatar: require('@/assets/hexagrams/themes/03/weathered_sage.jpg'),
+  },
+  {
+    title: 'Data & Privacy',
+    body: 'How Premium questions and reading data are handled.',
+    href: '/data-policy',
+    avatar: require('@/assets/hexagrams/themes/01/dream_librarian.jpg'),
   },
   {
     title: 'Future',

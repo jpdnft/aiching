@@ -32,7 +32,6 @@ export type AppEntitlements = {
   aiReadingsEnabled: boolean;
   notificationsEnabled: boolean;
   premiumThemesEnabled: boolean;
-  unlimitedCastingEnabled: boolean;
 };
 
 type AppThemeContextValue = {
@@ -73,7 +72,6 @@ function getEntitlements(version: AppVersion): AppEntitlements {
     aiReadingsEnabled: isPremium,
     notificationsEnabled: isPremium,
     premiumThemesEnabled: isPremium,
-    unlimitedCastingEnabled: isPremium,
   };
 }
 

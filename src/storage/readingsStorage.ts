@@ -6,9 +6,15 @@ import { getLocalDateKey } from '@/utils/date';
 const HISTORY_KEY = 'aiching.readings.history.v1';
 const TODAY_KEY = 'aiching.readings.today.v1';
 const DAILY_CAST_USAGE_KEY = 'aiching.readings.dailyCastUsage.v1';
+const PREMIUM_DAILY_AI_USAGE_KEY = 'aiching.readings.premiumDailyAiUsage.v1';
 const MAX_HISTORY_ENTRIES = 1000;
 
 type DailyCastUsage = {
+  count: number;
+  localDate: string;
+};
+
+type PremiumDailyAiUsage = {
   count: number;
   localDate: string;
 };
@@ -81,6 +87,33 @@ export async function getTodaysCastCount(): Promise<number> {
   return history.filter((reading) => reading.localDate === today).length;
 }
 
+export async function getTodaysPremiumAiReadingCount(): Promise<number> {
+  const today = getLocalDateKey();
+  const stored = await readJson<PremiumDailyAiUsage | null>(PREMIUM_DAILY_AI_USAGE_KEY, null);
+
+  if (stored?.localDate === today) {
+    return stored.count;
+  }
+
+  return 0;
+}
+
+export async function recordPremiumAiReadingRequest(): Promise<number> {
+  const today = getLocalDateKey();
+  const currentCount = await getTodaysPremiumAiReadingCount();
+  const nextCount = currentCount + 1;
+
+  await AsyncStorage.setItem(
+    PREMIUM_DAILY_AI_USAGE_KEY,
+    JSON.stringify({
+      count: nextCount,
+      localDate: today,
+    }),
+  );
+
+  return nextCount;
+}
+
 async function recordDailyCast(): Promise<void> {
   const today = getLocalDateKey();
   const currentCount = await getTodaysCastCount();
@@ -95,7 +128,7 @@ async function recordDailyCast(): Promise<void> {
 }
 
 export async function clearReadingHistory(): Promise<void> {
-  await AsyncStorage.multiRemove([HISTORY_KEY, TODAY_KEY, DAILY_CAST_USAGE_KEY]);
+  await AsyncStorage.multiRemove([HISTORY_KEY, TODAY_KEY, DAILY_CAST_USAGE_KEY, PREMIUM_DAILY_AI_USAGE_KEY]);
 }
 
 export async function deleteReadingFromHistory(readingId: string): Promise<void> {
@@ -138,4 +171,5 @@ export async function clearCurrentReading(): Promise<void> {
 export async function clearTodaysReadingForDev(): Promise<void> {
   await clearCurrentReading();
   await AsyncStorage.removeItem(DAILY_CAST_USAGE_KEY);
+  await AsyncStorage.removeItem(PREMIUM_DAILY_AI_USAGE_KEY);
 }
