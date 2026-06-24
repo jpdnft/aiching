@@ -128,7 +128,7 @@ async function recordDailyCast(): Promise<void> {
 }
 
 export async function clearReadingHistory(): Promise<void> {
-  await AsyncStorage.multiRemove([HISTORY_KEY, TODAY_KEY, DAILY_CAST_USAGE_KEY, PREMIUM_DAILY_AI_USAGE_KEY]);
+  await AsyncStorage.multiRemove([HISTORY_KEY, TODAY_KEY]);
 }
 
 export async function deleteReadingFromHistory(readingId: string): Promise<void> {
