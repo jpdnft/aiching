@@ -205,9 +205,6 @@ export default function PremiumReadingScreen() {
             <Text style={styles.cardTitle}>The Oracle Answers Here ...</Text>
             {premiumReading ? (
               <>
-                <Text style={styles.meta}>
-                  Voice: {premiumReading.personalityName} | Model: {premiumReading.model}
-                </Text>
                 {aiReadingAvatarSource ? (
                   <>
                     <Image
@@ -360,14 +357,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 24,
     fontWeight: '800',
-  },
-  meta: {
-    color: aiChingColors.muted,
-    fontSize: 12,
-    lineHeight: 18,
-    fontWeight: '700',
-    textAlign: 'center',
-    textTransform: 'uppercase',
   },
   aiReadingAvatar: {
     width: '100%',

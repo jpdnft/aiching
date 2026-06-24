@@ -27,7 +27,6 @@ import { createCompletedReading } from '@/core/iching/interpretation';
 import { lookupHexagram } from '@/core/iching/lookup';
 import { CastLineDetail, CompletedReading, PartialHexagramLines } from '@/core/iching/types';
 import {
-  clearTodaysReadingForDev,
   clearCurrentReading,
   getCurrentReading,
   getTodaysCastCount,
@@ -184,20 +183,6 @@ export default function CastScreen() {
     router.push(entitlements.aiReadingsEnabled ? '/reading-premium' : '/reading');
   }
 
-  async function handleDevResetToday() {
-    await clearTodaysReadingForDev();
-    setTodaysCastCount(0);
-    setTodaysReading(null);
-    setLines([]);
-    setLineCastDetails([]);
-    setLatestPremiumCastNote(null);
-    setQuestion('');
-    setAnimatedLineIndex(null);
-    setIsCastingLineAnimating(false);
-    setCastButtonStep(1);
-    setCastScreenKey((currentKey) => currentKey + 1);
-  }
-
   async function handleClearCurrentReading() {
     await clearCurrentReading();
     startFreshCast();
@@ -302,14 +287,9 @@ export default function CastScreen() {
           {entitlements.aiReadingsEnabled ? (
             <Pressable
               onPress={handleClearCurrentReading}
-              style={({ pressed }) => [styles.secondaryButton, pressed && styles.secondaryButtonPressed]}>
-              <Text style={styles.secondaryButtonText}>Clear current hexagram and ask new question</Text>
+              style={({ pressed }) => [styles.newQuestionButton, pressed && styles.newQuestionButtonPressed]}>
+              <Text style={styles.newQuestionButtonText}>Start a New Question</Text>
             </Pressable>
-          ) : null}
-          {__DEV__ ? (
-            <Text onPress={handleDevResetToday} style={styles.devReset}>
-              Reset today for testing
-            </Text>
           ) : null}
         </View>
       </CastBackground>
@@ -579,6 +559,30 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     textAlign: 'center',
   },
+  newQuestionButton: {
+    width: '100%',
+    maxWidth: 420,
+    minHeight: 54,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 180, 168, 0.66)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 18,
+    paddingVertical: 12,
+    backgroundColor: 'rgba(138, 38, 36, 0.86)',
+  },
+  newQuestionButtonPressed: {
+    opacity: 0.82,
+  },
+  newQuestionButtonText: {
+    color: '#fff3ef',
+    fontSize: 15,
+    lineHeight: 21,
+    fontWeight: '900',
+    textAlign: 'center',
+    textTransform: 'uppercase',
+  },
   progress: {
     color: aiChingColors.muted,
     fontSize: 14,
@@ -590,10 +594,5 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     textAlign: 'center',
     textTransform: 'uppercase',
-  },
-  devReset: {
-    color: aiChingColors.muted,
-    fontSize: 13,
-    textDecorationLine: 'underline',
   },
 });
