@@ -25,13 +25,19 @@ import {
   restoreRevenueCatPurchases,
   RevenueCatState,
 } from '@/services/revenueCat';
+import { reviewAccessConfig } from '@/config/reviewAccess';
+import { requestReviewAccess } from '@/services/reviewAccess';
 
 const THEME_STORAGE_KEY = 'aiching.theme.selected.v1';
 const SOUND_EFFECTS_STORAGE_KEY = 'aiching.soundEffects.enabled.v1';
 const CASTING_SOUND_STORAGE_KEY = 'aiching.soundEffects.castingSound.v1';
 const READING_TEXT_SIZE_STORAGE_KEY = 'aiching.reading.textSize.v1';
-const APP_VERSION_STORAGE_KEY = 'aiching.version.selected.v1';
 const AI_READING_PERSONALITY_STORAGE_KEY = 'aiching.aiReading.personality.v1';
+const REVIEW_ACCESS_STORAGE_KEY = 'aiching.reviewAccess.enabled.v1';
+
+type StoredReviewAccess = {
+  expiresAt: number;
+};
 
 export type ReadingTextSize = 'comfortable' | 'large' | 'extraLarge';
 export type AppVersion = 'basic' | 'premium';
@@ -47,12 +53,14 @@ type AppThemeContextValue = {
   appVersion: AppVersion;
   aiReadingPersonalityId: AiReadingPersonalityId;
   entitlements: AppEntitlements;
+  reviewAccessEnabled: boolean;
   revenueCat: RevenueCatState;
+  clearReviewAccess: () => Promise<void>;
+  enableReviewAccess: (code: string) => Promise<{ granted: boolean; message?: string }>;
   manageSubscription: () => Promise<void>;
   presentPaywall: () => Promise<void>;
   refreshSubscriptionStatus: () => Promise<void>;
   restorePurchases: () => Promise<void>;
-  setAppVersion: (version: AppVersion) => Promise<void>;
   setAiReadingPersonalityId: (personalityId: AiReadingPersonalityId) => Promise<void>;
   themeId: HexagramThemeId;
   setThemeId: (themeId: HexagramThemeId) => Promise<void>;
@@ -74,10 +82,6 @@ function isReadingTextSize(value: string | null): value is ReadingTextSize {
   return value === 'comfortable' || value === 'large' || value === 'extraLarge';
 }
 
-function isAppVersion(value: string | null): value is AppVersion {
-  return value === 'basic' || value === 'premium';
-}
-
 function getEntitlements(isPremium: boolean): AppEntitlements {
   return {
     adsEnabled: !isPremium,
@@ -88,7 +92,7 @@ function getEntitlements(isPremium: boolean): AppEntitlements {
 }
 
 export function AppThemeProvider({ children }: PropsWithChildren) {
-  const [appVersion, setAppVersionState] = useState<AppVersion>('basic');
+  const [reviewAccessEnabled, setReviewAccessEnabled] = useState(false);
   const [revenueCat, setRevenueCat] = useState<RevenueCatState>(getDefaultRevenueCatState);
   const [aiReadingPersonalityId, setAiReadingPersonalityIdState] = useState<AiReadingPersonalityId>(
     defaultAiReadingPersonalityId,
@@ -123,9 +127,13 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
       }
     });
 
-    AsyncStorage.getItem(APP_VERSION_STORAGE_KEY).then((storedAppVersion) => {
-      if (isAppVersion(storedAppVersion)) {
-        setAppVersionState(storedAppVersion);
+    AsyncStorage.getItem(REVIEW_ACCESS_STORAGE_KEY).then((storedReviewAccessEnabled) => {
+      const storedReviewAccess = parseStoredReviewAccess(storedReviewAccessEnabled);
+
+      if (storedReviewAccess && storedReviewAccess.expiresAt > Date.now()) {
+        setReviewAccessEnabled(true);
+      } else if (storedReviewAccessEnabled) {
+        AsyncStorage.removeItem(REVIEW_ACCESS_STORAGE_KEY);
       }
     });
 
@@ -154,11 +162,26 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
     setRevenueCat(await presentRevenueCatCustomerCenter());
   }, []);
 
-  const isPremium = revenueCat.isPremium || (__DEV__ && appVersion === 'premium');
+  const isPremium = revenueCat.isPremium || reviewAccessEnabled;
 
-  const setAppVersion = useCallback(async (version: AppVersion) => {
-    await AsyncStorage.setItem(APP_VERSION_STORAGE_KEY, version);
-    setAppVersionState(version);
+  const enableReviewAccess = useCallback(async (code: string) => {
+    const result = await requestReviewAccess(code);
+
+    if (!result.granted) {
+      return result;
+    }
+
+    await AsyncStorage.setItem(
+      REVIEW_ACCESS_STORAGE_KEY,
+      JSON.stringify({ expiresAt: Date.now() + reviewAccessConfig.grantDurationMs }),
+    );
+    setReviewAccessEnabled(true);
+    return result;
+  }, []);
+
+  const clearReviewAccess = useCallback(async () => {
+    await AsyncStorage.removeItem(REVIEW_ACCESS_STORAGE_KEY);
+    setReviewAccessEnabled(false);
   }, []);
 
   const setAiReadingPersonalityId = useCallback(async (personalityId: AiReadingPersonalityId) => {
@@ -205,14 +228,16 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
         aiReadingPersonalityId,
         castingSoundId,
         entitlements: getEntitlements(isPremium),
+        clearReviewAccess,
+        enableReviewAccess,
         manageSubscription,
         readingTextSize,
+        reviewAccessEnabled,
         revenueCat,
         presentPaywall,
         refreshSubscriptionStatus,
         restorePurchases,
         setAiReadingPersonalityId,
-        setAppVersion,
         setCastingSoundId,
         setReadingTextSize,
         setSoundEffectsEnabled,
@@ -222,17 +247,18 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
       };
     },
     [
-      appVersion,
       aiReadingPersonalityId,
       castingSoundId,
+      clearReviewAccess,
+      enableReviewAccess,
       manageSubscription,
       presentPaywall,
       readingTextSize,
+      reviewAccessEnabled,
       refreshSubscriptionStatus,
       restorePurchases,
       revenueCat,
       setAiReadingPersonalityId,
-      setAppVersion,
       setCastingSoundId,
       setReadingTextSize,
       setSoundEffectsEnabled,
@@ -254,4 +280,26 @@ export function useAppTheme() {
   }
 
   return context;
+}
+
+function parseStoredReviewAccess(value: string | null): StoredReviewAccess | null {
+  if (!value) {
+    return null;
+  }
+
+  if (value === 'true') {
+    return { expiresAt: Date.now() + reviewAccessConfig.grantDurationMs };
+  }
+
+  try {
+    const parsed = JSON.parse(value) as Partial<StoredReviewAccess>;
+
+    if (typeof parsed.expiresAt === 'number') {
+      return { expiresAt: parsed.expiresAt };
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
 }

@@ -10,3 +10,8 @@
   from = "/api/premium-reading"
   to = "/.netlify/functions/premium-reading"
   status = 200
+
+[[redirects]]
+  from = "/api/review-access"
+  to = "/.netlify/functions/review-access"
+  status = 200

@@ -5,23 +5,10 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { usageLimits } from '@/config/usageLimits';
-import { AppVersion, useAppTheme } from '@/theme/appTheme';
+import { useAppTheme } from '@/theme/appTheme';
 import { aiChingColors } from '@/theme/colors';
 
 const premiumOracleImage = require('@/assets/hexagrams/themes/03/mountain_strategist.jpg');
-
-const versionOptions: Array<{ body: string; label: string; value: AppVersion }> = [
-  {
-    body: 'The free version with three daily casts, static readings, and ads when ad support is enabled.',
-    label: 'Basic',
-    value: 'basic',
-  },
-  {
-    body: 'The future premium version with generous daily oracle-powered readings, ad removal, reminders, and premium themes.',
-    label: 'Premium',
-    value: 'premium',
-  },
-];
 
 export default function VersionScreen() {
   const router = useRouter();
@@ -32,7 +19,6 @@ export default function VersionScreen() {
     presentPaywall,
     restorePurchases,
     revenueCat,
-    setAppVersion,
   } = useAppTheme();
   const [isSubscriptionActionRunning, setIsSubscriptionActionRunning] = useState(false);
 
@@ -139,36 +125,6 @@ export default function VersionScreen() {
           <RevenueCatStatusNote availability={revenueCat.availability} errorMessage={revenueCat.errorMessage} />
         </View>
       )}
-
-      {__DEV__ ? (
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Development Version Toggle</Text>
-          <Text style={styles.body}>
-            This temporary control lets us test free and premium UI before subscriptions are connected.
-          </Text>
-          <View style={styles.versionOptions}>
-            {versionOptions.map((option) => {
-              const selected = option.value === appVersion;
-
-              return (
-                <Pressable
-                  key={option.value}
-                  onPress={() => setAppVersion(option.value)}
-                  style={({ pressed }) => [
-                    styles.versionOption,
-                    selected && styles.versionOptionSelected,
-                    pressed && styles.pressed,
-                  ]}>
-                  <Text style={[styles.versionOptionTitle, selected && styles.versionOptionTitleSelected]}>
-                    {option.label}
-                  </Text>
-                  <Text style={styles.versionOptionBody}>{option.body}</Text>
-                </Pressable>
-              );
-            })}
-          </View>
-        </View>
-      ) : null}
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Enabled Features</Text>
@@ -289,35 +245,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 24,
     fontWeight: '700',
-  },
-  versionOptions: {
-    gap: 10,
-  },
-  versionOption: {
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.16)',
-    backgroundColor: 'rgba(16, 19, 24, 0.52)',
-    padding: 14,
-    gap: 4,
-  },
-  versionOptionSelected: {
-    borderColor: 'rgba(231, 197, 111, 0.72)',
-    backgroundColor: 'rgba(231, 197, 111, 0.14)',
-  },
-  versionOptionTitle: {
-    color: aiChingColors.mist,
-    fontSize: 16,
-    lineHeight: 22,
-    fontWeight: '800',
-  },
-  versionOptionTitleSelected: {
-    color: aiChingColors.gold,
-  },
-  versionOptionBody: {
-    color: aiChingColors.muted,
-    fontSize: 14,
-    lineHeight: 20,
   },
   body: {
     color: aiChingColors.mist,
