@@ -1,18 +1,16 @@
-import { Asset } from 'expo-asset';
-import * as Sharing from 'expo-sharing';
 import { useState } from 'react';
-import { Alert, Pressable, StyleSheet, Text } from 'react-native';
+import { Alert, Pressable, Share, StyleSheet, Text } from 'react-native';
 
 import { aiChingColors } from '@/theme/colors';
 import { HexagramThemeId } from '@/theme/hexagramBackgrounds';
-import { getHexagramShareImageSource } from '@/theme/hexagramShareImages';
 
 type Props = {
   hexagramNumber: number;
+  hexagramName: string;
   themeId: HexagramThemeId;
 };
 
-export function ShareHexagramButton({ hexagramNumber, themeId }: Props) {
+export function ShareHexagramButton({ hexagramName, hexagramNumber }: Props) {
   const [isSharing, setIsSharing] = useState(false);
 
   async function handleShare() {
@@ -20,33 +18,15 @@ export function ShareHexagramButton({ hexagramNumber, themeId }: Props) {
       return;
     }
 
-    const shareImageSource = getHexagramShareImageSource(hexagramNumber, themeId);
-
-    if (!shareImageSource) {
-      Alert.alert('Share unavailable', 'No share image was found for this hexagram.');
-      return;
-    }
-
     setIsSharing(true);
 
     try {
-      const isAvailable = await Sharing.isAvailableAsync();
-
-      if (!isAvailable) {
-        Alert.alert('Share unavailable', 'Sharing is not available on this device.');
-        return;
-      }
-
-      const [asset] = await Asset.loadAsync(shareImageSource);
-      const localUri = asset.localUri ?? asset.uri;
-
-      await Sharing.shareAsync(localUri, {
-        dialogTitle: 'Share Your Hexagram',
-        mimeType: 'image/jpeg',
-        UTI: 'public.jpeg',
+      await Share.share({
+        message: `I cast Hexagram ${hexagramNumber}: ${hexagramName} with I Ching by JPD3.`,
+        title: 'Share Your Hexagram',
       });
     } catch {
-      Alert.alert('Share failed', 'Unable to share this hexagram image right now.');
+      Alert.alert('Share failed', 'Unable to share this hexagram right now.');
     } finally {
       setIsSharing(false);
     }

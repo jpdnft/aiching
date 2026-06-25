@@ -152,7 +152,11 @@ export default function ReadingScreen() {
           </Pressable>
 
           <CastButton label="RETURN TO CAST" onPress={() => router.push('/')} />
-          <ShareHexagramButton hexagramNumber={reading.hexagramNumber} themeId={themeId} />
+          <ShareHexagramButton
+            hexagramName={reading.hexagramName}
+            hexagramNumber={reading.hexagramNumber}
+            themeId={themeId}
+          />
         </ScrollView>
       </SafeAreaView>
     </View>

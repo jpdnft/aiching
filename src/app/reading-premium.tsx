@@ -246,7 +246,11 @@ export default function PremiumReadingScreen() {
           </View>
 
           <CastButton label="ASK ANOTHER QUESTION" onPress={handleAskAnotherQuestion} />
-          <ShareHexagramButton hexagramNumber={reading.hexagramNumber} themeId={themeId} />
+          <ShareHexagramButton
+            hexagramName={reading.hexagramName}
+            hexagramNumber={reading.hexagramNumber}
+            themeId={themeId}
+          />
         </ScrollView>
       </SafeAreaView>
     </View>

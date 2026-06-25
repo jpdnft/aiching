@@ -8,7 +8,7 @@ import { aiChingColors } from '@/theme/colors';
 const features = [
   {
     title: 'Dramatic Readings',
-    body: 'If high-quality generated voice costs come down, we would love to explore dramatic audio readings. Right now, costs are too high to offer this at scale.',
+    body: 'If high-quality generated voice costs come down, we would *love* to explore dramatic audio readings. Right now, costs are too high to offer this at scale.',
     avatar: require('@/assets/hexagrams/themes/01/storm_witch.jpg'),
   },
   {
@@ -20,11 +20,6 @@ const features = [
     title: 'Interactive chat about your reading',
     body: 'A future conversational layer for gentle follow-up questions.',
     avatar: require('@/assets/hexagrams/themes/02/star_cartographer.jpg'),
-  },
-  {
-    title: 'Changing lines',
-    body: 'Old yin and old yang lines with resulting hexagrams.',
-    avatar: require('@/assets/hexagrams/themes/01/mountain_strategist.jpg'),
   },
   {
     title: 'Pattern insights',

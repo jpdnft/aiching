@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "I Ching by JPD3",
-    "slug": "i-ching-by-jpd3",
+    "slug": "aiching",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icons/icon.png",

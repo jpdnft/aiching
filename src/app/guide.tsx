@@ -25,10 +25,6 @@ const sections = [
     body: 'This I Ching app is designed for reflection and symbolic exploration. It does not predict the future and should not replace professional advice.',
   },
   {
-    title: 'Coming later',
-    body: 'Changing lines, resulting hexagrams, questions and interpretations, possibly journaling, and AI features could appear within this application, depending on user feedback and development priorities.',
-  },
-  {
     title: 'Need Support, or Have Feedback?',
     body: 'For questions, help, or feedback, please visit Jim Dee\'s contact page.',
     linkLabel: 'jpd3.com/contact',
