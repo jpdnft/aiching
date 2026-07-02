@@ -70,6 +70,15 @@
         }
       ],
       [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/android-icon-monochrome.png",
+          "color": "#E7C56F",
+          "defaultChannel": "daily-reminders",
+          "enableBackgroundRemoteNotifications": false
+        }
+      ],
+      [
         "react-native-google-mobile-ads",
         {
           "androidAppId": "ca-app-pub-6827002425129688~6269302550",

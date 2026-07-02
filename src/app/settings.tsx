@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Image } from 'expo-image';
+import { useFocusEffect, useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
 import { setAudioModeAsync, useAudioPlayer } from 'expo-audio';
 
@@ -13,6 +14,11 @@ import {
 import { ReadingTextSize, useAppTheme } from '@/theme/appTheme';
 import { CastingSound, castingSoundList } from '@/theme/castingSounds';
 import { aiChingColors } from '@/theme/colors';
+import {
+  defaultDailyReminderSettings,
+  getReminderSummary,
+  loadDailyReminderSettings,
+} from '@/services/dailyReminders';
 import {
   hexagramThemeList,
   HexagramThemeId,
@@ -40,6 +46,7 @@ const personalitySamples: Record<AiReadingPersonalityId, number> = {
 };
 
 export default function SettingsScreen() {
+  const router = useRouter();
   const {
     aiReadingPersonalityId,
     castingSoundId,
@@ -53,6 +60,29 @@ export default function SettingsScreen() {
     soundEffectsEnabled,
     themeId,
   } = useAppTheme();
+  const [dailyReminderSummary, setDailyReminderSummary] = useState(
+    getReminderSummary(defaultDailyReminderSettings),
+  );
+  const [dailyRemindersEnabled, setDailyRemindersEnabled] = useState(false);
+
+  useFocusEffect(
+    useCallback(() => {
+      let active = true;
+
+      loadDailyReminderSettings().then((settings) => {
+        if (!active) {
+          return;
+        }
+
+        setDailyRemindersEnabled(settings.enabled);
+        setDailyReminderSummary(getReminderSummary(settings));
+      });
+
+      return () => {
+        active = false;
+      };
+    }, []),
+  );
 
   return (
     <ScreenContainer>
@@ -105,6 +135,39 @@ export default function SettingsScreen() {
         <Text style={[styles.textSizePreview, textSizePreviewStyles[readingTextSize]]}>
           PREVIEW: This is how the text will look on the Readings page with the setting selected.
         </Text>
+      </View>
+
+      <View style={styles.section}>
+        <View style={styles.settingRow}>
+          <View style={styles.settingText}>
+            <Text style={styles.sectionTitle}>Daily Reminders</Text>
+            <Text style={styles.settingDescription}>
+              Premium feature. Choose which days your phone should remind you to consult the I Ching.
+            </Text>
+            <Text style={styles.settingDescription}>
+              {entitlements.notificationsEnabled
+                ? dailyRemindersEnabled
+                  ? `Enabled: ${dailyReminderSummary}`
+                  : 'Disabled. Configure a time and days when you are ready.'
+                : 'Upgrade to Premium to enable daily reminders.'}
+            </Text>
+          </View>
+          <Text style={[styles.themeState, entitlements.notificationsEnabled && styles.themeStateSelected]}>
+            {entitlements.notificationsEnabled ? 'Premium' : 'Locked'}
+          </Text>
+        </View>
+        <Pressable
+          disabled={!entitlements.notificationsEnabled}
+          onPress={() => router.push('/daily-reminders')}
+          style={({ pressed }) => [
+            styles.configureButton,
+            !entitlements.notificationsEnabled && styles.themeOptionDisabled,
+            pressed && entitlements.notificationsEnabled && styles.themeOptionPressed,
+          ]}>
+          <Text style={styles.configureButtonText}>
+            {entitlements.notificationsEnabled ? 'Configure Reminders' : 'Premium Feature'}
+          </Text>
+        </Pressable>
       </View>
 
       <View style={styles.section}>
@@ -170,7 +233,7 @@ export default function SettingsScreen() {
   );
 }
 
-const readingTextSizeOptions: Array<{ label: string; value: ReadingTextSize }> = [
+const readingTextSizeOptions: { label: string; value: ReadingTextSize }[] = [
   { label: 'Comfortable', value: 'comfortable' },
   { label: 'Large', value: 'large' },
   { label: 'Extra Large', value: 'extraLarge' },
@@ -507,5 +570,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
+  },
+  configureButton: {
+    minHeight: 46,
+    borderRadius: 8,
+    backgroundColor: aiChingColors.gold,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+  },
+  configureButtonText: {
+    color: aiChingColors.ink,
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '800',
+    textAlign: 'center',
+    textTransform: 'uppercase',
   },
 });

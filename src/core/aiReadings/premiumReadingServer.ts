@@ -1,4 +1,5 @@
 import { aiReadingConfig } from '../../config/aiReading';
+import { premiumQuestionConfig } from '../../config/premiumQuestion';
 import { getLineStateFromTotal } from '../iching/generate';
 import { getHexagramByNumber } from '../iching/hexagrams';
 import { lookupHexagram } from '../iching/lookup';
@@ -191,8 +192,11 @@ function getValidatedQuestion(question: unknown): string | undefined {
     return undefined;
   }
 
-  if (trimmed.length > 600) {
-    throw new PremiumReadingError('Question must be 600 characters or fewer.', 400);
+  if (trimmed.length > premiumQuestionConfig.maxLength) {
+    throw new PremiumReadingError(
+      `Question must be ${premiumQuestionConfig.maxLength} characters or fewer.`,
+      400,
+    );
   }
 
   return trimmed;

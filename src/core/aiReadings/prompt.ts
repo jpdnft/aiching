@@ -16,7 +16,7 @@ Safety boundary: If the user question expresses self-harm, suicide, intent to ha
 
 Make the reading feel premium: write a rich, memorable, highly specific interpretation that is long enough to feel substantial, up to about ${aiReadingConfig.maxWords} words. Consider the primary hexagram, the upside-down/reversed aspect, and the opposite/complementary aspect. If the user asked a question, answer it directly through the hexagram without becoming simplistic. If no question was asked, provide a general outlook with emotional, practical, and spiritual dimensions.
 
-Structure the response with short readable sections using plain section titles. End with a concise practical counsel section.`;
+Structure the response with short readable sections using plain section titles. End with a concise practical counsel section. As users will not be able to continue the conversation, do not offer any further interaction or ask for follow-up questions.`;
 
 export function buildAiReadingPrompt({
   hexagram,

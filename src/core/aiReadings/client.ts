@@ -1,6 +1,8 @@
 import { aiReadingConfig } from '@/config/aiReading';
 import { CastLineDetail } from '@/core/iching/types';
 
+const internetRequiredMessage = 'Internet connection required here. Please connect and retry.';
+
 export type GeneratePremiumReadingParams = {
   lineCastDetails?: CastLineDetail[];
   hexagramNumber: number;
@@ -21,13 +23,19 @@ export type GeneratePremiumReadingResult = {
 export async function generatePremiumReading(
   params: GeneratePremiumReadingParams,
 ): Promise<GeneratePremiumReadingResult> {
-  const response = await fetch(aiReadingConfig.endpointPath, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(params),
-  });
+  let response: Response;
+
+  try {
+    response = await fetch(aiReadingConfig.endpointPath, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(params),
+    });
+  } catch {
+    throw new Error(internetRequiredMessage);
+  }
 
   const body = (await response.json().catch(() => null)) as
     | (GeneratePremiumReadingResult & { error?: string })

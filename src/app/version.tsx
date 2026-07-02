@@ -14,7 +14,6 @@ export default function VersionScreen() {
   const router = useRouter();
   const {
     appVersion,
-    entitlements,
     manageSubscription,
     presentPaywall,
     restorePurchases,
@@ -67,11 +66,14 @@ export default function VersionScreen() {
             <Text style={styles.featureItem}>
               - Changing lines powered by traditional casting logic, with full interpretations
             </Text>
+            <Text style={styles.featureDetail}>
+              Changing lines show where your situation is in motion and what it may be turning toward.
+            </Text>
             <Text style={styles.featureItem}>
               - Up to {usageLimits.premiumDailyAiReadingLimit} full oracle-powered readings per day
             </Text>
             <Text style={styles.featureItem}>- Totally ad-free experience</Text>
-            <Text style={styles.featureItem}>- Daily reminder notifications (optional feature)</Text>
+            <Text style={styles.featureItem}>- Configurable daily reminder notifications</Text>
             <Text style={styles.featureItem}>- Premium visual themes</Text>
           </View>
           <Text style={styles.note}>
@@ -125,20 +127,6 @@ export default function VersionScreen() {
           <RevenueCatStatusNote availability={revenueCat.availability} errorMessage={revenueCat.errorMessage} />
         </View>
       )}
-
-      <View style={styles.card}>
-        <Text style={styles.cardTitle}>Enabled Features</Text>
-        <Text style={styles.body}>Ads: {entitlements.adsEnabled ? 'On' : 'Off'}</Text>
-        <Text style={styles.body}>
-          Oracle-powered readings: {entitlements.aiReadingsEnabled ? 'On' : 'Off'}
-        </Text>
-        <Text style={styles.body}>
-          Daily reminders: {entitlements.notificationsEnabled ? 'On' : 'Off'}
-        </Text>
-        <Text style={styles.body}>
-          Premium themes: {entitlements.premiumThemesEnabled ? 'On' : 'Off'}
-        </Text>
-      </View>
 
       <Pressable onPress={() => router.push('/more')} style={({ pressed }) => [styles.backLink, pressed && styles.pressed]}>
         <Text style={styles.backText}>Back to More</Text>
@@ -264,6 +252,13 @@ const styles = StyleSheet.create({
     color: aiChingColors.mist,
     fontSize: 15,
     lineHeight: 22,
+  },
+  featureDetail: {
+    color: aiChingColors.muted,
+    fontSize: 13,
+    lineHeight: 19,
+    marginTop: -2,
+    paddingLeft: 12,
   },
   note: {
     color: aiChingColors.muted,

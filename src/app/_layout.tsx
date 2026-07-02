@@ -1,14 +1,16 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
-import { Tabs } from 'expo-router';
+import { DarkTheme, DefaultTheme, Tabs, ThemeProvider } from 'expo-router';
 import { SymbolView, SymbolViewProps } from 'expo-symbols';
 import { ColorValue, StyleSheet, useColorScheme, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { TopAdBanner } from '@/components/TopAdBanner';
+import { configureDailyReminderNotificationHandler } from '@/services/dailyReminders';
 import { AppThemeProvider, useAppTheme } from '@/theme/appTheme';
 import { aiChingColors } from '@/theme/colors';
 
 type TabSymbol = SymbolViewProps['name'];
+
+configureDailyReminderNotificationHandler();
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -115,6 +117,7 @@ function AppTabs({ colorScheme }: { colorScheme: ReturnType<typeof useColorSchem
           <Tabs.Screen name="version" options={{ href: null }} />
           <Tabs.Screen name="review-access" options={{ href: null }} />
           <Tabs.Screen name="sample" options={{ href: null }} />
+          <Tabs.Screen name="daily-reminders" options={{ href: null }} />
           <Tabs.Screen name="reading-premium" options={{ href: null }} />
           <Tabs.Screen name="what-is-iching" options={{ href: null }} />
         </Tabs>

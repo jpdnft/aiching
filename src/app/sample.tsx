@@ -144,6 +144,10 @@ export default function SampleScreen() {
           theme, and they had selected the {sampleReadingPersonality} oracle to handle the reading.
         </Text>
         <Text style={styles.body}>
+          An oracle is the personality doing the reading. All castings are done using digitized
+          traditional methods, but the tone of the reading is shaped by the selected oracle.
+        </Text>
+        <Text style={styles.body}>
           With multiple themes offered, 10 personalities available per theme, custom questions, and
           the power of oracle-powered interpretation shaped by all of that, the possibilities for
           responses are wonderfully wide open. And the responses can be amazing, too. Have a look.

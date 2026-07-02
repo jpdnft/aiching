@@ -27,6 +27,7 @@ import {
 } from '@/services/revenueCat';
 import { reviewAccessConfig } from '@/config/reviewAccess';
 import { requestReviewAccess } from '@/services/reviewAccess';
+import { disableDailyReminders } from '@/services/dailyReminders';
 
 const THEME_STORAGE_KEY = 'aiching.theme.selected.v1';
 const SOUND_EFFECTS_STORAGE_KEY = 'aiching.soundEffects.enabled.v1';
@@ -93,7 +94,9 @@ function getEntitlements(isPremium: boolean): AppEntitlements {
 
 export function AppThemeProvider({ children }: PropsWithChildren) {
   const [reviewAccessEnabled, setReviewAccessEnabled] = useState(false);
+  const [reviewAccessLoaded, setReviewAccessLoaded] = useState(false);
   const [revenueCat, setRevenueCat] = useState<RevenueCatState>(getDefaultRevenueCatState);
+  const [revenueCatLoaded, setRevenueCatLoaded] = useState(false);
   const [aiReadingPersonalityId, setAiReadingPersonalityIdState] = useState<AiReadingPersonalityId>(
     defaultAiReadingPersonalityId,
   );
@@ -135,6 +138,8 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
       } else if (storedReviewAccessEnabled) {
         AsyncStorage.removeItem(REVIEW_ACCESS_STORAGE_KEY);
       }
+
+      setReviewAccessLoaded(true);
     });
 
     AsyncStorage.getItem(AI_READING_PERSONALITY_STORAGE_KEY).then((storedPersonalityId) => {
@@ -143,11 +148,15 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
       }
     });
 
-    loadRevenueCatState().then(setRevenueCat);
+    loadRevenueCatState().then((state) => {
+      setRevenueCat(state);
+      setRevenueCatLoaded(true);
+    });
   }, []);
 
   const refreshSubscriptionStatus = useCallback(async () => {
     setRevenueCat(await loadRevenueCatState());
+    setRevenueCatLoaded(true);
   }, []);
 
   const presentPaywall = useCallback(async () => {
@@ -163,6 +172,20 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
   }, []);
 
   const isPremium = revenueCat.isPremium || reviewAccessEnabled;
+
+  useEffect(() => {
+    if (isPremium) {
+      return;
+    }
+
+    if (!revenueCatLoaded || !reviewAccessLoaded) {
+      return;
+    }
+
+    disableDailyReminders().catch(() => {
+      // Reminder cleanup should not block app startup or subscription state updates.
+    });
+  }, [isPremium, revenueCatLoaded, reviewAccessLoaded]);
 
   const enableReviewAccess = useCallback(async (code: string) => {
     const result = await requestReviewAccess(code);

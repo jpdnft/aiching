@@ -16,6 +16,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { CastButton } from '@/components/CastButton';
 import { HexagramView } from '@/components/HexagramView';
+import { premiumQuestionConfig } from '@/config/premiumQuestion';
 import { usageLimits } from '@/config/usageLimits';
 import {
   generateBasicLine,
@@ -306,11 +307,12 @@ export default function CastScreen() {
             </Text>
           ) : (
             <View style={styles.questionBox}>
-              <Text style={styles.questionLabel}>Ask the Oracle (Optional)</Text>
+              <Text style={styles.questionLabel}>Ask the Oracle</Text>
               <TextInput
+                maxLength={premiumQuestionConfig.maxLength}
                 multiline
                 onChangeText={setQuestion}
-                placeholder="What would you like to ask?"
+                placeholder="Enter a specific question if you like."
                 placeholderTextColor="rgba(219, 226, 223, 0.52)"
                 style={styles.questionInput}
                 textAlignVertical="top"
@@ -441,13 +443,13 @@ const styles = StyleSheet.create({
   logoHeader: {
     alignItems: 'center',
     paddingHorizontal: 24,
-    paddingTop: 28,
+    paddingTop: 8,
     paddingBottom: 4,
   },
   logo: {
-    width: '96%',
+    width: '82%',
     maxWidth: 620,
-    height: 178,
+    height: 151,
   },
   kicker: {
     color: aiChingColors.gold,

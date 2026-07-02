@@ -26,6 +26,8 @@ import { aiChingColors } from '@/theme/colors';
 import { getAiReadingAvatarSource, getHexagramBackgroundSource } from '@/theme/hexagramBackgrounds';
 import { formatReadingDate } from '@/utils/date';
 
+const internetRequiredMessage = 'Internet connection required here. Please connect and retry.';
+
 export default function PremiumReadingScreen() {
   const router = useRouter();
   const { aiReadingPersonalityId, entitlements, themeId } = useAppTheme();
@@ -71,7 +73,7 @@ export default function PremiumReadingScreen() {
       const updatedReading = await savePremiumReadingForToday(premiumReading);
       setReading(updatedReading);
     } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : 'Unable to generate the premium reading.');
+      setErrorMessage(getPremiumReadingErrorMessage(error));
     } finally {
       isGeneratingRef.current = false;
       setIsGenerating(false);
@@ -255,6 +257,23 @@ export default function PremiumReadingScreen() {
       </SafeAreaView>
     </View>
   );
+}
+
+function getPremiumReadingErrorMessage(error: unknown): string {
+  const message = error instanceof Error ? error.message : '';
+  const normalizedMessage = message.toLowerCase();
+
+  if (
+    normalizedMessage.includes('fetch failed') ||
+    normalizedMessage.includes('network request failed') ||
+    normalizedMessage.includes('unknownhostexception') ||
+    normalizedMessage.includes('unable to resolve host') ||
+    normalizedMessage.includes('failed to fetch')
+  ) {
+    return internetRequiredMessage;
+  }
+
+  return message || 'Unable to generate the premium reading.';
 }
 
 function CastingDetailsCard({
