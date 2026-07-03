@@ -7,7 +7,7 @@ import { HexagramView } from '@/components/HexagramView';
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { getHexagramByNumber } from '@/core/iching/hexagrams';
 import { useAppTheme } from '@/theme/appTheme';
-import { aiChingColors } from '@/theme/colors';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 import { getHexagramBackgroundSource } from '@/theme/hexagramBackgrounds';
 
 function getHexagramId(value: string | string[] | undefined): number {
@@ -25,6 +25,7 @@ export default function HexagramDetailScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const { themeId } = useAppTheme();
+  const styles = useHexagramDetailStyles();
   const hexagram = getHexagramByNumber(getHexagramId(params.id));
   const imageSource = getHexagramBackgroundSource(hexagram.number, themeId);
   const previousHexagramNumber = hexagram.number === 1 ? 64 : hexagram.number - 1;
@@ -75,7 +76,7 @@ export default function HexagramDetailScreen() {
   });
 
   return (
-    <ScreenContainer>
+    <ScreenContainer themeAware>
       <View
         style={styles.swipeArea}
         onTouchStart={(event) => {
@@ -108,7 +109,9 @@ export default function HexagramDetailScreen() {
           </Pressable>
 
           <View style={styles.header}>
-            <HexagramView lines={hexagram.lineStates} size="small" />
+            <View style={styles.hexagramSeal}>
+              <HexagramView colorModeOverride="dark" lines={hexagram.lineStates} size="small" />
+            </View>
             <Text style={styles.number}>Hexagram {hexagram.number}</Text>
             <Text style={styles.title}>{hexagram.name}</Text>
           </View>
@@ -144,7 +147,14 @@ export default function HexagramDetailScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+function useHexagramDetailStyles() {
+  const { colorMode } = useAppTheme();
+
+  return createHexagramDetailStyles(getAiChingColors(colorMode));
+}
+
+function createHexagramDetailStyles(colors: AiChingColorPalette) {
+  return StyleSheet.create({
   swipeArea: {
     width: '100%',
   },
@@ -170,20 +180,20 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   navArrowText: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 30,
     lineHeight: 34,
     fontWeight: '700',
   },
   number: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 13,
     lineHeight: 18,
     fontWeight: '700',
     textTransform: 'uppercase',
   },
   title: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 30,
     lineHeight: 38,
     fontWeight: '700',
@@ -197,13 +207,13 @@ const styles = StyleSheet.create({
     marginBottom: 22,
   },
   keyword: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 13,
     lineHeight: 18,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.18)',
-    backgroundColor: aiChingColors.surface,
+    borderColor: 'rgba(139, 93, 29, 0.24)',
+    backgroundColor: colors.surface,
     paddingHorizontal: 10,
     paddingVertical: 6,
   },
@@ -215,7 +225,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     alignSelf: 'center',
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.2)',
+    borderColor: 'rgba(139, 93, 29, 0.28)',
     marginBottom: 24,
   },
   image: {
@@ -226,14 +236,22 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.22)',
+    borderColor: 'rgba(139, 93, 29, 0.28)',
     paddingHorizontal: 16,
     paddingVertical: 10,
   },
   backText: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 15,
     lineHeight: 20,
     fontWeight: '700',
   },
-});
+  hexagramSeal: {
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.32)',
+    backgroundColor: '#101318',
+    padding: 10,
+  },
+  });
+}

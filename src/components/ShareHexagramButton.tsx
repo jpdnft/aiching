@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Alert, Pressable, Share, StyleSheet, Text } from 'react-native';
 
-import { aiChingColors } from '@/theme/colors';
+import { useAppTheme } from '@/theme/appTheme';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 import { HexagramThemeId } from '@/theme/hexagramBackgrounds';
 
 type Props = {
@@ -11,6 +12,7 @@ type Props = {
 };
 
 export function ShareHexagramButton({ hexagramName, hexagramNumber }: Props) {
+  const styles = useShareHexagramButtonStyles();
   const [isSharing, setIsSharing] = useState(false);
 
   async function handleShare() {
@@ -47,15 +49,22 @@ export function ShareHexagramButton({ hexagramName, hexagramNumber }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
+function useShareHexagramButtonStyles() {
+  const { colorMode } = useAppTheme();
+
+  return createShareHexagramButtonStyles(getAiChingColors(colorMode));
+}
+
+function createShareHexagramButtonStyles(colors: AiChingColorPalette) {
+  return StyleSheet.create({
   button: {
     minWidth: 180,
     minHeight: 54,
     marginTop: 18,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.58)',
-    backgroundColor: 'rgba(231, 197, 111, 0.16)',
+    borderColor: 'rgba(139, 93, 29, 0.58)',
+    backgroundColor: 'rgba(139, 93, 29, 0.16)',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 28,
@@ -67,9 +76,10 @@ const styles = StyleSheet.create({
     opacity: 0.82,
   },
   label: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 15,
     fontWeight: '800',
     letterSpacing: 0,
   },
-});
+  });
+}

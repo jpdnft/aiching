@@ -36,7 +36,7 @@ import {
 } from '@/storage/readingsStorage';
 import { useAppTheme } from '@/theme/appTheme';
 import { getCastingSoundSource } from '@/theme/castingSounds';
-import { aiChingColors } from '@/theme/colors';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 import { getHomeBackgroundSource } from '@/theme/hexagramBackgrounds';
 import { getLocalDateKey } from '@/utils/date';
 
@@ -45,7 +45,9 @@ const iChingLogo = require('../../assets/images/ichinglogo.png');
 export default function CastScreen() {
   const router = useRouter();
   const { freshCast } = useLocalSearchParams<{ freshCast?: string }>();
-  const { appVersion, castingSoundId, entitlements, soundEffectsEnabled, themeId } = useAppTheme();
+  const { appVersion, castingSoundId, colorMode, entitlements, soundEffectsEnabled, themeId } = useAppTheme();
+  const styles = useCastScreenStyles();
+  const colors = getAiChingColors(colorMode);
   const castLineSound = getCastingSoundSource(castingSoundId);
   const castLinePlayer = useAudioPlayer(castLineSound, { downloadFirst: true });
   const [lines, setLines] = useState<PartialHexagramLines>([]);
@@ -254,7 +256,7 @@ export default function CastScreen() {
     return (
       <CastBackground backgroundSource={homeBackgroundSource} scrollKey="loading">
         <View style={styles.centered}>
-          <ActivityIndicator color={aiChingColors.gold} />
+          <ActivityIndicator color={colors.gold} />
         </View>
       </CastBackground>
     );
@@ -313,7 +315,7 @@ export default function CastScreen() {
                 multiline
                 onChangeText={setQuestion}
                 placeholder="Enter a specific question if you like."
-                placeholderTextColor="rgba(219, 226, 223, 0.52)"
+                placeholderTextColor={colorMode === 'dark' ? 'rgba(219, 226, 223, 0.52)' : 'rgba(111, 102, 89, 0.72)'}
                 style={styles.questionInput}
                 textAlignVertical="top"
                 value={question}
@@ -355,6 +357,7 @@ export default function CastScreen() {
 
 function PremiumPromoBox() {
   const router = useRouter();
+  const styles = useCastScreenStyles();
 
   return (
     <Pressable
@@ -378,6 +381,8 @@ function CastBackground({
   showLogo?: boolean;
   scrollKey?: string;
 }) {
+  const styles = useCastScreenStyles();
+
   return (
     <View style={styles.backgroundScreen}>
       {backgroundSource ? (
@@ -403,7 +408,17 @@ function CastBackground({
   );
 }
 
-const styles = StyleSheet.create({
+function useCastScreenStyles() {
+  const { colorMode } = useAppTheme();
+
+  return createCastScreenStyles(getAiChingColors(colorMode), colorMode);
+}
+
+function createCastScreenStyles(colors: AiChingColorPalette, colorMode: 'dark' | 'light') {
+  const panelBackground = colorMode === 'dark' ? 'rgba(16, 19, 24, 0.72)' : 'rgba(255, 250, 240, 0.86)';
+  const imageScrim = colorMode === 'dark' ? 'rgba(10, 12, 16, 0.52)' : 'rgba(247, 241, 231, 0.42)';
+
+  return StyleSheet.create({
   centered: {
     flex: 1,
     alignItems: 'center',
@@ -411,14 +426,14 @@ const styles = StyleSheet.create({
   },
   backgroundScreen: {
     flex: 1,
-    backgroundColor: aiChingColors.ink,
+    backgroundColor: colors.ink,
   },
   backgroundImage: {
     ...StyleSheet.absoluteFill,
   },
   imageScrim: {
     ...StyleSheet.absoluteFill,
-    backgroundColor: 'rgba(10, 12, 16, 0.52)',
+    backgroundColor: imageScrim,
   },
   castSafeArea: {
     flex: 1,
@@ -452,13 +467,13 @@ const styles = StyleSheet.create({
     height: 151,
   },
   kicker: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 13,
     fontWeight: '700',
     textTransform: 'uppercase',
   },
   title: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 26,
     lineHeight: 34,
     fontWeight: '700',
@@ -468,7 +483,7 @@ const styles = StyleSheet.create({
     maxWidth: '85%',
   },
   body: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 16,
     lineHeight: 24,
     textAlign: 'center',
@@ -478,13 +493,13 @@ const styles = StyleSheet.create({
     maxWidth: 420,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.22)',
-    backgroundColor: 'rgba(16, 19, 24, 0.72)',
+    borderColor: 'rgba(139, 93, 29, 0.28)',
+    backgroundColor: panelBackground,
     padding: 14,
     gap: 8,
   },
   questionLabel: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 13,
     lineHeight: 18,
     fontWeight: '800',
@@ -492,14 +507,14 @@ const styles = StyleSheet.create({
   },
   questionInput: {
     minHeight: 92,
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     lineHeight: 23,
     padding: 0,
   },
   intention: {
     maxWidth: 340,
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 16,
     lineHeight: 24,
     textAlign: 'center',
@@ -509,8 +524,8 @@ const styles = StyleSheet.create({
     maxWidth: 420,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.34)',
-    backgroundColor: 'rgba(16, 19, 24, 0.76)',
+    borderColor: 'rgba(139, 93, 29, 0.38)',
+    backgroundColor: panelBackground,
     padding: 16,
     gap: 6,
   },
@@ -518,20 +533,20 @@ const styles = StyleSheet.create({
     opacity: 0.78,
   },
   premiumPromoTitle: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 17,
     lineHeight: 23,
     fontWeight: '800',
     textAlign: 'center',
   },
   premiumPromoBody: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 14,
     lineHeight: 20,
     textAlign: 'center',
   },
   premiumPromoLink: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 12,
     lineHeight: 17,
     fontWeight: '800',
@@ -544,18 +559,18 @@ const styles = StyleSheet.create({
     minHeight: 48,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.34)',
+    borderColor: 'rgba(139, 93, 29, 0.38)',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 16,
     paddingVertical: 10,
-    backgroundColor: 'rgba(16, 19, 24, 0.64)',
+    backgroundColor: panelBackground,
   },
   secondaryButtonPressed: {
     opacity: 0.78,
   },
   secondaryButtonText: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 14,
     lineHeight: 20,
     fontWeight: '800',
@@ -586,15 +601,16 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   progress: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 14,
   },
   premiumCastNote: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 13,
     lineHeight: 18,
     fontWeight: '800',
     textAlign: 'center',
     textTransform: 'uppercase',
   },
-});
+  });
+}

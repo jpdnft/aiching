@@ -3,18 +3,24 @@ import { StyleSheet, View } from 'react-native';
 import { isChangingLine } from '@/core/iching/changingLines';
 import { toBasicLine } from '@/core/iching/generate';
 import { LineState } from '@/core/iching/types';
-import { aiChingColors } from '@/theme/colors';
+import { useAppTheme } from '@/theme/appTheme';
+import { AppColorMode, getAiChingColors } from '@/theme/colors';
 
 type Props = {
   line?: LineState;
+  colorModeOverride?: AppColorMode;
   muted?: boolean;
   size?: 'default' | 'mini';
 };
 
-export function HexagramLine({ line, muted = false, size = 'default' }: Props) {
+export function HexagramLine({ colorModeOverride, line, muted = false, size = 'default' }: Props) {
+  const { colorMode } = useAppTheme();
+  const effectiveColorMode = colorModeOverride ?? colorMode;
+  const colors = getAiChingColors(effectiveColorMode);
   const isYin = line ? toBasicLine(line) === 'yin' : false;
   const isChanging = line ? isChangingLine(line) : false;
-  const color = muted ? 'rgba(231, 197, 111, 0.22)' : isChanging ? '#f8e7a1' : aiChingColors.gold;
+  const mutedColor = effectiveColorMode === 'dark' ? 'rgba(231, 197, 111, 0.22)' : 'rgba(139, 93, 29, 0.28)';
+  const color = muted ? mutedColor : isChanging ? '#f8e7a1' : colors.gold;
   const isMini = size === 'mini';
 
   if (!line) {

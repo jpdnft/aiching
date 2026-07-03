@@ -1,7 +1,8 @@
 import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
-import { aiChingColors } from '@/theme/colors';
+import { useAppTheme } from '@/theme/appTheme';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 
 const sections = [
   {
@@ -33,8 +34,10 @@ const sections = [
 ];
 
 export default function GuideScreen() {
+  const styles = useGuideStyles();
+
   return (
-    <ScreenContainer>
+    <ScreenContainer themeAware>
       <Text style={styles.title}>User Guide</Text>
       <Text style={styles.intro}>
         A quiet ritual for noticing what the day may be asking of you.
@@ -60,16 +63,23 @@ export default function GuideScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+function useGuideStyles() {
+  const { colorMode } = useAppTheme();
+
+  return createGuideStyles(getAiChingColors(colorMode));
+}
+
+function createGuideStyles(colors: AiChingColorPalette) {
+  return StyleSheet.create({
   title: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 32,
     lineHeight: 40,
     fontWeight: '700',
     marginBottom: 10,
   },
   intro: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 17,
     lineHeight: 25,
     marginBottom: 28,
@@ -79,22 +89,22 @@ const styles = StyleSheet.create({
   },
   section: {
     borderTopWidth: 1,
-    borderTopColor: 'rgba(231, 197, 111, 0.16)',
+    borderTopColor: 'rgba(139, 93, 29, 0.22)',
     paddingTop: 16,
     gap: 6,
   },
   sectionTitle: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 17,
     fontWeight: '700',
   },
   body: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     lineHeight: 24,
   },
   link: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 16,
     lineHeight: 24,
     fontWeight: '700',
@@ -103,4 +113,5 @@ const styles = StyleSheet.create({
   linkPressed: {
     opacity: 0.72,
   },
-});
+  });
+}

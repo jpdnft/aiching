@@ -1,14 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'expo-router';
-import {
-  PanResponder,
-  Platform,
-  Pressable,
-  StyleSheet,
-  Switch,
-  Text,
-  View,
-} from 'react-native';
+import { Platform, Pressable, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { Image } from 'expo-image';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
@@ -26,18 +18,18 @@ import {
   scheduleDailyReminders,
 } from '@/services/dailyReminders';
 import { useAppTheme } from '@/theme/appTheme';
-import { aiChingColors } from '@/theme/colors';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 
 const notificationPreviewIcon = require('@/assets/icons/icon.png');
 const hourOptions = Array.from({ length: 12 }, (_, index) => String(index + 1));
-const minuteOptions = Array.from({ length: 60 }, (_, index) => String(index).padStart(2, '0'));
+const minuteOptions = Array.from({ length: 59 }, (_, index) => String(index + 1));
 const periodOptions = ['AM', 'PM'];
-const wheelItemHeight = 44;
-const wheelDragOffsets = [-2, -1, 0, 1, 2];
 
 export default function DailyRemindersScreen() {
   const router = useRouter();
-  const { entitlements, presentPaywall } = useAppTheme();
+  const { colorMode, entitlements, presentPaywall } = useAppTheme();
+  const styles = useDailyReminderStyles();
+  const colors = getAiChingColors(colorMode);
   const [settings, setSettings] = useState<DailyReminderSettings>(defaultDailyReminderSettings);
   const [message, setMessage] = useState<string | null>(null);
   const [permissionState, setPermissionState] = useState<DailyReminderPermissionState | null>(null);
@@ -166,7 +158,7 @@ export default function DailyRemindersScreen() {
 
   if (!entitlements.notificationsEnabled) {
     return (
-      <ScreenContainer>
+      <ScreenContainer themeAware>
         <Text style={styles.title}>Daily Reminders</Text>
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Premium Feature</Text>
@@ -185,7 +177,7 @@ export default function DailyRemindersScreen() {
   }
 
   return (
-    <ScreenContainer>
+    <ScreenContainer themeAware>
       <Text style={styles.title}>Daily Reminders</Text>
       <Text style={styles.intro}>
         Set a local phone reminder to make the I Ching part of your rhythm.
@@ -201,7 +193,7 @@ export default function DailyRemindersScreen() {
           </View>
           <Switch
             onValueChange={handleReminderStatusChange}
-            thumbColor={settings.enabled ? aiChingColors.gold : '#8b918f'}
+            thumbColor={settings.enabled ? colors.gold : '#8b918f'}
             trackColor={{
               false: 'rgba(231, 197, 111, 0.18)',
               true: 'rgba(231, 197, 111, 0.44)',
@@ -246,24 +238,21 @@ export default function DailyRemindersScreen() {
       <View style={[styles.card, !settings.enabled && styles.disabledSection]}>
         <Text style={styles.cardTitle}>Select a time</Text>
         <View style={styles.timePicker}>
-          <WheelSelector
+          <DropdownSelect
             disabled={!settings.enabled}
             label="Hour"
-            loop
             options={hourOptions}
             value={String(formatDisplayHour(settings.hour))}
             onSelect={setDisplayHour}
           />
-          <Text style={styles.timeSeparator}>:</Text>
-          <WheelSelector
+          <DropdownSelect
             disabled={!settings.enabled}
             label="Minute"
-            loop
             options={minuteOptions}
-            value={String(settings.minute).padStart(2, '0')}
+            value={String(settings.minute)}
             onSelect={setMinute}
           />
-          <WheelSelector
+          <DropdownSelect
             disabled={!settings.enabled}
             label="AM/PM"
             options={periodOptions}
@@ -312,123 +301,82 @@ export default function DailyRemindersScreen() {
   );
 }
 
-function WheelSelector({
+function DropdownSelect({
   disabled,
   label,
-  loop = false,
   onSelect,
   options,
   value,
 }: {
   disabled: boolean;
   label: string;
-  loop?: boolean;
   onSelect: (value: string) => void;
   options: string[];
   value: string;
 }) {
-  const selectedIndex = Math.max(0, options.indexOf(value));
-  const dragStepRef = useRef(0);
-  const gestureStartIndexRef = useRef(selectedIndex);
-  const [dragOffset, setDragOffset] = useState(0);
-  const panResponder = useMemo(
-    () =>
-      PanResponder.create({
-        onMoveShouldSetPanResponderCapture: (_, gestureState) =>
-          !disabled && Math.abs(gestureState.dy) > 4 && Math.abs(gestureState.dy) > Math.abs(gestureState.dx),
-        onMoveShouldSetPanResponder: (_, gestureState) =>
-          !disabled && Math.abs(gestureState.dy) > 4 && Math.abs(gestureState.dy) > Math.abs(gestureState.dx),
-        onPanResponderGrant: () => {
-          dragStepRef.current = 0;
-          gestureStartIndexRef.current = selectedIndex;
-          setDragOffset(0);
-        },
-        onPanResponderMove: (_, gestureState) => {
-          const nextStep = Math.trunc(gestureState.dy / wheelItemHeight);
+  const styles = useDailyReminderStyles();
+  const [open, setOpen] = useState(false);
+  const selectedValue = options.includes(value) ? value : options[0];
 
-          if (nextStep !== dragStepRef.current) {
-            dragStepRef.current = nextStep;
-            selectFromIndex(gestureStartIndexRef.current, -nextStep);
-          }
-
-          setDragOffset(gestureState.dy - nextStep * wheelItemHeight);
-        },
-        onPanResponderRelease: () => {
-          dragStepRef.current = 0;
-          setDragOffset(0);
-        },
-        onPanResponderTerminate: () => {
-          dragStepRef.current = 0;
-          setDragOffset(0);
-        },
-        onStartShouldSetPanResponder: () => false,
-        onStartShouldSetPanResponderCapture: () => false,
-      }),
-    [disabled, loop, onSelect, options, selectedIndex],
-  );
-
-  function selectByOffset(offset: number) {
-    selectFromIndex(selectedIndex, offset);
-  }
-
-  function selectFromIndex(startIndex: number, offset: number) {
+  function handleSelect(nextValue: string) {
     if (disabled) {
       return;
     }
 
-    const nextOption = getOffsetValue(options, startIndex, offset, loop);
+    setOpen(false);
 
-    if (nextOption && nextOption !== value) {
-      onSelect(nextOption);
+    if (nextValue !== value) {
+      onSelect(nextValue);
     }
   }
 
   return (
-    <View style={styles.wheel}>
-      <Text style={styles.wheelLabel}>{label}</Text>
-      <View style={styles.wheelFrame} {...panResponder.panHandlers}>
-        <View pointerEvents="none" style={styles.wheelSelection} />
-        <View
-          style={[
-            styles.wheelStrip,
-            {
-              transform: [{ translateY: dragOffset - wheelItemHeight }],
-            },
-          ]}>
-          {wheelDragOffsets.map((offset) => {
-            const option = getOffsetValue(options, selectedIndex, offset, loop);
-            const isCenter = offset === 0;
+    <View style={styles.dropdown}>
+      <Text style={styles.dropdownLabel}>{label}</Text>
+      <Pressable
+        disabled={disabled}
+        onPress={() => setOpen((current) => !current)}
+        style={({ pressed }) => [
+          styles.dropdownField,
+          open && styles.dropdownFieldOpen,
+          disabled && styles.dropdownFieldDisabled,
+          pressed && styles.pressed,
+        ]}>
+        <Text style={styles.dropdownValue}>{selectedValue}</Text>
+        <Text style={styles.dropdownArrow}>{open ? '^' : 'v'}</Text>
+      </Pressable>
+      {open && !disabled ? (
+        <View style={styles.dropdownMenu}>
+          <ScrollView nestedScrollEnabled style={styles.dropdownScroll}>
+            {options.map((option) => {
+              const selected = option === selectedValue;
 
-            return (
-              <Pressable
-                disabled={disabled || !option || isCenter}
-                key={offset}
-                onPress={() => selectByOffset(offset)}
-                style={({ pressed }) => [styles.wheelItem, pressed && styles.pressed]}>
-                <Text style={[styles.wheelItemText, isCenter && styles.wheelItemTextSelected]}>
-                  {option ?? ''}
-                </Text>
-              </Pressable>
-            );
-          })}
+              return (
+                <Pressable
+                  key={option}
+                  onPress={() => handleSelect(option)}
+                  style={({ pressed }) => [
+                    styles.dropdownOption,
+                    selected && styles.dropdownOptionSelected,
+                    pressed && styles.pressed,
+                  ]}>
+                  <Text style={[styles.dropdownOptionText, selected && styles.dropdownOptionTextSelected]}>
+                    {option}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </ScrollView>
         </View>
-      </View>
+      ) : null}
     </View>
   );
 }
 
-function getOffsetValue(options: string[], selectedIndex: number, offset: number, loop: boolean): string | null {
-  if (options.length === 0) {
-    return null;
-  }
+function useDailyReminderStyles() {
+  const { colorMode } = useAppTheme();
 
-  const rawIndex = selectedIndex + offset;
-
-  if (loop) {
-    return options[((rawIndex % options.length) + options.length) % options.length];
-  }
-
-  return options[rawIndex] ?? null;
+  return useMemo(() => createDailyReminderStyles(getAiChingColors(colorMode)), [colorMode]);
 }
 
 function formatDisplayHour(hour: number): number {
@@ -440,16 +388,17 @@ function toTwentyFourHour(displayHour: number, period: string): number {
   return period === 'PM' ? normalizedHour + 12 : normalizedHour;
 }
 
-const styles = StyleSheet.create({
+function createDailyReminderStyles(colors: AiChingColorPalette) {
+  return StyleSheet.create({
   title: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 32,
     lineHeight: 40,
     fontWeight: '700',
     marginBottom: 10,
   },
   intro: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 17,
     lineHeight: 25,
     marginBottom: 24,
@@ -457,8 +406,8 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.16)',
-    backgroundColor: aiChingColors.surface,
+    borderColor: 'rgba(139, 93, 29, 0.22)',
+    backgroundColor: colors.surface,
     padding: 18,
     gap: 12,
     marginBottom: 14,
@@ -467,18 +416,18 @@ const styles = StyleSheet.create({
     opacity: 0.42,
   },
   cardTitle: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 18,
     lineHeight: 24,
     fontWeight: '700',
   },
   body: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 15,
     lineHeight: 22,
   },
   note: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 13,
     lineHeight: 19,
   },
@@ -502,8 +451,8 @@ const styles = StyleSheet.create({
     minHeight: 44,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.16)',
-    backgroundColor: 'rgba(16, 19, 24, 0.52)',
+    borderColor: 'rgba(139, 93, 29, 0.22)',
+    backgroundColor: colors.inkSoft,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -511,104 +460,118 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   dayButtonSelected: {
-    borderColor: 'rgba(231, 197, 111, 0.72)',
-    backgroundColor: 'rgba(231, 197, 111, 0.16)',
+    borderColor: 'rgba(139, 93, 29, 0.72)',
+    backgroundColor: 'rgba(139, 93, 29, 0.16)',
   },
   dayCheck: {
     width: 18,
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 15,
     lineHeight: 19,
     fontWeight: '900',
     textAlign: 'center',
   },
   dayCheckSelected: {
-    color: aiChingColors.gold,
+    color: colors.gold,
   },
   dayButtonText: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 13,
     lineHeight: 18,
     fontWeight: '800',
   },
   dayButtonTextSelected: {
-    color: aiChingColors.gold,
+    color: colors.gold,
   },
   timePicker: {
-    minHeight: 188,
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
     gap: 8,
   },
-  wheel: {
-    width: 86,
-    alignItems: 'center',
+  dropdown: {
+    flex: 1,
     gap: 8,
   },
-  wheelLabel: {
-    color: aiChingColors.muted,
+  dropdownLabel: {
+    color: colors.muted,
     fontSize: 12,
     lineHeight: 16,
     fontWeight: '700',
     textTransform: 'uppercase',
   },
-  wheelFrame: {
+  dropdownField: {
     width: '100%',
-    height: wheelItemHeight * 3,
+    minHeight: 48,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.24)',
-    backgroundColor: 'rgba(16, 19, 24, 0.72)',
-    overflow: 'hidden',
-  },
-  wheelSelection: {
-    position: 'absolute',
-    left: 6,
-    right: 6,
-    top: wheelItemHeight,
-    height: wheelItemHeight,
-    borderRadius: 8,
-    backgroundColor: 'rgba(231, 197, 111, 0.14)',
-    borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.34)',
-  },
-  wheelStrip: {
-    height: wheelItemHeight * 5,
-  },
-  wheelItem: {
-    height: wheelItemHeight,
+    borderColor: 'rgba(139, 93, 29, 0.28)',
+    backgroundColor: colors.inkSoft,
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    gap: 6,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
   },
-  wheelItemText: {
-    color: aiChingColors.muted,
-    fontSize: 22,
-    lineHeight: 28,
+  dropdownFieldOpen: {
+    borderColor: 'rgba(139, 93, 29, 0.62)',
+    backgroundColor: 'rgba(139, 93, 29, 0.12)',
+  },
+  dropdownFieldDisabled: {
+    opacity: 0.6,
+  },
+  dropdownValue: {
+    color: colors.mist,
+    fontSize: 20,
+    lineHeight: 26,
     fontWeight: '800',
   },
-  wheelItemTextSelected: {
-    color: aiChingColors.mist,
-    fontSize: 26,
-    lineHeight: 32,
+  dropdownArrow: {
+    color: colors.gold,
+    fontSize: 12,
+    lineHeight: 16,
     fontWeight: '900',
   },
-  timeSeparator: {
-    color: aiChingColors.gold,
-    fontSize: 32,
-    lineHeight: 38,
-    fontWeight: '900',
-    marginTop: 20,
+  dropdownMenu: {
+    maxHeight: 188,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(139, 93, 29, 0.28)',
+    backgroundColor: colors.surface,
+    overflow: 'hidden',
+  },
+  dropdownScroll: {
+    maxHeight: 188,
+  },
+  dropdownOption: {
+    minHeight: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+  },
+  dropdownOptionSelected: {
+    backgroundColor: 'rgba(139, 93, 29, 0.16)',
+  },
+  dropdownOptionText: {
+    color: colors.muted,
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '700',
+  },
+  dropdownOptionTextSelected: {
+    color: colors.gold,
   },
   timeSummary: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 17,
     lineHeight: 24,
     fontWeight: '800',
     textAlign: 'center',
   },
   previewTitle: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 16,
     lineHeight: 22,
     fontWeight: '800',
@@ -623,14 +586,14 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 8,
-    backgroundColor: 'rgba(219, 226, 223, 0.08)',
+    backgroundColor: colors.surfaceSoft,
   },
   previewText: {
     flex: 1,
     gap: 4,
   },
   statusMessage: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 14,
     lineHeight: 20,
     fontWeight: '700',
@@ -642,7 +605,7 @@ const styles = StyleSheet.create({
   primaryButton: {
     minHeight: 50,
     borderRadius: 8,
-    backgroundColor: aiChingColors.gold,
+    backgroundColor: colors.gold,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,
@@ -650,7 +613,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   primaryButtonText: {
-    color: aiChingColors.ink,
+    color: colors.ink,
     fontSize: 14,
     lineHeight: 20,
     fontWeight: '800',
@@ -661,7 +624,7 @@ const styles = StyleSheet.create({
     minHeight: 50,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.34)',
+    borderColor: 'rgba(139, 93, 29, 0.38)',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,
@@ -669,7 +632,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   secondaryButtonText: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 14,
     lineHeight: 20,
     fontWeight: '800',
@@ -682,4 +645,5 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.72,
   },
-});
+  });
+}

@@ -6,12 +6,13 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { usageLimits } from '@/config/usageLimits';
 import { useAppTheme } from '@/theme/appTheme';
-import { aiChingColors } from '@/theme/colors';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 
 const premiumOracleImage = require('@/assets/hexagrams/themes/03/mountain_strategist.jpg');
 
 export default function VersionScreen() {
   const router = useRouter();
+  const styles = useVersionStyles();
   const {
     appVersion,
     manageSubscription,
@@ -36,7 +37,7 @@ export default function VersionScreen() {
   }
 
   return (
-    <ScreenContainer>
+    <ScreenContainer themeAware>
       <Text style={styles.title}>Manage Version</Text>
       <Text style={styles.intro}>
         Select and manage your version of this app.
@@ -142,6 +143,8 @@ function RevenueCatStatusNote({
   availability: string;
   errorMessage?: string;
 }) {
+  const styles = useVersionStyles();
+
   if (availability === 'configured') {
     return null;
   }
@@ -156,16 +159,23 @@ function RevenueCatStatusNote({
   return <Text style={styles.note}>{note}</Text>;
 }
 
-const styles = StyleSheet.create({
+function useVersionStyles() {
+  const { colorMode } = useAppTheme();
+
+  return createVersionStyles(getAiChingColors(colorMode), colorMode);
+}
+
+function createVersionStyles(colors: AiChingColorPalette, colorMode: 'dark' | 'light') {
+  return StyleSheet.create({
   title: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 32,
     lineHeight: 40,
     fontWeight: '700',
     marginBottom: 10,
   },
   intro: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 17,
     lineHeight: 25,
     marginBottom: 24,
@@ -173,15 +183,15 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.16)',
-    backgroundColor: aiChingColors.surface,
+    borderColor: 'rgba(139, 93, 29, 0.22)',
+    backgroundColor: colors.surface,
     padding: 18,
     gap: 8,
     marginBottom: 18,
   },
   premiumOfferCard: {
-    borderColor: 'rgba(231, 197, 111, 0.54)',
-    backgroundColor: 'rgba(33, 27, 13, 0.72)',
+    borderColor: 'rgba(139, 93, 29, 0.54)',
+    backgroundColor: colorMode === 'dark' ? 'rgba(33, 27, 13, 0.72)' : '#fff4d8',
     shadowColor: '#e7c56f',
     shadowOpacity: 0.25,
     shadowRadius: 18,
@@ -195,7 +205,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: 'hidden',
     backgroundColor: 'rgba(231, 197, 111, 0.16)',
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 12,
     lineHeight: 16,
     fontWeight: '900',
@@ -204,7 +214,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   offerTitle: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 24,
     lineHeight: 30,
     fontWeight: '900',
@@ -225,22 +235,22 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.44)',
-    backgroundColor: 'rgba(16, 19, 24, 0.52)',
+    borderColor: 'rgba(139, 93, 29, 0.44)',
+    backgroundColor: colors.inkSoft,
   },
   cardTitle: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 18,
     lineHeight: 24,
     fontWeight: '700',
   },
   body: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     lineHeight: 24,
   },
   price: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 28,
     lineHeight: 34,
     fontWeight: '800',
@@ -249,26 +259,26 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   featureItem: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 15,
     lineHeight: 22,
   },
   featureDetail: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 13,
     lineHeight: 19,
     marginTop: -2,
     paddingLeft: 12,
   },
   note: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 13,
     lineHeight: 19,
   },
   primaryButton: {
     minHeight: 50,
     borderRadius: 8,
-    backgroundColor: aiChingColors.gold,
+    backgroundColor: colors.gold,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,
@@ -278,7 +288,7 @@ const styles = StyleSheet.create({
     opacity: 0.62,
   },
   primaryButtonText: {
-    color: aiChingColors.ink,
+    color: colors.ink,
     fontSize: 14,
     lineHeight: 20,
     fontWeight: '800',
@@ -288,14 +298,14 @@ const styles = StyleSheet.create({
     minHeight: 50,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.34)',
+    borderColor: 'rgba(139, 93, 29, 0.38)',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,
     paddingVertical: 10,
   },
   secondaryButtonText: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 14,
     lineHeight: 20,
     fontWeight: '800',
@@ -306,7 +316,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.22)',
+    borderColor: 'rgba(139, 93, 29, 0.28)',
     paddingHorizontal: 16,
     paddingVertical: 10,
   },
@@ -314,9 +324,10 @@ const styles = StyleSheet.create({
     opacity: 0.72,
   },
   backText: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 15,
     lineHeight: 20,
     fontWeight: '700',
   },
-});
+  });
+}

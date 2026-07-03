@@ -3,7 +3,8 @@ import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
-import { aiChingColors } from '@/theme/colors';
+import { useAppTheme } from '@/theme/appTheme';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 
 const features = [
   {
@@ -32,9 +33,10 @@ const feedbackAvatar = require('@/assets/hexagrams/themes/02/tea_house_auntie.jp
 
 export default function FutureScreen() {
   const router = useRouter();
+  const styles = useFutureStyles();
 
   return (
-    <ScreenContainer>
+    <ScreenContainer themeAware>
       <Text style={styles.title}>Help Shape the Future</Text>
       <Text style={styles.intro}>
         These ideas are placeholders for what may come next.
@@ -76,6 +78,8 @@ function FutureFeatureCard({
   body: string;
   title: string;
 }) {
+  const styles = useFutureStyles();
+
   return (
     <View style={styles.featureCard}>
       <Image source={avatar} style={styles.avatar} contentFit="cover" />
@@ -87,16 +91,23 @@ function FutureFeatureCard({
   );
 }
 
-const styles = StyleSheet.create({
+function useFutureStyles() {
+  const { colorMode } = useAppTheme();
+
+  return createFutureStyles(getAiChingColors(colorMode));
+}
+
+function createFutureStyles(colors: AiChingColorPalette) {
+  return StyleSheet.create({
   title: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 32,
     lineHeight: 40,
     fontWeight: '700',
     marginBottom: 10,
   },
   intro: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 17,
     lineHeight: 25,
     marginBottom: 24,
@@ -108,8 +119,8 @@ const styles = StyleSheet.create({
     minHeight: 99,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.16)',
-    backgroundColor: aiChingColors.surface,
+    borderColor: 'rgba(139, 93, 29, 0.22)',
+    backgroundColor: colors.surface,
     padding: 12,
     flexDirection: 'row',
     alignItems: 'center',
@@ -119,8 +130,8 @@ const styles = StyleSheet.create({
     minHeight: 99,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.28)',
-    backgroundColor: aiChingColors.surface,
+    borderColor: 'rgba(139, 93, 29, 0.32)',
+    backgroundColor: colors.surface,
     padding: 12,
     flexDirection: 'row',
     alignItems: 'center',
@@ -130,38 +141,39 @@ const styles = StyleSheet.create({
     width: 75,
     height: 75,
     borderRadius: 8,
-    backgroundColor: 'rgba(219, 226, 223, 0.08)',
+    backgroundColor: colors.surfaceSoft,
   },
   cardText: {
     flex: 1,
     gap: 6,
   },
   featureTitle: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     fontWeight: '700',
   },
   featureBody: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 14,
     lineHeight: 20,
   },
   feedbackTitle: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     fontWeight: '700',
   },
   feedbackBody: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 14,
     lineHeight: 20,
   },
   feedbackLink: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontWeight: '800',
     textDecorationLine: 'underline',
   },
   pressed: {
     opacity: 0.72,
   },
-});
+  });
+}

@@ -2,24 +2,32 @@ import { PropsWithChildren } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { aiChingColors } from '@/theme/colors';
+import { useAppTheme } from '@/theme/appTheme';
+import { getAiChingColors } from '@/theme/colors';
 
 type Props = PropsWithChildren<{
   scroll?: boolean;
+  themeAware?: boolean;
 }>;
 
-export function ScreenContainer({ children, scroll = true }: Props) {
+export function ScreenContainer({ children, scroll = true, themeAware = false }: Props) {
+  const { colorMode } = useAppTheme();
+  const colors = getAiChingColors(themeAware ? colorMode : 'dark');
+  const backgroundStyle = { backgroundColor: colors.ink };
+
   if (!scroll) {
     return (
-      <SafeAreaView style={styles.safeArea}>
-        <View style={styles.content}>{children}</View>
+      <SafeAreaView style={[styles.safeArea, backgroundStyle]}>
+        <View style={[styles.content, backgroundStyle]}>{children}</View>
       </SafeAreaView>
     );
   }
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>{children}</ScrollView>
+    <SafeAreaView style={[styles.safeArea, backgroundStyle]}>
+      <ScrollView style={backgroundStyle} contentContainerStyle={styles.scrollContent}>
+        {children}
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -27,7 +35,6 @@ export function ScreenContainer({ children, scroll = true }: Props) {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: aiChingColors.ink,
   },
   content: {
     flex: 1,

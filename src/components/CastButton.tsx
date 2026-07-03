@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text } from 'react-native';
 
-import { aiChingColors } from '@/theme/colors';
+import { useAppTheme } from '@/theme/appTheme';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 
 type Props = {
   label: string;
@@ -9,6 +10,8 @@ type Props = {
 };
 
 export function CastButton({ label, disabled = false, onPress }: Props) {
+  const styles = useCastButtonStyles();
+
   return (
     <Pressable
       disabled={disabled}
@@ -23,12 +26,19 @@ export function CastButton({ label, disabled = false, onPress }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
+function useCastButtonStyles() {
+  const { colorMode } = useAppTheme();
+
+  return createCastButtonStyles(getAiChingColors(colorMode));
+}
+
+function createCastButtonStyles(colors: AiChingColorPalette) {
+  return StyleSheet.create({
   button: {
     minWidth: 180,
     minHeight: 54,
     borderRadius: 8,
-    backgroundColor: aiChingColors.gold,
+    backgroundColor: colors.gold,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 28,
@@ -40,9 +50,10 @@ const styles = StyleSheet.create({
     opacity: 0.82,
   },
   label: {
-    color: aiChingColors.ink,
+    color: colors.ink,
     fontSize: 15,
     fontWeight: '700',
     letterSpacing: 0,
   },
-});
+  });
+}

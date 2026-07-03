@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { aiChingColors } from '@/theme/colors';
+import { useAppTheme } from '@/theme/appTheme';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 
 type Props = {
   title: string;
@@ -8,6 +9,8 @@ type Props = {
 };
 
 export function FeatureCard({ title, body }: Props) {
+  const styles = useFeatureCardStyles();
+
   return (
     <View style={styles.card}>
       <Text style={styles.title}>{title}</Text>
@@ -16,23 +19,31 @@ export function FeatureCard({ title, body }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
+function useFeatureCardStyles() {
+  const { colorMode } = useAppTheme();
+
+  return createFeatureCardStyles(getAiChingColors(colorMode));
+}
+
+function createFeatureCardStyles(colors: AiChingColorPalette) {
+  return StyleSheet.create({
   card: {
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.16)',
-    backgroundColor: aiChingColors.surface,
+    borderColor: 'rgba(139, 93, 29, 0.22)',
+    backgroundColor: colors.surface,
     padding: 16,
     gap: 6,
   },
   title: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     fontWeight: '700',
   },
   body: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 14,
     lineHeight: 20,
   },
-});
+  });
+}

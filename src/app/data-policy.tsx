@@ -2,7 +2,8 @@ import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
-import { aiChingColors } from '@/theme/colors';
+import { useAppTheme } from '@/theme/appTheme';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 
 const sections = [
   {
@@ -34,9 +35,10 @@ const sections = [
 
 export default function DataPolicyScreen() {
   const router = useRouter();
+  const styles = useDataPolicyStyles();
 
   return (
-    <ScreenContainer>
+    <ScreenContainer themeAware>
       <Text style={styles.title}>Data & Privacy</Text>
       <Text style={styles.intro}>
         A brief plain-language note about Premium questions and reading data.
@@ -60,16 +62,23 @@ export default function DataPolicyScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+function useDataPolicyStyles() {
+  const { colorMode } = useAppTheme();
+
+  return createDataPolicyStyles(getAiChingColors(colorMode));
+}
+
+function createDataPolicyStyles(colors: AiChingColorPalette) {
+  return StyleSheet.create({
   title: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 32,
     lineHeight: 40,
     fontWeight: '700',
     marginBottom: 10,
   },
   intro: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 17,
     lineHeight: 25,
     marginBottom: 28,
@@ -80,18 +89,18 @@ const styles = StyleSheet.create({
   },
   section: {
     borderTopWidth: 1,
-    borderTopColor: 'rgba(231, 197, 111, 0.16)',
+    borderTopColor: 'rgba(139, 93, 29, 0.22)',
     paddingTop: 16,
     gap: 6,
   },
   sectionTitle: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 17,
     lineHeight: 23,
     fontWeight: '700',
   },
   body: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     lineHeight: 24,
   },
@@ -99,12 +108,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.22)',
+    borderColor: 'rgba(139, 93, 29, 0.28)',
     paddingHorizontal: 16,
     paddingVertical: 10,
   },
   backText: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 15,
     lineHeight: 20,
     fontWeight: '700',
@@ -112,4 +121,5 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.72,
   },
-});
+  });
+}

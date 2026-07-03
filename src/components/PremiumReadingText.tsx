@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
-import { StyleSheet, Text, TextStyle, View } from 'react-native';
+import { StyleSheet, StyleProp, Text, TextStyle, View } from 'react-native';
 
-import { aiChingColors } from '@/theme/colors';
+import { useAppTheme } from '@/theme/appTheme';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 
 export function PremiumReadingText({
   compact = false,
@@ -10,10 +11,11 @@ export function PremiumReadingText({
   textStyle,
 }: {
   compact?: boolean;
-  headingStyle?: TextStyle;
+  headingStyle?: StyleProp<TextStyle>;
   text: string;
-  textStyle?: TextStyle;
+  textStyle?: StyleProp<TextStyle>;
 }) {
+  const styles = usePremiumReadingTextStyles();
   const blocks = text
     .split(/\n{2,}/)
     .map((block) => block.trim())
@@ -55,7 +57,7 @@ export function PremiumReadingText({
                   <View key={`list-item-${blockIndex}-${lineIndex}`} style={styles.listItem}>
                     <Text style={[styles.bullet, compact && styles.textCompact, textStyle]}>{bullet}</Text>
                     <Text style={[styles.listText, compact && styles.textCompact, textStyle]}>
-                      {renderInlineMarkdown(content, `list-${blockIndex}-${lineIndex}`)}
+                      {renderInlineMarkdown(content, `list-${blockIndex}-${lineIndex}`, styles)}
                     </Text>
                   </View>
                 );
@@ -68,7 +70,7 @@ export function PremiumReadingText({
           <Text
             key={`paragraph-${blockIndex}`}
             style={[styles.paragraph, compact && styles.textCompact, textStyle]}>
-            {renderInlineMarkdown(lines.join(' '), `paragraph-${blockIndex}`)}
+            {renderInlineMarkdown(lines.join(' '), `paragraph-${blockIndex}`, styles)}
           </Text>
         );
       })}
@@ -76,7 +78,11 @@ export function PremiumReadingText({
   );
 }
 
-function renderInlineMarkdown(text: string, keyPrefix: string): ReactNode[] {
+function renderInlineMarkdown(
+  text: string,
+  keyPrefix: string,
+  styles: ReturnType<typeof createPremiumReadingTextStyles>,
+): ReactNode[] {
   return text.split(/(\*\*[^*]+\*\*)/g).filter(Boolean).map((part, index) => {
     if (part.startsWith('**') && part.endsWith('**')) {
       return (
@@ -94,7 +100,14 @@ function stripTrailingMarkdownMarks(text: string): string {
   return text.replace(/\s+#+$/, '').trim();
 }
 
-const styles = StyleSheet.create({
+function usePremiumReadingTextStyles() {
+  const { colorMode } = useAppTheme();
+
+  return createPremiumReadingTextStyles(getAiChingColors(colorMode));
+}
+
+function createPremiumReadingTextStyles(colors: AiChingColorPalette) {
+  return StyleSheet.create({
   markdown: {
     gap: 12,
   },
@@ -102,7 +115,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   paragraph: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     lineHeight: 25,
   },
@@ -111,14 +124,14 @@ const styles = StyleSheet.create({
     lineHeight: 21,
   },
   headingLarge: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 21,
     lineHeight: 28,
     fontWeight: '800',
     marginTop: 4,
   },
   heading: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 17,
     lineHeight: 24,
     fontWeight: '800',
@@ -130,7 +143,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   bold: {
-    color: aiChingColors.mist,
     fontWeight: '800',
   },
   list: {
@@ -143,15 +155,16 @@ const styles = StyleSheet.create({
   },
   bullet: {
     minWidth: 22,
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 16,
     lineHeight: 25,
     fontWeight: '800',
   },
   listText: {
     flex: 1,
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     lineHeight: 25,
   },
-});
+  });
+}

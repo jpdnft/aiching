@@ -3,16 +3,18 @@ import { useRouter } from 'expo-router';
 import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
-import { aiChingColors } from '@/theme/colors';
+import { useAppTheme } from '@/theme/appTheme';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 
 const webDevCard = require('../../assets/images/card-webdev.webp');
 const portfolioUrl = 'https://jpd3.com/resume/web-developer';
 
 export default function AboutScreen() {
   const router = useRouter();
+  const styles = useAboutStyles();
 
   return (
-    <ScreenContainer>
+    <ScreenContainer themeAware>
       <Text style={styles.title}>About the Developer</Text>
 
       <View style={styles.card}>
@@ -53,7 +55,14 @@ export default function AboutScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+function useAboutStyles() {
+  const { colorMode } = useAppTheme();
+
+  return createAboutStyles(getAiChingColors(colorMode));
+}
+
+function createAboutStyles(colors: AiChingColorPalette) {
+  return StyleSheet.create({
   heroImage: {
     width: '100%',
     maxWidth: 420,
@@ -61,10 +70,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 8,
     marginBottom: 4,
-    backgroundColor: aiChingColors.surface,
+    backgroundColor: colors.surface,
   },
   title: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 32,
     lineHeight: 40,
     fontWeight: '700',
@@ -73,20 +82,20 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.16)',
-    backgroundColor: aiChingColors.surface,
+    borderColor: 'rgba(139, 93, 29, 0.22)',
+    backgroundColor: colors.surface,
     padding: 18,
     gap: 14,
   },
   body: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     lineHeight: 24,
   },
   linkButton: {
     minHeight: 48,
     borderRadius: 8,
-    backgroundColor: aiChingColors.gold,
+    backgroundColor: colors.gold,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,
@@ -96,7 +105,7 @@ const styles = StyleSheet.create({
     opacity: 0.78,
   },
   linkButtonText: {
-    color: aiChingColors.ink,
+    color: colors.ink,
     fontSize: 16,
     lineHeight: 22,
     fontWeight: '800',
@@ -113,10 +122,11 @@ const styles = StyleSheet.create({
     opacity: 0.72,
   },
   backLinkText: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 16,
     lineHeight: 22,
     fontWeight: '700',
     textDecorationLine: 'underline',
   },
-});
+  });
+}

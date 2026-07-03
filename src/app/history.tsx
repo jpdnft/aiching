@@ -9,12 +9,14 @@ import { ScreenContainer } from '@/components/ScreenContainer';
 import { CompletedReading } from '@/core/iching/types';
 import { clearReadingHistory, deleteReadingFromHistory, getReadingHistory } from '@/storage/readingsStorage';
 import { ReadingTextSize, useAppTheme } from '@/theme/appTheme';
-import { aiChingColors } from '@/theme/colors';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 import { getHexagramBackgroundSource } from '@/theme/hexagramBackgrounds';
 import { formatReadingDate } from '@/utils/date';
 
 export default function HistoryScreen() {
-  const { readingTextSize, themeId } = useAppTheme();
+  const { colorMode, readingTextSize, themeId } = useAppTheme();
+  const styles = useHistoryStyles();
+  const colors = getAiChingColors(colorMode);
   const [clearConfirmVisible, setClearConfirmVisible] = useState(false);
   const [deleteConfirmReadingId, setDeleteConfirmReadingId] = useState<string | null>(null);
   const [expandedReadingIds, setExpandedReadingIds] = useState<string[]>([]);
@@ -92,16 +94,16 @@ export default function HistoryScreen() {
 
   if (isLoading) {
     return (
-      <ScreenContainer scroll={false}>
+      <ScreenContainer scroll={false} themeAware>
         <View style={styles.centered}>
-          <ActivityIndicator color={aiChingColors.gold} />
+          <ActivityIndicator color={colors.gold} />
         </View>
       </ScreenContainer>
     );
   }
 
   return (
-    <ScreenContainer>
+    <ScreenContainer themeAware>
       <View style={styles.headerRow}>
         <Text style={styles.title}>History</Text>
         <Pressable
@@ -141,7 +143,7 @@ export default function HistoryScreen() {
         <TextInput
           onChangeText={handleSearchQueryChange}
           placeholder="Search questions, answers, hexagrams..."
-          placeholderTextColor="rgba(219, 226, 223, 0.52)"
+          placeholderTextColor={colorMode === 'dark' ? 'rgba(219, 226, 223, 0.52)' : 'rgba(111, 102, 89, 0.72)'}
           style={styles.searchInput}
           value={searchQuery}
         />
@@ -182,7 +184,12 @@ export default function HistoryScreen() {
                 ) : null}
                 <View style={styles.cardScrim} />
                 <View style={styles.cardContent}>
-                  <HexagramView lines={reading.lines} size="small" />
+                  {backgroundSource ? (
+                    <Image source={backgroundSource} style={styles.lightCardThumbnail} contentFit="cover" />
+                  ) : null}
+                  <View style={styles.hexagramSeal}>
+                    <HexagramView colorModeOverride="dark" lines={reading.lines} size="small" />
+                  </View>
                   <View style={styles.cardText}>
                     <Text style={styles.date}>{formatReadingDate(reading.localDate)}</Text>
                     <Text style={styles.cardTitle}>
@@ -203,9 +210,9 @@ export default function HistoryScreen() {
                         {isExpanded ? (
                           <PremiumReadingText
                             compact
-                            headingStyle={historyTextStyles.premiumHeading}
+                            headingStyle={[styles.premiumHeading, historyTextStyles.premiumHeading]}
                             text={premiumReading.text}
-                            textStyle={historyTextStyles.premiumText}
+                            textStyle={[styles.premiumText, historyTextStyles.premiumText]}
                           />
                         ) : (
                           <Text style={[styles.detailText, historyTextStyles.detailText]}>
@@ -225,7 +232,7 @@ export default function HistoryScreen() {
                     ) : null}
                     {deleteConfirmReadingId === reading.id ? (
                       <View style={styles.inlineConfirm}>
-                        <Text style={styles.confirmBody}>Delete this entry?</Text>
+                        <Text style={[styles.confirmBody, styles.inlineConfirmBody]}>Delete this entry?</Text>
                         <View style={styles.confirmActions}>
                           <Pressable
                             onPress={() => setDeleteConfirmReadingId(null)}
@@ -371,7 +378,22 @@ function getReadingSearchText(reading: CompletedReading): string {
     .toLowerCase();
 }
 
-const styles = StyleSheet.create({
+function useHistoryStyles() {
+  const { colorMode } = useAppTheme();
+
+  return createHistoryStyles(getAiChingColors(colorMode), colorMode);
+}
+
+function createHistoryStyles(colors: AiChingColorPalette, colorMode: 'dark' | 'light') {
+  const isDark = colorMode === 'dark';
+  const entryText = isDark ? '#f6f1e8' : colors.mist;
+  const entryGold = isDark ? '#f1d17d' : colors.gold;
+  const entryBorder = isDark ? 'rgba(241, 209, 125, 0.34)' : 'rgba(139, 93, 29, 0.24)';
+  const entryPanel = isDark ? 'rgba(10, 12, 16, 0.72)' : '#f9efdF';
+  const warningText = colorMode === 'dark' ? '#ffb4a8' : '#9b4237';
+  const warningFill = colorMode === 'dark' ? '#ffb4a8' : '#b95549';
+
+  return StyleSheet.create({
   centered: {
     flex: 1,
     alignItems: 'center',
@@ -386,7 +408,7 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 32,
     lineHeight: 40,
     fontWeight: '700',
@@ -395,7 +417,7 @@ const styles = StyleSheet.create({
     minHeight: 38,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(255, 180, 168, 0.42)',
+    borderColor: colorMode === 'dark' ? 'rgba(255, 180, 168, 0.42)' : 'rgba(155, 66, 55, 0.42)',
     paddingHorizontal: 12,
     paddingVertical: 8,
     justifyContent: 'center',
@@ -404,14 +426,14 @@ const styles = StyleSheet.create({
     opacity: 0.42,
   },
   clearButtonText: {
-    color: '#ffb4a8',
+    color: warningText,
     fontSize: 12,
     lineHeight: 16,
     fontWeight: '800',
     textTransform: 'uppercase',
   },
   policyNote: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 13,
     lineHeight: 19,
     marginBottom: 14,
@@ -419,27 +441,27 @@ const styles = StyleSheet.create({
   searchBox: {
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.22)',
-    backgroundColor: 'rgba(16, 19, 24, 0.72)',
+    borderColor: 'rgba(139, 93, 29, 0.28)',
+    backgroundColor: colors.surface,
     marginBottom: 18,
   },
   confirmBox: {
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(255, 180, 168, 0.36)',
-    backgroundColor: 'rgba(36, 18, 20, 0.68)',
+    borderColor: colorMode === 'dark' ? 'rgba(255, 180, 168, 0.36)' : 'rgba(155, 66, 55, 0.32)',
+    backgroundColor: colorMode === 'dark' ? 'rgba(36, 18, 20, 0.68)' : '#fff3eb',
     padding: 14,
     gap: 10,
     marginBottom: 14,
   },
   confirmTitle: {
-    color: '#ffb4a8',
+    color: warningText,
     fontSize: 15,
     lineHeight: 21,
     fontWeight: '800',
   },
   confirmBody: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 13,
     lineHeight: 19,
     textAlign: 'center',
@@ -453,13 +475,13 @@ const styles = StyleSheet.create({
     minHeight: 38,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.28)',
+    borderColor: 'rgba(139, 93, 29, 0.32)',
     paddingHorizontal: 12,
     paddingVertical: 8,
     justifyContent: 'center',
   },
   cancelButtonText: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 12,
     lineHeight: 16,
     fontWeight: '800',
@@ -468,13 +490,13 @@ const styles = StyleSheet.create({
   confirmDeleteButton: {
     minHeight: 38,
     borderRadius: 8,
-    backgroundColor: '#ffb4a8',
+    backgroundColor: warningFill,
     paddingHorizontal: 12,
     paddingVertical: 8,
     justifyContent: 'center',
   },
   confirmDeleteButtonText: {
-    color: aiChingColors.ink,
+    color: colors.ink,
     fontSize: 12,
     lineHeight: 16,
     fontWeight: '800',
@@ -482,7 +504,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     minHeight: 48,
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     lineHeight: 22,
     paddingHorizontal: 14,
@@ -496,7 +518,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   emptyTitle: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 20,
     fontWeight: '700',
     textAlign: 'center',
@@ -505,58 +527,76 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   resultCount: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 13,
     lineHeight: 18,
     textAlign: 'center',
   },
   card: {
-    minHeight: 320,
+    minHeight: isDark ? 320 : 0,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.22)',
-    backgroundColor: aiChingColors.surface,
+    borderColor: isDark ? 'rgba(139, 93, 29, 0.22)' : 'rgba(139, 93, 29, 0.2)',
+    backgroundColor: colors.surface,
     overflow: 'hidden',
   },
   cardImage: {
     ...StyleSheet.absoluteFill,
+    opacity: isDark ? 1 : 0,
   },
   cardScrim: {
     ...StyleSheet.absoluteFill,
-    backgroundColor: 'rgba(10, 12, 16, 0.56)',
+    backgroundColor: isDark ? 'rgba(10, 12, 16, 0.56)' : 'transparent',
   },
   cardContent: {
     flex: 1,
-    padding: 16,
-    gap: 16,
+    padding: isDark ? 16 : 18,
+    gap: isDark ? 16 : 12,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  lightCardThumbnail: {
+    display: isDark ? 'none' : 'flex',
+    width: '100%',
+    aspectRatio: 16 / 9,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(139, 93, 29, 0.22)',
+    backgroundColor: colors.inkSoft,
+    marginBottom: 2,
+  },
+  hexagramSeal: {
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.32)',
+    backgroundColor: '#101318',
+    padding: 10,
   },
   cardText: {
     gap: 8,
     alignItems: 'center',
   },
   date: {
-    color: aiChingColors.gold,
+    color: entryGold,
     fontSize: 12,
     fontWeight: '700',
     textTransform: 'uppercase',
   },
   cardTitle: {
-    color: aiChingColors.mist,
+    color: entryText,
     fontSize: 18,
     lineHeight: 24,
     fontWeight: '700',
     textAlign: 'center',
   },
   body: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 15,
     lineHeight: 22,
     textAlign: 'center',
   },
   cardBody: {
-    color: aiChingColors.mist,
+    color: entryText,
     fontSize: 15,
     lineHeight: 22,
     textAlign: 'center',
@@ -565,14 +605,14 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.18)',
-    backgroundColor: 'rgba(10, 12, 16, 0.58)',
+    borderColor: entryBorder,
+    backgroundColor: entryPanel,
     padding: 12,
     gap: 6,
     marginTop: 4,
   },
   detailLabel: {
-    color: aiChingColors.gold,
+    color: entryGold,
     fontSize: 12,
     lineHeight: 17,
     fontWeight: '800',
@@ -580,7 +620,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   detailText: {
-    color: aiChingColors.mist,
+    color: entryText,
     fontSize: 14,
     lineHeight: 21,
     textAlign: 'center',
@@ -589,7 +629,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.34)',
+    borderColor: entryBorder,
     paddingHorizontal: 12,
     paddingVertical: 8,
     marginTop: 4,
@@ -598,7 +638,7 @@ const styles = StyleSheet.create({
     opacity: 0.72,
   },
   expandButtonText: {
-    color: aiChingColors.gold,
+    color: entryGold,
     fontSize: 12,
     lineHeight: 16,
     fontWeight: '800',
@@ -609,7 +649,7 @@ const styles = StyleSheet.create({
     minHeight: 44,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.34)',
+    borderColor: 'rgba(139, 93, 29, 0.38)',
     paddingHorizontal: 18,
     paddingVertical: 10,
     justifyContent: 'center',
@@ -617,7 +657,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   loadMoreButtonText: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 13,
     lineHeight: 18,
     fontWeight: '800',
@@ -627,7 +667,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(255, 180, 168, 0.36)',
+    borderColor: 'rgba(255, 180, 168, 0.5)',
     paddingHorizontal: 12,
     paddingVertical: 8,
     marginTop: 4,
@@ -643,10 +683,20 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(255, 180, 168, 0.3)',
-    backgroundColor: 'rgba(36, 18, 20, 0.58)',
+    borderColor: isDark ? 'rgba(255, 180, 168, 0.42)' : 'rgba(155, 66, 55, 0.32)',
+    backgroundColor: isDark ? 'rgba(36, 18, 20, 0.72)' : '#fff3eb',
     padding: 10,
     gap: 8,
     marginTop: 4,
   },
-});
+  inlineConfirmBody: {
+    color: isDark ? entryText : colors.mist,
+  },
+  premiumHeading: {
+    color: entryGold,
+  },
+  premiumText: {
+    color: entryText,
+  },
+  });
+}

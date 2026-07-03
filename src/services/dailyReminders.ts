@@ -33,7 +33,7 @@ export const reminderWeekdays: { label: string; shortLabel: string; value: Remin
 export const defaultDailyReminderSettings: DailyReminderSettings = {
   enabled: false,
   hour: 8,
-  minute: 0,
+  minute: 1,
   notificationIds: [],
   weekdays: [1, 2, 3, 4, 5, 6, 7],
 };
@@ -233,7 +233,7 @@ async function cancelStoredDailyReminders(notificationIds: string[]) {
 
 function normalizeDailyReminderSettings(value: Partial<DailyReminderSettings>): DailyReminderSettings {
   const hour = Number.isInteger(value.hour) ? clamp(value.hour ?? 8, 0, 23) : 8;
-  const minute = Number.isInteger(value.minute) ? clamp(value.minute ?? 0, 0, 59) : 0;
+  const minute = Number.isInteger(value.minute) ? clamp(value.minute ?? 1, 1, 59) : 1;
   const weekdays = Array.from(
     new Set(
       (Array.isArray(value.weekdays) ? value.weekdays : defaultDailyReminderSettings.weekdays).filter(

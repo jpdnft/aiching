@@ -6,7 +6,8 @@ import { HexagramView } from '@/components/HexagramView';
 import { PremiumReadingText } from '@/components/PremiumReadingText';
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { HexagramLines } from '@/core/iching/types';
-import { aiChingColors } from '@/theme/colors';
+import { useAppTheme } from '@/theme/appTheme';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 
 const sampleReadingQuestion = 'What is the wise move in my work situation right now?';
 const sampleReadingHexagram = 'Hexagram 4: Youthful Folly';
@@ -119,9 +120,10 @@ Do not act as if you already know the whole shape of the matter. Find out what i
 
 export default function SampleScreen() {
   const router = useRouter();
+  const styles = useSampleStyles();
 
   return (
-    <ScreenContainer>
+    <ScreenContainer themeAware>
       <View style={styles.header}>
         <Text style={styles.kicker}>Premium Preview</Text>
         <Text style={styles.title}>Sample Premium Reading</Text>
@@ -162,7 +164,9 @@ export default function SampleScreen() {
           original hexagram into its changed form.
         </Text>
         <View style={styles.hexagramPreview}>
-          <HexagramView lines={sampleReadingLines} size="small" />
+          <View style={styles.hexagramSeal}>
+            <HexagramView colorModeOverride="dark" lines={sampleReadingLines} size="small" />
+          </View>
         </View>
         <Text style={styles.changeNote}>{sampleChangingHexagram}</Text>
       </View>
@@ -180,13 +184,20 @@ export default function SampleScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+function useSampleStyles() {
+  const { colorMode } = useAppTheme();
+
+  return createSampleStyles(getAiChingColors(colorMode));
+}
+
+function createSampleStyles(colors: AiChingColorPalette) {
+  return StyleSheet.create({
   header: {
     gap: 10,
     marginBottom: 22,
   },
   kicker: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 12,
     lineHeight: 17,
     fontWeight: '800',
@@ -194,33 +205,33 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   title: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 32,
     lineHeight: 40,
     fontWeight: '800',
   },
   intro: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 17,
     lineHeight: 25,
   },
   card: {
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.16)',
-    backgroundColor: aiChingColors.surface,
+    borderColor: 'rgba(139, 93, 29, 0.22)',
+    backgroundColor: colors.surface,
     padding: 18,
     gap: 8,
     marginBottom: 18,
   },
   cardTitle: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 18,
     lineHeight: 24,
     fontWeight: '800',
   },
   metaLabel: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 12,
     lineHeight: 17,
     fontWeight: '800',
@@ -228,12 +239,12 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   body: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     lineHeight: 24,
   },
   questionText: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 24,
     lineHeight: 31,
     fontWeight: '800',
@@ -243,7 +254,7 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     borderRadius: 8,
     marginTop: 8,
-    backgroundColor: 'rgba(16, 19, 24, 0.42)',
+    backgroundColor: colors.inkSoft,
   },
   hexagramPreview: {
     alignItems: 'center',
@@ -251,7 +262,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   changeNote: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 14,
     lineHeight: 20,
     fontWeight: '800',
@@ -260,8 +271,8 @@ const styles = StyleSheet.create({
   readingCard: {
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.18)',
-    backgroundColor: 'rgba(16, 19, 24, 0.72)',
+    borderColor: 'rgba(139, 93, 29, 0.24)',
+    backgroundColor: colors.surface,
     padding: 18,
     marginBottom: 22,
   },
@@ -270,14 +281,14 @@ const styles = StyleSheet.create({
     minHeight: 50,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.34)',
+    borderColor: 'rgba(139, 93, 29, 0.38)',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,
     paddingVertical: 10,
   },
   secondaryButtonText: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 14,
     lineHeight: 20,
     fontWeight: '800',
@@ -287,4 +298,12 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.72,
   },
-});
+  hexagramSeal: {
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(231, 197, 111, 0.32)',
+    backgroundColor: '#101318',
+    padding: 10,
+  },
+  });
+}

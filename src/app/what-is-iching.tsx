@@ -4,7 +4,8 @@ import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
-import { aiChingColors } from '@/theme/colors';
+import { useAppTheme } from '@/theme/appTheme';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 
 const aboutIChingImage = require('@/assets/images/aboutiching.jpg');
 
@@ -29,9 +30,10 @@ const trigrams = [
 
 export default function WhatIsIChingScreen() {
   const router = useRouter();
+  const styles = useWhatIsIChingStyles();
 
   return (
-    <ScreenContainer>
+    <ScreenContainer themeAware>
       <Text style={styles.kicker}>Background</Text>
       <Image
         source={aboutIChingImage}
@@ -191,6 +193,8 @@ export default function WhatIsIChingScreen() {
 }
 
 function ArticleSection({ children, title }: { children: ReactNode; title: string }) {
+  const styles = useWhatIsIChingStyles();
+
   return (
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>{title}</Text>
@@ -200,6 +204,8 @@ function ArticleSection({ children, title }: { children: ReactNode; title: strin
 }
 
 function Bullet({ children }: { children: ReactNode }) {
+  const styles = useWhatIsIChingStyles();
+
   return (
     <View style={styles.bulletRow}>
       <Text style={styles.bulletMarker}>-</Text>
@@ -209,6 +215,8 @@ function Bullet({ children }: { children: ReactNode }) {
 }
 
 function TrigramGlyph({ lines }: { lines: string[] }) {
+  const styles = useWhatIsIChingStyles();
+
   return (
     <View style={styles.trigramGlyph} accessibilityLabel={`Trigram lines: ${lines.join(', ')}`}>
       {lines.map((line, index) => (
@@ -227,9 +235,16 @@ function TrigramGlyph({ lines }: { lines: string[] }) {
   );
 }
 
-const styles = StyleSheet.create({
+function useWhatIsIChingStyles() {
+  const { colorMode } = useAppTheme();
+
+  return createWhatIsIChingStyles(getAiChingColors(colorMode));
+}
+
+function createWhatIsIChingStyles(colors: AiChingColorPalette) {
+  return StyleSheet.create({
   kicker: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 12,
     lineHeight: 17,
     fontWeight: '800',
@@ -238,7 +253,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   title: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 32,
     lineHeight: 40,
     fontWeight: '800',
@@ -249,10 +264,10 @@ const styles = StyleSheet.create({
     aspectRatio: 16 / 10,
     borderRadius: 8,
     marginBottom: 18,
-    backgroundColor: 'rgba(16, 19, 24, 0.42)',
+    backgroundColor: colors.inkSoft,
   },
   intro: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 17,
     lineHeight: 25,
     marginBottom: 18,
@@ -260,32 +275,32 @@ const styles = StyleSheet.create({
   callout: {
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.34)',
-    backgroundColor: 'rgba(231, 197, 111, 0.1)',
+    borderColor: 'rgba(139, 93, 29, 0.34)',
+    backgroundColor: 'rgba(139, 93, 29, 0.1)',
     padding: 16,
     marginBottom: 24,
   },
   calloutText: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 17,
     lineHeight: 25,
     fontWeight: '700',
   },
   section: {
     borderTopWidth: 1,
-    borderTopColor: 'rgba(231, 197, 111, 0.16)',
+    borderTopColor: 'rgba(139, 93, 29, 0.22)',
     paddingTop: 18,
     marginBottom: 24,
     gap: 10,
   },
   sectionTitle: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 20,
     lineHeight: 27,
     fontWeight: '800',
   },
   body: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     lineHeight: 25,
   },
@@ -299,27 +314,27 @@ const styles = StyleSheet.create({
   },
   bulletMarker: {
     minWidth: 12,
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 16,
     lineHeight: 24,
     fontWeight: '800',
   },
   bulletText: {
     flex: 1,
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 15,
     lineHeight: 23,
   },
   trigramList: {
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.16)',
+    borderColor: 'rgba(139, 93, 29, 0.22)',
     overflow: 'hidden',
   },
   trigramRow: {
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(231, 197, 111, 0.12)',
-    backgroundColor: 'rgba(16, 19, 24, 0.42)',
+    borderBottomColor: 'rgba(139, 93, 29, 0.16)',
+    backgroundColor: colors.surface,
     padding: 12,
     flexDirection: 'row',
     gap: 12,
@@ -329,6 +344,9 @@ const styles = StyleSheet.create({
     width: 54,
     gap: 5,
     alignItems: 'center',
+    borderRadius: 8,
+    backgroundColor: '#101318',
+    padding: 8,
   },
   trigramLineSlot: {
     width: 54,
@@ -338,7 +356,7 @@ const styles = StyleSheet.create({
   trigramYangLine: {
     height: 5,
     borderRadius: 2,
-    backgroundColor: aiChingColors.gold,
+    backgroundColor: '#e7c56f',
   },
   trigramYinLine: {
     flexDirection: 'row',
@@ -348,7 +366,7 @@ const styles = StyleSheet.create({
     width: 22,
     height: 5,
     borderRadius: 2,
-    backgroundColor: aiChingColors.gold,
+    backgroundColor: '#e7c56f',
   },
   trigramText: {
     flex: 1,
@@ -361,37 +379,37 @@ const styles = StyleSheet.create({
     alignItems: 'baseline',
   },
   trigramName: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 16,
     lineHeight: 22,
     fontWeight: '800',
   },
   trigramForce: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     lineHeight: 22,
     fontWeight: '700',
   },
   trigramMeaning: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 14,
     lineHeight: 20,
   },
   exampleBox: {
     borderRadius: 8,
-    backgroundColor: aiChingColors.surface,
+    backgroundColor: colors.surface,
     padding: 16,
     gap: 8,
   },
   exampleLabel: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 12,
     lineHeight: 17,
     fontWeight: '800',
     textTransform: 'uppercase',
   },
   exampleQuestion: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 16,
     lineHeight: 23,
     fontWeight: '800',
@@ -400,12 +418,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.22)',
+    borderColor: 'rgba(139, 93, 29, 0.28)',
     paddingHorizontal: 16,
     paddingVertical: 10,
   },
   backText: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 15,
     lineHeight: 20,
     fontWeight: '700',
@@ -413,4 +431,5 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.72,
   },
-});
+  });
+}

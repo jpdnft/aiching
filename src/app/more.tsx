@@ -3,7 +3,8 @@ import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
-import { aiChingColors } from '@/theme/colors';
+import { useAppTheme } from '@/theme/appTheme';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 
 const links = [
   {
@@ -70,9 +71,10 @@ const links = [
 
 export default function MoreScreen() {
   const router = useRouter();
+  const styles = useMoreStyles();
 
   return (
-    <ScreenContainer>
+    <ScreenContainer themeAware>
       <Text style={styles.title}>More</Text>
       <Text style={styles.intro}>Settings, guidance, and what may come next.</Text>
 
@@ -95,16 +97,23 @@ export default function MoreScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+function useMoreStyles() {
+  const { colorMode } = useAppTheme();
+
+  return createMoreStyles(getAiChingColors(colorMode));
+}
+
+function createMoreStyles(colors: AiChingColorPalette) {
+  return StyleSheet.create({
   title: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 32,
     lineHeight: 40,
     fontWeight: '700',
     marginBottom: 10,
   },
   intro: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 17,
     lineHeight: 25,
     marginBottom: 24,
@@ -116,8 +125,8 @@ const styles = StyleSheet.create({
     minHeight: 92,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.16)',
-    backgroundColor: aiChingColors.surface,
+    borderColor: 'rgba(139, 93, 29, 0.22)',
+    backgroundColor: colors.surface,
     padding: 16,
     flexDirection: 'row',
     alignItems: 'center',
@@ -127,7 +136,7 @@ const styles = StyleSheet.create({
     width: 75,
     height: 75,
     borderRadius: 8,
-    backgroundColor: 'rgba(219, 226, 223, 0.08)',
+    backgroundColor: colors.surfaceSoft,
   },
   rowPressed: {
     opacity: 0.78,
@@ -137,19 +146,20 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   rowTitle: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 18,
     lineHeight: 24,
     fontWeight: '700',
   },
   rowBody: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 15,
     lineHeight: 22,
   },
   chevron: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 32,
     lineHeight: 36,
   },
-});
+  });
+}

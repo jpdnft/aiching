@@ -28,7 +28,9 @@ import {
 import { reviewAccessConfig } from '@/config/reviewAccess';
 import { requestReviewAccess } from '@/services/reviewAccess';
 import { disableDailyReminders } from '@/services/dailyReminders';
+import { AppColorMode } from './colors';
 
+const COLOR_MODE_STORAGE_KEY = 'aiching.appearance.colorMode.v1';
 const THEME_STORAGE_KEY = 'aiching.theme.selected.v1';
 const SOUND_EFFECTS_STORAGE_KEY = 'aiching.soundEffects.enabled.v1';
 const CASTING_SOUND_STORAGE_KEY = 'aiching.soundEffects.castingSound.v1';
@@ -53,6 +55,7 @@ export type AppEntitlements = {
 type AppThemeContextValue = {
   appVersion: AppVersion;
   aiReadingPersonalityId: AiReadingPersonalityId;
+  colorMode: AppColorMode;
   entitlements: AppEntitlements;
   reviewAccessEnabled: boolean;
   revenueCat: RevenueCatState;
@@ -63,6 +66,7 @@ type AppThemeContextValue = {
   refreshSubscriptionStatus: () => Promise<void>;
   restorePurchases: () => Promise<void>;
   setAiReadingPersonalityId: (personalityId: AiReadingPersonalityId) => Promise<void>;
+  setColorMode: (colorMode: AppColorMode) => Promise<void>;
   themeId: HexagramThemeId;
   setThemeId: (themeId: HexagramThemeId) => Promise<void>;
   soundEffectsEnabled: boolean;
@@ -83,6 +87,10 @@ function isReadingTextSize(value: string | null): value is ReadingTextSize {
   return value === 'comfortable' || value === 'large' || value === 'extraLarge';
 }
 
+function isColorMode(value: string | null): value is AppColorMode {
+  return value === 'dark' || value === 'light';
+}
+
 function getEntitlements(isPremium: boolean): AppEntitlements {
   return {
     adsEnabled: !isPremium,
@@ -101,11 +109,18 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
     defaultAiReadingPersonalityId,
   );
   const [themeId, setThemeIdState] = useState<HexagramThemeId>(defaultHexagramThemeId);
+  const [colorMode, setColorModeState] = useState<AppColorMode>('dark');
   const [soundEffectsEnabled, setSoundEffectsEnabledState] = useState(true);
   const [castingSoundId, setCastingSoundIdState] = useState<CastingSoundId>(defaultCastingSoundId);
   const [readingTextSize, setReadingTextSizeState] = useState<ReadingTextSize>('comfortable');
 
   useEffect(() => {
+    AsyncStorage.getItem(COLOR_MODE_STORAGE_KEY).then((storedColorMode) => {
+      if (isColorMode(storedColorMode)) {
+        setColorModeState(storedColorMode);
+      }
+    });
+
     AsyncStorage.getItem(THEME_STORAGE_KEY).then((storedThemeId) => {
       if (isThemeId(storedThemeId) && isHexagramThemeAvailable(storedThemeId)) {
         setThemeIdState(storedThemeId);
@@ -212,6 +227,11 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
     setAiReadingPersonalityIdState(personalityId);
   }, []);
 
+  const setColorMode = useCallback(async (nextColorMode: AppColorMode) => {
+    await AsyncStorage.setItem(COLOR_MODE_STORAGE_KEY, nextColorMode);
+    setColorModeState(nextColorMode);
+  }, []);
+
   const setThemeId = useCallback(async (nextThemeId: HexagramThemeId) => {
     if (!isHexagramThemeAvailable(nextThemeId)) {
       return;
@@ -250,6 +270,7 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
         appVersion: effectiveAppVersion,
         aiReadingPersonalityId,
         castingSoundId,
+        colorMode,
         entitlements: getEntitlements(isPremium),
         clearReviewAccess,
         enableReviewAccess,
@@ -262,6 +283,7 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
         restorePurchases,
         setAiReadingPersonalityId,
         setCastingSoundId,
+        setColorMode,
         setReadingTextSize,
         setSoundEffectsEnabled,
         setThemeId,
@@ -273,6 +295,7 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
       aiReadingPersonalityId,
       castingSoundId,
       clearReviewAccess,
+      colorMode,
       enableReviewAccess,
       manageSubscription,
       presentPaywall,
@@ -283,6 +306,7 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
       revenueCat,
       setAiReadingPersonalityId,
       setCastingSoundId,
+      setColorMode,
       setReadingTextSize,
       setSoundEffectsEnabled,
       setThemeId,

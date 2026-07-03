@@ -13,12 +13,14 @@ import Animated, {
 import { HexagramLine } from './HexagramLine';
 
 import { LineState, PartialHexagramLines } from '@/core/iching/types';
+import { AppColorMode } from '@/theme/colors';
 
 type Props = {
   lines: PartialHexagramLines;
   size?: 'large' | 'small' | 'tiny' | 'mini';
   animatedLineIndex?: number | null;
   animationKey?: number;
+  colorModeOverride?: AppColorMode;
   onLineAnimationComplete?: () => void;
 };
 
@@ -27,6 +29,7 @@ export function HexagramView({
   size = 'large',
   animatedLineIndex = null,
   animationKey = 0,
+  colorModeOverride,
   onLineAnimationComplete,
 }: Props) {
   const displayLines: (LineState | undefined)[] = Array.from(
@@ -63,6 +66,7 @@ export function HexagramView({
             style={[styles.lineSlot, isLarge && styles.largeLineSlot, size === 'mini' && styles.miniLineSlot]}>
             <AnimatedHexagramLine
               animationKey={animationKey}
+              colorModeOverride={colorModeOverride}
               line={line}
               muted={!line}
               onAnimationComplete={onLineAnimationComplete}
@@ -78,6 +82,7 @@ export function HexagramView({
 
 function AnimatedHexagramLine({
   animationKey,
+  colorModeOverride,
   line,
   muted,
   onAnimationComplete,
@@ -85,6 +90,7 @@ function AnimatedHexagramLine({
   size,
 }: {
   animationKey: number;
+  colorModeOverride?: AppColorMode;
   line?: LineState;
   muted: boolean;
   onAnimationComplete?: () => void;
@@ -129,7 +135,7 @@ function AnimatedHexagramLine({
 
   return (
     <Animated.View style={[shouldAnimate && styles.animatedLine, animatedStyle]}>
-      <HexagramLine line={line} muted={muted} size={size} />
+      <HexagramLine colorModeOverride={colorModeOverride} line={line} muted={muted} size={size} />
     </Animated.View>
   );
 }

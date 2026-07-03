@@ -22,7 +22,7 @@ import {
   savePremiumReadingForToday,
 } from '@/storage/readingsStorage';
 import { useAppTheme } from '@/theme/appTheme';
-import { aiChingColors } from '@/theme/colors';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 import { getAiReadingAvatarSource, getHexagramBackgroundSource } from '@/theme/hexagramBackgrounds';
 import { formatReadingDate } from '@/utils/date';
 
@@ -30,7 +30,9 @@ const internetRequiredMessage = 'Internet connection required here. Please conne
 
 export default function PremiumReadingScreen() {
   const router = useRouter();
-  const { aiReadingPersonalityId, entitlements, themeId } = useAppTheme();
+  const { aiReadingPersonalityId, colorMode, entitlements, themeId } = useAppTheme();
+  const styles = usePremiumReadingStyles();
+  const colors = getAiChingColors(colorMode);
   const scrollViewRef = useRef<ScrollView>(null);
   const [reading, setReading] = useState<CompletedReading | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -122,7 +124,7 @@ export default function PremiumReadingScreen() {
 
   if (!entitlements.aiReadingsEnabled) {
     return (
-      <ScreenContainer scroll={false}>
+      <ScreenContainer scroll={false} themeAware>
         <View style={styles.empty}>
           <Text style={styles.title}>Premium Reading</Text>
           <Text style={styles.body}>
@@ -136,9 +138,9 @@ export default function PremiumReadingScreen() {
 
   if (isLoading) {
     return (
-      <ScreenContainer scroll={false}>
+      <ScreenContainer scroll={false} themeAware>
         <View style={styles.centered}>
-          <ActivityIndicator color={aiChingColors.gold} />
+          <ActivityIndicator color={colors.gold} />
         </View>
       </ScreenContainer>
     );
@@ -146,7 +148,7 @@ export default function PremiumReadingScreen() {
 
   if (!reading) {
     return (
-      <ScreenContainer scroll={false}>
+      <ScreenContainer scroll={false} themeAware>
         <View style={styles.empty}>
           <Text style={styles.title}>No premium reading yet</Text>
           <Text style={styles.body}>Cast a hexagram to prepare an AI-enhanced reading.</Text>
@@ -231,7 +233,7 @@ export default function PremiumReadingScreen() {
                 {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
                 {isPremiumDailyLimitReached ? null : isGenerating ? (
                   <View style={[styles.generateButton, styles.generateButtonDisabled]}>
-                    <ActivityIndicator color={aiChingColors.ink} />
+                    <ActivityIndicator color={colors.ink} />
                     <Text style={styles.generateButtonText}>The Oracle Is Considering...</Text>
                   </View>
                 ) : (
@@ -285,6 +287,7 @@ function CastingDetailsCard({
   resultingHexagramName?: string;
   resultingHexagramNumber?: number;
 }) {
+  const styles = usePremiumReadingStyles();
   const visibleLineDetails = [...lineCastDetails].reverse();
 
   return (
@@ -312,7 +315,17 @@ function CastingDetailsCard({
   );
 }
 
-const styles = StyleSheet.create({
+function usePremiumReadingStyles() {
+  const { colorMode } = useAppTheme();
+
+  return createPremiumReadingStyles(getAiChingColors(colorMode), colorMode);
+}
+
+function createPremiumReadingStyles(colors: AiChingColorPalette, colorMode: 'dark' | 'light') {
+  const cardBackground = colorMode === 'dark' ? 'rgba(16, 19, 24, 0.72)' : 'rgba(255, 250, 240, 0.86)';
+  const photoScrim = colorMode === 'dark' ? 'rgba(10, 12, 16, 0.58)' : 'rgba(247, 241, 231, 0.46)';
+
+  return StyleSheet.create({
   centered: {
     flex: 1,
     alignItems: 'center',
@@ -327,14 +340,14 @@ const styles = StyleSheet.create({
   },
   backgroundScreen: {
     flex: 1,
-    backgroundColor: aiChingColors.ink,
+    backgroundColor: colors.ink,
   },
   backgroundImage: {
     ...StyleSheet.absoluteFill,
   },
   imageScrim: {
     ...StyleSheet.absoluteFill,
-    backgroundColor: 'rgba(10, 12, 16, 0.58)',
+    backgroundColor: photoScrim,
   },
   readingSafeArea: {
     flex: 1,
@@ -352,13 +365,13 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   date: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 13,
     fontWeight: '700',
     textTransform: 'uppercase',
   },
   title: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 28,
     lineHeight: 36,
     fontWeight: '700',
@@ -368,15 +381,15 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 640,
     borderRadius: 8,
-    backgroundColor: 'rgba(16, 19, 24, 0.72)',
+    backgroundColor: cardBackground,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.18)',
+    borderColor: 'rgba(139, 93, 29, 0.24)',
     padding: 18,
     gap: 10,
     marginBottom: 18,
   },
   cardTitle: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 18,
     lineHeight: 24,
     fontWeight: '800',
@@ -389,7 +402,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   avatarCaption: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 15,
     lineHeight: 22,
     fontWeight: '700',
@@ -402,7 +415,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   body: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     lineHeight: 25,
     textAlign: 'center',
@@ -411,12 +424,12 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   castDetailItem: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 14,
     lineHeight: 20,
   },
   changeNote: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 14,
     lineHeight: 20,
     fontWeight: '800',
@@ -431,7 +444,7 @@ const styles = StyleSheet.create({
   generateButton: {
     minHeight: 52,
     borderRadius: 8,
-    backgroundColor: aiChingColors.gold,
+    backgroundColor: colors.gold,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,
@@ -441,7 +454,7 @@ const styles = StyleSheet.create({
     opacity: 0.72,
   },
   generateButtonText: {
-    color: aiChingColors.ink,
+    color: colors.ink,
     fontSize: 14,
     lineHeight: 20,
     fontWeight: '800',
@@ -451,4 +464,5 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.72,
   },
-});
+  });
+}

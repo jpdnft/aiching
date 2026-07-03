@@ -12,13 +12,15 @@ import { getHexagramByNumber } from '@/core/iching/hexagrams';
 import { CompletedReading, Hexagram, HexagramRelationship } from '@/core/iching/types';
 import { getCurrentReading } from '@/storage/readingsStorage';
 import { ReadingTextSize, useAppTheme } from '@/theme/appTheme';
-import { aiChingColors } from '@/theme/colors';
+import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 import { getHexagramBackgroundSource } from '@/theme/hexagramBackgrounds';
 import { formatReadingDate } from '@/utils/date';
 
 export default function ReadingScreen() {
   const router = useRouter();
-  const { readingTextSize, themeId } = useAppTheme();
+  const { colorMode, readingTextSize, themeId } = useAppTheme();
+  const styles = useReadingStyles();
+  const colors = getAiChingColors(colorMode);
   const scrollViewRef = useRef<ScrollView>(null);
   const [reading, setReading] = useState<CompletedReading | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -46,9 +48,9 @@ export default function ReadingScreen() {
 
   if (isLoading) {
     return (
-      <ScreenContainer scroll={false}>
+      <ScreenContainer scroll={false} themeAware>
         <View style={styles.centered}>
-          <ActivityIndicator color={aiChingColors.gold} />
+          <ActivityIndicator color={colors.gold} />
         </View>
       </ScreenContainer>
     );
@@ -56,7 +58,7 @@ export default function ReadingScreen() {
 
   if (!reading) {
     return (
-      <ScreenContainer scroll={false}>
+      <ScreenContainer scroll={false} themeAware>
         <View style={styles.empty}>
           <Text style={styles.title}>No reading yet today</Text>
           <Text style={styles.body}>Cast six lines to reveal today&apos;s reflection.</Text>
@@ -161,6 +163,8 @@ function PrimaryReadingPanel({
   theme: string;
   reflection: string;
 }) {
+  const styles = useReadingStyles();
+
   return (
     <View style={styles.primarySection}>
       <View style={styles.primaryImageFrame}>
@@ -202,7 +206,10 @@ function ReadingMeter({
   score: number;
   tone: 'caution' | 'support';
 }) {
-  const activeColor = tone === 'caution' ? aiChingColors.danger : aiChingColors.gold;
+  const { colorMode } = useAppTheme();
+  const colors = getAiChingColors(colorMode);
+  const styles = useReadingStyles();
+  const activeColor = tone === 'caution' ? colors.danger : colors.gold;
 
   return (
     <View style={styles.meterRow}>
@@ -240,6 +247,8 @@ function RelationshipPanel({
   relatedHexagram: Hexagram;
   textStyles: ReadingTextStyles;
 }) {
+  const styles = useReadingStyles();
+
   return (
     <View style={styles.relationshipSection}>
       <View style={styles.relationshipVisual}>
@@ -317,7 +326,17 @@ function formatLabel(value: string): string {
     .join(' ');
 }
 
-const styles = StyleSheet.create({
+function useReadingStyles() {
+  const { colorMode } = useAppTheme();
+
+  return createReadingStyles(getAiChingColors(colorMode), colorMode);
+}
+
+function createReadingStyles(colors: AiChingColorPalette, colorMode: 'dark' | 'light') {
+  const panelBackground = colorMode === 'dark' ? 'rgba(16, 19, 24, 0.72)' : 'rgba(255, 250, 240, 0.86)';
+  const imageScrim = colorMode === 'dark' ? 'rgba(10, 12, 16, 0.58)' : 'rgba(247, 241, 231, 0.46)';
+
+  return StyleSheet.create({
   centered: {
     flex: 1,
     alignItems: 'center',
@@ -331,14 +350,14 @@ const styles = StyleSheet.create({
   },
   backgroundScreen: {
     flex: 1,
-    backgroundColor: aiChingColors.ink,
+    backgroundColor: colors.ink,
   },
   backgroundImage: {
     ...StyleSheet.absoluteFill,
   },
   imageScrim: {
     ...StyleSheet.absoluteFill,
-    backgroundColor: 'rgba(10, 12, 16, 0.58)',
+    backgroundColor: imageScrim,
   },
   readingSafeArea: {
     flex: 1,
@@ -356,13 +375,13 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   date: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 13,
     fontWeight: '700',
     textTransform: 'uppercase',
   },
   title: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 28,
     lineHeight: 36,
     fontWeight: '700',
@@ -371,7 +390,7 @@ const styles = StyleSheet.create({
   section: {
     width: '100%',
     borderTopWidth: 1,
-    borderTopColor: 'rgba(231, 197, 111, 0.16)',
+    borderTopColor: 'rgba(139, 93, 29, 0.22)',
     paddingTop: 18,
     marginBottom: 22,
     gap: 10,
@@ -380,7 +399,7 @@ const styles = StyleSheet.create({
   primarySection: {
     width: '100%',
     borderTopWidth: 1,
-    borderTopColor: 'rgba(231, 197, 111, 0.16)',
+    borderTopColor: 'rgba(139, 93, 29, 0.22)',
     paddingTop: 18,
     marginBottom: 22,
     flexDirection: 'row',
@@ -393,8 +412,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.28)',
-    backgroundColor: 'rgba(16, 19, 24, 0.42)',
+    borderColor: 'rgba(139, 93, 29, 0.32)',
+    backgroundColor: colors.inkSoft,
   },
   primaryImage: {
     width: '100%',
@@ -407,8 +426,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.28)',
-    backgroundColor: 'rgba(16, 19, 24, 0.42)',
+    borderColor: 'rgba(139, 93, 29, 0.32)',
+    backgroundColor: colors.inkSoft,
   },
   promptImage: {
     width: '100%',
@@ -423,7 +442,7 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   meterLabel: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 12,
     lineHeight: 16,
     fontWeight: '800',
@@ -438,8 +457,8 @@ const styles = StyleSheet.create({
     height: 16,
     borderRadius: 2,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.2)',
-    backgroundColor: 'rgba(219, 226, 223, 0.12)',
+    borderColor: 'rgba(139, 93, 29, 0.24)',
+    backgroundColor: colorMode === 'dark' ? 'rgba(219, 226, 223, 0.12)' : 'rgba(139, 93, 29, 0.1)',
   },
   keywordRow: {
     flexDirection: 'row',
@@ -447,8 +466,8 @@ const styles = StyleSheet.create({
     gap: 7,
   },
   momentumChip: {
-    color: aiChingColors.ink,
-    backgroundColor: aiChingColors.gold,
+    color: colors.ink,
+    backgroundColor: colors.gold,
     borderRadius: 8,
     overflow: 'hidden',
     paddingHorizontal: 8,
@@ -460,7 +479,7 @@ const styles = StyleSheet.create({
   relationshipSection: {
     width: '100%',
     borderTopWidth: 1,
-    borderTopColor: 'rgba(231, 197, 111, 0.16)',
+    borderTopColor: 'rgba(139, 93, 29, 0.22)',
     paddingTop: 18,
     marginBottom: 22,
     flexDirection: 'row',
@@ -475,24 +494,24 @@ const styles = StyleSheet.create({
     gap: 7,
   },
   relatedTitle: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     lineHeight: 22,
     fontWeight: '700',
   },
   sameNote: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 12,
     lineHeight: 17,
     textTransform: 'uppercase',
   },
   relationshipBody: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 15,
     lineHeight: 22,
   },
   applicationTitle: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 12,
     lineHeight: 16,
     fontWeight: '800',
@@ -503,9 +522,9 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 640,
     borderRadius: 8,
-    backgroundColor: 'rgba(16, 19, 24, 0.72)',
+    backgroundColor: panelBackground,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.18)',
+    borderColor: 'rgba(139, 93, 29, 0.24)',
     padding: 18,
     marginBottom: 24,
   },
@@ -514,8 +533,8 @@ const styles = StyleSheet.create({
     maxWidth: 640,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.34)',
-    backgroundColor: 'rgba(16, 19, 24, 0.78)',
+    borderColor: 'rgba(139, 93, 29, 0.38)',
+    backgroundColor: panelBackground,
     padding: 18,
     gap: 8,
     marginBottom: 24,
@@ -524,20 +543,20 @@ const styles = StyleSheet.create({
     opacity: 0.78,
   },
   premiumCtaTitle: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 18,
     lineHeight: 24,
     fontWeight: '800',
     textAlign: 'center',
   },
   premiumCtaBody: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 15,
     lineHeight: 22,
     textAlign: 'center',
   },
   premiumCtaLink: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 13,
     lineHeight: 18,
     fontWeight: '800',
@@ -545,14 +564,15 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   sectionTitle: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 14,
     fontWeight: '700',
   },
   body: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     lineHeight: 25,
     textAlign: 'center',
   },
-});
+  });
+}

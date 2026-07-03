@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
@@ -13,7 +13,7 @@ import {
 } from '@/core/aiReadings/personalities';
 import { ReadingTextSize, useAppTheme } from '@/theme/appTheme';
 import { CastingSound, castingSoundList } from '@/theme/castingSounds';
-import { aiChingColors } from '@/theme/colors';
+import { AiChingColorPalette, AppColorMode, getAiChingColors } from '@/theme/colors';
 import {
   defaultDailyReminderSettings,
   getReminderSummary,
@@ -50,9 +50,11 @@ export default function SettingsScreen() {
   const {
     aiReadingPersonalityId,
     castingSoundId,
+    colorMode,
     entitlements,
     setAiReadingPersonalityId,
     setCastingSoundId,
+    setColorMode,
     setReadingTextSize,
     setSoundEffectsEnabled,
     setThemeId,
@@ -60,6 +62,8 @@ export default function SettingsScreen() {
     soundEffectsEnabled,
     themeId,
   } = useAppTheme();
+  const styles = useSettingsStyles();
+  const colors = getAiChingColors(colorMode);
   const [dailyReminderSummary, setDailyReminderSummary] = useState(
     getReminderSummary(defaultDailyReminderSettings),
   );
@@ -85,11 +89,38 @@ export default function SettingsScreen() {
   );
 
   return (
-    <ScreenContainer>
+    <ScreenContainer themeAware>
       <Text style={styles.title}>Settings</Text>
       <Text style={styles.intro}>
         Choose the visual theme used for casting, readings, and history.
       </Text>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Appearance</Text>
+        <Text style={styles.settingDescription}>
+          Dark mode is the default. Light mode uses a warmer parchment palette for brighter spaces.
+        </Text>
+        <View style={styles.appearanceOptions}>
+          {appearanceModeOptions.map((option) => (
+            <Pressable
+              key={option.value}
+              onPress={() => setColorMode(option.value)}
+              style={({ pressed }) => [
+                styles.appearanceOption,
+                option.value === colorMode && styles.textSizeOptionSelected,
+                pressed && styles.themeOptionPressed,
+              ]}>
+              <Text
+                style={[
+                  styles.textSizeOptionText,
+                  option.value === colorMode && styles.textSizeOptionTextSelected,
+                ]}>
+                {option.label}
+              </Text>
+            </Pressable>
+          ))}
+        </View>
+      </View>
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Theme</Text>
@@ -202,7 +233,7 @@ export default function SettingsScreen() {
           </View>
           <Switch
             onValueChange={setSoundEffectsEnabled}
-            thumbColor={soundEffectsEnabled ? aiChingColors.gold : '#8b918f'}
+            thumbColor={soundEffectsEnabled ? colors.gold : '#8b918f'}
             trackColor={{
               false: 'rgba(231, 197, 111, 0.18)',
               true: 'rgba(231, 197, 111, 0.44)',
@@ -239,6 +270,11 @@ const readingTextSizeOptions: { label: string; value: ReadingTextSize }[] = [
   { label: 'Extra Large', value: 'extraLarge' },
 ];
 
+const appearanceModeOptions: { label: string; value: AppColorMode }[] = [
+  { label: 'Dark', value: 'dark' },
+  { label: 'Light', value: 'light' },
+];
+
 const textSizePreviewStyles: Record<ReadingTextSize, { fontSize: number; lineHeight: number }> = {
   comfortable: {
     fontSize: 15,
@@ -254,6 +290,12 @@ const textSizePreviewStyles: Record<ReadingTextSize, { fontSize: number; lineHei
   },
 };
 
+function useSettingsStyles() {
+  const { colorMode } = useAppTheme();
+
+  return useMemo(() => createSettingsStyles(getAiChingColors(colorMode)), [colorMode]);
+}
+
 function ThemeOption({
   avatarSource,
   premiumThemesEnabled,
@@ -267,6 +309,7 @@ function ThemeOption({
   selected: boolean;
   onPress: () => void;
 }) {
+  const styles = useSettingsStyles();
   const premiumLocked = isHexagramThemePremiumOnly(theme.id) && !premiumThemesEnabled;
   const disabled = !theme.isAvailable || premiumLocked;
 
@@ -301,6 +344,7 @@ function SoundOption({
   selected: boolean;
   sound: CastingSound;
 }) {
+  const styles = useSettingsStyles();
   const player = useAudioPlayer(sound.source, { downloadFirst: true });
 
   useEffect(() => {
@@ -359,6 +403,7 @@ function PersonalityOption({
   personality: AiReadingPersonality;
   selected: boolean;
 }) {
+  const styles = useSettingsStyles();
   return (
     <Pressable
       disabled={disabled}
@@ -381,16 +426,17 @@ function PersonalityOption({
   );
 }
 
-const styles = StyleSheet.create({
+function createSettingsStyles(colors: AiChingColorPalette) {
+  return StyleSheet.create({
   title: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 32,
     lineHeight: 40,
     fontWeight: '700',
     marginBottom: 10,
   },
   intro: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 17,
     lineHeight: 25,
     marginBottom: 24,
@@ -398,14 +444,14 @@ const styles = StyleSheet.create({
   section: {
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.16)',
-    backgroundColor: aiChingColors.surface,
+    borderColor: 'rgba(139, 93, 29, 0.22)',
+    backgroundColor: colors.surface,
     padding: 18,
     gap: 14,
     marginBottom: 14,
   },
   sectionTitle: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 18,
     lineHeight: 24,
     fontWeight: '700',
@@ -418,14 +464,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: 'rgba(231, 197, 111, 0.16)',
-    backgroundColor: 'rgba(16, 19, 24, 0.52)',
+    backgroundColor: colors.inkSoft,
     padding: 14,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
   },
   themeOptionSelected: {
-    borderColor: 'rgba(231, 197, 111, 0.72)',
+    borderColor: 'rgba(139, 93, 29, 0.72)',
   },
   themeOptionDisabled: {
     opacity: 0.52,
@@ -437,31 +483,31 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
     borderRadius: 8,
-    backgroundColor: 'rgba(219, 226, 223, 0.08)',
+    backgroundColor: colors.surfaceSoft,
   },
   themeText: {
     flex: 1,
     gap: 4,
   },
   themeName: {
-    color: aiChingColors.mist,
+    color: colors.mist,
     fontSize: 16,
     lineHeight: 22,
     fontWeight: '700',
   },
   themeMeta: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 13,
     lineHeight: 18,
   },
   themeState: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 13,
     lineHeight: 18,
     fontWeight: '700',
   },
   themeStateSelected: {
-    color: aiChingColors.gold,
+    color: colors.gold,
   },
   settingRow: {
     minHeight: 56,
@@ -474,7 +520,7 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   settingDescription: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 14,
     lineHeight: 20,
   },
@@ -482,33 +528,48 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
   },
+  appearanceOptions: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  appearanceOption: {
+    flex: 1,
+    minHeight: 42,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(139, 93, 29, 0.22)',
+    backgroundColor: colors.inkSoft,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 8,
+  },
   textSizeOption: {
     flex: 1,
     minHeight: 42,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.16)',
-    backgroundColor: 'rgba(16, 19, 24, 0.52)',
+    borderColor: 'rgba(139, 93, 29, 0.22)',
+    backgroundColor: colors.inkSoft,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 8,
   },
   textSizeOptionSelected: {
-    borderColor: 'rgba(231, 197, 111, 0.72)',
-    backgroundColor: 'rgba(231, 197, 111, 0.16)',
+    borderColor: 'rgba(139, 93, 29, 0.72)',
+    backgroundColor: 'rgba(139, 93, 29, 0.16)',
   },
   textSizeOptionText: {
-    color: aiChingColors.muted,
+    color: colors.muted,
     fontSize: 13,
     lineHeight: 17,
     fontWeight: '800',
     textAlign: 'center',
   },
   textSizeOptionTextSelected: {
-    color: aiChingColors.gold,
+    color: colors.gold,
   },
   textSizePreview: {
-    color: aiChingColors.mist,
+    color: colors.mist,
   },
   personalityList: {
     gap: 10,
@@ -517,15 +578,15 @@ const styles = StyleSheet.create({
     minHeight: 84,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.16)',
-    backgroundColor: 'rgba(16, 19, 24, 0.52)',
+    borderColor: 'rgba(139, 93, 29, 0.22)',
+    backgroundColor: colors.inkSoft,
     padding: 14,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
   },
   lockedNote: {
-    color: aiChingColors.gold,
+    color: colors.gold,
     fontSize: 13,
     lineHeight: 19,
     fontWeight: '700',
@@ -537,15 +598,15 @@ const styles = StyleSheet.create({
     minHeight: 72,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(231, 197, 111, 0.16)',
-    backgroundColor: 'rgba(16, 19, 24, 0.52)',
+    borderColor: 'rgba(139, 93, 29, 0.22)',
+    backgroundColor: colors.inkSoft,
     padding: 12,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
   },
   soundOptionSelected: {
-    borderColor: 'rgba(231, 197, 111, 0.72)',
+    borderColor: 'rgba(139, 93, 29, 0.72)',
   },
   previewButton: {
     width: 50,
@@ -553,13 +614,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: aiChingColors.gold,
+    backgroundColor: colors.gold,
   },
   previewButtonPressed: {
     opacity: 0.78,
   },
   previewButtonText: {
-    color: aiChingColors.ink,
+    color: colors.ink,
     fontSize: 13,
     lineHeight: 18,
     fontWeight: '800',
@@ -574,18 +635,19 @@ const styles = StyleSheet.create({
   configureButton: {
     minHeight: 46,
     borderRadius: 8,
-    backgroundColor: aiChingColors.gold,
+    backgroundColor: colors.gold,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 16,
     paddingVertical: 10,
   },
   configureButtonText: {
-    color: aiChingColors.ink,
+    color: colors.ink,
     fontSize: 14,
     lineHeight: 20,
     fontWeight: '800',
     textAlign: 'center',
     textTransform: 'uppercase',
   },
-});
+  });
+}
