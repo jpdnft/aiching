@@ -3,6 +3,12 @@ import {
   PremiumReadingError,
   PremiumReadingRequest,
 } from '../../src/core/aiReadings/premiumReadingServer';
+import { archivePremiumQuestion } from './_shared/questionArchive';
+import {
+  enforcePremiumUsageLimits,
+  PremiumAccessError,
+  requirePremiumAccess,
+} from './_shared/premiumAccess';
 
 const corsHeaders = {
   'Access-Control-Allow-Headers': 'Authorization, Content-Type, X-AI-Ching-Client',
@@ -46,8 +52,27 @@ export default async function handler(request: Request): Promise<Response> {
   const body = parseJson(requestText);
 
   try {
-    return json(await generatePremiumReadingOnServer(body));
+    const access = await requirePremiumAccess(request);
+    await enforcePremiumUsageLimits(access);
+
+    const premiumReading = await generatePremiumReadingOnServer(body);
+
+    await archivePremiumQuestion(body).catch((error) => {
+      console.error('Unable to archive premium question.', getErrorMessage(error));
+    });
+
+    console.info('Premium reading generated.', {
+      accessSource: access.source,
+      hasQuestion: Boolean(body?.question),
+      model: premiumReading.model,
+    });
+
+    return json(premiumReading);
   } catch (error) {
+    if (error instanceof PremiumAccessError) {
+      return json({ error: error.message }, error.status);
+    }
+
     if (error instanceof PremiumReadingError) {
       return json({ error: error.message }, error.status);
     }
@@ -113,4 +138,8 @@ function json(
     },
     status,
   });
+}
+
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : 'Unknown error';
 }

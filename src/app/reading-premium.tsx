@@ -21,6 +21,7 @@ import {
   recordPremiumAiReadingRequest,
   savePremiumReadingForToday,
 } from '@/storage/readingsStorage';
+import { getRevenueCatAppUserId } from '@/services/revenueCat';
 import { useAppTheme } from '@/theme/appTheme';
 import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 import { getAiReadingAvatarSource, getHexagramBackgroundSource } from '@/theme/hexagramBackgrounds';
@@ -62,6 +63,12 @@ export default function PremiumReadingScreen() {
         );
       }
 
+      const revenueCatAppUserId = await getRevenueCatAppUserId();
+
+      if (!revenueCatAppUserId) {
+        throw new Error('Unable to verify Premium subscription. Please restart the app and try again.');
+      }
+
       await recordPremiumAiReadingRequest();
 
       const premiumReading = await generatePremiumReading({
@@ -70,6 +77,7 @@ export default function PremiumReadingScreen() {
         personalityId: aiReadingPersonalityId,
         question: readingToGenerate.question,
         readingId: readingToGenerate.id,
+        revenueCatAppUserId,
         themeId,
       });
       const updatedReading = await savePremiumReadingForToday(premiumReading);

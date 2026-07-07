@@ -9,6 +9,7 @@ export type GeneratePremiumReadingParams = {
   personalityId: string;
   question?: string;
   readingId: string;
+  revenueCatAppUserId?: string | null;
   themeId: string;
 };
 
@@ -29,9 +30,19 @@ export async function generatePremiumReading(
     response = await fetch(aiReadingConfig.endpointPath, {
       method: 'POST',
       headers: {
+        ...(params.revenueCatAppUserId
+          ? { Authorization: `Bearer ${params.revenueCatAppUserId}` }
+          : {}),
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(params),
+      body: JSON.stringify({
+        hexagramNumber: params.hexagramNumber,
+        lineCastDetails: params.lineCastDetails,
+        personalityId: params.personalityId,
+        question: params.question,
+        readingId: params.readingId,
+        themeId: params.themeId,
+      }),
     });
   } catch {
     throw new Error(internetRequiredMessage);

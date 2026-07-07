@@ -19,7 +19,7 @@ const sections = [
   },
   {
     title: 'Yin and yang lines',
-    body: 'Yang appears as a solid line. Yin appears as a broken line. This release uses simple, non-changing lines.',
+    body: 'Yang appears as a solid line. Yin appears as a broken line. The basic level of this app uses simple, non-changing lines. The premium version includes changing lines, which can add depth to your reading.',
   },
   {
     title: 'Reflection, not prediction',

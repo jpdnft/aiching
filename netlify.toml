@@ -15,3 +15,8 @@
   from = "/api/review-access"
   to = "/.netlify/functions/review-access"
   status = 200
+
+[[redirects]]
+  from = "/api/admin/premium-questions"
+  to = "/.netlify/functions/premium-questions"
+  status = 200

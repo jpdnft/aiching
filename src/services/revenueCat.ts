@@ -106,6 +106,24 @@ export async function restoreRevenueCatPurchases(): Promise<RevenueCatState> {
   }
 }
 
+export async function getRevenueCatAppUserId(): Promise<string | null> {
+  const setup = await ensureRevenueCatConfigured();
+
+  if (!setup.configured || !setup.Purchases) {
+    return null;
+  }
+
+  try {
+    if (typeof setup.Purchases.getAppUserID === 'function') {
+      return await setup.Purchases.getAppUserID();
+    }
+
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 export async function presentRevenueCatCustomerCenter(): Promise<RevenueCatState> {
   const setup = await ensureRevenueCatConfigured();
 
