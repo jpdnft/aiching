@@ -37,7 +37,11 @@ expo-*.log
 .env.local
 .env.development
 .env.production
+
+# Private local project notes, credentials, generated keys, and runbooks.
+# Never track anything in this directory.
 private/
+private/**
 
 # typescript
 *.tsbuildinfo
