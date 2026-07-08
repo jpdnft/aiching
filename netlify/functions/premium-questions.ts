@@ -4,17 +4,12 @@ import {
   pruneArchivedPremiumQuestions,
   requireQuestionsAdmin,
 } from './_shared/questionArchive';
-
-const corsHeaders = {
-  'Access-Control-Allow-Headers': 'Authorization, Content-Type',
-  'Access-Control-Allow-Methods': 'GET, DELETE, OPTIONS',
-  'Access-Control-Allow-Origin': process.env.ADMIN_ALLOWED_ORIGIN || process.env.AI_READING_ALLOWED_ORIGIN || '*',
-};
+import { getCorsHeaders } from './_shared/cors';
 
 export default async function handler(request: Request): Promise<Response> {
   if (request.method === 'OPTIONS') {
     return new Response(null, {
-      headers: corsHeaders,
+      headers: getQuestionsCorsHeaders(request),
       status: 204,
     });
   }
@@ -22,7 +17,7 @@ export default async function handler(request: Request): Promise<Response> {
   try {
     requireQuestionsAdmin(request);
   } catch {
-    return json({ error: 'Unauthorized.' }, 401);
+    return json({ error: 'Unauthorized.' }, 401, request);
   }
 
   if (request.method === 'GET') {
@@ -33,7 +28,7 @@ export default async function handler(request: Request): Promise<Response> {
     return json({
       count: questions.length,
       questions,
-    });
+    }, 200, request);
   }
 
   if (request.method === 'DELETE') {
@@ -42,27 +37,35 @@ export default async function handler(request: Request): Promise<Response> {
 
     if (beforeDate) {
       if (!/^\d{4}-\d{2}-\d{2}$/.test(beforeDate)) {
-        return json({ error: 'before must be a YYYY-MM-DD date.' }, 400);
+        return json({ error: 'before must be a YYYY-MM-DD date.' }, 400, request);
       }
 
       return json({
         deleted: await pruneArchivedPremiumQuestions(beforeDate),
-      });
+      }, 200, request);
     }
 
     return json({
       deleted: await clearArchivedPremiumQuestions(),
-    });
+    }, 200, request);
   }
 
-  return json({ error: 'Method not allowed.' }, 405);
+  return json({ error: 'Method not allowed.' }, 405, request);
 }
 
-function json(body: Record<string, unknown>, status = 200): Response {
+function json(body: Record<string, unknown>, status = 200, request?: Request): Response {
   return Response.json(body, {
     headers: {
-      ...corsHeaders,
+      ...(request ? getQuestionsCorsHeaders(request) : {}),
     },
     status,
+  });
+}
+
+function getQuestionsCorsHeaders(request: Request): Record<string, string> {
+  return getCorsHeaders(request, {
+    allowedOriginsEnv: process.env.ADMIN_ALLOWED_ORIGIN || process.env.AI_READING_ALLOWED_ORIGIN,
+    allowedHeaders: 'Authorization, Content-Type',
+    allowedMethods: 'GET, DELETE, OPTIONS',
   });
 }

@@ -9,12 +9,7 @@ import {
   PremiumAccessError,
   requirePremiumAccess,
 } from './_shared/premiumAccess';
-
-const corsHeaders = {
-  'Access-Control-Allow-Headers': 'Authorization, Content-Type, X-AI-Ching-Client',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Origin': process.env.AI_READING_ALLOWED_ORIGIN || '*',
-};
+import { getCorsHeaders } from './_shared/cors';
 
 const maxRequestBodyBytes = 12 * 1024;
 const rateLimitWindowMs = 10 * 60 * 1000;
@@ -24,13 +19,13 @@ const rateLimitBuckets = new Map<string, { count: number; resetAt: number }>();
 export default async function handler(request: Request): Promise<Response> {
   if (request.method === 'OPTIONS') {
     return new Response(null, {
-      headers: corsHeaders,
+      headers: getPremiumReadingCorsHeaders(request),
       status: 204,
     });
   }
 
   if (request.method !== 'POST') {
-    return json({ error: 'Method not allowed.' }, 405);
+    return json({ error: 'Method not allowed.' }, 405, request);
   }
 
   const rateLimit = checkRateLimit(getClientIdentifier(request));
@@ -39,6 +34,7 @@ export default async function handler(request: Request): Promise<Response> {
     return json(
       { error: 'Too many premium reading requests. Please try again soon.' },
       429,
+      request,
       { 'Retry-After': String(rateLimit.retryAfterSeconds) },
     );
   }
@@ -46,7 +42,7 @@ export default async function handler(request: Request): Promise<Response> {
   const requestText = await request.text();
 
   if (requestText.length > maxRequestBodyBytes) {
-    return json({ error: 'Request body is too large.' }, 413);
+    return json({ error: 'Request body is too large.' }, 413, request);
   }
 
   const body = parseJson(requestText);
@@ -67,17 +63,17 @@ export default async function handler(request: Request): Promise<Response> {
       model: premiumReading.model,
     });
 
-    return json(premiumReading);
+    return json(premiumReading, 200, request);
   } catch (error) {
     if (error instanceof PremiumAccessError) {
-      return json({ error: error.message }, error.status);
+      return json({ error: error.message }, error.status, request);
     }
 
     if (error instanceof PremiumReadingError) {
-      return json({ error: error.message }, error.status);
+      return json({ error: error.message }, error.status, request);
     }
 
-    return json({ error: 'Unable to generate the premium reading.' }, 500);
+    return json({ error: 'Unable to generate the premium reading.' }, 500, request);
   }
 }
 
@@ -129,14 +125,23 @@ function parseJson(requestText: string): PremiumReadingRequest | null {
 function json(
   body: Record<string, unknown>,
   status = 200,
+  request?: Request,
   headers: Record<string, string> = {},
 ): Response {
   return Response.json(body, {
     headers: {
-      ...corsHeaders,
+      ...(request ? getPremiumReadingCorsHeaders(request) : {}),
       ...headers,
     },
     status,
+  });
+}
+
+function getPremiumReadingCorsHeaders(request: Request): Record<string, string> {
+  return getCorsHeaders(request, {
+    allowedOriginEnv: process.env.AI_READING_ALLOWED_ORIGIN,
+    allowedHeaders: 'Authorization, Content-Type, X-AI-Ching-Client',
+    allowedMethods: 'POST, OPTIONS',
   });
 }
 
