@@ -8,23 +8,23 @@ import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 
 const features = [
   {
-    title: 'Dramatic Readings',
-    body: 'If high-quality generated voice costs come down, we would *love* to explore dramatic audio readings. Right now, costs are too high to offer this at scale.',
+    title: 'Dramatic Readings with Voice',
+    body: 'If high-quality generated voice costs come down, we would *love* to explore generatin dramatic audio readings for premium users. Right now, the tech is there for sure, but the costs are too high to offer this at scale.',
     avatar: require('@/assets/hexagrams/themes/01/storm_witch.jpg'),
   },
   {
     title: 'iOS Version',
-    body: 'For launch, we are starting with Google Play. An iPhone and iPad version is on the roadmap once the app earns enough to justify Apple developer program costs.',
+    body: 'For launch, we are starting with Google Play. An iPhone and iPad version is on the roadmap once the app earns enough to justify Apple developer program costs. (I\'m a solo developer, not some huge app company, so I have to be careful about costs and time.)',
     avatar: require('@/assets/hexagrams/themes/03/lantern_oracle.jpg'),
   },
   {
     title: 'Interactive chat about your reading',
-    body: 'A future conversational layer for gentle follow-up questions.',
+    body: 'A future conversational layer for gentle follow-up questions. While I would love to enable this, it is not on the immediate roadmap because of the high costs of LLM-based chat services at scale. But, who knows? If the app takes off, maybe we can make this happen soon.',
     avatar: require('@/assets/hexagrams/themes/02/star_cartographer.jpg'),
   },
   {
     title: 'Pattern insights',
-    body: 'Themes across readings over time, once history is more mature.',
+    body: 'Themes across readings over time, once history is more mature. I think this one is very doable in the near-term, but it will require a lot of careful design and testing to make sure it is useful and not just noise.',
     avatar: require('@/assets/hexagrams/themes/03/dream_librarian.jpg'),
   },
 ];
@@ -59,7 +59,7 @@ export default function FutureScreen() {
           <View style={styles.cardText}>
             <Text style={styles.feedbackTitle}>Feedback, Ideas, Feature Requests</Text>
             <Text style={styles.feedbackBody}>
-              Have an idea, request, or launch note? Contact the developer through the{' '}
+              Have an idea, feature request, or launch note? Contact the developer through the{' '}
               <Text style={styles.feedbackLink}>About screen</Text>.
             </Text>
           </View>

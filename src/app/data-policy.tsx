@@ -7,14 +7,14 @@ import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 
 const sections = [
   {
-    title: 'Questions and AI Readings',
+    title: 'Questions and Oracle-Powered Readings',
     body:
-      'Premium readings send your question, selected hexagram, selected oracle personality, and selected theme mood to our AI reading service so the app can generate your custom interpretation.',
+      'Premium readings send your question, selected hexagram, selected oracle personality, and selected theme mood to our Oracle-powered reading API so the app can generate your custom interpretation.',
   },
   {
     title: 'How Question Text May Be Used',
     body:
-      'We may retain question text in a de-identified way for internal review, product improvement, and marketing insight. For example, if someone asks, "Will I win the lottery?", we may use that question to understand what people are curious about, but not to identify who asked it.',
+      'We may retain question text in a de-identified way for internal review, product improvement, and marketing insight. For example, if someone asks, "Will I win the lottery?", we may use that question to understand what people are curious about, but not to identify who asked it. Short version: We save questions asks, but we never save who asked them.',
   },
   {
     title: 'What We Do Not Intend to Keep',
@@ -24,7 +24,7 @@ const sections = [
   {
     title: 'Local Reading History',
     body:
-      'Your reading history is stored on your device so you can revisit past readings. Clearing app data or reading history may remove that local history.',
+      'Your reading history is stored on *your* device so you can revisit past readings. Clearing app data or reading history may remove that local history.',
   },
   {
     title: 'Reflection, Not Professional Advice',
