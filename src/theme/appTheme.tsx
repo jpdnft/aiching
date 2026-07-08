@@ -40,6 +40,7 @@ const REVIEW_ACCESS_STORAGE_KEY = 'aiching.reviewAccess.enabled.v1';
 
 type StoredReviewAccess = {
   expiresAt: number;
+  reviewAccessToken?: string;
 };
 
 export type ReadingTextSize = 'comfortable' | 'large' | 'extraLarge';
@@ -58,6 +59,7 @@ type AppThemeContextValue = {
   colorMode: AppColorMode;
   entitlements: AppEntitlements;
   reviewAccessEnabled: boolean;
+  reviewAccessToken: string | null;
   revenueCat: RevenueCatState;
   clearReviewAccess: () => Promise<void>;
   enableReviewAccess: (code: string) => Promise<{ granted: boolean; message?: string }>;
@@ -103,6 +105,7 @@ function getEntitlements(isPremium: boolean): AppEntitlements {
 export function AppThemeProvider({ children }: PropsWithChildren) {
   const [reviewAccessEnabled, setReviewAccessEnabled] = useState(false);
   const [reviewAccessLoaded, setReviewAccessLoaded] = useState(false);
+  const [reviewAccessToken, setReviewAccessToken] = useState<string | null>(null);
   const [revenueCat, setRevenueCat] = useState<RevenueCatState>(getDefaultRevenueCatState);
   const [revenueCatLoaded, setRevenueCatLoaded] = useState(false);
   const [aiReadingPersonalityId, setAiReadingPersonalityIdState] = useState<AiReadingPersonalityId>(
@@ -150,6 +153,7 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
 
       if (storedReviewAccess && storedReviewAccess.expiresAt > Date.now()) {
         setReviewAccessEnabled(true);
+        setReviewAccessToken(storedReviewAccess.reviewAccessToken ?? null);
       } else if (storedReviewAccessEnabled) {
         AsyncStorage.removeItem(REVIEW_ACCESS_STORAGE_KEY);
       }
@@ -211,15 +215,20 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
 
     await AsyncStorage.setItem(
       REVIEW_ACCESS_STORAGE_KEY,
-      JSON.stringify({ expiresAt: Date.now() + reviewAccessConfig.grantDurationMs }),
+      JSON.stringify({
+        expiresAt: Date.now() + reviewAccessConfig.grantDurationMs,
+        reviewAccessToken: result.reviewAccessToken,
+      }),
     );
     setReviewAccessEnabled(true);
+    setReviewAccessToken(result.reviewAccessToken ?? null);
     return result;
   }, []);
 
   const clearReviewAccess = useCallback(async () => {
     await AsyncStorage.removeItem(REVIEW_ACCESS_STORAGE_KEY);
     setReviewAccessEnabled(false);
+    setReviewAccessToken(null);
   }, []);
 
   const setAiReadingPersonalityId = useCallback(async (personalityId: AiReadingPersonalityId) => {
@@ -277,6 +286,7 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
         manageSubscription,
         readingTextSize,
         reviewAccessEnabled,
+        reviewAccessToken,
         revenueCat,
         presentPaywall,
         refreshSubscriptionStatus,
@@ -301,6 +311,7 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
       presentPaywall,
       readingTextSize,
       reviewAccessEnabled,
+      reviewAccessToken,
       refreshSubscriptionStatus,
       restorePurchases,
       revenueCat,
@@ -342,7 +353,11 @@ function parseStoredReviewAccess(value: string | null): StoredReviewAccess | nul
     const parsed = JSON.parse(value) as Partial<StoredReviewAccess>;
 
     if (typeof parsed.expiresAt === 'number') {
-      return { expiresAt: parsed.expiresAt };
+      return {
+        expiresAt: parsed.expiresAt,
+        reviewAccessToken:
+          typeof parsed.reviewAccessToken === 'string' ? parsed.reviewAccessToken : undefined,
+      };
     }
   } catch {
     return null;

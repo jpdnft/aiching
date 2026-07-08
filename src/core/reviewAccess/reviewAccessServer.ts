@@ -5,6 +5,7 @@ export type ReviewAccessRequest = {
 export type ReviewAccessResponse = {
   granted: boolean;
   message: string;
+  reviewAccessToken?: string;
 };
 
 export class ReviewAccessError extends Error {
@@ -34,5 +35,6 @@ export function validateReviewAccessRequest(body: ReviewAccessRequest | null): R
   return {
     granted: true,
     message: 'Reviewer access granted.',
+    reviewAccessToken: `review:${body.code.trim()}`,
   };
 }

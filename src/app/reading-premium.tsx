@@ -31,7 +31,8 @@ const internetRequiredMessage = 'Internet connection required here. Please conne
 
 export default function PremiumReadingScreen() {
   const router = useRouter();
-  const { aiReadingPersonalityId, colorMode, entitlements, themeId } = useAppTheme();
+  const { aiReadingPersonalityId, colorMode, entitlements, reviewAccessEnabled, reviewAccessToken, themeId } =
+    useAppTheme();
   const styles = usePremiumReadingStyles();
   const colors = getAiChingColors(colorMode);
   const scrollViewRef = useRef<ScrollView>(null);
@@ -63,10 +64,15 @@ export default function PremiumReadingScreen() {
         );
       }
 
-      const revenueCatAppUserId = await getRevenueCatAppUserId();
+      const revenueCatAppUserId = reviewAccessEnabled ? null : await getRevenueCatAppUserId();
+      const premiumAccessToken = reviewAccessToken ?? revenueCatAppUserId;
 
-      if (!revenueCatAppUserId) {
-        throw new Error('Unable to verify Premium subscription. Please restart the app and try again.');
+      if (!premiumAccessToken) {
+        throw new Error(
+          reviewAccessEnabled
+            ? 'Reviewer access needs to be refreshed. Please sign in as reviewer again.'
+            : 'Unable to verify Premium subscription. Please restart the app and try again.',
+        );
       }
 
       await recordPremiumAiReadingRequest();
@@ -75,9 +81,9 @@ export default function PremiumReadingScreen() {
         hexagramNumber: readingToGenerate.hexagramNumber,
         lineCastDetails: readingToGenerate.lineCastDetails,
         personalityId: aiReadingPersonalityId,
+        premiumAccessToken,
         question: readingToGenerate.question,
         readingId: readingToGenerate.id,
-        revenueCatAppUserId,
         themeId,
       });
       const updatedReading = await savePremiumReadingForToday(premiumReading);
@@ -88,7 +94,7 @@ export default function PremiumReadingScreen() {
       isGeneratingRef.current = false;
       setIsGenerating(false);
     }
-  }, [aiReadingPersonalityId, themeId]);
+  }, [aiReadingPersonalityId, reviewAccessEnabled, reviewAccessToken, themeId]);
 
   useFocusEffect(
     useCallback(() => {

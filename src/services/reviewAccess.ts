@@ -3,6 +3,7 @@ import { reviewAccessConfig } from '@/config/reviewAccess';
 export type ReviewAccessResult = {
   granted: boolean;
   message?: string;
+  reviewAccessToken?: string;
 };
 
 export async function requestReviewAccess(code: string): Promise<ReviewAccessResult> {
@@ -26,5 +27,6 @@ export async function requestReviewAccess(code: string): Promise<ReviewAccessRes
   return {
     granted: Boolean(body?.granted),
     message: body?.message,
+    reviewAccessToken: body?.reviewAccessToken,
   };
 }

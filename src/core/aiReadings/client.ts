@@ -7,6 +7,7 @@ export type GeneratePremiumReadingParams = {
   lineCastDetails?: CastLineDetail[];
   hexagramNumber: number;
   personalityId: string;
+  premiumAccessToken?: string | null;
   question?: string;
   readingId: string;
   revenueCatAppUserId?: string | null;
@@ -25,14 +26,13 @@ export async function generatePremiumReading(
   params: GeneratePremiumReadingParams,
 ): Promise<GeneratePremiumReadingResult> {
   let response: Response;
+  const premiumAccessToken = params.premiumAccessToken ?? params.revenueCatAppUserId;
 
   try {
     response = await fetch(aiReadingConfig.endpointPath, {
       method: 'POST',
       headers: {
-        ...(params.revenueCatAppUserId
-          ? { Authorization: `Bearer ${params.revenueCatAppUserId}` }
-          : {}),
+        ...(premiumAccessToken ? { Authorization: `Bearer ${premiumAccessToken}` } : {}),
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({

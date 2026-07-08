@@ -14,7 +14,7 @@ type RevenueCatSubscriberResponse = {
 
 export type PremiumAccess = {
   appUserId: string;
-  source: 'revenuecat' | 'test-bypass';
+  source: 'revenuecat' | 'review-access' | 'test-bypass';
 };
 
 export class PremiumAccessError extends Error {
@@ -46,6 +46,13 @@ export async function requirePremiumAccess(request: Request): Promise<PremiumAcc
     return {
       appUserId: 'test-bypass',
       source: 'test-bypass',
+    };
+  }
+
+  if (isAllowedReviewAccess(bearerToken)) {
+    return {
+      appUserId: 'review-access',
+      source: 'review-access',
     };
   }
 
@@ -146,6 +153,24 @@ function isAllowedTestBypass(token: string | null): boolean {
       process.env.ALLOW_AI_READING_TEST_ACCESS === 'true' &&
       process.env.AI_READING_TEST_BYPASS_TOKEN &&
       token === process.env.AI_READING_TEST_BYPASS_TOKEN,
+  );
+}
+
+function isAllowedReviewAccess(token: string | null): boolean {
+  const reviewAccessPrefix = 'review:';
+
+  if (!token?.startsWith(reviewAccessPrefix)) {
+    return false;
+  }
+
+  const configuredCode = process.env.REVIEW_ACCESS_CODE?.trim();
+  const providedCode = token.slice(reviewAccessPrefix.length).trim();
+
+  return Boolean(
+    process.env.REVIEW_ACCESS_ENABLED === 'true' &&
+      configuredCode &&
+      providedCode &&
+      providedCode === configuredCode,
   );
 }
 
