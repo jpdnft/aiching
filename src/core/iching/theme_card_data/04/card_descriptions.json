@@ -1,0 +1,322 @@
+{
+  "01": {
+    "hexagramNumber": 1,
+    "name": "The Creative",
+    "description": "A white-robed dragon heir standing on the ridge of a cloud palace as golden qi spirals upward into a vast starry sky, immortal mountains opening like a gate of pure potential, heroic upward energy."
+  },
+  "02": {
+    "hexagramNumber": 2,
+    "name": "The Receptive",
+    "description": "An earth-aligned immortal woman kneeling in a fertile moonlit valley beneath broad lotus leaves and terraced fields, jade dew glowing on stones and roots, patient yielding strength, devotion, and receptive earth power."
+  },
+  "03": {
+    "hexagramNumber": 3,
+    "name": "Difficulty at the Beginning",
+    "description": "A young sect disciple pushing through storm-tangled reeds beside a flooded mountain path, boots on wet stones, distant academy lanterns glowing through blue mist, fragile beginnings meeting chaos with courage."
+  },
+  "04": {
+    "hexagramNumber": 4,
+    "name": "Youthful Folly",
+    "description": "A curious apprentice cultivator kneeling beside a clear mountain spring outside an immortal academy gate, their reflection rippling with pale moonlight and floating peach petals, innocence waiting to be taught by stillness."
+  },
+  "05": {
+    "hexagramNumber": 5,
+    "name": "Waiting",
+    "description": "A patient sword cultivator sitting beneath a pavilion eave while silver rain threads down into a lotus pond, a covered tea bowl steaming beside an unsheathed but untouched flying sword, clouds slowly parting beyond the courtyard, trust in timing."
+  },
+  "06": {
+    "hexagramNumber": 6,
+    "name": "Conflict",
+    "description": "Two rival sect disciples facing each other across a narrow moon bridge over black water, sword aura hovering but not striking, clouds splitting the moon into bright and shadowed halves, tense restraint and the need for clarity."
+  },
+  "07": {
+    "hexagramNumber": 7,
+    "name": "The Army",
+    "description": "A disciplined formation of armored cultivators moving through bamboo at dawn, led by a calm general with a bronze lantern and silent command banner, loyalty and shared purpose without aggression."
+  },
+  "08": {
+    "hexagramNumber": 8,
+    "name": "Holding Together",
+    "description": "Disciples from several sects gathered around a still moonlit pool where mountain streams meet, their reflections forming one quiet circle of blue-gold qi, belonging, sincerity, and mutual support."
+  },
+  "09": {
+    "hexagramNumber": 9,
+    "name": "Small Taming",
+    "description": "A nimble wind cultivator carefully guiding a fluttering silk ribbon of qi between two fingers, thunderclouds gathering above a tiled pavilion but not yet breaking, small restraint shaping restless power."
+  },
+  "10": {
+    "hexagramNumber": 10,
+    "name": "Treading",
+    "description": "A composed wandering swordswoman stepping lightly past the tail of a sleeping white tiger mountain guardian, moonlit grass bending beneath careful boots, danger met with grace, manners, and inner discipline."
+  },
+  "11": {
+    "hexagramNumber": 11,
+    "name": "Peace",
+    "description": "A white-robed immortal and a dark-robed fox spirit resting together beneath blooming plum branches between descending moonlight and rising lantern warmth, heaven and earth breathing in harmony."
+  },
+  "12": {
+    "hexagramNumber": 12,
+    "name": "Standstill",
+    "description": "A lone palace exile seated before a sealed vermilion gate in winter fog, dim lanterns hidden behind the wall, snow settling on bronze door rings, preservation and the wisdom of not forcing entry."
+  },
+  "13": {
+    "hexagramNumber": 13,
+    "name": "Fellowship",
+    "description": "Wandering cultivators from different rooftops and sect banners meeting beneath a wide clear sky, lanterns shared along an ancient city lane, kinship beyond territory and common purpose in the jianghu."
+  },
+  "14": {
+    "hexagramNumber": 14,
+    "name": "Great Possession",
+    "description": "A golden-eyed noble cultivator seated beside a jade treasure bowl filled with moonlit rice, bronze coins, seeds, bells, and glowing spirit pearls, abundance held with dignity and responsibility."
+  },
+  "15": {
+    "hexagramNumber": 15,
+    "name": "Modesty",
+    "description": "A humble mountain monk sweeping fallen gingko leaves from a small cliffside shrine at dawn, plain robe, clean stones, mist, and a low bow of quiet competence, strength hidden in simplicity."
+  },
+  "16": {
+    "hexagramNumber": 16,
+    "name": "Enthusiasm",
+    "description": "Young disciples preparing a lantern festival courtyard before summer thunder, silk ribbons lifting in charged wind, drum shadows waiting under red lanterns, energy gathering before the first beat."
+  },
+  "17": {
+    "hexagramNumber": 17,
+    "name": "Following",
+    "description": "A traveling cultivator walking beside a winding river at dusk, following floating sky lanterns around each bend instead of forcing a straight path, a sheathed sword drifting at their side, trust in movement and response."
+  },
+  "18": {
+    "hexagramNumber": 18,
+    "name": "Work on What Has Been Spoiled",
+    "description": "A determined repairer-disciple restoring an old sect gate overgrown with vines, dusty footprints, simple tools, gold motes around rotting wood, ancestral neglect becoming care."
+  },
+  "19": {
+    "hexagramNumber": 19,
+    "name": "Approach",
+    "description": "A wise elder immortal descending jade temple steps toward a younger disciple waiting below, spring mist lifting from the valley, lanterns brightening one by one, benevolent guidance arriving openly."
+  },
+  "20": {
+    "hexagramNumber": 20,
+    "name": "Contemplation",
+    "description": "A contemplative scholar-cultivator seated on a high tiled roof at sunset, watching pavilions, bridges, riverboats, courtyards, and clouds arrange themselves into one living pattern below, quiet observation from above."
+  },
+  "21": {
+    "hexagramNumber": 21,
+    "name": "Biting Through",
+    "description": "A sharp-eyed magistrate cultivator cutting through a black knotted cord across a moon gate, gold qi sparks breaking from the obstruction, decisive justice and a blocked path opened."
+  },
+  "22": {
+    "hexagramNumber": 22,
+    "name": "Grace",
+    "description": "A graceful palace performer beneath peach blossoms beside a lacquered lantern and folded silk fan, beauty simple and restrained, moonlight revealing elegance without vanity."
+  },
+  "23": {
+    "hexagramNumber": 23,
+    "name": "Splitting Apart",
+    "description": "A weary swordsman perched on a weathered cliffside pavilion as old roof tiles loosen and fall into a foggy ravine, the structure thinning beneath a cold moon, release and caution at the edge."
+  },
+  "24": {
+    "hexagramNumber": 24,
+    "name": "Return",
+    "description": "A young cultivator following their own footprints through fresh snow toward a warm cave shrine, the first green sprout glowing beside the path, renewal after stillness and a cycle beginning again."
+  },
+  "25": {
+    "hexagramNumber": 25,
+    "name": "Innocence",
+    "description": "A barefoot wandering youth leaping through tall grass beneath a suddenly clear sky, only natural movement and bright wind qi, sincerity without agenda."
+  },
+  "26": {
+    "hexagramNumber": 26,
+    "name": "Great Taming",
+    "description": "A strong guardian cultivator seated before a mountain archive of scrolls, seeds, bells, and sealed jade cases, a vast flying sword resting still above the roof, great energy held in discipline."
+  },
+  "27": {
+    "hexagramNumber": 27,
+    "name": "Nourishment",
+    "description": "A temple cook-immortal beside a humble kitchen hearth watching steam rise from a rice bowl, herbs and dried tangerine peel hanging from beams, sacred attention to what is taken in and offered out."
+  },
+  "28": {
+    "hexagramNumber": 28,
+    "name": "Great Preponderance",
+    "description": "A lone sword master crossing a sagging wooden beam above floodwater, heavy blossoms bending a branch overhead, sword aura balancing beneath their boots, too much weight requiring extraordinary poise."
+  },
+  "29": {
+    "hexagramNumber": 29,
+    "name": "The Abyss",
+    "description": "A black-robed cultivator moving along wet stones inside a moonlit ravine, water rushing on both sides, blue qi tracing each careful step, repeated danger navigated through calm attention."
+  },
+  "30": {
+    "hexagramNumber": 30,
+    "name": "Radiance",
+    "description": "Twin lantern guardians sitting beside palace lamps during a rainy evening, reflections glowing in dark window glass and puddled stone, clarity, attachment, and warmth illuminating ordinary things."
+  },
+  "31": {
+    "hexagramNumber": 31,
+    "name": "Influence",
+    "description": "A fox spirit and a young swordsman quietly noticing each other across a moonlit scholar garden, one sleeve disturbing a lotus pond as the ripple reaches the far shore, gentle attraction and mutual response."
+  },
+  "32": {
+    "hexagramNumber": 32,
+    "name": "Duration",
+    "description": "An old master and a young disciple walking the same stone path through changing seasons shown in drifting petals, rain, leaves, and snow, steadiness through time."
+  },
+  "33": {
+    "hexagramNumber": 33,
+    "name": "Retreat",
+    "description": "A wounded martial artist slipping quietly into mountain bamboo as dawn light rises behind pursuing shadows, cloak disappearing into mist, withdrawal as wisdom, dignity, and self-preservation."
+  },
+  "34": {
+    "hexagramNumber": 34,
+    "name": "Great Power",
+    "description": "A thunder cultivator standing in a wind-torn field holding a kite string charged with storm qi, thunderheads gathering over distant pavilions, strength guided by restraint, power that must not become force."
+  },
+  "35": {
+    "hexagramNumber": 35,
+    "name": "Progress",
+    "description": "A bright young court cultivator climbing sunlit imperial academy steps at morning, banners stirring gently, the city below waking through golden mist, recognition and forward movement with humility."
+  },
+  "36": {
+    "hexagramNumber": 36,
+    "name": "Darkening of the Light",
+    "description": "A luminous-eyed fugitive immortal hiding their glow beneath a woven bamboo basket during a harsh night patrol, armored shadows passing beyond paper screens, inner light protected until danger passes."
+  },
+  "37": {
+    "hexagramNumber": 37,
+    "name": "The Family",
+    "description": "A cultivation household gathered in a warm courtyard kitchen, elders, children, bowls, herbs, folded cloth, lanterns, and family tablets implied without readable marks, ordered harmony, care, roles, and belonging."
+  },
+  "38": {
+    "hexagramNumber": 38,
+    "name": "Opposition",
+    "description": "Two rival cultivators on opposite sides of a rooftop ridge at sunset, one in warm gold light and one in blue shadow, different sect colors, both held by the same vast sky, difference without exile."
+  },
+  "39": {
+    "hexagramNumber": 39,
+    "name": "Obstruction",
+    "description": "A traveling alchemist paused before a flooded mountain path blocked by fallen pine branches and broken stone, noticing a small side trail glowing through fog, difficulty redirecting attention."
+  },
+  "40": {
+    "hexagramNumber": 40,
+    "name": "Deliverance",
+    "description": "A freed disciple shaking rain from a soaked cloak as storm clouds break over a mountain village, loose binding cords falling away from a gate, blue sky opening through torn cloud, release after tension."
+  },
+  "41": {
+    "hexagramNumber": 41,
+    "name": "Decrease",
+    "description": "A quiet shrine attendant placing one bronze coin, one rice grain, and one flower petal into a small offering bowl before a mountain altar, less becoming meaningful, simplification and sincerity."
+  },
+  "42": {
+    "hexagramNumber": 42,
+    "name": "Increase",
+    "description": "A river goddess and a young farmer-cultivator planting seeds beside a riverbank as spring wind scatters golden leaves upstream and downstream, green qi spreading from the soil, generosity multiplying through motion."
+  },
+  "43": {
+    "hexagramNumber": 43,
+    "name": "Breakthrough",
+    "description": "A resolute sword cultivator standing on a rooftop at dawn as a torn storm cloud opens into clear light, a flying sword at rest and truth announced without cruelty."
+  },
+  "44": {
+    "hexagramNumber": 44,
+    "name": "Coming to Meet",
+    "description": "A wandering cultivator encountering a sudden nine-tailed foxfire glow at a crossroads beneath willow branches, beautiful, magnetic, and potentially disruptive, discernment before fascination."
+  },
+  "45": {
+    "hexagramNumber": 45,
+    "name": "Gathering Together",
+    "description": "Many cultivators, villagers, and spirit companions assembling in a lantern-lit ancestral courtyard around a central drum and offering table, memory, community, and shared focus gathering energy."
+  },
+  "46": {
+    "hexagramNumber": 46,
+    "name": "Pushing Upward",
+    "description": "A young disciple carrying a tiny sapling up moss-covered stone steps toward sunrise, cloud terraces rising above them one by one, patient ascent, steady effort, and growth that cannot be rushed."
+  },
+  "47": {
+    "hexagramNumber": 47,
+    "name": "Oppression",
+    "description": "A tired cultivator at the bottom of a dry stone well looking up at a circle of stars, empty bucket, worn walls, and one faint spirit lantern, limitation revealing inner endurance."
+  },
+  "48": {
+    "hexagramNumber": 48,
+    "name": "The Well",
+    "description": "Villagers, disciples, and a small moonlit spirit animal gathered around an ancient stone well beneath cedar and pine, water reflecting the moon and a ring of soft qi without being owned, shared nourishment and timeless source."
+  },
+  "49": {
+    "hexagramNumber": 49,
+    "name": "Revolution",
+    "description": "A rebel princess shedding an old patterned collar and court cloak beside a firelit dye vat, autumn leaves swirling like banners and red-gold qi rising from the steam, transformation at the proper time."
+  },
+  "50": {
+    "hexagramNumber": 50,
+    "name": "The Cauldron",
+    "description": "An alchemist cultivator watching a bronze ding cauldron steam in a temple kitchen, herbs, sparks, and moonlit incense rising together, refinement, culture, and transformation through care."
+  },
+  "51": {
+    "hexagramNumber": 51,
+    "name": "The Arousing",
+    "description": "A startled young disciple leaping as thunder cracks above a mountain gate, lanterns trembling but not falling, lightning qi illuminating rain and stone, shock awakening attention and life force."
+  },
+  "52": {
+    "hexagramNumber": 52,
+    "name": "Keeping Still",
+    "description": "A meditating immortal sitting motionless on a high mountain stone, long sleeves and hair still while mist and cloud rivers move around them, stillness as strength."
+  },
+  "53": {
+    "hexagramNumber": 53,
+    "name": "Development",
+    "description": "A traveling scholar and white crane spirit crossing a series of stepping stones through a twilight marsh, distant painted screens and cloud towers beyond, each careful step part of a long migration, gradual progress."
+  },
+  "54": {
+    "hexagramNumber": 54,
+    "name": "The Marrying Maiden",
+    "description": "A young noblewoman entering a lantern-lit household garden at dusk, half welcomed and half uncertain beneath red silk and moon gates, delicate social timing, position, and adaptation."
+  },
+  "55": {
+    "hexagramNumber": 55,
+    "name": "Abundance",
+    "description": "A charismatic festival host beneath a canopy of lanterns, peonies, and summer banners, dancers and spirit lights nearby, everything bright, full, and briefly at its height, abundance with awareness of passing time."
+  },
+  "56": {
+    "hexagramNumber": 56,
+    "name": "The Wanderer",
+    "description": "A traveling swordsman carrying a small cloth bundle and sheathed short sword along a mountain road at sunset, distant inn lights below the cliff, beauty and loneliness of temporary shelter."
+  },
+  "57": {
+    "hexagramNumber": 57,
+    "name": "The Gentle",
+    "description": "A soft-spoken wind adept moving silently through tall bamboo as every stalk bends, pale green qi slipping between leaves, influence entering gradually and persistence without force."
+  },
+  "58": {
+    "hexagramNumber": 58,
+    "name": "Joy",
+    "description": "Two young cultivators beside a moonlit lake, one hand touching the water while small bronze bells ring in a breeze, shared delight, openness, and gentle communication."
+  },
+  "59": {
+    "hexagramNumber": 59,
+    "name": "Dispersion",
+    "description": "A river spirit watching fog lift from a wide river as paper lanterns drift apart and rejoin the current, old hardness dissolving into movement and breath."
+  },
+  "60": {
+    "hexagramNumber": 60,
+    "name": "Limitation",
+    "description": "A disciplined water cultivator arranging bamboo water cups along a garden channel, each cup filling only to its proper measure before tipping onward, boundaries, rhythm, and useful restraint."
+  },
+  "61": {
+    "hexagramNumber": 61,
+    "name": "Inner Truth",
+    "description": "A gentle oracle resting beside an open birdcage under the moon, no chase, only trust and quiet listening, a soft golden glow at the heart and a feather drifting free."
+  },
+  "62": {
+    "hexagramNumber": 62,
+    "name": "Small Preponderance",
+    "description": "A careful palace attendant balancing tiny porcelain tea cups on a narrow shelf in a wind-bright pavilion, every sleeve movement precise, modest attention making small things matter greatly."
+  },
+  "63": {
+    "hexagramNumber": 63,
+    "name": "After Completion",
+    "description": "A seasoned cultivator crossing the final stone of a stream at dusk, looking back at perfectly placed footprints as a lantern steadies and water settles, completion that still requires vigilance."
+  },
+  "64": {
+    "hexagramNumber": 64,
+    "name": "Before Completion",
+    "description": "A young fox-spirit traveler paused before the last step across a dawn stream, one foot lifted, mist glowing on the far bank, the crossing almost complete but not yet secured."
+  }
+}

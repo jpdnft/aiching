@@ -1,0 +1,322 @@
+{
+  "01": {
+    "hexagramNumber": 1,
+    "name": "The Creative",
+    "description": "An empty rooftop stairwell door standing open onto a pre-dawn sky, bright wind moving through a bare concrete landing, loose white curtains lifting from an unseen upper floor, city towers below still dark, upward creative force as a threshold into open air."
+  },
+  "02": {
+    "hexagramNumber": 2,
+    "name": "The Receptive",
+    "description": "A silent underground passage with damp earthen walls opening into a low courtyard garden, rainwater pooling on stone, moss growing between tiles, soft diffuse light descending from a square skylight, receptive earth as patient enclosure."
+  },
+  "03": {
+    "hexagramNumber": 3,
+    "name": "Difficulty at the Beginning",
+    "description": "An abandoned bus terminal before sunrise, tangled vines pushing through cracked tile near a locked glass gate, flickering lights, puddles and scattered ticket stubs without readable marks, first green shoots in a difficult beginning."
+  },
+  "04": {
+    "hexagramNumber": 4,
+    "name": "Youthful Folly",
+    "description": "An empty school corridor after hours, one classroom door half-open to a room filled with mist and a single child-sized chair facing the window, lockers reflecting pale moonlight, naive curiosity at the edge of knowledge."
+  },
+  "05": {
+    "hexagramNumber": 5,
+    "name": "Waiting",
+    "description": "A deserted roadside bus shelter in heavy rain, glowing schedule case blurred and unreadable, two untouched paper cups steaming on the bench, headlights passing behind fogged glass, patience held in suspension before arrival."
+  },
+  "06": {
+    "hexagramNumber": 6,
+    "name": "Conflict",
+    "description": "An empty courthouse hallway or municipal corridor at dusk, two opposite doors standing open with different colored light spilling across a polished floor but no one present, tense symmetry, unresolved dispute without violence."
+  },
+  "07": {
+    "hexagramNumber": 7,
+    "name": "The Army",
+    "description": "A vast empty subway concourse arranged with perfectly ordered rows of folded emergency blankets and water containers, fluorescent lights receding into darkness, disciplined readiness without people or weapons, quiet collective force."
+  },
+  "08": {
+    "hexagramNumber": 8,
+    "name": "Holding Together",
+    "description": "An abandoned courtyard apartment building seen from below, many identical balconies connected by clotheslines and rain chains, warm lights glowing from a few curtained windows, central puddle reflecting all levels as one shared pattern, cohesion in emptiness."
+  },
+  "09": {
+    "hexagramNumber": 9,
+    "name": "Small Taming",
+    "description": "A narrow pedestrian overpass enclosed in glass during a light storm, tiny strips of tape holding a cracked window together, faint wind visible in condensation trails, small restraint containing a larger weather."
+  },
+  "10": {
+    "hexagramNumber": 10,
+    "name": "Treading",
+    "description": "A wet marble museum hallway after closing, a single narrow path of dry floor crossing between roped-off shadows and reflected skylights, the sense of careful footsteps already gone, danger handled with poise."
+  },
+  "11": {
+    "hexagramNumber": 11,
+    "name": "Peace",
+    "description": "A quiet airport arrivals corridor at dawn, empty moving walkways stopped, soft sunrise spilling through glass, indoor plants casting calm shadows on polished floor, heaven and earth meeting in balanced stillness."
+  },
+  "12": {
+    "hexagramNumber": 12,
+    "name": "Standstill",
+    "description": "An escalator frozen between floors in a deserted shopping mall, all storefront gates down, stale blue emergency light, dust suspended in air, motion stopped just before anything can change."
+  },
+  "13": {
+    "hexagramNumber": 13,
+    "name": "Fellowship",
+    "description": "An empty community hall after a gathering, circles of chairs still facing each other, half-open doors to a twilight courtyard, warm bulbs reflected in waxed floor, human connection implied by absence."
+  },
+  "14": {
+    "hexagramNumber": 14,
+    "name": "Great Possession",
+    "description": "A silent bank lobby or archive atrium filled with golden late-afternoon light, unopened deposit boxes and glass cases glowing but unattended, wealth as radiance held in trust, spacious and still."
+  },
+  "15": {
+    "hexagramNumber": 15,
+    "name": "Modesty",
+    "description": "A small plain service stairwell behind a grand theater, one low utility light, swept concrete steps, a simple wooden stool beside an unmarked door, quiet dignity hidden behind spectacle."
+  },
+  "16": {
+    "hexagramNumber": 16,
+    "name": "Enthusiasm",
+    "description": "An empty festival plaza just before opening, strings of lanterns unlit except for one sudden warm glow, barricades waiting, damp pavement reflecting color, joy gathering before people arrive."
+  },
+  "17": {
+    "hexagramNumber": 17,
+    "name": "Following",
+    "description": "A deserted train platform at night where a trail of wet footprints leads from one open carriage door into fog, station lights fading one by one down the track, quiet consent to follow an unseen path."
+  },
+  "18": {
+    "hexagramNumber": 18,
+    "name": "Work on What Has Been Spoiled",
+    "description": "An abandoned hotel kitchen or maintenance room with peeling paint, old pipes dripping into buckets, one clean newly repaired section of tile glowing under work light, decay beginning to be restored."
+  },
+  "19": {
+    "hexagramNumber": 19,
+    "name": "Approach",
+    "description": "A long misty pedestrian tunnel sloping gently upward toward a warm rectangle of daylight, floor lights turning on in sequence, the sense of something benevolent drawing near."
+  },
+  "20": {
+    "hexagramNumber": 20,
+    "name": "Contemplation",
+    "description": "An empty observation deck above a fog-covered city, coin-operated viewers turned toward blank white mist, glass walls beaded with condensation, the act of seeing turned inward."
+  },
+  "21": {
+    "hexagramNumber": 21,
+    "name": "Biting Through",
+    "description": "A locked industrial corridor where a beam of hard white light cuts through dangling plastic strip curtains and reveals a clear path beyond tangled cables, decisive clarity breaking obstruction."
+  },
+  "22": {
+    "hexagramNumber": 22,
+    "name": "Grace",
+    "description": "An abandoned art deco dressing room with mirrors fogged at the edges, a single vase of fresh flowers on a cracked vanity, pearly lamps reflected infinitely, beauty as delicate surface over emptiness."
+  },
+  "23": {
+    "hexagramNumber": 23,
+    "name": "Splitting Apart",
+    "description": "A narrow apartment hallway with peeling wallpaper curling from the ceiling, floor tiles separating to reveal darkness beneath, one door at the end lit by cold twilight, structure quietly coming apart."
+  },
+  "24": {
+    "hexagramNumber": 24,
+    "name": "Return",
+    "description": "A deserted circular train loop station at first light, one train just departed, warm glow returning along the same curved track, a single open gate leading home, renewal through recurrence."
+  },
+  "25": {
+    "hexagramNumber": 25,
+    "name": "Innocence",
+    "description": "An empty public swimming pool at sunrise after rain, clean blue water perfectly still, a door to the changing rooms propped open by a white towel, unforced freshness and natural simplicity."
+  },
+  "26": {
+    "hexagramNumber": 26,
+    "name": "Great Taming",
+    "description": "A massive quiet library archive with sealed rolling shelves, a mountain of boxed records stacked in perfect order, one high window pouring restrained sunlight onto the floor, great force contained."
+  },
+  "27": {
+    "hexagramNumber": 27,
+    "name": "Nourishment",
+    "description": "An empty cafeteria at night with one vending machine glowing softly, clean trays stacked, a bowl of soup steaming on a central table though no one is present, sustenance waiting in the threshold between hunger and care."
+  },
+  "28": {
+    "hexagramNumber": 28,
+    "name": "Great Preponderance",
+    "description": "An old indoor pedestrian bridge sagging slightly under its own glass roof, rainwater collecting along the centerline, support beams bending but not broken, excessive weight held for one more moment."
+  },
+  "29": {
+    "hexagramNumber": 29,
+    "name": "The Abyss",
+    "description": "A flooded underground stairwell descending into dark blue water, handrails vanishing below the surface, repeating reflections of emergency lights, danger as depth and recurrence."
+  },
+  "30": {
+    "hexagramNumber": 30,
+    "name": "Radiance",
+    "description": "An empty glass corridor between two buildings at sunset, double reflections of orange sky burning along both walls, paired exit doors glowing at opposite ends, clarity and attachment as mirrored fire."
+  },
+  "31": {
+    "hexagramNumber": 31,
+    "name": "Influence",
+    "description": "Two empty waiting rooms separated by a glass partition, one chair in each room angled almost toward the other, warm and cool lights meeting on the floor, attraction implied without figures."
+  },
+  "32": {
+    "hexagramNumber": 32,
+    "name": "Duration",
+    "description": "A long apartment corridor seen through changing seasons at once, rain at one end, autumn leaves at another, a steady row of identical doors and lights continuing into distance, endurance through repetition."
+  },
+  "33": {
+    "hexagramNumber": 33,
+    "name": "Retreat",
+    "description": "A side exit from a noisy but unseen arcade into a silent back alley garden, blue neon fading behind an ajar metal door, bamboo shadows and wet stone ahead, withdrawal as intelligent boundary."
+  },
+  "34": {
+    "hexagramNumber": 34,
+    "name": "Great Power",
+    "description": "An empty stadium tunnel opening onto an overbright field, wind rushing through hanging plastic curtains, floodlights blazing though no event has begun, immense power held before action."
+  },
+  "35": {
+    "hexagramNumber": 35,
+    "name": "Progress",
+    "description": "A tall outdoor stairway climbing between concrete apartment blocks toward a rooftop washed in sunrise, each landing lit brighter than the last, puddles reflecting upward movement, steady advancement through thresholds."
+  },
+  "36": {
+    "hexagramNumber": 36,
+    "name": "Darkening of the Light",
+    "description": "A blackout corridor in a high-rise building, all doors dark except one faint golden line under a threshold, emergency light barely visible, hidden brightness protected by darkness."
+  },
+  "37": {
+    "hexagramNumber": 37,
+    "name": "The Family",
+    "description": "An empty apartment entryway at twilight with many pairs of shoes arranged neatly, warm kitchen light spilling from around a corner, coats hanging still, household order and unseen affection."
+  },
+  "38": {
+    "hexagramNumber": 38,
+    "name": "Opposition",
+    "description": "A mirrored elevator lobby with two elevator doors facing each other, one open to red emergency light and one open to cool blue daylight, reflections multiplying the divide, difference held in one space."
+  },
+  "39": {
+    "hexagramNumber": 39,
+    "name": "Obstruction",
+    "description": "A pedestrian underpass blocked by collapsed construction barriers and pooled rainwater, a small side stair glows around the corner, the main route impossible but another path implied."
+  },
+  "40": {
+    "hexagramNumber": 40,
+    "name": "Deliverance",
+    "description": "An underground corridor after a flood has drained, waterline stains on the walls, exit doors thrown open to fresh daylight and moving air, tension released into emptiness."
+  },
+  "41": {
+    "hexagramNumber": 41,
+    "name": "Decrease",
+    "description": "A bare gallery room after the artwork has been removed, only clean hooks, pale rectangles on the wall, one simple bench in a shaft of light, reduction revealing essential space."
+  },
+  "42": {
+    "hexagramNumber": 42,
+    "name": "Increase",
+    "description": "An empty greenhouse corridor where small plants have multiplied across shelves overnight, misting pipes glowing, condensation on glass, generosity and growth filling a once-bare passage."
+  },
+  "43": {
+    "hexagramNumber": 43,
+    "name": "Breakthrough",
+    "description": "A shuttered hallway where heavy storm shutters have just been opened, one violent rectangle of morning light flooding the floor and revealing dust, truth arriving as illumination."
+  },
+  "44": {
+    "hexagramNumber": 44,
+    "name": "Coming to Meet",
+    "description": "A 24-hour convenience store aisle at midnight with automatic doors open to a foggy street, cold fluorescent shelves, a warm gust bending hanging plastic strips, the ordinary suddenly visited by the uncanny."
+  },
+  "45": {
+    "hexagramNumber": 45,
+    "name": "Gathering Together",
+    "description": "An empty public plaza after rain where hundreds of small puddles reflect lanterns and windows like a crowd of lights around a central fountain, convergence without people."
+  },
+  "46": {
+    "hexagramNumber": 46,
+    "name": "Pushing Upward",
+    "description": "A service stairwell in an old building where small plants grow from cracks on each landing, light increasing floor by floor, the top door slightly open to sky, gradual ascent through quiet effort."
+  },
+  "47": {
+    "hexagramNumber": 47,
+    "name": "Oppression",
+    "description": "A low-ceilinged basement laundry room with buzzing fluorescent lights, one chair under a dripping pipe, machines silent, a small dry square of floor surrounded by water, pressure and endurance in confinement."
+  },
+  "48": {
+    "hexagramNumber": 48,
+    "name": "The Well",
+    "description": "An old tiled courtyard well beneath modern apartment towers, rainwater reflecting balconies above, bucket rope damp and still, a source preserved inside changing surroundings."
+  },
+  "49": {
+    "hexagramNumber": 49,
+    "name": "Revolution",
+    "description": "An empty train car being renovated at night, old seats removed on one side and new flooring glowing on the other, tools arranged but no workers present, form changing from within."
+  },
+  "50": {
+    "hexagramNumber": 50,
+    "name": "The Cauldron",
+    "description": "A deserted industrial kitchen or dye room with a large copper vat steaming under a skylight, condensation running down tiled walls, transformation through heat in a threshold space."
+  },
+  "51": {
+    "hexagramNumber": 51,
+    "name": "The Arousing",
+    "description": "An empty train platform during a thunderstorm, lightning reflected in wet tiles, overhead lights flickering in sequence, a dropped umbrella rolling near the yellow edge, shock awakening the still place."
+  },
+  "52": {
+    "hexagramNumber": 52,
+    "name": "Keeping Still",
+    "description": "A silent mountain lodge hallway at dawn, closed doors, snowlight through one high window, a single stone bench centered like an altar, perfect stillness before movement resumes."
+  },
+  "53": {
+    "hexagramNumber": 53,
+    "name": "Development",
+    "description": "A long greenhouse walkway where plants change gradually from seedlings near the entrance to flowering vines at the far doorway, mist, tiled floor, patient maturation in stages."
+  },
+  "54": {
+    "hexagramNumber": 54,
+    "name": "The Marrying Maiden",
+    "description": "A formal banquet hall service entrance, borrowed shoes waiting beside a half-open door, elegant light and distant empty tables beyond, uncertain role at a threshold, beauty mixed with unease."
+  },
+  "55": {
+    "hexagramNumber": 55,
+    "name": "Abundance",
+    "description": "A silent indoor market after closing, stalls overflowing with flowers, fruit, fabric, lanterns, and reflections under noon-bright skylights, fullness so complete it becomes strange."
+  },
+  "56": {
+    "hexagramNumber": 56,
+    "name": "The Wanderer",
+    "description": "A lonely highway motel balcony at 3 a.m., one suitcase beside an open room door, vending machine glow, distant road lights, temporary shelter and self-possession."
+  },
+  "57": {
+    "hexagramNumber": 57,
+    "name": "The Gentle",
+    "description": "A covered walkway lined with sheer curtains breathing in a soft breeze, morning fog beyond, small ripples spreading through shallow rainwater on the floor, influence as subtle penetration."
+  },
+  "58": {
+    "hexagramNumber": 58,
+    "name": "Joy",
+    "description": "An empty riverside amusement arcade just after rain, two adjacent photo booths glowing warmly, strings of lights reflected in puddles, laughter implied by absence, open delight suspended in the air."
+  },
+  "59": {
+    "hexagramNumber": 59,
+    "name": "Dispersion",
+    "description": "A misty ferry terminal where fog dissolves across open doors and glass walls, scattered puddles reflecting soft white light, barriers left open, anxiety dispersing into water and air."
+  },
+  "60": {
+    "hexagramNumber": 60,
+    "name": "Limitation",
+    "description": "An empty municipal swimming pool divided by perfectly straight lane ropes, each lane holding a different reflection of overhead lights, boundaries creating calm order."
+  },
+  "61": {
+    "hexagramNumber": 61,
+    "name": "Inner Truth",
+    "description": "A quiet confession-room-like hallway with frosted glass panels, one small seedling visible behind translucent glass, soft light from within revealing sincerity beneath surfaces."
+  },
+  "62": {
+    "hexagramNumber": 62,
+    "name": "Small Preponderance",
+    "description": "A high rooftop service ledge after rain, tiny warning lights glowing along the edge, a single feather or leaf caught on a drain grate, small details preventing great error."
+  },
+  "63": {
+    "hexagramNumber": 63,
+    "name": "After Completion",
+    "description": "An empty theater stage after the final performance, lights dimmed, chairs reset, mop bucket reflecting the last spotlight, everything finished but requiring care."
+  },
+  "64": {
+    "hexagramNumber": 64,
+    "name": "Before Completion",
+    "description": "A ferry ramp lowered over dark water before dawn, vessel lights on but no passengers yet, mist between dock and boat, one step remaining before crossing, charged threshold before completion."
+  }
+}

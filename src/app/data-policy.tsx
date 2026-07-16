@@ -14,7 +14,7 @@ const sections = [
   {
     title: 'How Question Text May Be Used',
     body:
-      'We may retain question text in a de-identified way for internal review, product improvement, and marketing insight. For example, if someone asks, "Will I win the lottery?", we may use that question to understand what people are curious about, but not to identify who asked it. Short version: We save questions asks, but we never save who asked them.',
+      'We may retain question text in a de-identified way for internal review, product improvement, and marketing insight. For example, if someone asks, "Will I win the lottery?", we may use that question to understand what people are curious about, but not to identify who asked it. Short version: We save questions asked, but we never save who asked them.',
   },
   {
     title: 'What We Do Not Intend to Keep',

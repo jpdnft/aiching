@@ -1,9 +1,13 @@
-export type HexagramThemeId = '01' | '02' | '03';
+import { getDownloadedThemeFileUri } from '@/services/premiumThemes';
+
+export type HexagramThemeId = string;
+export type HexagramThemeImageSource = number | string;
 
 export const defaultHexagramThemeId: HexagramThemeId = '02';
+export const bundledHexagramThemeIds = ['01', '02'] as const;
 
-type HexagramBackgrounds = Record<number, number>;
-type AiReadingAvatarSources = Record<string, number>;
+type HexagramBackgrounds = Record<number, HexagramThemeImageSource>;
+type AiReadingAvatarSources = Record<string, HexagramThemeImageSource>;
 
 export type HexagramThemeManifest = {
   id: HexagramThemeId;
@@ -12,7 +16,7 @@ export type HexagramThemeManifest = {
   isAvailable: boolean;
   isPremiumOnly?: boolean;
   aiReadingAvatars?: AiReadingAvatarSources;
-  homeBackground?: number;
+  homeBackground?: HexagramThemeImageSource;
   hexagramBackgrounds?: HexagramBackgrounds;
 };
 
@@ -150,73 +154,6 @@ const theme02Backgrounds: HexagramBackgrounds = {
   64: require('@/assets/hexagrams/themes/02/64.jpg'),
 };
 
-const theme03Backgrounds: HexagramBackgrounds = {
-  1: require('@/assets/hexagrams/themes/03/01.jpg'),
-  2: require('@/assets/hexagrams/themes/03/02.jpg'),
-  3: require('@/assets/hexagrams/themes/03/03.jpg'),
-  4: require('@/assets/hexagrams/themes/03/04.jpg'),
-  5: require('@/assets/hexagrams/themes/03/05.jpg'),
-  6: require('@/assets/hexagrams/themes/03/06.jpg'),
-  7: require('@/assets/hexagrams/themes/03/07.jpg'),
-  8: require('@/assets/hexagrams/themes/03/08.jpg'),
-  9: require('@/assets/hexagrams/themes/03/09.jpg'),
-  10: require('@/assets/hexagrams/themes/03/10.jpg'),
-  11: require('@/assets/hexagrams/themes/03/11.jpg'),
-  12: require('@/assets/hexagrams/themes/03/12.jpg'),
-  13: require('@/assets/hexagrams/themes/03/13.jpg'),
-  14: require('@/assets/hexagrams/themes/03/14.jpg'),
-  15: require('@/assets/hexagrams/themes/03/15.jpg'),
-  16: require('@/assets/hexagrams/themes/03/16.jpg'),
-  17: require('@/assets/hexagrams/themes/03/17.jpg'),
-  18: require('@/assets/hexagrams/themes/03/18.jpg'),
-  19: require('@/assets/hexagrams/themes/03/19.jpg'),
-  20: require('@/assets/hexagrams/themes/03/20.jpg'),
-  21: require('@/assets/hexagrams/themes/03/21.jpg'),
-  22: require('@/assets/hexagrams/themes/03/22.jpg'),
-  23: require('@/assets/hexagrams/themes/03/23.jpg'),
-  24: require('@/assets/hexagrams/themes/03/24.jpg'),
-  25: require('@/assets/hexagrams/themes/03/25.jpg'),
-  26: require('@/assets/hexagrams/themes/03/26.jpg'),
-  27: require('@/assets/hexagrams/themes/03/27.jpg'),
-  28: require('@/assets/hexagrams/themes/03/28.jpg'),
-  29: require('@/assets/hexagrams/themes/03/29.jpg'),
-  30: require('@/assets/hexagrams/themes/03/30.jpg'),
-  31: require('@/assets/hexagrams/themes/03/31.jpg'),
-  32: require('@/assets/hexagrams/themes/03/32.jpg'),
-  33: require('@/assets/hexagrams/themes/03/33.jpg'),
-  34: require('@/assets/hexagrams/themes/03/34.jpg'),
-  35: require('@/assets/hexagrams/themes/03/35.jpg'),
-  36: require('@/assets/hexagrams/themes/03/36.jpg'),
-  37: require('@/assets/hexagrams/themes/03/37.jpg'),
-  38: require('@/assets/hexagrams/themes/03/38.jpg'),
-  39: require('@/assets/hexagrams/themes/03/39.jpg'),
-  40: require('@/assets/hexagrams/themes/03/40.jpg'),
-  41: require('@/assets/hexagrams/themes/03/41.jpg'),
-  42: require('@/assets/hexagrams/themes/03/42.jpg'),
-  43: require('@/assets/hexagrams/themes/03/43.jpg'),
-  44: require('@/assets/hexagrams/themes/03/44.jpg'),
-  45: require('@/assets/hexagrams/themes/03/45.jpg'),
-  46: require('@/assets/hexagrams/themes/03/46.jpg'),
-  47: require('@/assets/hexagrams/themes/03/47.jpg'),
-  48: require('@/assets/hexagrams/themes/03/48.jpg'),
-  49: require('@/assets/hexagrams/themes/03/49.jpg'),
-  50: require('@/assets/hexagrams/themes/03/50.jpg'),
-  51: require('@/assets/hexagrams/themes/03/51.jpg'),
-  52: require('@/assets/hexagrams/themes/03/52.jpg'),
-  53: require('@/assets/hexagrams/themes/03/53.jpg'),
-  54: require('@/assets/hexagrams/themes/03/54.jpg'),
-  55: require('@/assets/hexagrams/themes/03/55.jpg'),
-  56: require('@/assets/hexagrams/themes/03/56.jpg'),
-  57: require('@/assets/hexagrams/themes/03/57.jpg'),
-  58: require('@/assets/hexagrams/themes/03/58.jpg'),
-  59: require('@/assets/hexagrams/themes/03/59.jpg'),
-  60: require('@/assets/hexagrams/themes/03/60.jpg'),
-  61: require('@/assets/hexagrams/themes/03/61.jpg'),
-  62: require('@/assets/hexagrams/themes/03/62.jpg'),
-  63: require('@/assets/hexagrams/themes/03/63.jpg'),
-  64: require('@/assets/hexagrams/themes/03/64.jpg'),
-};
-
 const theme01AiReadingAvatars: AiReadingAvatarSources = {
   dream_librarian: require('@/assets/hexagrams/themes/01/dream_librarian.jpg'),
   garden_monk: require('@/assets/hexagrams/themes/01/garden_monk.jpg'),
@@ -243,20 +180,7 @@ const theme02AiReadingAvatars: AiReadingAvatarSources = {
   weathered_sage: require('@/assets/hexagrams/themes/02/weathered_sage.jpg'),
 };
 
-const theme03AiReadingAvatars: AiReadingAvatarSources = {
-  dream_librarian: require('@/assets/hexagrams/themes/03/dream_librarian.jpg'),
-  garden_monk: require('@/assets/hexagrams/themes/03/garden_monk.jpg'),
-  lantern_oracle: require('@/assets/hexagrams/themes/03/lantern_oracle.jpg'),
-  mountain_strategist: require('@/assets/hexagrams/themes/03/mountain_strategist.jpg'),
-  river_hermit: require('@/assets/hexagrams/themes/03/river_hermit.jpg'),
-  star_cartographer: require('@/assets/hexagrams/themes/03/star_cartographer.jpg'),
-  storm_witch: require('@/assets/hexagrams/themes/03/storm_witch.jpg'),
-  tea_house_auntie: require('@/assets/hexagrams/themes/03/tea_house_auntie.jpg'),
-  temple_poet: require('@/assets/hexagrams/themes/03/temple_poet.jpg'),
-  weathered_sage: require('@/assets/hexagrams/themes/03/weathered_sage.jpg'),
-};
-
-export const hexagramThemes: Record<HexagramThemeId, HexagramThemeManifest> = {
+export const hexagramThemes: Record<string, HexagramThemeManifest> = {
   '01': {
     id: '01',
     name: 'Ink Mist',
@@ -279,45 +203,101 @@ export const hexagramThemes: Record<HexagramThemeId, HexagramThemeManifest> = {
     id: '03',
     name: 'Mystical Cats',
     description: 'Hand-painted Japanese storybook cats, moonlit folktale mood, ink wash, mist, and lantern glow.',
-    isAvailable: true,
+    isAvailable: false,
     isPremiumOnly: true,
-    aiReadingAvatars: theme03AiReadingAvatars,
-    homeBackground: require('@/assets/hexagrams/themes/03/home.jpg'),
-    hexagramBackgrounds: theme03Backgrounds,
+  },
+  '04': {
+    id: '04',
+    name: 'Donghua Cultivation Fantasy',
+    description:
+      'Chinese donghua-inspired xianxia and wuxia fantasy, with cultivators, immortals, luminous qi, cloud seas, jade pavilions, ink-wash textures, and cinematic spiritual adventure.',
+    isAvailable: false,
+    isPremiumOnly: true,
+  },
+  '05': {
+    id: '05',
+    name: 'Solar Punk Hermitage',
+    description:
+      'A luminous future of ecological temples, mountain greenhouses, sun mirrors, water gardens, hand-built machines, oracle engineers, and sacred low-tech abundance.',
+    isAvailable: false,
+    isPremiumOnly: true,
+  },
+  '06': {
+    id: '06',
+    name: 'Hanfu Fashion Inspiration',
+    description:
+      'A modern I Ching theme inspired by the contemporary Hanfu revival, blending recognizable historical Chinese silhouettes with wearable urban streetwear and symbolic city scenes.',
+    isAvailable: false,
+    isPremiumOnly: true,
+  },
+  '07': {
+    id: '07',
+    name: 'Liminal Spaces',
+    description:
+      'A photoreal cinematic theme of quiet thresholds, empty corridors, half-lit stations, abandoned courtyards, misty passages, flooded rooms, and surreal in-between places.',
+    isAvailable: false,
+    isPremiumOnly: true,
+  },
+  '08': {
+    id: '08',
+    name: 'Adorable Pandas',
+    description:
+      'A whimsical I Ching theme of adorable panda bears in symbolic bamboo forests, moonlit gardens, tiny temples, mountain paths, tea houses, and enchanted everyday moments.',
+    isAvailable: false,
+    isPremiumOnly: true,
   },
 };
 
 export const hexagramThemeList = Object.values(hexagramThemes);
 
-export function isHexagramThemeAvailable(themeId: HexagramThemeId): boolean {
-  return hexagramThemes[themeId].isAvailable;
+export function isHexagramThemeId(value: string | null | undefined): value is HexagramThemeId {
+  return typeof value === 'string' && /^(0[1-9]|[1-9][0-9])$/.test(value);
+}
+
+export function isBundledHexagramTheme(themeId: HexagramThemeId): boolean {
+  return bundledHexagramThemeIds.includes(themeId as (typeof bundledHexagramThemeIds)[number]);
+}
+
+export function isHexagramThemeAvailable(themeId: HexagramThemeId, installedThemeIds: string[] = []): boolean {
+  return isBundledHexagramTheme(themeId) || installedThemeIds.includes(themeId);
 }
 
 export function isHexagramThemePremiumOnly(themeId: HexagramThemeId): boolean {
-  return Boolean(hexagramThemes[themeId].isPremiumOnly);
+  return !isBundledHexagramTheme(themeId);
 }
 
 export function getThemeName(themeId: HexagramThemeId): string {
-  return hexagramThemes[themeId].name;
+  return hexagramThemes[themeId]?.name ?? `Theme ${themeId}`;
 }
 
 export function getHexagramBackgroundSource(
   hexagramNumber: number,
   themeId: HexagramThemeId = defaultHexagramThemeId,
-): number | undefined {
-  return hexagramThemes[themeId].hexagramBackgrounds?.[hexagramNumber];
+): HexagramThemeImageSource | undefined {
+  if (isBundledHexagramTheme(themeId)) {
+    return hexagramThemes[themeId].hexagramBackgrounds?.[hexagramNumber];
+  }
+
+  return getDownloadedThemeFileUri(themeId, `${String(hexagramNumber).padStart(2, '0')}.jpg`);
 }
 
 export function getHomeBackgroundSource(
   themeId: HexagramThemeId = defaultHexagramThemeId,
-): number | undefined {
-  return hexagramThemes[themeId].homeBackground;
+): HexagramThemeImageSource | undefined {
+  if (isBundledHexagramTheme(themeId)) {
+    return hexagramThemes[themeId].homeBackground;
+  }
+
+  return getDownloadedThemeFileUri(themeId, 'home.jpg');
 }
 
 export function getAiReadingAvatarSource(
   personalityId: string,
   themeId: HexagramThemeId = defaultHexagramThemeId,
-): number | undefined {
-  return hexagramThemes[themeId].aiReadingAvatars?.[personalityId];
-}
+): HexagramThemeImageSource | undefined {
+  if (isBundledHexagramTheme(themeId)) {
+    return hexagramThemes[themeId].aiReadingAvatars?.[personalityId];
+  }
 
+  return getDownloadedThemeFileUri(themeId, `${personalityId}.jpg`);
+}

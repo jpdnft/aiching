@@ -1,0 +1,322 @@
+{
+  "01": {
+    "hexagramNumber": 1,
+    "name": "The Creative",
+    "description": "A young artist standing on a grassy hill before sunrise, sketchbook held open as golden wind lifts unfinished pages into the brightening sky, clouds forming a vast upward spiral of possibility."
+  },
+  "02": {
+    "hexagramNumber": 2,
+    "name": "The Receptive",
+    "description": "A quiet gardener kneeling in a wide field after rain, palms resting in dark fertile soil while tiny golden sprouts glow beneath the surface, low clouds opening softly above the earth."
+  },
+  "03": {
+    "hexagramNumber": 3,
+    "name": "Difficulty at the Beginning",
+    "description": "A child in a raincoat sheltering a fragile sprout from heavy rain in a muddy village garden, tangled roots glowing faintly under puddles, storm clouds beginning to thin at the horizon."
+  },
+  "04": {
+    "hexagramNumber": 4,
+    "name": "Youthful Folly",
+    "description": "A student lost on a mossy mountain path, holding a lantern beside a spring whose reflection shows unclear shapes, mist curling like a lesson not yet understood."
+  },
+  "05": {
+    "hexagramNumber": 5,
+    "name": "Waiting",
+    "description": "A traveler sitting under a small station awning during rain, lunch wrapped beside them, a distant train light hidden in fog, puddles reflecting patient golden clouds."
+  },
+  "06": {
+    "hexagramNumber": 6,
+    "name": "Conflict",
+    "description": "Two friends standing on opposite sides of a narrow flooded street after an argument, umbrellas angled against crossing rain, a thin golden reflection between them suggesting the path of restraint."
+  },
+  "07": {
+    "hexagramNumber": 7,
+    "name": "The Army",
+    "description": "Villagers calmly organizing sandbags along a riverbank before a storm, lanterns in orderly rows, shared effort shown through steady posture and quiet focus."
+  },
+  "08": {
+    "hexagramNumber": 8,
+    "name": "Holding Together",
+    "description": "Neighbors gathering at dusk around a small village bridge where many rain channels meet, lantern strings reflected in one still pool, hands offering tea and towels without drama."
+  },
+  "09": {
+    "hexagramNumber": 9,
+    "name": "Small Taming",
+    "description": "A careful child tying young garden plants to thin stakes before the wind rises, laundry and grasses moving softly in the background, tiny golden knots holding everything gently in place."
+  },
+  "10": {
+    "hexagramNumber": 10,
+    "name": "Treading",
+    "description": "A young courier crossing a narrow wet wooden walkway above dark water, stepping carefully while sunlight glows between clouds, every board slightly uneven and alive with texture."
+  },
+  "11": {
+    "hexagramNumber": 11,
+    "name": "Peace",
+    "description": "A family table beside an open garden door at golden hour, steam rising from bowls as the outside field and warm room feel perfectly connected, soft clouds drifting through the doorway like blessings."
+  },
+  "12": {
+    "hexagramNumber": 12,
+    "name": "Standstill",
+    "description": "A closed roadside shop on a windless afternoon, dust hanging in a sunbeam, a character waiting outside with hands in pockets while clouds refuse to move."
+  },
+  "13": {
+    "hexagramNumber": 13,
+    "name": "Fellowship",
+    "description": "Students and neighbors sitting in an open field at twilight, each holding a small lantern that forms a gentle constellation on the grass, shared warmth beneath a clear wide sky."
+  },
+  "14": {
+    "hexagramNumber": 14,
+    "name": "Great Possession",
+    "description": "A quiet attic filled with carefully kept jars, tools, seeds, blankets, and sunlit dust, a child discovering that abundance is something tended and shared, warm gold light pooling across ordinary treasures."
+  },
+  "15": {
+    "hexagramNumber": 15,
+    "name": "Modesty",
+    "description": "A small hillside shrine-like resting place with, a worker sweeping leaves at dawn while a low mountain hides behind mist, quiet gold light touching only the ground."
+  },
+  "16": {
+    "hexagramNumber": 16,
+    "name": "Enthusiasm",
+    "description": "A village courtyard before a summer festival, children carrying lanterns while distant thunder rolls and ribbons lift in the wind, excitement rising before the first drumbeat."
+  },
+  "17": {
+    "hexagramNumber": 17,
+    "name": "Following",
+    "description": "A character walking beside a winding river at dusk, letting floating lanterns lead around bends rather than taking the straight road, wind and water moving in the same direction."
+  },
+  "18": {
+    "hexagramNumber": 18,
+    "name": "Work on What Has Been Spoiled",
+    "description": "A teen repairing an old garden gate overgrown with vines, tools scattered on damp wood, golden dust rising from cracks as old neglect becomes care."
+  },
+  "19": {
+    "hexagramNumber": 19,
+    "name": "Approach",
+    "description": "A warm figure carrying a lantern up a misty lane toward a waiting house, garden leaves leaning toward the light, the whole scene feeling like help drawing near."
+  },
+  "20": {
+    "hexagramNumber": 20,
+    "name": "Contemplation",
+    "description": "A quiet character on a rooftop at sunset watching the town, laundry lines, gardens, train tracks, and clouds all arranged below like a living pattern."
+  },
+  "21": {
+    "hexagramNumber": 21,
+    "name": "Biting Through",
+    "description": "A determined child cutting through a knot of old rope tangled around a garden pump, one clear golden beam landing on the obstacle, rain clouds breaking after honest effort."
+  },
+  "22": {
+    "hexagramNumber": 22,
+    "name": "Grace",
+    "description": "A simple room at twilight where someone arranges wildflowers in a chipped cup beside an open window, beauty arriving through restraint, dust and gold light softening every edge."
+  },
+  "23": {
+    "hexagramNumber": 23,
+    "name": "Splitting Apart",
+    "description": "An old plaster wall in a quiet house flaking away after years of weather, a character gently removing loose pieces while a small golden seed of light remains protected near the floor."
+  },
+  "24": {
+    "hexagramNumber": 24,
+    "name": "Return",
+    "description": "A character walking home along a snowy lane at first dawn, one warm window glowing in the distance, footprints curving back toward belonging."
+  },
+  "25": {
+    "hexagramNumber": 25,
+    "name": "Innocence",
+    "description": "A child running barefoot through a meadow after rain, clear sky reflected in puddles, sunlight falling with no plan or ornament. It evokes unforced sincerity and natural joy."
+  },
+  "26": {
+    "hexagramNumber": 26,
+    "name": "Great Taming",
+    "description": "A craftsperson in a mountain workshop storing bright golden energy inside a heavy clay vessel, tools, shelves, dust, and old wood around them, power held patiently until useful."
+  },
+  "27": {
+    "hexagramNumber": 27,
+    "name": "Nourishment",
+    "description": "A warm kitchen in early morning, rice steam and soup fragrance curling into tiny golden shapes, baskets, jars, herbs, and worn wooden counters surrounding a quiet cook."
+  },
+  "28": {
+    "hexagramNumber": 28,
+    "name": "Great Preponderance",
+    "description": "A character holding up a sagging greenhouse beam during a heavy rain, plants and tools crowded around them, golden stress lines glowing where the structure nearly gives way."
+  },
+  "29": {
+    "hexagramNumber": 29,
+    "name": "The Abysmal",
+    "description": "A traveler crossing stepping stones through a deep ravine stream in rain, lantern held low over rushing water, courage shown as careful attention rather than bravery shouted aloud."
+  },
+  "30": {
+    "hexagramNumber": 30,
+    "name": "Radiance",
+    "description": "A student reading by twin lamps during a dusk power outage, reflections glowing in a rain-dark window, ordinary room details revealed with tender clarity."
+  },
+  "31": {
+    "hexagramNumber": 31,
+    "name": "Influence",
+    "description": "Two characters sitting quietly on opposite ends of a dock, one small ripple of golden light spreading between them across a still lake, feeling moved without words."
+  },
+  "32": {
+    "hexagramNumber": 32,
+    "name": "Duration",
+    "description": "An old family path through tall grass shown at different seasons in one continuous painted scene, a steady golden thread running beside worn stepping stones."
+  },
+  "33": {
+    "hexagramNumber": 33,
+    "name": "Retreat",
+    "description": "A character quietly closing a garden gate and walking up a misty hill, warm house lights behind them, no defeat, only dignified distance and protected energy."
+  },
+  "34": {
+    "hexagramNumber": 34,
+    "name": "Great Power",
+    "description": "A young person standing in a windy field before thunderclouds, holding a heavy kite string with steady discipline as golden light gathers in the sky."
+  },
+  "35": {
+    "hexagramNumber": 35,
+    "name": "Progress",
+    "description": "A bicycle climbing a sunlit road through morning fields, a character pausing to breathe as golden dawn spreads over roofs and grass, advancement shown as steady visible effort."
+  },
+  "36": {
+    "hexagramNumber": 36,
+    "name": "Darkening of the Light",
+    "description": "A character hiding a small glowing jar under a coat while walking through a dim rainy alley, the light protected rather than displayed."
+  },
+  "37": {
+    "hexagramNumber": 37,
+    "name": "The Family",
+    "description": "A lived-in home at dusk, shoes by the door, vegetables on the counter, laundry near the window, different family members moving through quiet routines around one warm golden room."
+  },
+  "38": {
+    "hexagramNumber": 38,
+    "name": "Opposition",
+    "description": "Two siblings facing different directions on a rooftop at sunset, one side lit by warm gold, the other cooled by blue evening shade, both held tenderly in the same sky."
+  },
+  "39": {
+    "hexagramNumber": 39,
+    "name": "Obstruction",
+    "description": "A steep flooded mountain path blocked by fallen branches, a character sitting on a stone and noticing a small side trail glowing through fog."
+  },
+  "40": {
+    "hexagramNumber": 40,
+    "name": "Deliverance",
+    "description": "After a storm, a character untying soaked tarps in a garden as sunlight breaks through, water running freely from roof gutters into bright puddles, relief felt in loosened shoulders."
+  },
+  "41": {
+    "hexagramNumber": 41,
+    "name": "Decrease",
+    "description": "A character clearing a cluttered room at sunset, keeping only a chipped cup, a folded cloth, and one small plant glowing gently on the floor, less becoming enough."
+  },
+  "42": {
+    "hexagramNumber": 42,
+    "name": "Increase",
+    "description": "Neighbors carrying seedlings through a windy field after rain, golden pollen-like light moving from hand to hand and into the soil, abundance shown as generosity in motion."
+  },
+  "43": {
+    "hexagramNumber": 43,
+    "name": "Breakthrough",
+    "description": "A character opening a stuck wooden window after a long rain, a clean blade of golden sunlight entering the dim room and cutting through damp air."
+  },
+  "44": {
+    "hexagramNumber": 44,
+    "name": "Coming to Meet",
+    "description": "A sudden warm wind blows open the door of a quiet workshop, papers and hanging tools shifting as a strange golden light enters, beautiful but demanding discernment."
+  },
+  "45": {
+    "hexagramNumber": 45,
+    "name": "Gathering Together",
+    "description": "A town hall courtyard at dusk where many lantern-lit paths converge, baskets, teacups, benches, and raincoats showing a community arriving together."
+  },
+  "46": {
+    "hexagramNumber": 46,
+    "name": "Pushing Upward",
+    "description": "A young apprentice carrying potted saplings up a long hillside stair, each step worn and mossy, golden morning light waiting above the trees."
+  },
+  "47": {
+    "hexagramNumber": 47,
+    "name": "Oppression",
+    "description": "A tired character sitting in a dry empty public bathhouse after closing, buckets, tiles, and steam marks around them, one tiny golden reflection remaining in a basin."
+  },
+  "48": {
+    "hexagramNumber": 48,
+    "name": "The Well",
+    "description": "An old village well at morning, worn stones, moss, buckets, and shared cups, a character drawing clear water as golden light descends into the depth."
+  },
+  "49": {
+    "hexagramNumber": 49,
+    "name": "Revolution",
+    "description": "A character repainting an old room after removing faded wallpaper, the first fresh golden light hitting bare walls, change shown as necessary and tender rather than violent."
+  },
+  "50": {
+    "hexagramNumber": 50,
+    "name": "The Cauldron",
+    "description": "A crowded kitchen workshop where a large old pot steams with golden light, shelves of jars, herbs, ladles, cloths, and woodsmoke surrounding a careful cook, transformation through nourishment."
+  },
+  "51": {
+    "hexagramNumber": 51,
+    "name": "The Arousing",
+    "description": "A sudden thunderclap rattling a quiet classroom, pencils rolling, curtains lifting, students startled but beginning to laugh as golden lightning fades beyond the window."
+  },
+  "52": {
+    "hexagramNumber": 52,
+    "name": "Keeping Still",
+    "description": "A character sitting quietly on a tatami floor before an open mountain window, tea cooling beside them, dust floating unmoving in a single golden sunbeam."
+  },
+  "53": {
+    "hexagramNumber": 53,
+    "name": "Development",
+    "description": "A young tree in a school courtyard growing through seasons shown in soft layered detail, a character measuring it year after year with quiet pride, golden rings of time in the bark."
+  },
+  "54": {
+    "hexagramNumber": 54,
+    "name": "The Marrying Maiden",
+    "description": "A young person in borrowed formal clothes standing slightly off-center at a lantern-lit gathering, beautiful decorations around them but their gaze uncertain, dignity inside an imperfect arrangement."
+  },
+  "55": {
+    "hexagramNumber": 55,
+    "name": "Abundance",
+    "description": "A summer market at its fullest moment before a storm, fruit baskets, awnings, steam, crowded colors softened by cloud shadow, a great golden sunbeam breaking through overhead."
+  },
+  "56": {
+    "hexagramNumber": 56,
+    "name": "The Wanderer",
+    "description": "A lone traveler making tea beside a small roadside fire at dusk, packed bags, worn boots, distant village lights, the sky huge and tender above temporary shelter."
+  },
+  "57": {
+    "hexagramNumber": 57,
+    "name": "The Gentle",
+    "description": "A person mending a paper screen as wind passes through an open room, curtains, leaves, and steam all moving in soft repeated curves, golden thread entering every small gap."
+  },
+  "58": {
+    "hexagramNumber": 58,
+    "name": "The Joyous",
+    "description": "Two friends laughing quietly beside a pond after rain, shared snacks, wet grass, ripples reflecting warm lantern light, joy shown as open ease rather than spectacle."
+  },
+  "59": {
+    "hexagramNumber": 59,
+    "name": "Dispersion",
+    "description": "A character opening all the windows of a dusty room, fog and old sadness flowing out as golden motes scatter into fresh wind."
+  },
+  "60": {
+    "hexagramNumber": 60,
+    "name": "Limitation",
+    "description": "A careful gardener placing small stones to guide irrigation water through vegetable beds, simple boundaries making life possible, golden water lines flowing only where needed."
+  },
+  "61": {
+    "hexagramNumber": 61,
+    "name": "Inner Truth",
+    "description": "A character sitting alone in a quiet laundry room at dusk, hands around a warm cup, a soft golden glow visible in their chest and reflected in hanging cloth."
+  },
+  "62": {
+    "hexagramNumber": 62,
+    "name": "Small Preponderance",
+    "description": "A character carefully balancing a stack of small bowls in a narrow kitchen, every little movement important, golden highlights marking tiny acts of attention."
+  },
+  "63": {
+    "hexagramNumber": 63,
+    "name": "After Completion",
+    "description": "A character finishing a repaired boat at twilight, tools put away neatly, water perfectly still, a small golden lamp balanced at the bow, success held with careful vigilance."
+  },
+  "64": {
+    "hexagramNumber": 64,
+    "name": "Before Completion",
+    "description": "A character paused before stepping across a narrow stream at dawn, shoes in hand, everything almost aligned but not yet crossed, golden morning light waiting on the far bank."
+  }
+}

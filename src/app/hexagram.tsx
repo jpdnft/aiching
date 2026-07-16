@@ -6,6 +6,7 @@ import { PanResponder, Pressable, StyleSheet, Text, View } from 'react-native';
 import { HexagramView } from '@/components/HexagramView';
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { getHexagramByNumber } from '@/core/iching/hexagrams';
+import { getThemeCardDescription } from '@/core/iching/themeCardDescriptions';
 import { useAppTheme } from '@/theme/appTheme';
 import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 import { getHexagramBackgroundSource } from '@/theme/hexagramBackgrounds';
@@ -28,6 +29,7 @@ export default function HexagramDetailScreen() {
   const styles = useHexagramDetailStyles();
   const hexagram = getHexagramByNumber(getHexagramId(params.id));
   const imageSource = getHexagramBackgroundSource(hexagram.number, themeId);
+  const imageDescription = getThemeCardDescription(themeId, hexagram.number)?.description;
   const previousHexagramNumber = hexagram.number === 1 ? 64 : hexagram.number - 1;
   const nextHexagramNumber = hexagram.number === 64 ? 1 : hexagram.number + 1;
   const touchStart = useRef<{ x: number; y: number } | null>(null);
@@ -134,9 +136,14 @@ export default function HexagramDetailScreen() {
         </View>
 
         {imageSource ? (
-          <View style={styles.imageFrame} {...imageSwipeResponder.panHandlers}>
-            <Image source={imageSource} style={styles.image} contentFit="cover" />
-          </View>
+          <>
+            <View style={styles.imageFrame} {...imageSwipeResponder.panHandlers}>
+              <Image source={imageSource} style={styles.image} contentFit="cover" />
+            </View>
+            {imageDescription ? (
+              <Text style={styles.imageDescription}>{imageDescription}</Text>
+            ) : null}
+          </>
         ) : null}
 
         <Pressable onPress={() => router.push('/browse-hexagrams')} style={styles.backLink}>
@@ -226,11 +233,20 @@ function createHexagramDetailStyles(colors: AiChingColorPalette) {
     alignSelf: 'center',
     borderWidth: 1,
     borderColor: 'rgba(139, 93, 29, 0.28)',
-    marginBottom: 24,
+    marginBottom: 12,
   },
   image: {
     width: '100%',
     height: '100%',
+  },
+  imageDescription: {
+    width: '100%',
+    maxWidth: 520,
+    alignSelf: 'center',
+    color: colors.muted,
+    fontSize: 14,
+    lineHeight: 21,
+    marginBottom: 24,
   },
   backLink: {
     alignSelf: 'center',

@@ -15,7 +15,7 @@ const features = [
   {
     title: 'iOS Version',
     body: 'For launch, we are starting with Google Play. An iPhone and iPad version is on the roadmap once the app earns enough to justify Apple developer program costs. (I\'m a solo developer, not some huge app company, so I have to be careful about costs and time.)',
-    avatar: require('@/assets/hexagrams/themes/03/lantern_oracle.jpg'),
+    avatar: require('@/assets/hexagrams/themes/02/lantern_oracle.jpg'),
   },
   {
     title: 'Interactive chat about your reading',
@@ -25,7 +25,7 @@ const features = [
   {
     title: 'Pattern insights',
     body: 'Themes across readings over time, once history is more mature. I think this one is very doable in the near-term, but it will require a lot of careful design and testing to make sure it is useful and not just noise.',
-    avatar: require('@/assets/hexagrams/themes/03/dream_librarian.jpg'),
+    avatar: require('@/assets/hexagrams/themes/01/dream_librarian.jpg'),
   },
 ];
 

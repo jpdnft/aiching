@@ -8,7 +8,7 @@ import { usageLimits } from '@/config/usageLimits';
 import { useAppTheme } from '@/theme/appTheme';
 import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
 
-const premiumOracleImage = require('@/assets/hexagrams/themes/03/mountain_strategist.jpg');
+const premiumOracleImage = require('@/assets/hexagrams/themes/02/mountain_strategist.jpg');
 
 export default function VersionScreen() {
   const router = useRouter();

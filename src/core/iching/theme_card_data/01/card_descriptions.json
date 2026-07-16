@@ -1,0 +1,322 @@
+{
+  "01": {
+    "hexagramNumber": 1,
+    "name": "The Creative",
+    "description": "A vast dark sky opening above a high quiet horizon, pure generative force suggested by ascending currents of light, subtle gold lines rising like breath through ink-black space. It evokes heaven, initiation, strength, clarity, and creative power before form appears."
+  },
+  "02": {
+    "hexagramNumber": 2,
+    "name": "The Receptive",
+    "description": "A wide moonlit earth plain resting beneath a low velvet sky, fertile dark soil suggested through soft layered ink textures, faint gold veins moving quietly below the surface. It evokes openness, devotion, patience, yielding strength, and the power to receive form."
+  },
+  "03": {
+    "hexagramNumber": 3,
+    "name": "Difficulty at the Beginning",
+    "description": "A small shoot pushing through dark wet ground during a distant storm, tangled roots and rainwater rendered as abstract ink currents, a thin gold spark protected within the new growth. It evokes first struggle, birth, confusion, courage, and fragile beginnings finding direction."
+  },
+  "04": {
+    "hexagramNumber": 4,
+    "name": "Youthful Folly",
+    "description": "A misty mountain spring emerging from shadowed stone, unclear reflections rippling in shallow water, a single gold glimmer at the source rather than the destination. It evokes learning, humility, questions, beginner's uncertainty, and wisdom approached with patience."
+  },
+  "05": {
+    "hexagramNumber": 5,
+    "name": "Waiting",
+    "description": "Rain clouds gathering above a still reflective lake, the surface calm though the sky is heavy, faint gold light held behind the clouds. It evokes nourishment, patience, timing, trust, and readiness without forcing action."
+  },
+  "06": {
+    "hexagramNumber": 6,
+    "name": "Conflict",
+    "description": "Two opposing currents of cloud and water meeting in a narrow dark channel, tension held before collision, a fine gold line tracing the path of restraint through the center. It evokes dispute, inner division, caution, truth under pressure, and the need to pause before escalation."
+  },
+  "07": {
+    "hexagramNumber": 7,
+    "name": "The Army",
+    "description": "Ordered rows of dark stones half-buried in earth, seen through low mist like a disciplined formation, a muted gold standard of light rising from the center without literal banners. It evokes organization, collective force, responsibility, discipline, and leadership grounded in restraint."
+  },
+  "08": {
+    "hexagramNumber": 8,
+    "name": "Holding Together",
+    "description": "Many small streams converging into one still dark lake, soft mist binding the landscape into a unified shape, delicate gold threads joining water paths without knots. It evokes alliance, belonging, mutual support, sincerity, and gathering around a shared center."
+  },
+  "09": {
+    "hexagramNumber": 9,
+    "name": "Small Taming",
+    "description": "Wind combing thin clouds across a dark high sky, fine grasses bending but not breaking on a quiet ridge, small gold strokes gently guiding the motion. It evokes restraint, refinement, gentle influence, preparation, and modest force shaping what is not ready to move."
+  },
+  "10": {
+    "hexagramNumber": 10,
+    "name": "Treading",
+    "description": "A narrow gold-lit path crossing dark reflective ground beneath a vast sky, danger implied by shadow and height rather than creatures, each step suggested by subtle intervals of light. It evokes conduct, careful movement, dignity, awareness, and grace near power."
+  },
+  "11": {
+    "hexagramNumber": 11,
+    "name": "Peace",
+    "description": "Earth and sky meeting in balanced harmony at a calm luminous horizon, descending mist and rising ground interwoven gently, warm gold light spreading evenly through the center. It evokes flow, union, prosperity, openness, and things moving in right relation."
+  },
+  "12": {
+    "hexagramNumber": 12,
+    "name": "Standstill",
+    "description": "A dark sky lifted away from a silent sealed earth, wide empty space between upper and lower worlds, gold light blocked into a thin unreachable band. It evokes separation, stagnation, closure, endurance, and preserving clarity while movement is withheld."
+  },
+  "13": {
+    "hexagramNumber": 13,
+    "name": "Fellowship",
+    "description": "Small points of gold light gathered across a dark open plain beneath a clear sky, separate flames forming a subtle constellation of kinship. It evokes shared purpose, openness, friendship, common vision, and honest connection beyond private walls."
+  },
+  "14": {
+    "hexagramNumber": 14,
+    "name": "Great Possession",
+    "description": "A great reservoir of warm gold light held within dark mountain forms, abundance contained with elegance rather than display, luminous clouds opening above the center. It evokes wealth, capacity, stewardship, radiance, and power held with generosity."
+  },
+  "15": {
+    "hexagramNumber": 15,
+    "name": "Modesty",
+    "description": "A low mountain hidden within broad dark earth, its peak barely visible through soft mist, a humble gold glow held close to the ground. It evokes quiet worth, balance, humility, proportion, and strength that does not announce itself."
+  },
+  "16": {
+    "hexagramNumber": 16,
+    "name": "Enthusiasm",
+    "description": "Thunderlight moving beneath a dark spring sky, ripples of gold energy awakening a quiet landscape, motion beginning in rhythm rather than chaos. It evokes inspiration, music, momentum, readiness, and collective excitement rising from within."
+  },
+  "17": {
+    "hexagramNumber": 17,
+    "name": "Following",
+    "description": "A dark river bending naturally around stones toward a distant gold horizon, wind smoothing the water in the same direction. It evokes adaptation, trust, responsiveness, guidance, and moving with what is true rather than forcing a path."
+  },
+  "18": {
+    "hexagramNumber": 18,
+    "name": "Work on What Has Been Spoiled",
+    "description": "An old dark garden wall with roots breaking through, decayed forms becoming compost under soft mist, precise gold lines repairing cracks without hiding them. It evokes restoration, ancestral patterns, honest repair, renewal, and tending what has been neglected."
+  },
+  "19": {
+    "hexagramNumber": 19,
+    "name": "Approach",
+    "description": "Warm gold light advancing slowly over a dark valley floor, distant forms becoming visible through mist, the horizon low and welcoming. It evokes arrival, encouragement, growth, attention, and a benevolent presence drawing near."
+  },
+  "20": {
+    "hexagramNumber": 20,
+    "name": "Contemplation",
+    "description": "A high quiet overlook above layered mist and dark water, the landscape arranged for still seeing rather than action, a slender gold vertical glow suggesting focused attention. It evokes observation, perspective, reverence, reflection, and seeing the whole before moving."
+  },
+  "21": {
+    "hexagramNumber": 21,
+    "name": "Biting Through",
+    "description": "A dark obstruction splitting under a sharp clean line of gold light, storm clouds and firelight held in disciplined tension. It evokes decisive clarity, justice, cutting through confusion, naming the obstacle, and restoring order."
+  },
+  "22": {
+    "hexagramNumber": 22,
+    "name": "Grace",
+    "description": "A dark mountain face touched by delicate gold highlights, simple forms made beautiful by restraint, mist softening edges without excess ornament. It evokes elegance, appearance, refinement, beauty, and the quiet art of presenting truth with care."
+  },
+  "23": {
+    "hexagramNumber": 23,
+    "name": "Splitting Apart",
+    "description": "A tall dark cliff face shedding thin layers into mist, the top edge fragile while the base remains shadowed, sparse gold cracks revealing what must be released. It evokes erosion, stripping away, decline, surrender, and preserving the seed beneath collapse."
+  },
+  "24": {
+    "hexagramNumber": 24,
+    "name": "Return",
+    "description": "The first gold light returning beneath winter-dark earth, a circular path barely visible through mist, one small living spark at the base of the image. It evokes renewal, turning back, recovery, solstice, and the quiet beginning of movement after stillness."
+  },
+  "25": {
+    "hexagramNumber": 25,
+    "name": "Innocence",
+    "description": "A clear open sky after rain above untouched dark ground, spontaneous gold light falling naturally without pattern or ornament. It evokes sincerity, freedom from contrivance, naturalness, integrity, and meeting the moment unforced."
+  },
+  "26": {
+    "hexagramNumber": 26,
+    "name": "Great Taming",
+    "description": "A massive dark mountain containing a bright gold inner reservoir of force, clouds pressing low but still. It evokes stored power, discipline, restraint, cultivation, and strength gathered until the right moment."
+  },
+  "27": {
+    "hexagramNumber": 27,
+    "name": "Nourishment",
+    "description": "A dark earthen bowl shape suggested by hills and water, soft gold light resting within like warmth from a hidden hearth, roots and streams feeding the center. It evokes sustenance, speech, intake, care, and choosing what truly feeds life."
+  },
+  "28": {
+    "hexagramNumber": 28,
+    "name": "Great Preponderance",
+    "description": "A heavy dark beam or arched branch bending over deep water, nearly too much weight held in a graceful curve, gold stress lines glowing where pressure is greatest. It evokes excess, burden, critical mass, courageous action, and structural strain before transformation."
+  },
+  "29": {
+    "hexagramNumber": 29,
+    "name": "The Abysmal",
+    "description": "Deep water flowing through a narrow ravine, danger transformed into disciplined movement, a faint gold path following the current through darkness. It evokes repeated challenge, depth, courage, danger, and learning to move steadily through uncertainty."
+  },
+  "30": {
+    "hexagramNumber": 30,
+    "name": "Radiance",
+    "description": "Twin flames reflected in still water, light revealing hidden forms without overwhelming them, clarity emerging from darkness. It evokes illumination, perception, attachment, intelligence, and the discipline of seeing without distortion."
+  },
+  "31": {
+    "hexagramNumber": 31,
+    "name": "Influence",
+    "description": "A still lake below a quiet mountain, subtle ripples spreading from an unseen touch, gold light moving softly through water rather than striking it. It evokes attraction, sensitivity, mutual response, gentle persuasion, and being moved from within."
+  },
+  "32": {
+    "hexagramNumber": 32,
+    "name": "Duration",
+    "description": "Wind moving around an ancient dark ridge while a steady gold line remains unbroken through the landscape. It evokes constancy, endurance, rhythm, commitment, and a pattern that survives changing weather."
+  },
+  "33": {
+    "hexagramNumber": 33,
+    "name": "Retreat",
+    "description": "Dark mountain forms receding into layered mist, a narrow gold path withdrawing upward with dignity, open space left behind rather than defeat. It evokes strategic withdrawal, preservation, timing, distance, and strength protected by stepping back."
+  },
+  "34": {
+    "hexagramNumber": 34,
+    "name": "Great Power",
+    "description": "Thunderlight rising through massive dark clouds above strong open ground, gold energy expanding upward but contained by clean composition. It evokes power, momentum, confidence, responsibility, and strength guided by right conduct."
+  },
+  "35": {
+    "hexagramNumber": 35,
+    "name": "Progress",
+    "description": "A gold dawn rising over dark earth, light climbing across layered fields and mist in clear stages. It evokes advancement, recognition, visibility, steady growth, and moving into greater clarity without haste."
+  },
+  "36": {
+    "hexagramNumber": 36,
+    "name": "Darkening of the Light",
+    "description": "A gold ember hidden beneath dark earth and ash, surrounding landscape quiet and protective, light preserved rather than displayed. It evokes concealment, wounded clarity, inner truth, caution, and keeping one's brightness alive in shadow."
+  },
+  "37": {
+    "hexagramNumber": 37,
+    "name": "The Family",
+    "description": "Warm gold light glowing from within a simple abstract shelter shape, wind and mist moving outside while the center remains ordered. It evokes household, roles, care, belonging, boundaries, and inner order that supports life."
+  },
+  "38": {
+    "hexagramNumber": 38,
+    "name": "Opposition",
+    "description": "Firelight above and lake reflection below pulling in different directions, two luminous gold forms separated by mist yet held in one composition. It evokes difference, polarity, estrangement, perspective, and finding clarity without forcing sameness."
+  },
+  "39": {
+    "hexagramNumber": 39,
+    "name": "Obstruction",
+    "description": "A dark mountain pass blocked by ice and deep water, the direct path hidden while a faint gold route turns sideways through mist. It evokes delay, difficulty, humility, seeking help, and learning from the obstacle rather than attacking it."
+  },
+  "40": {
+    "hexagramNumber": 40,
+    "name": "Deliverance",
+    "description": "Storm clouds parting over dark rain-soaked ground, water releasing from a narrow channel into open space, gold light breaking through with relief. It evokes release, forgiveness, untangling, movement after pressure, and the first breath after constraint."
+  },
+  "41": {
+    "hexagramNumber": 41,
+    "name": "Decrease",
+    "description": "A spare dark landscape reduced to a few essential forms, one small gold offering of light placed on quiet ground. It evokes simplification, sacrifice, sincerity, less becoming enough, and making space by letting go."
+  },
+  "42": {
+    "hexagramNumber": 42,
+    "name": "Increase",
+    "description": "Wind carrying gold light over dark fields after rain, small streams swelling gently into abundance. It evokes growth, generosity, blessing, movement, and resources expanding when shared in the right direction."
+  },
+  "43": {
+    "hexagramNumber": 43,
+    "name": "Breakthrough",
+    "description": "A clean vertical opening of gold light cutting through heavy dark clouds, water below reflecting the decisive split. It evokes resolution, declaration, courage, truth emerging, and removing what can no longer be tolerated."
+  },
+  "44": {
+    "hexagramNumber": 44,
+    "name": "Coming to Meet",
+    "description": "A sudden warm gold wind entering a dark open valley, beautiful and unsettling, mist bending toward an unexpected arrival. It evokes encounter, temptation, powerful influence, alertness, and discerning what should or should not be welcomed."
+  },
+  "45": {
+    "hexagramNumber": 45,
+    "name": "Gathering Together",
+    "description": "Many streams, stones, and mist paths converging around a luminous gold center in a dark basin. It evokes assembly, shared ritual, community, focus, and collective energy drawn into one place."
+  },
+  "46": {
+    "hexagramNumber": 46,
+    "name": "Pushing Upward",
+    "description": "Dark roots and slender shoots rising through layered earth toward distant gold light, upward motion steady and quiet rather than dramatic. It evokes gradual ascent, effort, cultivation, ambition, and patient growth through small repeated steps."
+  },
+  "47": {
+    "hexagramNumber": 47,
+    "name": "Oppression",
+    "description": "A dry dark lakebed enclosed by steep shadowed walls, one faint gold reflection remaining in a hidden pool. It evokes exhaustion, confinement, sincerity under pressure, stripped resources, and the inner voice that endures when outer support is thin."
+  },
+  "48": {
+    "hexagramNumber": 48,
+    "name": "The Well",
+    "description": "A deep circular water source suggested in dark stone and mist, gold light descending into clear depths. It evokes enduring nourishment, shared source, tradition, access, and returning to what has always sustained life."
+  },
+  "49": {
+    "hexagramNumber": 49,
+    "name": "Revolution",
+    "description": "Dark water reflecting a controlled gold fire at the horizon, old mist peeling away like a changing skin. It evokes transformation, timing, renewal, necessary change, and the courage to alter form when truth requires it."
+  },
+  "50": {
+    "hexagramNumber": 50,
+    "name": "The Cauldron",
+    "description": "An abstract dark vessel shape formed by stone, smoke, and firelight, gold warmth rising from within and transforming what it holds. It evokes refinement, culture, offering, nourishment changed by flame, and sacred usefulness without literal ritual objects."
+  },
+  "51": {
+    "hexagramNumber": 51,
+    "name": "The Arousing",
+    "description": "Thunderlight branching through a dark sky above trembling water, a sudden gold pulse awakening the landscape. It evokes shock, awakening, movement, fear transformed into attention, and the first sound that clears sleep."
+  },
+  "52": {
+    "hexagramNumber": 52,
+    "name": "Keeping Still",
+    "description": "A dark mountain mirrored by another mountain through quiet mist, everything held in balanced silence, a small gold point resting unmoved at the center. It evokes meditation, stillness, boundaries, composure, and stopping before the mind scatters."
+  },
+  "53": {
+    "hexagramNumber": 53,
+    "name": "Development",
+    "description": "A tree growing slowly along a misty mountain slope, gold light appearing in measured rings and branches. It evokes gradual progress, courtship, maturation, patience, and beauty formed through time rather than haste."
+  },
+  "54": {
+    "hexagramNumber": 54,
+    "name": "The Marrying Maiden",
+    "description": "Moonlit water and distant thunder held in asymmetrical balance, a delicate gold reflection slightly off-center. It evokes entering an arrangement not fully controlled, desire, position, adaptation, and learning dignity within imperfect conditions."
+  },
+  "55": {
+    "hexagramNumber": 55,
+    "name": "Abundance",
+    "description": "A great burst of gold light behind dark storm clouds at high noon, the landscape full and saturated yet still elegant. It evokes fullness, peak energy, visibility, responsibility, and the brief brilliance of a moment that cannot be held forever."
+  },
+  "56": {
+    "hexagramNumber": 56,
+    "name": "The Wanderer",
+    "description": "A small gold fire glowing on a dark high plateau beneath immense open sky, path and shelter only lightly suggested. It evokes travel, impermanence, caution, loneliness, freedom, and carrying inner warmth through unfamiliar territory."
+  },
+  "57": {
+    "hexagramNumber": 57,
+    "name": "The Gentle",
+    "description": "Wind moving invisibly through dark reeds and mist, gold threads weaving softly through the air in repeated subtle curves. It evokes penetration, patience, influence, refinement, and quiet persistence entering where force cannot."
+  },
+  "58": {
+    "hexagramNumber": 58,
+    "name": "The Joyous",
+    "description": "Twin dark lakes reflecting soft gold moonlight, ripples opening outward in a calm shared rhythm. It evokes joy, exchange, openness, pleasure, speech, and delight that remains clear rather than excessive."
+  },
+  "59": {
+    "hexagramNumber": 59,
+    "name": "Dispersion",
+    "description": "Wind scattering thick mist above dark water, rigid forms dissolving into open movement, gold particles spreading outward without losing warmth. It evokes release, dissolving hardness, reconnection, thawing, and letting blocked energy move again."
+  },
+  "60": {
+    "hexagramNumber": 60,
+    "name": "Limitation",
+    "description": "Dark water contained by simple stone terraces, gold light marking measured boundaries and intervals. It evokes discipline, rhythm, useful constraint, measure, and the freedom that comes from limits wisely chosen."
+  },
+  "61": {
+    "hexagramNumber": 61,
+    "name": "Inner Truth",
+    "description": "A hollow dark center filled with soft gold light, wind and lake forms curving around it in quiet symmetry. It evokes sincerity, trust, resonance, open-hearted clarity, and truth that persuades because it is inwardly aligned."
+  },
+  "62": {
+    "hexagramNumber": 62,
+    "name": "Small Preponderance",
+    "description": "Small dark stones and fine gold marks arranged carefully on a misty ridge, low flight implied by curved wind paths near the ground. It evokes careful attention, humility, small matters, precision, and success through modest action rather than grand gesture."
+  },
+  "63": {
+    "hexagramNumber": 63,
+    "name": "After Completion",
+    "description": "Fire and water in delicate balance, a dark lake reflecting a controlled gold flame at exact stillness. It evokes completion, order, vigilance, transition, and the need to maintain harmony after success is reached."
+  },
+  "64": {
+    "hexagramNumber": 64,
+    "name": "Before Completion",
+    "description": "Dark water crossed by unfinished gold light just before dawn, forms nearly aligned but not settled, mist holding suspense at the threshold. It evokes incompletion, transition, careful crossing, possibility, and the charged moment before a pattern resolves."
+  }
+}

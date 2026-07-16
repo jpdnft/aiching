@@ -23,7 +23,7 @@ const links = [
     title: 'User Guide',
     body: 'Learn how casting works, why lines build upward, and how to frame readings.',
     href: '/guide',
-    avatar: require('@/assets/hexagrams/themes/03/weathered_sage.jpg'),
+    avatar: require('@/assets/hexagrams/themes/02/weathered_sage.jpg'),
   },
   {
     title: 'Settings',
@@ -41,7 +41,7 @@ const links = [
     title: 'Sample Premium Reading',
     body: 'See a real Premium reading generated around a custom question.',
     href: '/sample',
-    avatar: require('@/assets/hexagrams/themes/03/weathered_sage.jpg'),
+    avatar: require('@/assets/hexagrams/themes/01/weathered_sage.jpg'),
   },
   {
     title: 'Data & Privacy',
@@ -59,13 +59,13 @@ const links = [
     title: 'About the Developer',
     body: "Need a website, app, or other coded gizmo? Here's Jim's info.",
     href: '/about',
-    avatar: require('@/assets/hexagrams/themes/03/tea_house_auntie.jpg'),
+    avatar: require('@/assets/hexagrams/themes/01/tea_house_auntie.jpg'),
   },
   {
     title: 'Reviewer Access',
     body: 'Sign in as a reviewer with the access details supplied for app review.',
     href: '/review-access',
-    avatar: require('@/assets/hexagrams/themes/03/lantern_oracle.jpg'),
+    avatar: require('@/assets/hexagrams/themes/02/lantern_oracle.jpg'),
   },
 ] as const;
 

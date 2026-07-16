@@ -13,7 +13,7 @@ import { CompletedReading, Hexagram, HexagramRelationship } from '@/core/iching/
 import { getCurrentReading } from '@/storage/readingsStorage';
 import { ReadingTextSize, useAppTheme } from '@/theme/appTheme';
 import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
-import { getHexagramBackgroundSource } from '@/theme/hexagramBackgrounds';
+import { getHexagramBackgroundSource, HexagramThemeImageSource } from '@/theme/hexagramBackgrounds';
 import { formatReadingDate } from '@/utils/date';
 
 export default function ReadingScreen() {
@@ -158,7 +158,7 @@ function PrimaryReadingPanel({
   reflection,
 }: {
   hexagram: Hexagram;
-  imageSource?: number;
+  imageSource?: HexagramThemeImageSource;
   textStyles: ReadingTextStyles;
   theme: string;
   reflection: string;

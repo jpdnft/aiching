@@ -22,25 +22,40 @@ import {
 import {
   hexagramThemeList,
   HexagramThemeId,
+  HexagramThemeImageSource,
   HexagramThemeManifest,
+  isBundledHexagramTheme,
   isHexagramThemePremiumOnly,
 } from '@/theme/hexagramBackgrounds';
+import {
+  getDownloadedThemeFileUri,
+  installPremiumThemePack,
+  premiumThemePacks,
+} from '@/services/premiumThemes';
 
-const themeOracleSamples: Record<HexagramThemeId, number> = {
+const bundledThemeOracleSamples: Record<string, HexagramThemeImageSource> = {
   '01': require('@/assets/hexagrams/themes/01/lantern_oracle.jpg'),
   '02': require('@/assets/hexagrams/themes/02/lantern_oracle.jpg'),
-  '03': require('@/assets/hexagrams/themes/03/lantern_oracle.jpg'),
+};
+
+const premiumThemePreviewSamples: Record<string, HexagramThemeImageSource> = {
+  '03': require('@/assets/theme-previews/03_weathered_sage.jpg'),
+  '04': require('@/assets/theme-previews/04_weathered_sage.jpg'),
+  '05': require('@/assets/theme-previews/05_lantern_oracle.jpg'),
+  '06': require('@/assets/theme-previews/06_river_hermit.jpg'),
+  '07': require('@/assets/theme-previews/07_river_hermit.jpg'),
+  '08': require('@/assets/theme-previews/08_lantern_oracle.jpg'),
 };
 
 const personalitySamples: Record<AiReadingPersonalityId, number> = {
   lantern_oracle: require('@/assets/hexagrams/themes/02/lantern_oracle.jpg'),
   weathered_sage: require('@/assets/hexagrams/themes/01/weathered_sage.jpg'),
-  temple_poet: require('@/assets/hexagrams/themes/03/temple_poet.jpg'),
+  temple_poet: require('@/assets/hexagrams/themes/02/temple_poet.jpg'),
   river_hermit: require('@/assets/hexagrams/themes/02/river_hermit.jpg'),
-  star_cartographer: require('@/assets/hexagrams/themes/03/star_cartographer.jpg'),
+  star_cartographer: require('@/assets/hexagrams/themes/01/star_cartographer.jpg'),
   tea_house_auntie: require('@/assets/hexagrams/themes/01/tea_house_auntie.jpg'),
   mountain_strategist: require('@/assets/hexagrams/themes/02/mountain_strategist.jpg'),
-  dream_librarian: require('@/assets/hexagrams/themes/03/dream_librarian.jpg'),
+  dream_librarian: require('@/assets/hexagrams/themes/02/dream_librarian.jpg'),
   storm_witch: require('@/assets/hexagrams/themes/01/storm_witch.jpg'),
   garden_monk: require('@/assets/hexagrams/themes/02/garden_monk.jpg'),
 };
@@ -52,6 +67,9 @@ export default function SettingsScreen() {
     castingSoundId,
     colorMode,
     entitlements,
+    installedPremiumThemeIds,
+    presentPaywall,
+    refreshInstalledPremiumThemes,
     setAiReadingPersonalityId,
     setCastingSoundId,
     setColorMode,
@@ -68,6 +86,25 @@ export default function SettingsScreen() {
     getReminderSummary(defaultDailyReminderSettings),
   );
   const [dailyRemindersEnabled, setDailyRemindersEnabled] = useState(false);
+  const [themeInstallErrorMessage, setThemeInstallErrorMessage] = useState<string | null>(null);
+  const [downloadingThemeId, setDownloadingThemeId] = useState<string | null>(null);
+
+  const visibleThemes = useMemo(() => {
+    const themesById = new Map<string, HexagramThemeManifest>();
+
+    hexagramThemeList.forEach((theme) => themesById.set(theme.id, theme));
+    premiumThemePacks.forEach((themePack) => {
+      themesById.set(themePack.themeId, {
+        id: themePack.themeId,
+        name: themePack.name,
+        description: themePack.description ?? `Premium theme ${themePack.themeId}.`,
+        isAvailable: installedPremiumThemeIds.includes(themePack.themeId),
+        isPremiumOnly: true,
+      });
+    });
+
+    return [...themesById.values()].sort((left, right) => left.id.localeCompare(right.id));
+  }, [installedPremiumThemeIds]);
 
   useFocusEffect(
     useCallback(() => {
@@ -82,11 +119,49 @@ export default function SettingsScreen() {
         setDailyReminderSummary(getReminderSummary(settings));
       });
 
+      refreshInstalledPremiumThemes();
+
       return () => {
         active = false;
       };
-    }, []),
+    }, [refreshInstalledPremiumThemes]),
   );
+
+  async function handleThemePress(theme: HexagramThemeManifest) {
+    const premiumOnly = isHexagramThemePremiumOnly(theme.id);
+    const installed = !premiumOnly || installedPremiumThemeIds.includes(theme.id);
+
+    if (premiumOnly && !entitlements.premiumThemesEnabled && theme.id !== themeId) {
+      await presentPaywall();
+      return;
+    }
+
+    if (!installed) {
+      const themePack = premiumThemePacks.find((item) => item.themeId === theme.id);
+
+      if (!themePack) {
+        setThemeInstallErrorMessage('This premium theme is not available to install yet.');
+        return;
+      }
+
+      setDownloadingThemeId(theme.id);
+
+      try {
+        await installPremiumThemePack(themePack);
+        await refreshInstalledPremiumThemes();
+        await setThemeId(theme.id);
+        setThemeInstallErrorMessage(null);
+      } catch (error) {
+        setThemeInstallErrorMessage(getSettingsErrorMessage(error));
+      } finally {
+        setDownloadingThemeId(null);
+      }
+
+      return;
+    }
+
+    await setThemeId(theme.id);
+  }
 
   return (
     <ScreenContainer themeAware>
@@ -124,18 +199,24 @@ export default function SettingsScreen() {
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Theme</Text>
+        <Text style={styles.settingDescription}>
+          BASIC includes two themes. Premium themes install only after you choose them.
+        </Text>
         <View style={styles.themeList}>
-          {hexagramThemeList.map((theme) => (
+          {visibleThemes.map((theme) => (
             <ThemeOption
               key={theme.id}
-              avatarSource={themeOracleSamples[theme.id]}
+              avatarSource={getThemeSampleImage(theme.id, installedPremiumThemeIds)}
+              downloading={downloadingThemeId === theme.id}
+              installed={isBundledHexagramTheme(theme.id) || installedPremiumThemeIds.includes(theme.id)}
               premiumThemesEnabled={entitlements.premiumThemesEnabled}
               theme={theme}
               selected={theme.id === themeId}
-              onPress={() => setThemeId(theme.id)}
+              onPress={() => handleThemePress(theme)}
             />
           ))}
         </View>
+        {themeInstallErrorMessage ? <Text style={styles.errorText}>{themeInstallErrorMessage}</Text> : null}
       </View>
 
       <View style={styles.section}>
@@ -290,6 +371,29 @@ const textSizePreviewStyles: Record<ReadingTextSize, { fontSize: number; lineHei
   },
 };
 
+function getThemeSampleImage(
+  themeId: HexagramThemeId,
+  installedPremiumThemeIds: string[],
+): HexagramThemeImageSource {
+  if (bundledThemeOracleSamples[themeId]) {
+    return bundledThemeOracleSamples[themeId];
+  }
+
+  if (premiumThemePreviewSamples[themeId]) {
+    return premiumThemePreviewSamples[themeId];
+  }
+
+  if (installedPremiumThemeIds.includes(themeId)) {
+    return getDownloadedThemeFileUri(themeId, 'lantern_oracle.jpg');
+  }
+
+  return bundledThemeOracleSamples['02'];
+}
+
+function getSettingsErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : 'Unable to update settings.';
+}
+
 function useSettingsStyles() {
   const { colorMode } = useAppTheme();
 
@@ -298,12 +402,16 @@ function useSettingsStyles() {
 
 function ThemeOption({
   avatarSource,
+  downloading,
+  installed,
   premiumThemesEnabled,
   theme,
   selected,
   onPress,
 }: {
-  avatarSource: number;
+  avatarSource: HexagramThemeImageSource;
+  downloading: boolean;
+  installed: boolean;
   premiumThemesEnabled: boolean;
   theme: HexagramThemeManifest;
   selected: boolean;
@@ -311,7 +419,16 @@ function ThemeOption({
 }) {
   const styles = useSettingsStyles();
   const premiumLocked = isHexagramThemePremiumOnly(theme.id) && !premiumThemesEnabled;
-  const disabled = !theme.isAvailable || premiumLocked;
+  const disabled = downloading;
+  const stateLabel = selected
+    ? 'Selected'
+    : downloading
+      ? 'Installing'
+      : premiumLocked
+        ? 'Premium'
+        : installed
+          ? 'Select'
+          : 'Install';
 
   return (
     <Pressable
@@ -320,7 +437,7 @@ function ThemeOption({
       style={({ pressed }) => [
         styles.themeOption,
         selected && styles.themeOptionSelected,
-        disabled && styles.themeOptionDisabled,
+        (disabled || (premiumLocked && !selected)) && styles.themeOptionDisabled,
         pressed && !disabled && styles.themeOptionPressed,
       ]}>
       <Image source={avatarSource} style={styles.optionAvatar} contentFit="cover" />
@@ -329,7 +446,7 @@ function ThemeOption({
         <Text style={styles.themeMeta}>{theme.description}</Text>
       </View>
       <Text style={[styles.themeState, selected && styles.themeStateSelected]}>
-        {selected ? 'Selected' : disabled ? 'Premium' : 'Select'}
+        {stateLabel}
       </Text>
     </Pressable>
   );
@@ -587,6 +704,12 @@ function createSettingsStyles(colors: AiChingColorPalette) {
   },
   lockedNote: {
     color: colors.gold,
+    fontSize: 13,
+    lineHeight: 19,
+    fontWeight: '700',
+  },
+  errorText: {
+    color: '#ffb4a8',
     fontSize: 13,
     lineHeight: 19,
     fontWeight: '700',

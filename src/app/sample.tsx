@@ -14,7 +14,7 @@ const sampleReadingHexagram = 'Hexagram 4: Youthful Folly';
 const sampleChangingHexagram = 'Changing line 6 points toward Hexagram 7: The Army';
 const sampleReadingPersonality = 'Dream Librarian';
 const sampleReadingTheme = 'Mystical Cats';
-const sampleOracleImage = require('@/assets/hexagrams/themes/03/dream_librarian.jpg');
+const sampleOracleImage = require('@/assets/hexagrams/themes/02/dream_librarian.jpg');
 const sampleReadingLines: HexagramLines = [
   'young_yin',
   'young_yang',

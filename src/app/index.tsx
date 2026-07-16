@@ -37,7 +37,7 @@ import {
 import { useAppTheme } from '@/theme/appTheme';
 import { getCastingSoundSource } from '@/theme/castingSounds';
 import { AiChingColorPalette, getAiChingColors } from '@/theme/colors';
-import { getHomeBackgroundSource } from '@/theme/hexagramBackgrounds';
+import { getHomeBackgroundSource, HexagramThemeImageSource } from '@/theme/hexagramBackgrounds';
 import { getLocalDateKey } from '@/utils/date';
 
 const iChingLogo = require('../../assets/images/ichinglogo.png');
@@ -376,7 +376,7 @@ function CastBackground({
   showLogo = false,
   scrollKey,
 }: {
-  backgroundSource?: number;
+  backgroundSource?: HexagramThemeImageSource;
   children: ReactNode;
   showLogo?: boolean;
   scrollKey?: string;

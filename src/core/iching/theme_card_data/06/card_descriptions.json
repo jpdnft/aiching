@@ -1,0 +1,322 @@
+{
+  "01": {
+    "hexagramNumber": 1,
+    "name": "The Creative",
+    "description": "A confident young designer in flowing blue-black modern Hanfu coat standing on a rooftop at sunrise, sleeves lifted by wind like wings, city towers glowing behind, sketchbook and fabric swatches at their feet, creative force as upward motion."
+  },
+  "02": {
+    "hexagramNumber": 2,
+    "name": "The Receptive",
+    "description": "A grounded young woman in earth-toned layered Hanfu streetwear kneeling in a community garden between apartment blocks, palms open over dark soil and folded cloth, soft beige, clay, moss, and cream palette, receptive strength as care and patience."
+  },
+  "03": {
+    "hexagramNumber": 3,
+    "name": "Difficulty at the Beginning",
+    "description": "A student in rain-damp Hanfu jacket and loose trousers untangling a bicycle chain beside sprouting weeds pushing through cracked pavement, first thunderstorm of spring, messy beginning becoming movement, casual streetwear layers, cinematic urban alley."
+  },
+  "04": {
+    "hexagramNumber": 4,
+    "name": "Youthful Folly",
+    "description": "A curious teen in oversized modern Hanfu hoodie-cloak peering into a tiny museum window after hours, reflection of ancient robes overlaying their casual outfit, sneakers planted awkwardly, wonder and naivete, soft neon and moonlit stone."
+  },
+  "05": {
+    "hexagramNumber": 5,
+    "name": "Waiting",
+    "description": "Three friends in rain capes and Hanfu-inspired layered skirts waiting beneath a bus shelter, steam from paper cups, puddles reflecting traffic lights, patient ease before movement, muted jade, grey, cream, and apricot palette, modern city quiet."
+  },
+  "06": {
+    "hexagramNumber": 6,
+    "name": "Conflict",
+    "description": "Two stylish figures in contrasting Hanfu streetwear facing each other across a narrow crosswalk, one in sharp charcoal layers, one in pale linen and red sash, traffic paused, umbrellas angled like shields, tension without violence."
+  },
+  "07": {
+    "hexagramNumber": 7,
+    "name": "The Army",
+    "description": "A coordinated volunteer crew in practical Hanfu-inspired workwear organizing disaster-relief supplies in a subway concourse, quilted vests, utility belts, tied sleeves, calm discipline and shared purpose, rows of boxes and water bottles as orderly pattern."
+  },
+  "08": {
+    "hexagramNumber": 8,
+    "name": "Holding Together",
+    "description": "A circle of friends in varied modern Hanfu outfits sharing one long scarf while walking through a night market, different fabrics and colors harmonizing, lantern glow, closeness and belonging, street-food steam, layered crowd depth."
+  },
+  "09": {
+    "hexagramNumber": 9,
+    "name": "Small Taming",
+    "description": "A young stylist carefully pinning a loose sleeve before stepping into a windy street, small hairpins, subtle belt knot, tiny acts holding a bold outfit together, pale blue and wheat tones, suspended laundry and fluttering ribbons."
+  },
+  "10": {
+    "hexagramNumber": 10,
+    "name": "Treading",
+    "description": "A fashionable pedestrian in white sneakers and long cream Hanfu overskirt stepping carefully across wet stepping stones in a modern fountain plaza, tiger-stripe shadows from railings behind, grace under risk, clean composure."
+  },
+  "11": {
+    "hexagramNumber": 11,
+    "name": "Peace",
+    "description": "A relaxed morning scene on a pedestrian bridge where commuters in modern Hanfu layers move easily with cyclists and office workers, sunrise, open sky, balanced city flow, soft greens, creams, warm gold, peaceful integration of old forms and daily life."
+  },
+  "12": {
+    "hexagramNumber": 12,
+    "name": "Standstill",
+    "description": "A lone figure in dark layered Hanfu coat standing before a closed escalator in an empty mall atrium, plants behind glass, still air, muted blue-grey palette, elegance stalled but not defeated."
+  },
+  "13": {
+    "hexagramNumber": 13,
+    "name": "Fellowship",
+    "description": "A rooftop fashion picnic where strangers trade accessories, hairpins, sashes, and fabric patches, mixed genders and styles, city skyline at dusk, lanterns, laughter, community through shared adornment, warm inclusive composition."
+  },
+  "14": {
+    "hexagramNumber": 14,
+    "name": "Great Possession",
+    "description": "A young collector opening a wardrobe of luminous modern Hanfu pieces in a tiny apartment, rich but tasteful layers of silk, linen, denim, brocade, sneakers below, sunlight pouring over abundance, wealth as cultivated taste."
+  },
+  "15": {
+    "hexagramNumber": 15,
+    "name": "Modesty",
+    "description": "A quietly elegant person in simple grey-green Hanfu jacket sweeping leaves from a neighborhood temple courtyard beside modern apartment towers, plain cotton, worn shoes, small jade pin, restrained beauty and humility."
+  },
+  "16": {
+    "hexagramNumber": 16,
+    "name": "Enthusiasm",
+    "description": "Dancers in colorful modern Hanfu streetwear gathering under elevated train tracks, sleeves and ribbons moving with music, portable speaker, bold coral, teal, saffron, and indigo accents, joy before action, kinetic fashion illustration."
+  },
+  "17": {
+    "hexagramNumber": 17,
+    "name": "Following",
+    "description": "A young person in layered travel Hanfu following a trail of friends through a festival crowd, lanterns receding into the distance, hand lightly touching a sash ahead, trust and movement, urban evening."
+  },
+  "18": {
+    "hexagramNumber": 18,
+    "name": "Work on What Has Been Spoiled",
+    "description": "A fashion repair workshop in an old storefront, young makers mending torn Hanfu robes, replacing fast-fashion scraps with careful stitching, composted fabric pile and new patterns, restoration with style."
+  },
+  "19": {
+    "hexagramNumber": 19,
+    "name": "Approach",
+    "description": "A mentor in refined modern Hanfu coat descending subway stairs toward a nervous younger designer carrying garment bags, warm greeting, early morning platform glow, guidance approaching with kindness, urban fashion narrative."
+  },
+  "20": {
+    "hexagramNumber": 20,
+    "name": "Contemplation",
+    "description": "A figure in pale layered Hanfu standing on a museum balcony overlooking a city garden, their reflection multiplied in glass walls, hands folded, contemplative fashion silhouette, muted pearl, ink, and green palette."
+  },
+  "21": {
+    "hexagramNumber": 21,
+    "name": "Biting Through",
+    "description": "A decisive young tailor cutting through a tangled pile of synthetic fabric to reveal a clean Hanfu pattern beneath, bright scissors, strong workbench lighting, determination, justice as precise craft."
+  },
+  "22": {
+    "hexagramNumber": 22,
+    "name": "Grace",
+    "description": "A close fashion portrait of embroidered sleeve cuffs, translucent outer robe, pearl hair ornaments, and painted sneakers on a quiet street at dusk, beauty as surface revealing care, refined details, floral shadows."
+  },
+  "23": {
+    "hexagramNumber": 23,
+    "name": "Splitting Apart",
+    "description": "A person in layered Hanfu coat standing beside peeling posters and cracked ceramic tiles in an old alley, outer layer slipping from one shoulder, old style shedding, autumn leaves, elegant decay."
+  },
+  "24": {
+    "hexagramNumber": 24,
+    "name": "Return",
+    "description": "A young commuter returning home at dawn in comfortable Hanfu cardigan and wide trousers, stepping off a night bus into the first warm light, small suitcase, familiar doorway, cyclic renewal in ordinary life."
+  },
+  "25": {
+    "hexagramNumber": 25,
+    "name": "Innocence",
+    "description": "A childlike young adult in simple white and sky-blue Hanfu streetwear running through sprinklers in a public park, shoes in hand, unplanned laughter, naturalness before social performance, bright but clean composition."
+  },
+  "26": {
+    "hexagramNumber": 26,
+    "name": "Great Taming",
+    "description": "A disciplined designer storing magnificent robes in archival garment bags inside a studio, restraint before display, large folded textiles, measuring tape, mountain painting on wall, quiet strength contained."
+  },
+  "27": {
+    "hexagramNumber": 27,
+    "name": "Nourishment",
+    "description": "Friends in soft Hanfu-inspired homewear sharing late-night noodles around a tiny apartment table, sleeves tied back, steam, houseplants, gentle care, food and conversation as nourishment, warm amber palette."
+  },
+  "28": {
+    "hexagramNumber": 28,
+    "name": "Great Preponderance",
+    "description": "A bold fashion model in dramatically oversized Hanfu sleeves and structural streetwear coat walking under a sagging installation of bamboo poles, beauty under too much weight, balance at the edge, high-fashion urban composition."
+  },
+  "29": {
+    "hexagramNumber": 29,
+    "name": "The Abyss",
+    "description": "A person in indigo waterproof Hanfu layers descending a subway stairwell flooded with blue reflections, repeated steps, dark water below, calm face, danger as depth and repetition, neon rain outside."
+  },
+  "30": {
+    "hexagramNumber": 30,
+    "name": "Radiance",
+    "description": "Two friends in flame-colored and ivory Hanfu streetwear posing beside mirrored storefront glass at sunset, reflections doubling them, warm light caught in silk and satin, clarity, attachment, and brilliance."
+  },
+  "31": {
+    "hexagramNumber": 31,
+    "name": "Influence",
+    "description": "Two stylish strangers on opposite train platforms noticing each other through passing glass, their sleeve colors echoing across the gap, subtle attraction, suspended moment, urban romantic tension."
+  },
+  "32": {
+    "hexagramNumber": 32,
+    "name": "Duration",
+    "description": "An older couple and younger friends wearing everyday Hanfu layers walking the same neighborhood street over seasonal banners of spring rain and autumn leaves, continuity through changing fashion, steady affection."
+  },
+  "33": {
+    "hexagramNumber": 33,
+    "name": "Retreat",
+    "description": "A tired fashion student in long charcoal Hanfu coat stepping away from a loud street festival into a quiet side garden, folding fan closed, headphones around neck, retreat as wise boundary, soft night lighting."
+  },
+  "34": {
+    "hexagramNumber": 34,
+    "name": "Great Power",
+    "description": "A powerful runway moment on a city pedestrian overpass, model in bold crimson Hanfu bomber coat with wide sleeves and heavy boots, crowd below tiny, wind lifting fabric, strength requiring poise."
+  },
+  "35": {
+    "hexagramNumber": 35,
+    "name": "Progress",
+    "description": "A young creator in sunrise yellow Hanfu jacket carrying garment bags up bright outdoor stairs toward a rooftop fashion shoot, assistants above waving, upward momentum, cheerful city morning."
+  },
+  "36": {
+    "hexagramNumber": 36,
+    "name": "Darkening of the Light",
+    "description": "A figure in dark hooded Hanfu coat protecting a tiny golden hair ornament flame under their sleeve during a blackout, city windows dark, hidden brightness, resilience, violet and amber palette."
+  },
+  "37": {
+    "hexagramNumber": 37,
+    "name": "The Family",
+    "description": "Three generations preparing for a neighborhood Hanfu outing in a small apartment, grandmother adjusting a collar, parent tying a sash, child choosing sneakers, domestic order, affection, fabric everywhere but composed."
+  },
+  "38": {
+    "hexagramNumber": 38,
+    "name": "Opposition",
+    "description": "Two siblings in radically different Hanfu street styles standing back-to-back in a mirrored elevator, one minimalist black and white, one bright layered color, difference without separation, reflected city lights."
+  },
+  "39": {
+    "hexagramNumber": 39,
+    "name": "Obstruction",
+    "description": "A person in pale travel Hanfu paused before a blocked pedestrian tunnel after heavy rain, shoes muddy, route map folded uselessly, lantern glow ahead around a detour, obstruction inviting redirection."
+  },
+  "40": {
+    "hexagramNumber": 40,
+    "name": "Deliverance",
+    "description": "Friends in soaked festival Hanfu laughing as rain finally breaks the heat in a city square, sleeves untied, sandals splashing, tension released into motion, bright reflections and open sky."
+  },
+  "41": {
+    "hexagramNumber": 41,
+    "name": "Decrease",
+    "description": "A stylist removing excess accessories from an outfit before a plain mirror, leaving one perfect sash, one pin, one clean line, minimalist apartment studio, reduction as elegance."
+  },
+  "42": {
+    "hexagramNumber": 42,
+    "name": "Increase",
+    "description": "A clothing swap in a community courtyard, modern Hanfu pieces passed from hand to hand, repaired robes, tote bags, potted plants, generosity multiplying style and care."
+  },
+  "43": {
+    "hexagramNumber": 43,
+    "name": "Breakthrough",
+    "description": "A young designer opening heavy studio curtains to flood a room of unfinished Hanfu streetwear with morning light, pinned patterns and fabric bolts suddenly clear, decisive truth as illumination."
+  },
+  "44": {
+    "hexagramNumber": 44,
+    "name": "Coming to Meet",
+    "description": "A mysterious stranger in shimmering silver-green Hanfu trench coat stepping into a convenience store at midnight, automatic door glow, ordinary snacks and extraordinary presence, alluring and slightly disruptive."
+  },
+  "45": {
+    "hexagramNumber": 45,
+    "name": "Gathering Together",
+    "description": "A major Hanfu streetwear meetup in a public plaza, hundreds of layered silhouettes forming circles around a fountain, shared cameras, fans, tote bags, flowers, convergence and celebration."
+  },
+  "46": {
+    "hexagramNumber": 46,
+    "name": "Pushing Upward",
+    "description": "A young intern in practical Hanfu workwear climbing narrow studio stairs carrying stacked fabric bolts, each landing brighter than the last, effort accumulating, bamboo railing, city light above."
+  },
+  "47": {
+    "hexagramNumber": 47,
+    "name": "Oppression",
+    "description": "A fashion worker in rumpled Hanfu shirt sitting on the floor of an overheated studio after a failed fitting, pins scattered, empty water cup, harsh afternoon light, pressure and exhaustion with dignity."
+  },
+  "48": {
+    "hexagramNumber": 48,
+    "name": "The Well",
+    "description": "A beloved old fabric shop tucked between modern towers, young Hanfu makers drawing inspiration from shelves of plain cotton, indigo dye, thread spools, and ancestral patterns, source renewed by use."
+  },
+  "49": {
+    "hexagramNumber": 49,
+    "name": "Revolution",
+    "description": "A group transforming discarded business suits into modern Hanfu streetwear on an open studio floor, jackets cut into flowing panels, old forms becoming new movement, creative rebellion."
+  },
+  "50": {
+    "hexagramNumber": 50,
+    "name": "The Cauldron",
+    "description": "A communal dye workshop with a large steaming indigo vat, modern Hanfu fabrics lifted on bamboo poles, herbs, steam, copper tools, transformation through heat, color, and craft."
+  },
+  "51": {
+    "hexagramNumber": 51,
+    "name": "The Arousing",
+    "description": "Thunder cracking over an outdoor fashion shoot, models in wind-whipped Hanfu coats startled into motion, camera flash and lightning echoing, awakening energy."
+  },
+  "52": {
+    "hexagramNumber": 52,
+    "name": "Keeping Still",
+    "description": "A person in simple stone-grey Hanfu sitting motionless in a quiet dressing room, robe layers arranged like mountains, mirror dark, breath steady, stillness as strength, clean composition."
+  },
+  "53": {
+    "hexagramNumber": 53,
+    "name": "Development",
+    "description": "A sequence of garments in progress across a studio wall, from rough muslin to finished modern Hanfu coat, young maker moving slowly from station to station, gradual maturation, cranes outside the window."
+  },
+  "54": {
+    "hexagramNumber": 54,
+    "name": "The Marrying Maiden",
+    "description": "A young person in borrowed ceremonial Hanfu adapted with sneakers and cropped jacket arriving at a formal family event, beautiful but unsure of their role, doorway threshold, polite crowd beyond."
+  },
+  "55": {
+    "hexagramNumber": 55,
+    "name": "Abundance",
+    "description": "A maximalist Hanfu streetwear market at noon, racks overflowing with colorful robes, sashes, fans, bags, pins, shoes, sunlight everywhere, joyous fullness verging on too much."
+  },
+  "56": {
+    "hexagramNumber": 56,
+    "name": "The Wanderer",
+    "description": "A solitary traveler in layered dust-colored Hanfu coat waiting at a late-night train platform, compact backpack, city lights far away, temporary shelter and self-possession."
+  },
+  "57": {
+    "hexagramNumber": 57,
+    "name": "The Gentle",
+    "description": "Soft wind moving through rows of hanging Hanfu sleeves drying on a rooftop, a quiet tailor adjusting one thread, subtle influence, pale fabrics, bamboo hangers, morning haze."
+  },
+  "58": {
+    "hexagramNumber": 58,
+    "name": "Joy",
+    "description": "Two friends in bright casual Hanfu outfits taking playful photos beside a riverside railing, laughing elders nearby, reflected lanterns in water, shared delight and open conversation."
+  },
+  "59": {
+    "hexagramNumber": 59,
+    "name": "Dispersion",
+    "description": "A foggy morning riverside where young people in layered Hanfu coats release paperless lantern-like light reflections from mirrors, mist parting over the water, old anxiety dissolving."
+  },
+  "60": {
+    "hexagramNumber": 60,
+    "name": "Limitation",
+    "description": "A disciplined stylist arranging belts, sleeve ties, and layered hems on a mannequin so each line falls to its proper length, blue measuring ribbons, bamboo rack, beauty in boundaries."
+  },
+  "61": {
+    "hexagramNumber": 61,
+    "name": "Inner Truth",
+    "description": "A quiet close portrait of a young person in plain undyed Hanfu holding a small transparent locket with a seed inside, busy fashion studio blurred behind, sincerity beneath style, direct calm gaze."
+  },
+  "62": {
+    "hexagramNumber": 62,
+    "name": "Small Preponderance",
+    "description": "Tiny careful details on a modern Hanfu outfit, a hand fastening one pearl, one knot, one sleeve weight, city rooftop far below, small precision preventing a large mistake."
+  },
+  "63": {
+    "hexagramNumber": 63,
+    "name": "After Completion",
+    "description": "A finished fashion show after the crowd has left, models in modern Hanfu doing final quiet cleanup, lights dimmed, garments perfect but racks still to organize, completion requiring vigilance."
+  },
+  "64": {
+    "hexagramNumber": 64,
+    "name": "Before Completion",
+    "description": "A nearly finished modern Hanfu look laid out on a studio table at dawn, one sleeve unattached, shoes waiting, steam rising from tea, model not yet arrived, charged threshold before final crossing."
+  }
+}
